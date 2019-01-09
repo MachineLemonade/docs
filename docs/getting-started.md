@@ -6,17 +6,23 @@ menu: ["root"]
 position: [2]
 ---
 
-Welcome to Astronomer Cloud Edition. We're excited to be with you on your Airflow journey.
+Welcome to Astronomer Cloud Edition.
 
-To help you hit the ground running, this guide will walk you through what you need to know (and do) to get started on our platform.
+We're here to help you kick the ground running.
+
+## Start Your Trial
+
+If you're ready, your first step is to [start a trial here](https://trial.astronomer.io).
+
+Once you fill out the form with payment information, your 30-day trial will officially be kicked off and you'll be redirected to our app to create an account and workspace.
 
 ## Create a Workspace
 
-Your first step is to [start a trial here](https://trial.astronomer.io).
+You can think of your workspaces the same way you'd think of teams - they're just collections of Airflow deployments that specific user groups have access to. When you create an account on Astronomer, a default personal workspace is automatically created. Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
 
-From there, you'll be redirected to our app to create an account and workspace.
+### Joining another Workspace
 
-**Note:** If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to sign up. A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account.
+If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to sign up. A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account.
 
 ## Develop with the Astronomer CLI
 
@@ -24,7 +30,7 @@ From there, you'll be redirected to our app to create an account and workspace.
 
 Once you have a workspace, your next step is to get set up with our CLI and start developing locally.
 
-Follow our [CLI Install guide](https://www.astronomer.io/docs/cli-installation/) to get set up.
+Follow our [CLI Install guide](https://www.astronomer.io/docs/cli-installation/) to do so.
 
 ### Get Started
 
