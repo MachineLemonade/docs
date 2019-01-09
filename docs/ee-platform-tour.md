@@ -29,8 +29,6 @@ If you navigate to `houston.BASEDOMAIN/playground` you'll be able to interact wi
 
 Astronomer Enterprise provides single pane dashboards that let you see how each piece of the Airflow stack is performing, along with a few "summary views."
 
-Airflow-state dashboard.
-
 You can check out the queries used for each dashboard here, as well as get more information in the
 
 Note that these views are only available to admins and the first person to authenticate to your cluster will be the system admin.
