@@ -1,5 +1,5 @@
 ---
-title: "Getting started with the Astronomer CLI"
+title: "Getting started with Astro CLI"
 link: "Getting started"
 date: 2018-10-12T00:00:00.000Z
 slug: "cli-getting-started"
@@ -7,11 +7,11 @@ menu: ["Astro CLI"]
 position: [2]
 ---
 
-If you've gotten the Astronomer CLI installed and want to get ready to start pushing DAGs, you're in the right place. Read below for some starter guidelines.
+If you've gotten Astro CLI installed and want to get ready to start pushing DAGs, you're in the right place. Read below for some starter guidelines.
 
 ## I. Confirm the Install & Create a Project
 
-Let's make sure you have the Astronomer CLI installed on your machine, and that you have a project to work from.
+Let's make sure you have Astro CLI installed on your machine, and that you have a project to work from.
 
 ### Confirm the Install worked
 
@@ -95,7 +95,7 @@ If do already have an account on our app (app.astronomer.cloud), then press ente
  astronomer.cloud                    4a6cb370-c361-440d-b02b-c90b07ef15f6
 
  Switched cluster
-Username (leave blank for oAuth): 
+Username (leave blank for oAuth):
 ```
 
 Once you press enter, you’ll be prompted to go back into our UI to this link: https://app.astronomer.cloud/token
@@ -122,9 +122,9 @@ astro workspace switch <workspace UUID>
 
 ### Navigating Deployments
 
-If you haven't created a deployment via the UI (recommended), you _can_ do so via the Astronomer CLI.
+If you haven't created a deployment via the UI (recommended), you _can_ do so via Astro CLI.
 
-#### Creating a deployment via the Astronomer CLI
+#### Creating a deployment via Astro CLI
 
 To create a deployment directly from our CLI, run:
 
@@ -135,7 +135,7 @@ To create a deployment directly from our CLI, run:
 Once your webserver, scheduler, and celery flower are up, you should see the following success message and URLs:
 
 ```
-Successfully created deployment. Deployment can be accessed at the following URLs 
+Successfully created deployment. Deployment can be accessed at the following URLs
 
  Airflow Dashboard: https://popular-orbit-2745-airflow.astronomer.cloud
  Flower Dashboard: https://popular-orbit-2745-flower.astronomer.cloud
@@ -200,7 +200,7 @@ musl-dev
 
 **Note**: By default, there won't be webserver or scheduler logs in the terminal since everything is hidden away in Docker containers.
 
-You can see these logs by running: 
+You can see these logs by running:
 
 ```
 docker logs $(docker ps | grep scheduler | awk '{print $1}')
