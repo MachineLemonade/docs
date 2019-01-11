@@ -19,7 +19,7 @@ If you are setting up Astronomer for your organization, check out our guide on m
 
 Under the hood, [houston-api](https://github.com/astronomer/houston-api) is the brain of the platform.
 
-If you navigate to `houston.BASEDOMAIN/playground` you'll be able to interact with the platform through GraphQL queries. You can find some examples in the [houston-api section](https://www.astronomer.io/docs/houston-api/) section.
+If you navigate to `houston.BASEDOMAIN/playground` you'll be able to interact with the platform through GraphQL queries. You can find some examples in our [houston-api doc](https://www.astronomer.io/docs/houston-api/).
 
 
 ![Deployment Page](https://assets2.astronomer.io/guides/docs/ee/houston_example.png)

@@ -16,7 +16,7 @@ Astronomer Cloud is a managed instance of Apache Airflow on an Astronomer-hosted
 
 - Resource Controls from the UI
 
-- Multiple [support options](https://astronomer.io/pricing) pending your team's needs
+- Multiple [support options](https://www.astronomer.io/docs/support/) pending your team's needs
 
 
 ## Astronomer: Enterprise Edition
@@ -42,7 +42,7 @@ Before we dive in, here are some quick definitions for terms that we'll use when
  - *Workspace*: A set of Airflow deployments that specific users have access to.
  - *Deployment*: An instance of Airflow with dedicated and isolated resources.
 
-[Once you've created an account and authenticated in](https://astronomer.io/guides/getting-started-with-new-cloud/), you'll land on a dashboard that gives you an  overview of your Workspaces. We'll call this the `Account Dashboard`:
+[Once you've created an account and authenticated in](https://www.astronomer.io/docs/getting-started/), you'll land on a dashboard that gives you an  overview of your Workspaces. We'll call this the `Account Dashboard`:
 
 ![Account Dashboard](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/account_dashboard.png)
 
@@ -52,7 +52,7 @@ Once you click into a workspace, you'll land on another dashboard that we'll cal
 
 ![Workspace Dashboard](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/workspace_dashboard.png)
 
-Here, you have a high-level overview of all of the active Airflow deployments you have running in that given workspace. In this case, we only have one cluster spun up. From this screen, you can create new Airflow deployments, manage user access to the workspace, and generate tokens for CI/CD systems via service accounts. Note that, since all of our app activity is routed through a GraphQL API, you can also create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/guides/astro-cli/) if you prefer staying in your terminal.
+Here, you have a high-level overview of all of the active Airflow deployments you have running in that given workspace. In this case, we only have one cluster spun up. From this screen, you can create new Airflow deployments, manage user access to the workspace, and generate tokens for CI/CD systems via service accounts. Note that, since all of our app activity is routed through a GraphQL API, you can also create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
 
 ## Deployments
 
@@ -72,7 +72,7 @@ Note that, in an upcoming release, you'll be able to designate DAG-level permiss
 
 ## Service Accounts
 
-If you're interested in integrating your deployment process into your CI/CD system, [check out this guide](https://astronomer.io/guides/deploying-dags-with-cicd/). Through the `Services Account` tab in your Workspace Dashboard, you can generate API keys that you can plug into your CI/CD secrets manager.
+If you're interested in integrating your deployment process into your CI/CD system, [check out this guide](https://www.astronomer.io/docs/ci-cd/). Through the `Services Account` tab in your Workspace Dashboard, you can generate API keys that you can plug into your CI/CD secrets manager.
 
 Note that you're able to create Service Accounts at both the Workspace and Deployment level. Creating them at the Workspace level allows you to customize how your deployment pipeline works and allows you to deploy to multiple Airflow instances with one push, while creating them at the Deployment level ensures that your CI/CD pipeline will only deploy to that specific cluster. Check out [this video](https://www.youtube.com/watch?time_continue=2&v=8h9lXzGa4sQ) for a more detailed walkthrough of Service Accounts and CI/CD with Astronomer.
 

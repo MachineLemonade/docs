@@ -13,7 +13,7 @@ Once you've finished up the installation, you are ready to deploy DAGs. We'll wa
 
 We'll walk through deploying a sample DAG to make sure your installation works as expected.
 
-(**Note:** If you're looking for steps on how to deploy to your Astronomer Cloud account, check out our [Getting Started with Cloud](https://www.astronomer.io/guides/getting-started-with-new-cloud/) guide).
+(**Note:** If you're looking for steps on how to deploy to your Astronomer Cloud account, check out our [Getting Started with Cloud](https://www.astronomer.io/docs/getting-started/).
 
 ### 1. Initialize and Authenticate
 
@@ -22,7 +22,7 @@ Run:
 astro airflow init
 ```
 
-This will generate a project structure, as well as a sample DAG and plugin. You can read more about how our CLI works [here](https://github.com/astronomer/astro-cli).
+This will generate a project structure, as well as a sample DAG and plugin. You can read more about how our CLI works [here](https://www.astronomer.io/docs/cli-getting-started/).
 
 You can run
 
