@@ -28,7 +28,7 @@ Before running the Astronomer install command you must:
 1. [Setup DNS](https://astronomer.io/docs/ee-installation-dns)
 1. [Install Helm and Tiller](https://astronomer.io/docs/ee-installation-helm)
 1. [Set a few Kubernetes secrets](https://astronomer.io/docs/ee-installation-k8s-secrets)
-1. [Build your config.yaml](https://astronomer.io/docs/ee-installation-config)
+1. [Build your config.yaml](https://preview.astronomer.io/docs/ee-configyaml/)
 
 ## Install Astronomer
 

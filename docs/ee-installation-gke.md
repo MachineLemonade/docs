@@ -32,7 +32,7 @@ Before running the Astronomer install command you must:
 7. [Install Helm and Tiller](https://astronomer.io/docs/ee-installation-helm)
 8. [Set a few Kubernetes secrets](https://astronomer.io/docs/ee-installation-k8s-secrets)
 9. [Create Google OAuth Creds ](https://astronomer.io/docs/ee-installation-google-oauth)
-10. [Build your config.yaml](https://astronomer.io/docs/ee-installation-config)
+10. [Build your config.yaml](https://preview.astronomer.io/docs/ee-configyaml/)
 
 ## Install Astronomer
 
