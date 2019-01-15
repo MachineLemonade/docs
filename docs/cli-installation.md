@@ -3,8 +3,6 @@ title: "Installing the CLI"
 description: "How to get started using the Astro CLI on Mac, Linux, and Windows."
 date: 2018-10-12T00:00:00.000Z
 slug: "cli-installation"
-menu: ["Astro CLI"]
-position: [1]
 ---
 
 The Astronomer CLI provides a local and dockerized version of Apache Airflow to use while writing your DAGs. Even if you're not using Astronomer, our CLI is an easy way to use Apache Airflow on your local machine.

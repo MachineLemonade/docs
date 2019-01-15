@@ -3,8 +3,6 @@ title: "CI/CD"
 description: "Using CI/CD with Astronomer."
 date: 2018-10-12T00:00:00.000Z
 slug: "ci-cd"
-menu: ["root"]
-position: [8]
 ---
 
 With Service accounts, you can deploy your DAGs with the continuous integration/continuous deployment (CI/CD) tool of your choice. This guide will walk you through configuring your CI/CD tool to use a Astronomer EE service accounts in order to build and push your Airflow project Docker images to the private Docker registry that is installed with Astronomer EE.

@@ -2,8 +2,6 @@
 title: "Overview of Astronomer"
 date: 2018-10-12T00:00:00.000Z
 slug: "overview"
-menu: ["root"]
-position: [1]
 ---
 
 ## Astronomer: Cloud Edition

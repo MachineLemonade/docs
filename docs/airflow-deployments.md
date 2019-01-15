@@ -2,8 +2,6 @@
 title: "Airflow Deployments"
 date: 2018-10-12T00:00:00.000Z
 slug: "airflow-deployments"
-menu: ["root"]
-position: [5]
 ---
 
 If you're just getting started on Astronomer, you'll want to have a solid grasp on common terminology specific to both Apache Airflow and our platform. In this guide, you'll find some general definitions to start followed by a more in-depth breakdown.

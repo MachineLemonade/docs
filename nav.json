@@ -1,0 +1,10 @@
+[
+  "getting-started",
+  {
+    "menu": "Astro CLI",
+    "contents": [
+      "cli-installation",
+      "cli-getting-started"
+    ]
+  }
+]

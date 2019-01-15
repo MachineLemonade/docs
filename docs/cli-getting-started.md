@@ -3,8 +3,6 @@ title: "Getting started with Astro CLI"
 link: "Getting started"
 date: 2018-10-12T00:00:00.000Z
 slug: "cli-getting-started"
-menu: ["Astro CLI"]
-position: [2]
 ---
 
 If you've gotten Astro CLI installed and want to get ready to start pushing DAGs, you're in the right place. Read below for some starter guidelines.

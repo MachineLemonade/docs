@@ -2,8 +2,6 @@
 title: "Getting started with Astronomer"
 date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
-menu: ["root"]
-position: [2]
 ---
 
 Welcome to Astronomer Cloud Edition.

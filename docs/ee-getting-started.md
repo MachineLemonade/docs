@@ -2,8 +2,6 @@
 title: "Getting Started with Astronomer Enterprise Edition"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-getting-started"
-menu: ["Enterprise Edition"]
-position: [3]
 ---
 
 Astronomer Enterprise is designed to be a cloud agnostic solution for running Apache Airflow at scale.

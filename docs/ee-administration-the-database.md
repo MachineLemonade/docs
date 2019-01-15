@@ -3,8 +3,6 @@ title: "Accessing the Underlying Database within Astronomer Enterprise"
 description: "A guide to accessing the database that backs Astronomer"
 date: 2018-10-09T00:00:00.000Z
 slug: "ee-administration-the-database"
-menu: ["Administration"]
-position: [2]
 ---
 
 Sometimes it is necessary to access the database that backs the Astronomer platform. This guide will walk through the necessary steps to do so and assumes Postgres although the process is similar for MySQL.

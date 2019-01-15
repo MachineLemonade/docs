@@ -3,8 +3,6 @@ title: "DAG Deployment"
 description: "How to deploy your DAGs to your Astronomer Enterprise cluster using the Astronomer CLI."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-dag-deployment"
-menu: ["Enterprise Edition"]
-position: [3]
 ---
 
 # Deploying to Astronomer Enterprise

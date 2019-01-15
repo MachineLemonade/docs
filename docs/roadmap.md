@@ -2,8 +2,6 @@
 title: "Astronomer Roadmap"
 date: 2018-11-02T00:00:00.000Z
 slug: "roadmap"
-menu: ["Resources"]
-position: [2]
 ---
 
 Below is a summary of our future release plans. If you'd like to request a feature,
