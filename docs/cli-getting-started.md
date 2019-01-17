@@ -198,13 +198,17 @@ make
 musl-dev
 ```
 
-**Note**: By default, there won't be webserver or scheduler logs in the terminal since everything is hidden away in Docker containers.
+### Scheduler & Webserver Logs
 
-You can see these logs by running:
+By default, there won't be webserver or scheduler logs in the terminal since everything is hidden away in Docker containers.
+
+To see scheduler logs on your local docker container, run:
 
 ```
 docker logs $(docker ps | grep scheduler | awk '{print $1}')
 ```
+
+For Webserver logs, replace `scheduler` with `webserver` in the command above.
 
 ## IV. CLI Help Commands
 
