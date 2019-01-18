@@ -39,13 +39,18 @@ Replace `<your-client-id>` and `<your-client-secret>` with the values from the p
 
 ## Set up SMTP
 
-You'll need to set up SMTP to use email invites with Astronomer.
+To use email invites with Astronomer, you'll have to generate SFTP creds from an external service (e.g. [SendGrid](https://sendgrid.com/)). For help generating those credentials and configuring them with your Airflow deployments, follow our guide on [Setting up Airflow Emails](https://www.astronomer.io/docs/setting-up-airflow-emails/).
 
-In your Helm config, nested under `astronomer.smtp.uri` add something like:
+Once you have those credentials, throw them in your helm config (nested under `astronomer.smtp.uri`). Add something like:
 
 ```yaml
 astronomer:
   smtp:
     uri: "smtp://user:pass@email-smtp.us-east-1.amazonaws.com/?requireTLS=true"
 ```
+
+(**Note**: This is the format for using Amazon's SMTP service, but it should be similar for other services).
+
+Once you've updated your helm config, you'll need to do a `helm upgrade`. That'll restart Houston and pass in the creds that you need.
+
 **Note**: We send emails using [nodemailer](https://nodemailer.com/smtp/).
