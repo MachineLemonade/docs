@@ -5,23 +5,25 @@ slug: "overview"
 menu: ["root"]
 position: [1]
 ---
+# Product Overview 
 
 ## Astronomer: Cloud Edition
 
-Astronomer Cloud is a managed instance of Apache Airflow on an Astronomer-hosted cluster for ultimate abstraction from all-things infrastructure. It includes:
+Astronomer Cloud is a managed offering of [Apache Airflow](https://airflow.apache.org/) on an Astronomer-hosted cluster for ultimate abstraction from all-things infrastructure. It includes:
 
-- A custom CLI for easy DAG deployment and management
+- Secure and easy-to-spin-up Airflow environments with fully isolated resources
 
-- Access to our Astronomer UI with secure authentication for easy deployment, user, and workspace management. You can read more about the components of our UI below.
+- An Astronomer-built [CLI](https://www.astronomer.io/docs/cli-getting-started/) for easy DAG deployment and management
 
-- Resource Controls from the UI
+- Access to Astronomer's [UI](https://app.astronomer.cloud/signup) with secure authentication for easy deployment, user, and workspace management
+
+- Resource controls on Astronomer's UI
 
 - Multiple [support options](https://www.astronomer.io/docs/support/) pending your team's needs
 
-
 ## Astronomer: Enterprise Edition
 
-Astronomer Enterprise allows you to run a private version of our platform on your own Kubernetes cluster It includes:
+Astronomer Enterprise allows you to run a private version of our platform on your own Kubernetes cluster. It includes:
 
 - Astronomer Command Center that includes an Astronomer-built UI, CLI, and a GraphQL API for easy cluster and deployment management on Kubernetes
 
@@ -31,87 +33,45 @@ Astronomer Enterprise allows you to run a private version of our platform on you
 
 - Enterprise-grade business day or business critical support
 
-# The Astronomer UI
+For our full installation guides, go to our [EE Getting Started Guide](https://www.astronomer.io/docs/ee-getting-started/).
 
-To help achieve Astronomer's goal of improving Airflow's usability, we have built a custom UI that makes user access and deployment management dead simple. In this guide, we'll walk through the specific components of the Astronomer UI and discuss the design principles that led to their creation.
+# Platform Overview
 
-## Getting Started
-
-Before we dive in, here are some quick definitions for terms that we'll use when discussing the Astronomer UI:
-
- - *Workspace*: A set of Airflow deployments that specific users have access to.
- - *Deployment*: An instance of Airflow with dedicated and isolated resources.
-
-[Once you've created an account and authenticated in](https://www.astronomer.io/docs/getting-started/), you'll land on a dashboard that gives you an  overview of your Workspaces. We'll call this the `Account Dashboard`:
-
-![Account Dashboard](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/account_dashboard.png)
-
-You can think of your Workspaces the same way you'd think of teams- they're just collections of Airflow clusters that specific user groups have access to. From this dashboard, you can spin up new Workspaces and get a high-level overview of active Airflow deployments in your current workspaces.
-
-Once you click into a workspace, you'll land on another dashboard that we'll call the `Workspace Dashboard`:
-
-![Workspace Dashboard](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/workspace_dashboard.png)
-
-Here, you have a high-level overview of all of the active Airflow deployments you have running in that given workspace. In this case, we only have one cluster spun up. From this screen, you can create new Airflow deployments, manage user access to the workspace, and generate tokens for CI/CD systems via service accounts. Note that, since all of our app activity is routed through a GraphQL API, you can also create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
-
-## Deployments
-
-If you click into one of your Airflow deployments, you'll land on a page that looks like this:
-
-![Deployments](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/deployment_dashboard.png)
-
-From here, you'll be able to access the Airflow and Flower dashboards for that specific deployment. In Astronomer's 0.7 release, you will be able to scale up Celery workers directly from the UI here as well.
-
-## User Management
-
-If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace and invite other members of your organization to access the Airflow instances in that Workspace.
-
-![Users](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/user_dashboard.png)
-
-Note that, in an upcoming release, you'll be able to designate DAG-level permissions for each of the users who has access to the Workspace.
-
-## Service Accounts
-
-If you're interested in integrating your deployment process into your CI/CD system, [check out this guide](https://www.astronomer.io/docs/ci-cd/). Through the `Services Account` tab in your Workspace Dashboard, you can generate API keys that you can plug into your CI/CD secrets manager.
-
-Note that you're able to create Service Accounts at both the Workspace and Deployment level. Creating them at the Workspace level allows you to customize how your deployment pipeline works and allows you to deploy to multiple Airflow instances with one push, while creating them at the Deployment level ensures that your CI/CD pipeline will only deploy to that specific cluster. Check out [this video](https://www.youtube.com/watch?time_continue=2&v=8h9lXzGa4sQ) for a more detailed walkthrough of Service Accounts and CI/CD with Astronomer.
-
-# Astronomer Features
-
-## Airflow Clusters
+## Airflow Deployment
 
 When you create a new Airflow deployment on Astronomer, the
-platform will deploy Kubernetes pods for an Airflow Webserver,
-Airflow Scheduler, pool of Celery workers, a small Redis instance
-(that backs Celery), and a statsd pod that streams metrics to a
-centralized Prometheus and Grafana.
+platform will deploy the following:
 
-## Easy Installation
-
-You can self-install Astronomer onto Kubernetes by following our [install guides](https://www.astronomer.io/docs/ee-overview/).
-
-When you install the Astronomer platform, a number of components
-are deployed including NGINX, Prometheus, Grafana, a GraphQL API
-(Houston), a React UI (Orbit), and a private Docker Registry (used
-in the DAG deployment process).
-
-Helm charts here: https://github.com/astronomer/helm.astronomer.io
-
-## Easy DAG Deployment
+- Kubernetes pods for an Airflow Webserver
+- Airflow Scheduler
+- Pool of Celery workers
+- A small Redis instance (that backs Celery)
+- A statsd pod that streams metrics to a
+centralized Prometheus and Grafana (*Enterprise only*)
 
 Astronomer makes it easy to deploy these containers
 to Kubernetes - but more importantly, to give Airflow developers a
 CLI to deploy DAGs through a private Docker registry that interacts
 with the Kubernetes API.
 
-Remember to run `astro airflow init` after creating a new project directory.
+## Installation
 
-Any Python packages can be added to `requirements.txt` and all OS level packages
-can be added to `packages.txt` in the project directory.
+Astronomer Cloud is a managed offering of Apache Airflow hosted on Astronomer. To get started, follow [this guide](https://www.astronomer.io/docs/getting-started/).
 
-Additional [RUN](https://docs.docker.com/engine/reference/builder/#run)
-commands can be added to the `Dockerfile`. Environment variables can also be
-added to [ENV](https://docs.docker.com/engine/reference/builder/#env).
+If you're interested in self-installing Astronomer onto Kubernetes our Enterprise Edition, follow our [install guides](https://www.astronomer.io/docs/ee-overview/).
+
+When you install the Astronomer platform, a number of components
+are deployed, including:
+
+- NGINX
+- Prometheus
+- Grafana
+- A GraphQL API (Houston)
+- A React UI (Orbit)
+- A Private Docker Registry (used
+in the DAG deployment process).
+
+Helm charts here: https://github.com/astronomer/helm.astronomer.io
 
 ## Authentication Options
 
@@ -120,30 +80,47 @@ added to [ENV](https://docs.docker.com/engine/reference/builder/#env).
 - Google
 - Github
 
-## Astro CLI
+## Astronomer Code
 
-The [Astro CLI](https://github.com/astronomer/astro-cli)
-helps you develop and deploy Airflow projects.
+### Astronomer
 
-## Houston
+The repository we consider the entrypoint to Astronomer is [astronomer/astronomer](https://github.com/astronomer/astronomer).
+
+Here, we define all of our docker images and link out to the rest of our repositories. As our product and documentation grows and matures, this repo will do so as well.
+
+### Helm Charts
+
+This is what our Enterprise customers clone for an install: https://github.com/astronomer/helm.astronomer.io
+
+We'd consider this repo our "umbrella" chart, since it contains several other charts that makeup our full system. 
+
+ ### Astronomer CLI
+
+The [Astro CLI](https://github.com/astronomer/astro-cli) is our very own Command Line tool designed to help you develop locally and push Airflow deployments with ease.
+
+For a detailed breakdown, jump over to our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-getting-started/).
+
+### Houston
 
 [Houston](https://github.com/astronomer/houston-api) is a GraphQL
-API that serves as the source of truth for the Astronomer Platform.
+API that serves as the source of truth for the Astronomer Platform. Our GraphQL API is used to interact
 
-## Commander
+We're currently doing a quick re-write [here](https://github.com/astronomer/houston-api-2).
 
-[Commander](https://github.com/astronomer/commander) is a  GRPC
+### Commander
+
+[Commander](https://github.com/astronomer/commander) is a GRPC
 provisioning component of the Astronomer Platform. It is
 responsible for interacting with the underlying Kubernetes
 infrastructure layer.
 
-## Orbit
+### Orbit
 
 [Orbit](https://github.com/astronomer/orbit-ui) is a GraphQL UI
 that provides easy access to the capabilities of the Astronomer
 platform.
 
-## dbBootstrapper
+### dbBootstrapper
 
 [dbBootstrapper](https://github.com/astronomer/db-bootstrapper)
 is a utility that initializes databases and create Kubernetes
