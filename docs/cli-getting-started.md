@@ -198,6 +198,10 @@ make
 musl-dev
 ```
 
+Additional [RUN](https://docs.docker.com/engine/reference/builder/#run)
+commands can be added to the `Dockerfile`. Environment variables can also be
+added to [ENV](https://docs.docker.com/engine/reference/builder/#env).
+
 ### Logs & Docker Containers
 
 Since everything is hidden away in Docker containers, you won't see webserver and scheduler logs in the terminal by default.
