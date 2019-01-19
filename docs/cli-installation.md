@@ -33,9 +33,9 @@ Via `curl`:
     curl -sSL https://install.astronomer.io | sudo bash -s -- [TAGNAME]
    ```
 
-For example:
+To install CLI v0.7.5, for example, run:
    ```
-curl -sSL https://install.astronomer.io | sudo bash -s -- v0.3.1
+curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5
    ```
 
 **Note:** If you get a mkdir error while going through the install, please download and run the [godownloader](https://raw.githubusercontent.com/astronomer/astro-cli/master/godownloader.sh) script locally.

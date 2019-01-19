@@ -196,13 +196,29 @@ make
 musl-dev
 ```
 
-**Note**: By default, there won't be webserver or scheduler logs in the terminal since everything is hidden away in Docker containers.
+Additional [RUN](https://docs.docker.com/engine/reference/builder/#run)
+commands can be added to the `Dockerfile`. Environment variables can also be
+added to [ENV](https://docs.docker.com/engine/reference/builder/#env).
 
-You can see these logs by running:
+### Logs & Docker Containers
+
+Since everything is hidden away in Docker containers, you won't see webserver and scheduler logs in the terminal by default.
+
+To see scheduler logs on your local docker container, run:
 
 ```
 docker logs $(docker ps | grep scheduler | awk '{print $1}')
 ```
+
+For Webserver logs, replace `scheduler` with `webserver` in the command above. 
+
+As for generally interacting with Docker containers, you can access them by running the following:
+
+```
+`docker exec -it {CONTAINER_ID} bash`
+``` 
+
+**Note**: For security reasons, you'll only be able to do so while developing locally.
 
 ## IV. CLI Help Commands
 

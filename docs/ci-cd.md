@@ -7,18 +7,19 @@ slug: "ci-cd"
 
 With Service accounts, you can deploy your DAGs with the continuous integration/continuous deployment (CI/CD) tool of your choice. This guide will walk you through configuring your CI/CD tool to use a Astronomer EE service accounts in order to build and push your Airflow project Docker images to the private Docker registry that is installed with Astronomer EE.
 
-
 For background information and best practices on CI/CD, we recommend reading the article [An Introduction to CI/CD Best Practices](https://www.digitalocean.com/community/tutorials/an-introduction-to-ci-cd-best-practices) from DigitalOcean.
 
-## Steps for Setting up CI/CD with Your Astronomer EE Airflow Project
+## Steps for Setting up CI/CD with Your Astronomer Airflow Project
 
 Before we get started, this guide assumed you have installed Astronomer Enterprise Edition or are using Astronomer Cloud Edition, have the [astro-cli](https://github.com/astronomer/astro-cli) v0.6.0 or newer installed locally and are familiar with your CI/CD tool of choice. You can check your astro-cli version with the `astro version` command.
 
 ### Create a Service Account
 
-In order to authenticate your CI/CD pipeline to the private Docker registry you will need to create a service account. This service account access can be revoked at any time by deleting the service account through the astro-cli or orbit-ui.
+In order to authenticate your CI/CD pipeline to the private Docker registry, you'll need to create a service account. This service account access can be revoked at any time by deleting the service account through the astro-cli or orbit-ui.
 
-Here are a few examples of creating service accounts with various permission levels via the astro-cli
+ Note that you're able to create Service Accounts at both the Workspace and Deployment level. Creating them at the Workspace level allows you to customize how your deployment pipeline works and allows you to deploy to multiple Airflow instances with one push, while creating them at the Deployment level ensures that your CI/CD pipeline will only deploy to that specific cluster.
+
+ Here are a few examples of creating service accounts with various permission levels via the Astronomer CLI.
 
 __Deployment Level Service Account__
 
