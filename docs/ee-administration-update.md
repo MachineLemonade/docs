@@ -3,8 +3,6 @@ title: "Upgrade the Astronomer Platform"
 description: "Upgrade your Astronomer Enterprise instance"
 date: 2018-07-17T00:00:00.000Z
 slug: "ee-administration-update"
-menu: ["Administration"]
-position: [3]
 ---
 
 ## Upgrade Astronomer

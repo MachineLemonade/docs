@@ -2,8 +2,6 @@
 title: "Enterprise Edition Overview"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-overview"
-menu: ["Enterprise Edition"]
-position: [1]
 ---
 
 ![Astronomer Overview](https://cdn-images-1.medium.com/max/2000/1*NOdESVh32nq5mbs_Nj46pA.png)

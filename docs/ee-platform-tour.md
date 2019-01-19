@@ -3,8 +3,6 @@ title: "Platform Tour"
 description: "Walking through the Astronomer Platform."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-platform-tour"
-menu: ["Enterprise Edition"]
-position: [3]
 ---
 
 Now that you've deployed your first DAG, let's walk through each aspect of the Astronomer Platform:

@@ -3,8 +3,6 @@ title: "The Houston API"
 description: "Official documentation for the API that powers Astronomer."
 date: 2018-10-12T00:00:00.000Z
 slug: "houston-api"
-menu: ["root"]
-position: [7]
 ---
 
 The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write graphql queries directly against the API. This guide will walk you through authenticating and writing queries against the Houston API playground.

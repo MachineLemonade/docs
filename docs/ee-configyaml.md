@@ -3,8 +3,6 @@ title: "Build your config.yaml"
 description: "Installing config.yaml for Astronomer"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-configyaml"
-menu: ["Installation"]
-position: [2]
 ---
 Here, we'll set the configuration values for the Astronomer Helm chart.
 

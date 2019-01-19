@@ -1,0 +1,59 @@
+[
+  "overview",
+  "getting-started",
+  "security-model",
+  "airflow-deployments",
+  {
+    "menu": "Astro CLI",
+    "contents": [
+      "cli-installation",
+      "cli-getting-started"
+    ]
+  },
+  "houston-api",
+  "ci-cd",
+  "alerts",
+  {
+    "menu": "Enterprise Edition",
+    "contents": [
+      "ee-overview",
+      "ee-getting-started",
+      {
+        "menu": "Installation",
+        "contents": [
+          "ee-installation-config",
+          "ee-installation-helm",
+          "ee-installation-general-kubernetes",
+          "ee-installation-eks",
+          "ee-installation-gke"
+        ]
+      },
+      {
+        "menu": "Post Installation",
+        "contents": [
+          "ee-dag-deployment",
+          "ee-platform-tour"
+        ]
+      },
+      {
+        "menu": "Administration",
+        "contents": [
+          "ee-administration-airflow-cli",
+          "ee-administration-recovery-guide",
+          "ee-administration-the-database",
+          "ee-administration-update"
+        ]
+      },
+      "ee-metrics"
+    ]
+  },
+  {
+    "menu": "Resources",
+    "contents": [
+      "release-notes",
+      "roadmap",
+      "pricing",
+      "support"
+    ]
+  }
+]

@@ -2,8 +2,6 @@
 title: "Built-in Alerts"
 date: 2018-10-12T00:00:00.000Z
 slug: "alerts"
-menu: ["root"]
-position: [9]
 ---
 
 Get emails for common Airflow deployment issues, before you experience a failure.

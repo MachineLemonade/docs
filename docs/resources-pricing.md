@@ -3,8 +3,6 @@ title: "Pricing"
 description: "Documentation of our pricing structure and philosophy."
 date: 2018-10-12T00:00:00.000Z
 slug: "resources-pricing"
-menu: ["Resources"]
-position: [3]
 ---
 
 To view an overview of our pricing structure, check out the [pricing page](https://www.astronomer.io/pricing/) on our website.

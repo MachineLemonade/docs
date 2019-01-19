@@ -3,8 +3,6 @@ title: "Recovery Guide"
 description: "How to recover a private installation of Astronomer"
 date: 2018-08-24T00:00:00.000Z
 slug: "ee-administration-recovery-guide"
-menu: ["Administration"]
-position: [1]
 ---
 
 # Disaster Recovery Guide
