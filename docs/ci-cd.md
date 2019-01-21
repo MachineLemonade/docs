@@ -95,14 +95,6 @@ jobs:
           - v1-dependencies-{{ checksum "requirements.txt" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
-      - run:
-          name: install dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get -y install python3-pip
-            pip install -r requirements.txt
-
       - run:
           name: run linter
           command: |
@@ -126,10 +118,6 @@ jobs:
             docker build -t registry.datarouter.ai/empty-isotope-6604/airflow:ci-$TAG .
             docker login registry.datarouter.ai -u _ -p $DOCKER_KEY
             docker push registry.datarouter.ai/empty-isotope-6604/airflow:ci-$TAG
-
-      - store_artifacts:
-          path: test-reports
-          destination: test-reports
 
 workflows:
   version: 2
