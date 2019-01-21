@@ -78,6 +78,74 @@ pipeline:
       branch: [ master, release-* ]
 ```
 
+If you are using CircleCI, it might look like:
+```
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip
+            pip install -r requirements.txt
+
+      - run:
+          name: run linter
+          command: |
+            pycodestyle .
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+  deploy:
+    docker:
+      - image:  astronomerio/ap-build:0.0.7
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Push to Docker Hub
+          command: |
+            TAG=0.1.$CIRCLE_BUILD_NUM
+            docker build -t registry.datarouter.ai/empty-isotope-6604/airflow:ci-$TAG .
+            docker login registry.datarouter.ai -u _ -p $DOCKER_KEY
+            docker push registry.datarouter.ai/empty-isotope-6604/airflow:ci-$TAG
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+```
+
+
 Breaking this down:
 
 #### Authenticating to Docker
