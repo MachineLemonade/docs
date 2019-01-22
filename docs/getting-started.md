@@ -1,5 +1,6 @@
 ---
 title: "Getting started with Astronomer"
+description: "How to get up and running with an Astronomer Cloud trial."
 date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
 ---
