@@ -7,7 +7,7 @@ slug: "getting-started"
 
 Welcome to Astronomer Cloud Edition.
 
-We're here to help you kick the ground running.
+We're here to help you hit the ground running.
 
 ## Start Your Trial
 
