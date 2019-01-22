@@ -1,5 +1,6 @@
 ---
 title: "Astronomer UI"
+description: "A walkthrough of the Astronomer app."
 date: 2018-10-12T00:00:00.000Z
 slug: "airflow-deployments"
 ---

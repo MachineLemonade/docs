@@ -1,5 +1,6 @@
 ---
 title: "Astronomer Roadmap"
+description: "Features that Astronomer plans to develop in coming months."
 date: 2018-11-02T00:00:00.000Z
 slug: "roadmap"
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Getting started with Astro CLI"
+description: "Get started deploying DAGs and running Airflow locally with the Astronomer CLI."
 link: "Getting started"
 date: 2018-10-12T00:00:00.000Z
 slug: "cli-getting-started"
