@@ -47,7 +47,7 @@ astronomer:
     uri: "smtp://user:pass@email-smtp.us-east-1.amazonaws.com/?requireTLS=true"
 ```
 
-(**Note**: This is the format for using Amazon's SMTP service, but it should be similar for other services).
+This is the format for using Amazon's SMTP service, but it should be similar for other services.
 
 Once you've updated your helm config, you'll need to do a `helm upgrade`. That'll restart Houston and pass in the creds that you need.
 
