@@ -1,5 +1,5 @@
 ---
-title: "Astronomer UI"
+title: "Airflow Deployments"
 description: "A walkthrough of the Astronomer app."
 date: 2018-10-12T00:00:00.000Z
 slug: "airflow-deployments"
@@ -9,7 +9,7 @@ If you're just getting started on Astronomer, you'll want to have a solid grasp 
 
 # Overview
 
-## Basic Definitions 
+## Basic Definitions
 
 **Astronomer Workspace** = A personal or shared space on Astronomer’s platform that is home to a collection of Airflow deployments. User access to deployments is managed at the workspace level on Astronomer.
 
@@ -17,7 +17,7 @@ If you're just getting started on Astronomer, you'll want to have a solid grasp 
 
 ## Workspace Layer
 
-### Overview 
+### Overview
 A `Workspace` is an Astronomer-specific term. You can think of your workspaces the same way you'd think of teams - they're just collections of Airflow deployments that specific user groups have access to. When you create an account on Astronomer, a default personal workspace is automatically created. Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments, and grant or restrict user access to those deployments accordingly.
 
 ### Deployments and Workspaces
@@ -60,19 +60,19 @@ From this dashboard, you can:
 2. View the workspaces you currently have access to
 3. Adjust your account name under the `Personal Settings` tab
 
-### Workspace Dashboard 
+### Workspace Dashboard
 
 Once you click into a workspace, you'll land on another dashboard that we'll call the `Workspace Dashboard`:
 
 ![Workspace Dashboard](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/workspace_dashboard.png)
 
-Here, you have a high-level overview of all of the active Airflow deployments you have running in that given workspace. In this case, we only have one cluster spun up. 
+Here, you have a high-level overview of all of the active Airflow deployments you have running in that given workspace. In this case, we only have one cluster spun up.
 
 From this screen, you can:
 
 1. Create new Airflow deployments
 2. Manage user access to the workspace
-3. Generate tokens for CI/CD systems via service accounts. 
+3. Generate tokens for CI/CD systems via service accounts.
 
 **Note:** Since all of our app activity is routed through a GraphQL API, you're free to create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
 
@@ -94,7 +94,7 @@ If you click into one of your Airflow deployments, you'll land on a page that lo
 
 From here, you'll be able to access:
 
-1. Airflow UI (DAG Dashboard) 
+1. Airflow UI (DAG Dashboard)
 2. Flower dashboard
 
 For a breakdown the Airflow UI itself, check out [this guide](https://www.astronomer.io/guides/airflow-ui/).
