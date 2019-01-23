@@ -1,19 +1,13 @@
 ---
-title: "Getting started with Astronomer"
-description: "How to get up and running with an Astronomer Cloud trial."
+title: "Getting Started"
+description: "How to get up and running with Astronomer"
 date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
 ---
 
-Welcome to Astronomer Cloud Edition.
+## Start a Trial
 
-We're here to help you hit the ground running.
-
-## Start Your Trial
-
-If you're ready, your first step is to [start a trial here](https://trial.astronomer.io).
-
-Once you fill out the form with payment information, your 30-day trial will officially be kicked off and you'll be redirected to our app to create an account and workspace.
+A good way to get started is to [sign up for an Astronomer Cloud trial](https://trial.astronomer.io).
 
 ## Create a Workspace
 

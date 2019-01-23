@@ -1,11 +1,11 @@
 ---
-title: "Overview of Astronomer"
-description: "An overview of our offerings."
+title: "Overview"
+description: "An overview of the platform"
 date: 2018-10-12T00:00:00.000Z
 slug: "overview"
 ---
 
-## Astronomer: Cloud Edition
+## Astronomer Cloud
 
 Astronomer Cloud is a managed offering of [Apache Airflow](https://airflow.apache.org/) on an Astronomer-hosted cluster for ultimate abstraction from all-things infrastructure. It includes:
 
@@ -19,7 +19,7 @@ Astronomer Cloud is a managed offering of [Apache Airflow](https://airflow.apach
 
 - Multiple [support options](https://www.astronomer.io/docs/support/) pending your team's needs
 
-## Astronomer: Enterprise Edition
+## Astronomer Enterprise
 
 Astronomer Enterprise allows you to run a private version of our platform on your own Kubernetes cluster. It includes:
 
@@ -90,7 +90,7 @@ Here, we define all of our docker images and link out to the rest of our reposit
 
 This is what our Enterprise customers clone for an install: https://github.com/astronomer/helm.astronomer.io
 
-We'd consider this repo our "umbrella" chart, since it contains several other charts that makeup our full system. 
+We'd consider this repo our "umbrella" chart, since it contains several other charts that makeup our full system.
 
  ### Astronomer CLI
 
