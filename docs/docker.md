@@ -8,12 +8,6 @@ slug: "docker"
 You can use [our Docker images](https://github.com/astronomer/astronomer)
 however you'd like, subject to standard Apache 2.0 restrictions.
 
-You may also be interested to use our product which comes as both a
-managed SaaS (Cloud Edition) and on-prem, deploys to your Kubernetes
-(Enterprise Edition). Both editions makes it easy to deploy Apache
-Airflow clusters and Airflow DAGs in a multi-team, multi-user
-environment.
-
 ## Requirements
 
 The only requirement to get our Docker images up and running is

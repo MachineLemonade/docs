@@ -11,7 +11,7 @@ Astronomer Cloud is a managed offering of [Apache Airflow](https://airflow.apach
 
 - Secure and easy-to-spin-up Airflow environments with fully isolated resources
 
-- An Astronomer-built [CLI](https://www.astronomer.io/docs/cli-getting-started/) for easy DAG deployment and management
+- An Astronomer-built [CLI](https://www.astronomer.io/docs/cli-getting-started/) for DAG deployment, connection management, and logging
 
 - Access to Astronomer's [UI](https://app.astronomer.cloud/signup) with secure authentication for easy deployment, user, and workspace management
 
@@ -21,7 +21,7 @@ Astronomer Cloud is a managed offering of [Apache Airflow](https://airflow.apach
 
 ## Astronomer Enterprise
 
-Astronomer Enterprise allows you to run a private version of our platform on your own Kubernetes cluster. It includes:
+Astronomer Enterprise allows you to run a private version of our platform on your own [Kubernetes](https://kubernetes.io/) cluster. It includes:
 
 - Astronomer Command Center that includes an Astronomer-built UI, CLI, and a GraphQL API for easy cluster and deployment management on Kubernetes
 

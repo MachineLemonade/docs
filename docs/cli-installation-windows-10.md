@@ -13,7 +13,7 @@ This guide will walk you through the setup and configuration process for using t
 
 Much of the setup process is borrowed from a guide written by Nick Janetakis. Find the full guide here: [Setting Up Docker for Windows and WSL to Work Flawlessly](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-## Step 1. Install Docker ce for windows
+## Step 1. Install Docker ce for Windows
 
 Follow the docker for windows install guide here: [Install Docker for windows](https://docs.docker.com/docker-for-windows/install/)
 

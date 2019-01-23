@@ -5,17 +5,25 @@ date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
 ---
 
+Welcome to Astronomer.
+
 ## Start a Trial
 
-A good way to get started is to [sign up for an Astronomer Cloud trial](https://trial.astronomer.io).
+To sign up for a trial on Astronomer, fill out [this form]((https://trial.astronomer.io)).
+
+Whether you're exploring our Enterprise or Cloud offering, it's a good way to start getting to know our platform.
 
 ## Create a Workspace
 
-You can think of your workspaces the same way you'd think of teams - they're just collections of Airflow deployments that specific user groups have access to. When you create an account on Astronomer, a default personal workspace is automatically created. Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
+Once you've kicked off your trial, you'll be directed to create an account on Astronomer. Your account will be equipped with a personal workspace by default.
 
-### Joining another Workspace
+You can think of your workspaces the same way you'd think of teams - they're collections of Airflow deployments that specific user groups have access to.  Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
 
-If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to sign up. A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account.
+### Join another Workspace
+
+If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account.
+
+Read more about Astrononmer's UI [here](https://preview.astronomer.io/docs/airflow-deployments/).
 
 ## Develop with the Astronomer CLI
 
@@ -31,7 +39,7 @@ Once installed, head over to our [CLI Getting Started Guide](https://astronomer.
 
 ## Build your Image
 
-Once you've created a project, made sure you're in the right place and feel comfortable with our CLI commands, run the following in a project directory: `astro airflow init`
+Once you've created a project, made sure you're in the right place, and feel comfortable with our CLI commands, run the following in a project directory: `astro airflow init`
 
 This will generate some skeleton files:
 
@@ -143,4 +151,4 @@ This command will return a list of deployments available in that workspace, and 
 
 ## Frequently Asked Questions
 
-Check out our [web forum](https://forum.astronomer.io) for FAQs and community discussion.
+Check out our [community forum](https://forum.astronomer.io) for FAQs and community discussion.
