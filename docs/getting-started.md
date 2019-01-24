@@ -11,7 +11,7 @@ Welcome to Astronomer.
 
 To sign up for a trial on Astronomer, fill out [this form]((https://trial.astronomer.io)).
 
-Whether you're exploring our Enterprise or Cloud offering, it's a good way to start getting to know our platform.
+Whether you're exploring our Enterprise or Cloud offering, it's a good way to get to know our platform.
 
 ## Create a Workspace
 
@@ -21,9 +21,11 @@ You can think of your workspaces the same way you'd think of teams - they're col
 
 ### Join another Workspace
 
-If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account.
+If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account*.
 
 Read more about Astrononmer's UI [here](https://preview.astronomer.io/docs/airflow-deployments/).
+
+*If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder or try to whitelist our domain if you can.
 
 ## Develop with the Astronomer CLI
 
