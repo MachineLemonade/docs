@@ -1,1 +1,2 @@
 python-frontmatter==0.4.2
+invoke>=1
