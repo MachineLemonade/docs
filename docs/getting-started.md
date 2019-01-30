@@ -151,6 +151,8 @@ This command will return a list of deployments available in that workspace, and 
 
 After you deploy your example DAG, you'll be able to see it running in your Cloud deployment.
 
+**Note:** If you're interested in using Cloud for your production workflows, you're all set! If you followed this guide as a trial but would like to host our platform on your Kubernetes cluster via [Astronomer Enterprise](https://astronomer.io/enterprise), please reach out to us [via this form](https://www.astronomer.io/#request) so we can get a conversation set up.
+
 ## Other Items of Consideration
 
 ### Migrating your DAGs
