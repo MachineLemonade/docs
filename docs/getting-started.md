@@ -10,7 +10,7 @@ Welcome to Astronomer. This guide will walk you through getting a free trial sta
 
 ## Start a Trial
 
-To sign up for a free trial on Astronomer, fill out [this form]((https://trial.astronomer.io)).
+To sign up for a free trial on Astronomer, fill out [this form]((https://trial.astronomer.io)). Please [contact us](https://astronomer.io/contact) if providing credit card information is a problem for you or your organization.
 
 
 ## Create a Workspace
