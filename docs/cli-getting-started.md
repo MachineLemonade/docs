@@ -6,7 +6,7 @@ date: 2018-10-12T00:00:00.000Z
 slug: "cli-getting-started"
 ---
 
-If you've gotten Astro CLI installed and want to get ready to start pushing DAGs, you're in the right place. Read below for some starter guidelines.
+If you've gotten Astro CLI installed and want to get ready to push DAGs, you're in the right place. Read below for some starter guidelines.
 
 ## I. Confirm the Install & Create a Project
 
@@ -55,7 +55,7 @@ mkdir hello-astro && cd hello-astro
 astro airflow init
  ```
 
-This will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
+`astro airflow init` will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
 
 Once that command is run, you'll see the following skeleton project generated:
 
@@ -70,7 +70,10 @@ Once that command is run, you'll see the following skeleton project generated:
 └── requirements.txt #For any python packages
 ```
 
+Our image also comes with an `example_dag` (with 12 branching tasks) that you're free to play around with.
+
 **Note:** The image will take some time to build the first time. Right now, you have to rebuild the image each time you want to add an additional package or requirement.
+
 
 ## II. Getting Started
 
@@ -119,6 +122,19 @@ You should see a list of 1 or more workspaces in the output. To “pick” one, 
 astro workspace switch <workspace UUID>
 ```
 
+### Spinning up Airflow
+
+Once you have a project to run on, you might want to spin up a local instance of Apache Airflow to develop on before pushing anything to a live deployment.
+
+To do so, run the following command:
+
+```
+astro airflow start
+```
+
+This will create a local instance of Airflow (running at localhost:8080 on your computer) to which you can push up code.
+
+
 ### Navigating Deployments
 
 If you haven't created a deployment via the UI (recommended), you _can_ do so via Astro CLI.
@@ -129,7 +145,7 @@ To create a deployment directly from our CLI, run:
 
 `astro deployment create <deployment name>`
 
-**Note:** This is a bit misleading. `deployment name` here is your workspace ID (that you pulled above), NOT the name of your new deployment (which doesn’t exist yet).
+**Note:** The language here is a bit misleading. `deployment name` here is your workspace ID (that you pulled above), NOT the name of your new deployment (which doesn’t exist yet).
 
 Once your webserver, scheduler, and celery flower are up, you should see the following success message and URLs:
 
