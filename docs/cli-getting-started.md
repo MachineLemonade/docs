@@ -211,13 +211,13 @@ To see scheduler logs on your local docker container, run:
 docker logs $(docker ps | grep scheduler | awk '{print $1}')
 ```
 
-For Webserver logs, replace `scheduler` with `webserver` in the command above. 
+For Webserver logs, replace `scheduler` with `webserver` in the command above.
 
 As for generally interacting with Docker containers, you can access them by running the following:
 
 ```
 `docker exec -it {CONTAINER_ID} bash`
-``` 
+```
 
 **Note**: For security reasons, you'll only be able to do so while developing locally.
 
@@ -257,25 +257,49 @@ Refer to the native [Airflow CLI](https://airflow.apache.org/cli.html) for a lis
 
 **Note**: This will only work for the local dev environment.
 
-## VI. Overriding Environment Variables
+## VI. Adding Environment Variables
 
-Astronomer v0.7 comes with the ability to inject Environment Variables directly through the UI.
-
-With that said, you can also throw any overrides in the `Dockerfile` if you want to make sure those variables get version controlled. To do so, follow these guidlines:
-
- - Any bash scripts you want to run as `sudo` when the image builds can be added as such:
-`RUN COMMAND_HERE`
- - Airflow configuration variables can be found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
+Astronomer v0.8 comes with the ability to inject Environment Variables directly through the UI. With that said, you can also throw any overrides in a `.env` if you want to make sure those variables get version controlled. Airflow configuration variables can be found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
 
 ```
- ENV AIRFLOW__SECTION__PARAMETER VALUE
+AIRFLOW__SECTION__PARAMETER=VALUE
 ```
 For example, setting `max_active_runs` to 3 would look like:
 
 ```
-AIRFLOW__CORE__MAX_ACTIVE_RUNS 3
+AIRFLOW__CORE__MAX_ACTIVE_RUNS=3
 ```
 
-These commands should go after the `FROM` line that pulls down the Airflow image.
-
 **Note:** Be sure your configuration names match up with the version of Airflow you're using.
+
+While the CLI will look for `.env` by default, you may also specify multiple .env files if you have different settings you need to toggle between.
+
+```
+my_project
+  ├── .astro
+  └──  dags
+    └── my_dag
+  ├── plugins
+    └── my_plugin
+  ├── .env
+  ├── dev.env
+  └── prod.env
+```
+
+ On start, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
+
+ ```
+ astro airflow start --env dev.env
+ astro airflow start -e prod.env
+ ```
+
+**Note:** Whatever .env you use locally will not be bundled up when you deploy. For environment variables needed in production, it is recommended that you add them via the Astro UI.
+
+## VII. Advanced Dockerfile configuration
+
+Beyond pure environment variables, if you have any custom scripts or configuration that you want to bring into the image, you can do so by adding them to your Dockerfile. These follow type
+
+For example, Any bash scripts you want to run as `sudo` when the image builds can be added as such:
+`RUN echo 'This is a cool feature!'`
+
+These commands should go after the `FROM` line that pulls down the Airflow image.
