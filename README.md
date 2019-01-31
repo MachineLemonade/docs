@@ -2,11 +2,13 @@
 
 To contribute to our documentation, follow the steps below.
 
-1. Clone the repository on your machine.
+1. Clone this repository on your machine.
 
 `git clone https://github.com/astronomer/docs.git`
 
-2. Head over to our [Website repo](https://github.com/astronomer/website) and clone it on your machine. **Be sure that you have the latest version of the website on your machine before continuing.**
+2. If you wish to update the docs themselves, edit/add markdown files and push them back up to this repository. Then, rebuild our website via Netlify to view changes on staging/production sites (creds are in 1password).
+
+2. If you wish to change the structure or add content to the nav, head over to our [Website repo](https://github.com/astronomer/website) and clone it on your machine. **Be sure that you have the latest version of the website on your machine before continuing.**
 
 3. Add markdown files for docs and rearrange the `nav.json` file in this repository to adjust the side nav arrangement.
 
