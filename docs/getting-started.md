@@ -5,19 +5,19 @@ date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
 ---
 
-Welcome to Astronomer. This guide will walk you through getting a free trial started on Astronomer and deploying your first sample DAG. Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [Cloud](https://astronomer.io/cloud) offering, it's a great way to get to know our platform.
+Welcome to Astronomer.
 
+We're here to kick off your trial on Astronomer by walking you through a sample DAG deployment. Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [Cloud](https://astronomer.io/cloud) offering, it's a great way to get to know our platform.
 
 ## Start a Trial
 
-To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). Please [contact us](https://astronomer.io/contact) if providing credit card information is a problem for you or your organization.
-
+To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat, [contact us](https://www.astronomer.io/contact/?from=/).
 
 ## Create a Workspace
 
-Once you've kicked off your trial, you'll be directed to create an account on Astronomer. You can auth in via Google, Github, or standard username/password authentication. Your account will be equipped with a personal Workspace by default.
+Once you've kicked off your trial, you'll be directed to create an account on Astronomer. You can auth in via Google, Github, or standard username/password authentication. Note that once your account is created, you won't be able to change your method of authorization.
 
-You can think of your Workspaces the same way you'd think of teams - they're collections of Airflow deployments that specific user groups have access to.  Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
+Your account will be equipped with a personal Workspace by default. You can think of your Workspaces the same way you'd think of teams - they're collections of Airflow deployments that specific user groups have access to.  Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
 
 ### Join another Workspace
 
@@ -25,7 +25,7 @@ If you're new to Astronomer but someone else on your team has an existing worksp
 
 Read more about Astrononmer's UI [here](https://www.astronomer.io/docs/airflow-deployments/).
 
-*If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder or try to whitelist our domain if you can.
+*If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder and try to whitelist our domain if you can.
 
 ## Develop with the Astronomer CLI
 
@@ -115,13 +115,13 @@ Once you see an active URL under “Apache Airflow” in the middle of the page,
 
 **Note**: For abstraction from the Astro UI, you can also create a deployment [via the CLI](https://www.astronomer.io/docs/cli-getting-started/).
 
-## Deploy your DAG
+## Deploy your First DAG
 
-Once your are working locally, you're ready for deployment.
+Once everything is up and running locally, you're ready to deploy your first DAG.
 
 ### Step 1: Login
 
-To log in to your existing account and pass our authorization flow, run the following command:
+To log into your existing account and pass our authorization flow, run the following command:
 
 ```
 astro auth login astronomer.cloud
@@ -133,7 +133,7 @@ You _can_ login via app.astronomer.cloud directly but our UI currently does not 
 
 To get ready for deployment, make sure:
 
-- You're logged in, per above
+- You're logged in
 - You're in the right workspace
 - Your target deployment lives under that workspace
 
@@ -153,7 +153,7 @@ After you deploy your example DAG, you'll be able to see it running in your Clou
 
 **Note:** If you're interested in using Cloud for your production workflows, you're all set! If you followed this guide as a trial but would like to host our platform on your Kubernetes cluster via [Astronomer Enterprise](https://astronomer.io/enterprise), please reach out to us [via this form](https://www.astronomer.io/#request) so we can get a conversation set up.
 
-## Other Items of Consideration
+## Additional Notes
 
 ### Migrating your DAGs
 
