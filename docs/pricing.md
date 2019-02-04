@@ -26,12 +26,12 @@ To scale these components, we introduce the concept of an Astronomer Unit (or AU
 
 We spin up clusters with certain default configurations, but you're more than welcome to adjust the default resource allocations to fit the needs of your organization. See below for out-of-the-box AU defaults that come when you spin up an Airflow deployment. Note that the PgBouncer, StatsD, Redis, and Flower AU configs are static and cannot be changed.
 
-| Executor | PgBouncer/StatsD | Scheduler | Webserver | Celery Worker | Redis/Flower | Total AU | Total Monthly Cost |
+| Executor | PgBouncer & StatsD | Scheduler | Webserver | Celery Worker | Redis & Flower | Total AU | Total Monthly Cost |
 |----------|-----|--------|-------|
 | Local | 4 | 5 | 2 | N/A | N/A | 11 | $110 |
 | Celery | 4 | 5 | 2 | 10 | 4 | 25 | $250 |
 
-As indicated above, one celery worker comes default with 1 AU, but that number can be scaled up and down according to how hefty your jobs are.
+As indicated above, one celery worker comes default with 1 AU, but that number can be scaled up and down according to how hefty your jobs are. Your monthly bill is an aggregate of your resources used throughout the month- you're welcome to toggle the sliders at any point to figure out what works best for you.
 
 ## Enterprise Pricing
 
