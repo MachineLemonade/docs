@@ -6,7 +6,7 @@ date: 2018-10-12T00:00:00.000Z
 slug: "cli-getting-started"
 ---
 
-If you've gotten Astro CLI installed and want to get ready to start pushing DAGs, you're in the right place. Read below for some starter guidelines.
+If you've gotten the Astro CLI installed and want to get ready to push DAGs, you're in the right place. Read below for some starter guidelines.
 
 ## I. Confirm the Install & Create a Project
 
@@ -55,7 +55,7 @@ mkdir hello-astro && cd hello-astro
 astro airflow init
  ```
 
-This will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
+`astro airflow init` will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
 
 Once that command is run, you'll see the following skeleton project generated:
 
@@ -70,7 +70,10 @@ Once that command is run, you'll see the following skeleton project generated:
 └── requirements.txt #For any python packages
 ```
 
+Our image also comes with an `example_dag` (with 12 branching tasks) that you're free to play around with.
+
 **Note:** The image will take some time to build the first time. Right now, you have to rebuild the image each time you want to add an additional package or requirement.
+
 
 ## II. Getting Started
 
@@ -119,6 +122,19 @@ You should see a list of 1 or more workspaces in the output. To “pick” one, 
 astro workspace switch <workspace UUID>
 ```
 
+### Spinning up Airflow
+
+Once you have a project to run on, you might want to spin up a local instance of Apache Airflow to develop on before pushing anything to a live deployment.
+
+To do so, run the following command:
+
+```
+astro airflow start
+```
+
+This will create a local instance of Airflow (running at localhost:8080 on your computer) to which you can push up code.
+
+
 ### Navigating Deployments
 
 If you haven't created a deployment via the UI (recommended), you _can_ do so via Astro CLI.
@@ -129,7 +145,7 @@ To create a deployment directly from our CLI, run:
 
 `astro deployment create <deployment name>`
 
-**Note:** This is a bit misleading. `deployment name` here is your workspace ID (that you pulled above), NOT the name of your new deployment (which doesn’t exist yet).
+**Note:** The language here is a bit misleading. `deployment name` here is your workspace ID (that you pulled above), NOT the name of your new deployment (which doesn’t exist yet).
 
 Once your webserver, scheduler, and celery flower are up, you should see the following success message and URLs:
 
@@ -203,7 +219,7 @@ added to [ENV](https://docs.docker.com/engine/reference/builder/#env).
 
 ### Logs & Docker Containers
 
-Since everything is hidden away in Docker containers, you won't see webserver and scheduler logs in the terminal by default.
+The Astronomer CLI runs docker-compose under the hood (and uses [this template](https://github.com/astronomer/astro-cli/blob/master/airflow/include/composeyml.go) to start up). Since everything is hidden away in Docker containers, you won't see webserver and scheduler logs in the terminal by default.
 
 To see scheduler logs on your local docker container, run:
 
@@ -220,6 +236,8 @@ As for generally interacting with Docker containers, you can access them by runn
 ``` 
 
 **Note**: For security reasons, you'll only be able to do so while developing locally.
+
+
 
 ## IV. CLI Help Commands
 
@@ -241,9 +259,9 @@ astro airflow --help
 astro airflow deploy --help
 ```
 
-## V. Using Airflow CLI Commands
+## V. Access to the Airflow CLI
 
-You can still use all native Airflow CLI commands with the astro cli when developing DAGs locally -  they'll just need to be wrapped around docker commands.
+You're free to use native Airflow CLI commands with the Astro CLI when developing locally by wrapping them around docker commands.
 
 Run `docker ps` after your image has been built to see a list of containers running. You should see one for the scheduler, webserver, and Postgres.
 
@@ -255,7 +273,7 @@ docker exec -it SCHEDULER_CONTAINER bash -c "airflow connections -a --conn_id te
 
 Refer to the native [Airflow CLI](https://airflow.apache.org/cli.html) for a list of all commands.
 
-**Note**: This will only work for the local dev environment.
+**Note:** Direct access to the Airflow CLI is an Enterprise-only feature. If you're an Astronomer Cloud customer, you'll only be able to access it while developing locally for reasons related to the multi-tenant architecture of our Cloud. If you'd like to use a particular Airflow CLI command, reach out and we're happy to help you find a workaround.
 
 ## VI. Overriding Environment Variables
 
@@ -278,4 +296,4 @@ AIRFLOW__CORE__MAX_ACTIVE_RUNS 3
 
 These commands should go after the `FROM` line that pulls down the Airflow image.
 
-**Note:** Be sure your configuration names match up with the version of Airflow you're using.
+**Note:** Be sure your configuration names match up with the version of Airflow you're running.
