@@ -37,6 +37,8 @@ $ kubectl create secret generic astronomer-bootstrap \
   --namespace astronomer
 ```
 
+Be sure to include the namespace in the host above (e.g. astro-db-postgresql.`astronomer`.svc.cluster) above.
+
 > Note: Change user from `postgres` if you're creating a user instead of using the default, it needs permission to create databases, schemas, and users.
 
 ## 2. TLS Secret
@@ -47,3 +49,5 @@ $ kubectl create secret tls astronomer-tls \
   --cert /etc/letsencrypt/live/astro.mycompany.com/fullchain.pem \
   --namespace astronomer
 ```
+
+Be sure to include your domain here, as it is looking for the file path that you generated your certificates with the docker command from before with.
