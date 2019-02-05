@@ -5,7 +5,7 @@ date: 2018-10-12T00:00:00.000Z
 slug: "ee-dag-deployment"
 ---
 
-# Deploying to Astronomer Enterprise
+## Deploying to Astronomer Enterprise
 
 Once you've finished up the installation, you are ready to deploy DAGs. We'll walk through deploying  Airflow DAG via the [astro-cli](https://github.com/astronomer/astro-cli), but you can also check out our CI/CD guide for deploying through another system.
 
