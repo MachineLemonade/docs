@@ -41,7 +41,7 @@ To track and measure allocation to each of these components, we introduce the co
 | 10 | 1 | 3.75 | $100
 
 
-When you spin up an Airflow deployment, you'll find that it's pre-configured with default resource allocations. We've identified those levels to be effective baselines for the Local and Celery excecutor,respectively. Of course, you're free to adjust them freely at any time.
+When you spin up an Airflow deployment, you'll find that it's pre-configured with default resource allocations. We've identified those levels to be effective baselines for the Local and Celery excecutor, respectively. Of course, you're free to adjust them freely at any time.
 
 See below for out-of-the-box configurations and corresponding AU count:
 
@@ -52,7 +52,7 @@ See below for out-of-the-box configurations and corresponding AU count:
 
 **Note**: The PgBouncer, StatsD, Redis, and Flower AU configs are static infrastructure minimums that cannot be changed.
 
-1 Celery worker, for example, is by default powered by 1 AU but can be modified at any time.
+One Celery worker, for example, is powered by 1 AU by default but can be modified at any time.
 
 ## Billing
 
@@ -60,7 +60,7 @@ To calculate your bill at the end of the month, we take a snapshot of your deplo
 
 At the end of the month, we aggregate the total AU hours for that billing cycle - and convert it to a dollar amount.
 
-For example, the cost of running 1 deployment on 25 AUs (a standard deployment with 1 worker using the Celery executor) for 1 hour = (25) x (0.0137) x (24) for 1 day, which translates to ~$254 for 1 month.
+For example, the cost of running 1 deployment on 25 AUs (a standard deployment with 1 worker using the Celery executor) for 1 day = (25) x (0.0137) x (24).
 
 **Note**: Scheduled downtime is not currently supported. Check out a [related forum question](https://forum.astronomer.io/t/can-i-have-scheduled-downtime/35O) for more info.
 
