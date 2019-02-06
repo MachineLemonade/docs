@@ -41,7 +41,7 @@ To track and measure allocation to each of these components, we introduce the co
 | 10 | 1 | 3.75 | $100
 
 
-When you spin up an Airflow deployment, you'll find that it's pre-configured with default resource allocations. We've identified those levels to be effective baselines for the Local and Celery excecutor,respectively. Of course, you're free to adjust them freely at any time.
+When you spin up an Airflow deployment, you'll find that it's pre-configured with default resource allocations. We've identified those levels to be effective baselines for the Local and Celery excecutors ,respectively. Of course, you're free to adjust them freely at any time.
 
 See below for out-of-the-box configurations and corresponding AU count:
 
@@ -54,7 +54,7 @@ See below for out-of-the-box configurations and corresponding AU count:
 
 1 Celery worker, for example, is by default powered by 1 AU but can be modified at any time.
 
-## Billing
+#### Billing
 
 To calculate your bill at the end of the month, we take a snapshot of your deployment's resource allocations every individual hour your deployment is running on our platform (via an Airflow DAG, of course).
 
