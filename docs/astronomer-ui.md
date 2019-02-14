@@ -1,15 +1,21 @@
 ---
-title: "Airflow Deployments"
-description: "A walkthrough of the Astronomer app."
+title: "The Astronomer UI"
+description: "A walkthrough of the Astronomer App"
 date: 2018-10-12T00:00:00.000Z
-slug: "airflow-deployments"
+slug: "astronomer-ui"
 ---
 
-If you're just getting started on Astronomer, you'll want to have a solid grasp on common terminology specific to both Apache Airflow and our platform. In this guide, you'll find some general definitions to start followed by a more in-depth breakdown.
+We've designed the Astronomer UI as a place for you to easily and effectively manage users, deployments and resources.
+
+If you're just getting started on Astronomer, you'll want to have a solid grasp of how to navigate [the Astronomer app](https://app.astronomer.cloud/deployments) and best leverage it for your use of Airflow.
+
+In this guide, you'll find some general definitions of Astronomer-specific terminology as well as a walkthrough of each layer of our platform's UI.
 
 # Overview
 
 ## Basic Definitions
+
+If you have an account on Astronomer, you'll need to be familiar with two basic terms:
 
 **Astronomer Workspace** = A personal or shared space on Astronomer’s platform that is home to a collection of Airflow deployments. User access to deployments is managed at the workspace level on Astronomer.
 
