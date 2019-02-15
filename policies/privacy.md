@@ -1,11 +1,9 @@
 ---
-title: "Privacy"
+title: "Astronomer, Inc. Privacy Policy"
 description: "Our official privacy policy."
 date: 2018-10-12T00:00:00.000Z
 slug: "privacy"
 ---
-
-# Astronomer, Inc. Privacy Policy
 
 **1. Our Commitment to Privacy**
 
