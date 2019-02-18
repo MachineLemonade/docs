@@ -69,7 +69,6 @@ cookie is sent, or you can reject all cookies. If you do so and cookies are disa
 your information more often and certain features of our site may be unavailable. Disabling cookies will also prevent
 beacons from tracking your unique information when visiting our website.
 
-
 In addition, our retail partners, advertisers, and other third parties appearing at our site or linked to our site may use
 their own cookies and beacons and may collect personally-identifiable information, including credit card information,
 in connection with your use of their websites. The privacy policy of such third parties may differ from ours. We
@@ -137,10 +136,7 @@ We employ reasonable and current security methods to prevent unauthorized access
 ensure correct use of information.
 
 To use some of our services, you may be required to set up a password-protected account or profile on our website.
-We recommend that you do not divulge your password to anyone. It is your responsibility to keep your password
-
-
-protected. Our personnel will never ask you for your password in an unsolicited phone call or in an unsolicited email.
+We recommend that you do not divulge your password to anyone. It is your responsibility to keep your password protected. Our personnel will never ask you for your password in an unsolicited phone call or in an unsolicited email.
 Remember to sign out of your account, close your browser window, and delete your temporary Internet files when
 you have finished your session. This helps ensure that others cannot access your personal information and
 correspondence if you share a computer with someone else or are using a computer in a public place where others
@@ -208,7 +204,6 @@ unlawfully processed. However, there are exclusions of the right to erasure. The
 processing is necessary: for exercising the right of freedom of expression and information; for compliance with a legal
 obligation; or for the establishment, exercise or defense of legal claims.
 
-
 In some circumstances you have the right to restrict the processing of your personal data. Those circumstances are:
 you contest the accuracy of the personal data; processing is unlawful but you oppose erasure; we no longer need the
 personal data for the purposes of our processing, but you require personal data for the establishment, exercise, or
@@ -274,11 +269,7 @@ not require or allow removal even if requested.
 
 You can access the information that we collect online and maintain through normal updating methods. To update,
 correct, or delete this information, you can contact us via email at humans@astronomer.io. Your account can be deleted or deactivated, but doing so will
-result in your not being able to access certain services. During the normal course of doing business, we will continue
-
-
-to share your information among our business units, our affiliates and unaffiliated third parties as necessary in order
-to service your accounts and fill any orders you place with us.
+result in your not being able to access certain services. During the normal course of doing business, we will continue to share your information among our business units, our affiliates and unaffiliated third parties as necessary in order to service your accounts and fill any orders you place with us.
 
 **10. Children Under 13**
 

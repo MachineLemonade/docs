@@ -68,10 +68,7 @@ complete a transaction offered or accepted by such users.
 
 When retrieving information from the Website, you are prohibited from (a) using or attempting to use spiders,
 crawlers, robots, avatars, intelligent agents, or any other extraction or navigation search except for a normal browser;
-(b) aggregating, copying, or duplicating any of the materials or information except for the small amount of materials
-
-
-and information temporarily required for an ordinary single use of the Website; and (c) accessing data not intended
+(b) aggregating, copying, or duplicating any of the materials or information except for the small amount of materials and information temporarily required for an ordinary single use of the Website; and (c) accessing data not intended
 for you.
 
 Recognizing the global nature of the Internet, you acknowledge that what may legally be done on or through the
@@ -136,7 +133,6 @@ All DMCA notices should be sent to our designated agent as follows: Ry Walker �
 If you subscribe to any of our fee-based subscription services, the provisions of this Section 5 , in addition to the rest
 of this Agreement, apply to you. Some subscription services may be available on a member and non-member basis.
 See the description of the applicable subscription services on the Website for details.
-
 
 We will use our commercially reasonable efforts to provide the subscription services for which you have subscribed;
 however, we do not warrant that the subscription services will be available 100% of the time. The availability of the
@@ -203,7 +199,6 @@ responsible or liable, directly or indirectly, for any damage or loss caused or 
 with use of or reliance on any such Content or products or services available on or through any such sites or
 resources.
 
-
 **11. Astronomer’s Proprietary Rights**
 
 You acknowledge and agree that the Services and any necessary software used in connection with the Services
@@ -255,6 +250,7 @@ content, or the website, even if we have been advised of the possibility of such
 Some jurisdictions do not allow the exclusion of certain warranties or the limitation
 or exclusion of liability for incidental or consequential damages. Accordingly, some of
 the limitations of this section may not apply to you.
+
 **13. Dispute Resolution**
 
 Any claim or controversy arising out of or relating to this agreement that is not
@@ -268,11 +264,7 @@ selected by you and us in accordance with such rules.
 **14. Miscellaneous**
 
 You may not assign or otherwise transfer this Agreement or any rights or obligations under this Agreement to any
-third party without our prior written consent. The failure of either party to act upon any right, remedy, or breach of this
-
-
-Agreement will not constitute a waiver of that or any other right, remedy, or breach. No waiver will be effective unless
-made in writing and signed by the waiving party. Neither party will be liable for any delay in or failure of performance
+third party without our prior written consent. The failure of either party to act upon any right, remedy, or breach of this greement will not constitute a waiver of that or any other right, remedy, or breach. No waiver will be effective unless made in writing and signed by the waiving party. Neither party will be liable for any delay in or failure of performance
 resulting from any cause or condition beyond the party’s reasonable control, whether foreseeable or not, including
 vandalism that disrupts or corrupts the Website or the Services. The provisions of this Agreement are severable. If
 any provision is held to be invalid, unenforceable, or void, the remaining provisions will not as a result be invalidated.
