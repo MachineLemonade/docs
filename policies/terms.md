@@ -283,6 +283,6 @@ agreement and understanding between the parties relating to the object and scope
 representation, statement, or warranty not expressly contained in this Agreement, will not be enforceable by the
 parties.
 
-LAST UPDATED: May 21, 2018
+LAST UPDATED: January 2019
 
 
