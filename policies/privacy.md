@@ -115,7 +115,7 @@ one of our retail partners or service providers, we may exchange with the vendor
 about you for purposes of your transaction.
 
 We may also use or disclose information to resolve disputes, investigate problems, or enforce our Website User
-Agreement (Terms of Use). At times, we may review the status or activity of multiple users to do so. We may
+Agreement [(Terms of Use)](https://astronomer.io/terms). At times, we may review the status or activity of multiple users to do so. We may
 disclose or access information whenever we believe in good faith that the law so requires or if we otherwise consider
 it necessary to do so to maintain service and improve our products and services.
 
@@ -273,8 +273,7 @@ not require or allow removal even if requested.
 **9. How You Can Update, Correct or Delete Your Information**
 
 You can access the information that we collect online and maintain through normal updating methods. To update,
-correct, or delete this information, you can contact us via email at [~ email address ~], by fax at [~ number ~], by
-phone at [~ number ~], or by mail at [~ address ~]. Your account can be deleted or deactivated, but doing so will
+correct, or delete this information, you can contact us via email at humans@astronomer.io. Your account can be deleted or deactivated, but doing so will
 result in your not being able to access certain services. During the normal course of doing business, we will continue
 
 
@@ -299,6 +298,6 @@ Policy.
 By using our website, you consent to the collection and use of this information in the manner described in this Privacy
 Policy.
 
-LAST UPDATED: May 16, 2 018
+LAST UPDATED: January 2019
 
 
