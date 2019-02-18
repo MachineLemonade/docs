@@ -223,48 +223,47 @@ by us for use in accessing the Services.
 
 **12. Disclaimer of Warranties and Limitations of Liability**
 
-YOU EXPRESSLY UNDERSTAND AND AGREE THAT: (a) YOUR USE OF THE SERVICES AND CONTENT IS AT
-YOUR SOLE RISK. THE SERVICES AND CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE"
-BASIS. WE EXPRESSLY DISCLAIM ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT
-NOT LIMITED TO THE IMPLIED WARRANTIES OF ACCURACY OF DATA, TITLE, NON-INFRINGEMENT,
-MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY IMPLIED WARRANTY ARISING
-FROM A COURSE OF DEALING OR PERFORMANCE OR FROM USAGE OF TRADE; (b) WE MAKE NO
-WARRANTY (i) THAT THE SERVICES WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR FREE, (ii)
-THAT THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICES OR CONTENT WILL BE
-ACCURATE OR RELIABLE, (iii) THAT THE QUALITY OF ANY CONTENT, PRODUCTS, SERVICES,
-INFORMATION, OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU THROUGH THE SERVICES WILL
-MEET YOUR EXPECTATIONS, OR (iv) THAT ANY ERRORS IN THE SOFTWARE WILL BE CORRECTED; (c) ANY
-CONTENT OR OTHER MATERIAL DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE
-SERVICES IS DONE AT YOUR OWN DISCRETION AND RISK AND YOU ARE SOLELY RESPONSIBLE FOR ANY
-DAMAGE TO YOUR COMPUTER SYSTEM OR LOSS OF DATA OR OTHER LOSS THAT RESULTS FROM THE
-DOWNLOAD OF ANY SUCH MATERIAL; (d) NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN,
-OBTAINED BY YOU FROM US OR THROUGH OR FROM THE SERVICES OR CONTENT WILL CREATE ANY
-WARRANTY NOT EXPRESSLY STATED IN THIS AGREEMENT.
+You expressly understand and agree that: (a) your use of the services and content is at
+your sole risk. The services and content are provided on an "as is" and "as available"
+basis. We expressly disclaim all warranties, whether express or implied, including, but
+not limited to the implied warranties of accuracy of data, title, non-infringement,
+merchantability, and fitness for a particular purpose, and any implied warranty arising
+from a course of dealing or performance or from usage of trade; (b) we make no
+warranty (i) that the services will be uninterrupted, timely, secure, or error free, (ii)
+that the results that may be obtained from the use of the services or content will be
+accurate or reliable, (iii) that the quality of any content, products, services,
+information, or other material purchased or obtained by you through the services will
+meet your expectations, or (iv) that any errors in the software will be corrected; (c) any
+content or other material downloaded or otherwise obtained through the use of the
+services is done at your own discretion and risk and you are solely responsible for any
+damage to your computer system or loss of data or other loss that results from the
+download of any such material; (d) no advice or information, whether oral or written,
+obtained by you from us or through or from the services or content will create any
+warranty not expressly stated in this agreement.
 
-YOU EXPRESSLY UNDERSTAND AND AGREE THAT WE ARE NOT BE LIABLE FOR ANY DAMAGES OF ANY
-KIND (INCLUDING, WITHOUT LIMITATION, DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR
-EXEMPLARY DAMAGES) RESULTING FROM: (a) THE USE OR THE INABILITY TO USE THE SERVICES OR
-CONTENT; (b) THE COST OF PROCUREMENT OF SUBSTITUTE PRODUCTS AND SERVICES RESULTING
-FROM ANY PRODUCTS, DATA, INFORMATION, OR SERVICES PURCHASED OR OBTAINED OR CONTENT
-USED OR MESSAGES RECEIVED OR TRANSACTIONS ENTERED THROUGH OR FROM THE SERVICES; (c)
-UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR DATA; (d) STATEMENTS OR
-CONDUCT OF ANY THIRD PARTY ON THE SERVICES; (e) FROM ANY INTERRUPTION, SUSPENSION, OR
-TERMINATION OF THE SERVICES, OR (f) ANY OTHER MATTER RELATING TO THE SERVICES, THE
-CONTENT, OR THE WEBSITE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+You expressly understand and agree that we are not be liable for any damages of any
+kind (including, without limitation, direct, indirect, incidental, special, consequential or
+exemplary damages) resulting from: (a) the use or the inability to use the services or
+content; (b) the cost of procurement of substitute products and services resulting
+from any products, data, information, or services purchased or obtained or content
+used or messages received or transactions entered through or from the services; (c)
+unauthorized access to or alteration of your transmissions or data; (d) statements or
+conduct of any third party on the services; (e) from any interruption, suspension, or
+termination of the services, or (f) any other matter relating to the services, the
+content, or the website, even if we have been advised of the possibility of such damages.
 
-SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION
-OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES. ACCORDINGLY, SOME OF
-THE LIMITATIONS OF THIS SECTION MAY NOT APPLY TO YOU.
-
+Some jurisdictions do not allow the exclusion of certain warranties or the limitation
+or exclusion of liability for incidental or consequential damages. Accordingly, some of
+the limitations of this section may not apply to you.
 **13. Dispute Resolution**
 
-ANY CLAIM OR CONTROVERSY ARISING OUT OF OR RELATING TO THIS AGREEMENT THAT IS NOT
-RESOLVED BY YOU AND US DIRECTLY WILL BE SETTLED BY MEDIATION AND, IF MEDIATION IS
-UNSUCCESSFUL, BY BINDING ARBITRATION. THE MEDIATION AND ARBITRATION WILL TAKE PLACE IN
-THE CINCINNATI METROPOLITAN AREA, AND WILL BE ADMINISTERED IN ACCORDANCE WITH THE
-AMERICAN ARBITRATION ASSOCIATION COMMERCIAL ARBITRATION RULES, INCLUDING THE OPTIONAL
-RULES FOR EMERGENCY MEASURES OF PROTECTION, BY MEDIATOR(S) AND ARBITRATOR(S) MUTUALLY
-SELECTED BY YOU AND US IN ACCORDANCE WITH SUCH RULES.
+Any claim or controversy arising out of or relating to this agreement that is not
+resolved by you and us directly will be settled by mediation and, if mediation is
+unsuccessful, by binding arbitration. The mediation and arbitration will take place in
+the Cincinnati metropolitan area, and will be administered in accordance with the
+american arbitration association commercial arbitration rules, including the optional
+rules for emergency measures of protection, by mediator(s) and arbitrator(s) mutually
+selected by you and us in accordance with such rules.
 
 **14. Miscellaneous**
 
