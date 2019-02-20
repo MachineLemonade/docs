@@ -13,13 +13,15 @@ This guide will help you kick off your trial on Astronomer by walking you throug
 
 ### Install
 
-Let's begin by downloading our open-source CLI so you can start developing locally.
+Let's begin by downloading our open-source CLI. This will allow you to quickly establish a local testing environment and is completely free to use.
 
 Be sure that you have [Docker](https://www.docker.com/) and [Go](https://golang.org/) installed on your machine, then open your terminal and run
 
 ```
  curl -sSL https://install.astronomer.io | sudo bash
  ```
+
+This will run a script that installs the [CLI](https://github.com/astronomer/astro-cli). You can take a look at that script [here](https://install.astronomer.io).
 
 If you run into issues, check out our [CLI Install guide](https://www.astronomer.io/docs/cli-installation/).
 
