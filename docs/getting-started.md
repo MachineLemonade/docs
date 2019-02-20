@@ -9,39 +9,33 @@ Welcome to Astronomer.
 
 We're here to kick off your trial on Astronomer by walking you through a sample DAG deployment. Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [Cloud](https://astronomer.io/cloud) offering, it's a great way to get to know our platform.
 
-## Start a Trial
-
-To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat, [contact us](https://www.astronomer.io/contact/?from=/).
-
-## Create a Workspace
-
-Once you've kicked off your trial, you'll be directed to create an account on Astronomer. You can auth in via Google, Github, or standard username/password authentication. Note that once your account is created, you won't be able to change your method of authorization.
-
-Your account will be equipped with a personal Workspace by default. You can think of your Workspaces the same way you'd think of teams - they're collections of Airflow deployments that specific user groups have access to.  Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
-
-### Join another Workspace
-
-If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account*.
-
-Read more about Astrononmer's UI [here](https://www.astronomer.io/docs/airflow-deployments/).
-
-*If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder and try to whitelist our domain if you can.
-
-## Develop with the Astronomer CLI
+## Start with the CLI
 
 ### Install
 
-Once you have a workspace, your next step is to get set up with our CLI and start developing locally.
+Let's begin by downloading our open-source CLI so you can start developing locally.
 
-Follow our [CLI Install guide](https://www.astronomer.io/docs/cli-installation/) to do so.
+Be sure that you have [Docker](https://www.docker.com/) and [Go](https://golang.org/) installed on your machine, then open your terminal and run
 
-### Get Started
+```
+ curl -sSL https://install.astronomer.io | sudo bash
+ ```
 
-Note that all of the necessary steps to get started with the CLI are listed below. Once installed, if you'd like more info, you can head over to our [CLI Getting Started Guide](https://astronomer.io/docs/cli-getting-started) for guidelines on how to create your first project, navigate both your workspace and deployments, and debug errors if needed.
+If you run into issues, check out our [CLI Install guide](https://www.astronomer.io/docs/cli-installation/).
 
-## Build your Image
+### Initialize your Airflow Project
 
-Once you've created a project, made sure you're in the right place, and feel comfortable with our CLI commands, run the following in a project directory: `astro airflow init`
+Create a new project directory somewhere on your computer where we'll store all of the files necessary to build our Airflow image. Open a terminal, navigate to the place where you usually store your code, and run the following command to make a new project directory and cd into it:
+
+```
+mkdir astronomer-trial && cd astronomer-trail
+```
+
+Once you're in that project directory, run:
+
+```
+ astro airflow init
+```
 
 This will generate some skeleton files:
 
@@ -58,7 +52,7 @@ This will generate some skeleton files:
 
 Note that running this command generates an example DAG for you to deploy while getting started. This DAG doesn't have much functionality (it just prints the date a bunch of times), as it's designed to help you get accustomed with our deployment flow. If you'd like to deploy some more functional example DAGs, [check out the one's we've open sourced here](https://github.com/airflow-plugins/example-dags).
 
-## Customize your image
+### Customize Your Image
 
 Our base image runs Alpine Linux, so it is very slim by default.
 
@@ -66,9 +60,7 @@ Our base image runs Alpine Linux, so it is very slim by default.
 - Add custom airflow plugins in the `plugins` directory
 - Python packages can go in `requirements.txt`. By default, you get all the python packages required to run airflow.
 - OS level packages  can go in `packages.txt`
-- Any envrionment variable overrides can go in `Dockerfile` (_note_: with Astronomer 0.7, you can also inject env vars directly through the UI)
-
-As you add DAGs to your new project's `dags` directory, check the Airflow UI for any error messages that come up.
+- Any environment variable overrides can go in `Dockerfile` (_note_: with Astronomer 0.7, you can also inject env vars directly through the UI)
 
 If you are unfamiliar with Alpine Linux, look here for some examples of what
 you will need to add based on your use-case:
@@ -77,7 +69,7 @@ you will need to add based on your use-case:
 - [Snowflake](https://github.com/astronomer/airflow-guides/tree/master/example_code/snowflake/example_code)
 - More coming soon!
 
-## Run Apache Airflow Locally
+### Run Apache Airflow Locally
 
 Before you're ready to deploy your DAGs, you'll want to make sure that everything runs locally as expected.
 
@@ -97,9 +89,25 @@ The Airflow UI doesn't always show the full stacktrace. To get some more informa
 docker logs $(docker ps | grep scheduler | awk '{print $1}')
 ```
 
-**Note on Python Versioning:**
+**Note on Python Versioning:** Astronomer Cloud runs Python 3.6.6. If you're running a different version, don't sweat it. Our CLI spins up a containerized environment, so you don't need to change anything on your machine if you don't want to.
 
-Astronomer Cloud runs Python 3.6.6. If you're running a different version, don't sweat it. Our CLI spins up a containerized environment, so you don't need to change anything on your machine if you don't want to.
+## Start a Trial with Astronomer
+
+To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat, [contact us](https://www.astronomer.io/contact/?from=/).
+
+## Create a Workspace
+
+Once you've kicked off your trial, you'll be directed to create an account on Astronomer. You can auth in via Google, Github, or standard username/password authentication. Note that once your account is created, you won't be able to change your method of authorization.
+
+Your account will be equipped with a personal Workspace by default. You can think of your Workspaces the same way you'd think of teams - they're collections of Airflow deployments that specific user groups have access to.  Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
+
+### Join another Workspace
+
+If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account*.
+
+Read more about Astronomer's UI [here](https://www.astronomer.io/docs/airflow-deployments/).
+
+*If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder and try to whitelist our domain if you can.
 
 ## Create an Airflow Deployment
 
@@ -113,7 +121,7 @@ If you already have a deployment created in your Astronomer Workspace, you can s
 
 Once you see an active URL under “Apache Airflow” in the middle of the page, you are set and ready to deploy your DAGs.
 
-**Note**: For abstraction from the Astro UI, you can also create a deployment [via the CLI](https://www.astronomer.io/docs/cli-getting-started/).
+<!-- **Note**: For abstraction from the Astro UI, you can also create a deployment [via the CLI](https://www.astronomer.io/docs/cli-getting-started/). -->
 
 ## Deploy your First DAG
 
