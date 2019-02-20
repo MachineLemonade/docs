@@ -121,8 +121,6 @@ If you already have a deployment created in your Astronomer Workspace, you can s
 
 Once you see an active URL under “Apache Airflow” in the middle of the page, you are set and ready to deploy your DAGs.
 
-<!-- **Note**: For abstraction from the Astro UI, you can also create a deployment [via the CLI](https://www.astronomer.io/docs/cli-getting-started/). -->
-
 ### Deploy your First DAG
 
 Once everything is up and running locally, you're ready to deploy your first DAG.
