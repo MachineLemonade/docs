@@ -93,7 +93,7 @@ docker logs $(docker ps | grep scheduler | awk '{print $1}')
 
 ## Start a Trial with Astronomer
 
-To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat, [contact us](https://www.astronomer.io/contact/?from=/).
+To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat or are interested in exploring Astronomer Enterprise, [contact us](https://www.astronomer.io/contact/?from=/).
 
 ## Create a Workspace
 
