@@ -7,7 +7,7 @@ slug: "getting-started"
 
 Welcome to Astronomer.
 
-We're here to kick off your trial on Astronomer by walking you through a sample DAG deployment. Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [Cloud](https://astronomer.io/cloud) offering, it's a great way to get to know our platform.
+This guide will help you kick off your trial on Astronomer by walking you through a sample DAG deployment from start to finish. Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [Cloud](https://astronomer.io/cloud) offering, we've designed this to be a great way to get to know our platform.
 
 ## Start with the CLI
 
@@ -95,7 +95,7 @@ docker logs $(docker ps | grep scheduler | awk '{print $1}')
 
 To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat or are interested in exploring Astronomer Enterprise, [contact us](https://www.astronomer.io/contact/?from=/).
 
-## Create a Workspace
+### Create a Workspace
 
 Once you've kicked off your trial, you'll be directed to create an account on Astronomer. You can auth in via Google, Github, or standard username/password authentication. Note that once your account is created, you won't be able to change your method of authorization.
 
@@ -109,7 +109,7 @@ Read more about Astronomer's UI [here](https://www.astronomer.io/docs/airflow-de
 
 *If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder and try to whitelist our domain if you can.
 
-## Create an Airflow Deployment
+### Create an Airflow Deployment
 
 If you already have a deployment created in your Astronomer Workspace, you can skip this step. If not, go ahead and create a deployment directly from our app by following the steps below:
 
@@ -123,11 +123,11 @@ Once you see an active URL under “Apache Airflow” in the middle of the page,
 
 <!-- **Note**: For abstraction from the Astro UI, you can also create a deployment [via the CLI](https://www.astronomer.io/docs/cli-getting-started/). -->
 
-## Deploy your First DAG
+### Deploy your First DAG
 
 Once everything is up and running locally, you're ready to deploy your first DAG.
 
-### Step 1: Login
+#### Step 1: Login
 
 To log into your existing account and pass our authorization flow, run the following command:
 
@@ -137,7 +137,7 @@ astro auth login astronomer.cloud
 
 You _can_ login via app.astronomer.cloud directly but our UI currently does not display the workspace ID you'll need to complete a deployment.
 
-### Step 2: Make sure you're in the right place
+#### Step 2: Make sure you're in the right place
 
 To get ready for deployment, make sure:
 
@@ -147,7 +147,7 @@ To get ready for deployment, make sure:
 
 Follow our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-getting-started/) for more specific guidelines and commands.
 
-### Step 3: Deploy
+#### Step 3: Deploy
 
 When you're ready to deploy your DAGs, run:
 
@@ -155,7 +155,7 @@ When you're ready to deploy your DAGs, run:
 
 This command will return a list of deployments available in that workspace, and prompt you to pick one.
 
-### Step 4: View your Example DAG on your Astronomer Cluster
+#### Step 4: View your Example DAG on your Astronomer Cluster
 
 After you deploy your example DAG, you'll be able to see it running in your Cloud deployment.
 
