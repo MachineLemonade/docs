@@ -32,7 +32,7 @@ $ gcloud compute addresses describe astronomer-ip \
   --format 'value(address)'
 ```
 
-Note the IP.
+You'll need this IP down the line.
 
 ## 4. Create a Kubernetes namespace
 

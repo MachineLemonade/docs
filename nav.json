@@ -2,7 +2,7 @@
   "overview",
   "getting-started",
   "security-model",
-  "airflow-deployments",
+  "astronomer-ui",
   {
     "menu": "Astro CLI",
     "contents": [
