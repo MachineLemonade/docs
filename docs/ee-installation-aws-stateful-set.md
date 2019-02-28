@@ -17,9 +17,7 @@ metadata:
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2
-reclaimPolicy: Retain
-mountOptions:
-  - debug
+  fsType: ext4
 ```
 
 You can now run `kubectl apply -f storageclass.yaml` to apply this to your kubernetes cluster.
