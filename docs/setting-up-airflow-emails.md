@@ -14,23 +14,23 @@ This guide will walk through the setup of a free Sendgrid account and how to con
 ## Creating a Sendgrid token
 Start by going to `https://signup.sendgrid.com` and sign up for a new account. You will need fill out some boilerplate survey information but will quickly be through to your account.
 
-![Sendgrid Signup](https://assets2.astronomer.io/guides/docs/emails/sendgrid_signup.png)
+![Sendgrid Signup](https://assets2.astronomer.io/main/docs/emails/sendgrid_signup.png)
 
 A new account will be given 40k emails for the first 30 days and then 100 emails/day for free. As long as your DAGs are working properly, this should be more than enough for most use cases.
 
 After you create your account, you'll reach a view like below. Click on "Integrate using our Web API or SMTP relay".   
-![Sendgrid Getting Started](https://assets2.astronomer.io/guides/docs/emails/sendgrid_getting_started.png)
+![Sendgrid Getting Started](https://assets2.astronomer.io/main/docs/emails/sendgrid_getting_started.png)
 
 Choose the "Web API (recommended)"" method.
-![Sendgrid Setup Method](https://assets2.astronomer.io/guides/docs/emails/sendgrid_setup_method.png)
+![Sendgrid Setup Method](https://assets2.astronomer.io/main/docs/emails/sendgrid_setup_method.png)
 
 Select the "cURL" option from the languages.
-![Sendgrid Language](https://assets2.astronomer.io/guides/docs/emails/sendgrid_language.png)
+![Sendgrid Language](https://assets2.astronomer.io/main/docs/emails/sendgrid_language.png)
 
 Create a new API Key (the name can be anything you want) and run the code in your terminal, and verify the integration. You don't have to export the API Key as the docs suggest as you can instead replace the $SENDGRID_API_KEY in the example code with the API key that has been generated.
 
 If you don't execute the code to use the token at least once, Sendgrid will not be able to verify that it is working properly and you will not be able to use the key.
-![Sendgrid API Key](https://assets2.astronomer.io/guides/docs/emails/sendgrid_apikey.png)
+![Sendgrid API Key](https://assets2.astronomer.io/main/docs/emails/sendgrid_apikey.png)
 
 Click "Verify" on the following page to make sure Sendgrid activates the key. If an error pops up that Sendgrid cannot find the test email, run the cURL command again in your terminal and click "Retry".
 
@@ -46,6 +46,6 @@ SMTP__SMTP_PASSWORD={ENTER_SENDGRID_APIKEY_HERE}
 SMTP__SMTP_PORT=587
 SMTP__SMTP_MAIL_FROM={ENTER_RELEVENT_FROM_EMAIL_HERE}
 ```
-![Astro Create Envs](https://assets2.astronomer.io/guides/docs/emails/astro_create_envs.png)
+![Astro Create Envs](https://assets2.astronomer.io/main/docs/emails/astro_create_envs.png)
 
 Click Update to save the configuration and redeploy to propagate to your deployment. Your deployment will use that configuration to send emails from then on.

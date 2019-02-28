@@ -20,7 +20,7 @@ Under the hood, [houston-api](https://github.com/astronomer/houston-api) is the 
 If you navigate to `houston.BASEDOMAIN/playground` you'll be able to interact with the platform through GraphQL queries. You can find some examples in our [houston-api doc](https://www.astronomer.io/docs/houston-api/).
 
 
-![Deployment Page](https://assets2.astronomer.io/guides/docs/ee/houston_example.png)
+![Deployment Page](https://assets2.astronomer.io/main/docs/ee/houston_example.png)
 
 ### Grafana Dashboards
 
@@ -30,4 +30,4 @@ You can check out the queries used for each dashboard here, as well as get more 
 
 Note that these views are only available to admins and the first person to authenticate to your cluster will be the system admin.
 
-![Deployment Page](https://assets2.astronomer.io/guides/docs/ee/airflow_deployment_overview.png)
+![Deployment Page](https://assets2.astronomer.io/main/docs/ee/airflow_deployment_overview.png)
