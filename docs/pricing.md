@@ -62,7 +62,7 @@ At the end of the month, we aggregate the total AU hours for that billing cycle 
 
 For example, the cost of running 1 deployment on 25 AUs (a standard deployment with 1 worker using the Celery executor) for 1 day = (25) x (0.0137) x (24).
 
-**Note**: Scheduled downtime is not currently supported. Check out a [related forum question](https://forum.astronomer.io/t/can-i-have-scheduled-downtime/35O) for more info.
+**Note**: Scheduled downtime is not currently supported. Check out a [related forum question](https://forum.astronomer.io/t/can-i-have-scheduled-downtime/35) for more info.
 
 ## Enterprise Pricing
 
