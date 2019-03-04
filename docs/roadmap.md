@@ -5,8 +5,8 @@ date: 2018-11-02T00:00:00.000Z
 slug: "roadmap"
 ---
 
-Below is a summary of our future release plans. You can view our public
-[kanban board](https://github.com/orgs/astronomer/projects/16).
+Below is a summary of our future release plans. You can also view our public
+[kanban board](https://github.com/orgs/astronomer/projects/16) for more details.
 
 If you'd like to request a feature,
 visit [our Github](https://github.com/astronomer/astronomer/issues).
