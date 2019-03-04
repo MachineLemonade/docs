@@ -41,15 +41,15 @@ astro auth login [baseDomain]
 
 Once you've authenticated, head over to `app.BASEDOMAIN` and spin up and configure a new deployment.
 
-![Deployment Page](https://assets2.astronomer.io/guides/docs/ee/deployment_page.png)
+![Deployment Page](https://assets2.astronomer.io/main/docs/ee/deployment_page.png)
 
 Click `New Deployment`
 
-![Configure Deployment](https://assets2.astronomer.io/guides/docs/ee/configure_deployment.png)
+![Configure Deployment](https://assets2.astronomer.io/main/docs/ee/configure_deployment.png)
 
 You'll be able to further configure your deployment after your initialize it. Wait a few minutes and it should be ready!
 
-![Deployment Ready](https://assets2.astronomer.io/guides/docs/ee/deployment_ready.png)
+![Deployment Ready](https://assets2.astronomer.io/main/docs/ee/deployment_ready.png)
 
 ### 3. List your workspaces
 
