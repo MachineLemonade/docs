@@ -135,8 +135,8 @@ existing pipelines running on the Astronomer Platform.
 
 You need to write your first DAG. Review:
 
-* [Core Airflow Concepts](https://docs.astronomer.io/v2/apache_airflow/tutorial/core-airflow-concepts.html)
-* [Simple Sample DAG](https://docs.astronomer.io/v2/apache_airflow/tutorial/sample-dag.html)
+* [Core Airflow Concepts](https://astronomer.io/guides/intro-to-airflow)
+* [DAG Writing Best Practices](https://astronomer.io/guides/dag-best-practices))
 
 We recommend managing your DAGs in a Git repo, but for the purposes
 of getting rolling, just make a directory on your machine with a

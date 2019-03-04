@@ -42,7 +42,7 @@ For Cloud customers, that cluster is hosted on Astronomer. For Enterprise custom
 
 ### Deployment Resources
 
-With [Astronomer v0.7](https://www.astronomer.io/blog/astronomer-v0-7-0-release-notes/), you're now able to adjust the resources given to your Airflow deployment directly from our app's UI. This functionality allows you to choose executor (local or celery) and easily provision additional resources as you scale up.
+With [Astronomer v0.7](https://www.astronomer.io/blog/astronomer-v0-7-0-release/), you're now able to adjust the resources given to your Airflow deployment directly from our app's UI. This functionality allows you to choose executor (local or celery) and easily provision additional resources as you scale up.
 
 Resources aside, you won’t technically see any limitations or maximums on your deployment. Airflow is designed to run as much as resources to that environment permit.
 
