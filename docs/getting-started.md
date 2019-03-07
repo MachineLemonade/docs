@@ -15,13 +15,25 @@ This guide will help you kick off your trial on Astronomer by walking you throug
 
 Let's begin by downloading our open-source CLI. This will allow you to quickly establish a local testing environment and is completely free to use.
 
-Be sure that you have [Docker](https://www.docker.com/) and [Go](https://golang.org/) installed on your machine, then open your terminal and run
+For starters, be sure that you have [Docker](https://www.docker.com/) and [Go](https://golang.org/) installed on your machine. 
+
+#### If you're using Astronomer Cloud or Astronomer Enterprise v0.7.x
+
+Open your terminal and run:
 
 ```
- curl -sSL https://install.astronomer.io | sudo bash
+curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5
  ```
 
-This will run a script that installs the [CLI](https://github.com/astronomer/astro-cli). You can take a look at that script [here](https://install.astronomer.io).
+ #### If you're using Astronomer Enterprise v0.8
+
+ Open your terminal and run:
+
+ ```
+curl -sSL https://install.astronomer.io | sudo bash
+```
+
+Running either of the above will run a script that installs the [CLI](https://github.com/astronomer/astro-cli). You can take a look at that script [here](https://install.astronomer.io).
 
 If you run into issues, check out our [CLI Install guide](https://www.astronomer.io/docs/cli-installation/).
 
