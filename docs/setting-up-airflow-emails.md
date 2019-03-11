@@ -1,10 +1,8 @@
 ---
-title: "Sending emails through Airflow"
-description: "How to set up an Sendgrid to send Airflow emails"
+title: "Setting up Airflow Email Alerts"
+description: "How to set up Sendgrid to send Airflow email alerts"
 date: 2019-01-14T00:00:00.000Z
 slug: "setting-up-airflow-emails"
-menu: ["root"]
-position: [3]
 ---
 
 Airflow emails are a useful way to get notified of DAG retries, failures, and anything else you want to custom set through the [email util](https://github.com/apache/airflow/blob/master/airflow/utils/email.py). By default, Astronomer does not bundle in a SMTP service to send emails through Airflow but there are a number of easy (and free) options to include your own account.
@@ -21,7 +19,7 @@ A new account will be given 40k emails for the first 30 days and then 100 emails
 After you create your account, you'll reach a view like below. Click on "Integrate using our Web API or SMTP relay".   
 ![Sendgrid Getting Started](https://assets2.astronomer.io/main/docs/emails/sendgrid_getting_started.png)
 
-Choose the "Web API (recommended)"" method.
+Choose the "Web API (recommended)" method.
 ![Sendgrid Setup Method](https://assets2.astronomer.io/main/docs/emails/sendgrid_setup_method.png)
 
 Select the "cURL" option from the languages.
@@ -48,4 +46,41 @@ SMTP__SMTP_MAIL_FROM={ENTER_RELEVENT_FROM_EMAIL_HERE}
 ```
 ![Astro Create Envs](https://assets2.astronomer.io/main/docs/emails/astro_create_envs.png)
 
-Click Update to save the configuration and redeploy to propagate to your deployment. Your deployment will use that configuration to send emails from then on.
+Click `Update` to save the configuration and redeploy to propagate to your deployment. Your deployment will use that configuration to send emails from then on.
+
+## Additional Configuration
+
+For more insight on how each alert is triggered, it might be helpful to take a look at the [underlying configs](https://github.com/astronomer/helm.astronomer.io/blob/387bcfcc06885d9253c2e1cfd6a5a08428323c57/charts/prometheus/values.yaml#L99
+). For example, you'll see that the alert `AirflowFailureRate` will occur at any given time relative to the failure rate for the prior two days, etc.
+
+### Triggering Alerts on DAG Run
+
+Email alerting set up via `email_on_failure` is handled at the task level. If a handful of your tasks fail for related reasons, you'll receive an individual email for each of those failures. 
+
+If you're interested in limiting failure alerts to the DAG run level, you can instead pass `on_failure_callback` ([source](https://github.com/apache/airflow/blob/v1-10-stable/airflow/models.py#L3311)) directly in your DAG file to define a Python function that sends you an email denoting failure. 
+
+```
+ :param on_failure_callback: A function to be called when a DagRun of this dag fails.
+ ```
+
+The code in your DAG will look something like the following: ([source](https://github.com/apache/airflow/blob/v1-10-stable/airflow/utils/email.py#L41)):
+
+ ```
+ from airflow.models.email import send_email
+
+def new_email_alert(self, **kwargs):
+  title = "TEST MESSAGE: THIS IS A MODIFIED TEST"
+  body = ("I've now modified the email alert "
+                "to say whatever I want it to say.<br>")
+  send_email('my_email@email.com', title, body)
+  ```
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,13 @@
   },
   "houston-api",
   "ci-cd",
-  "alerts",
+  {
+    "menu": "Alerts",
+    "contents": [
+      "alerts",
+      "setting-up-airflow-emails"
+    ]
+  },
   {
     "menu": "Enterprise Edition",
     "contents": [
