@@ -7,7 +7,7 @@ slug: "astronomer-ui"
 
 We've designed the Astronomer UI as a place for you to easily and effectively manage users, deployments and resources.
 
-If you're just getting started on Astronomer, you'll want to have a solid grasp of how to navigate [the Astronomer app](https://app.astronomer.cloud/deployments) and best leverage it for your use of Airflow.
+If you're just getting started on Astronomer, you'll want to have a solid grasp of how to navigate [the Astronomer app](https://app.astronomer.cloud/login) and best leverage it for your use of Airflow.
 
 In this guide, you'll find some general definitions of Astronomer-specific terminology as well as a walkthrough of each layer of our platform's UI.
 
@@ -79,12 +79,13 @@ From this screen, you can:
 1. Create new Airflow deployments
 2. Manage user access to the workspace
 3. Generate tokens for CI/CD systems via service accounts.
+4. Rename your Workspace
 
 **Note:** Since all of our app activity is routed through a GraphQL API, you're free to create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
 
 ### User Management
 
-If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to all Airflow deployments under that workspace (deployment-level permissions coming soon).
+If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace (role-based access control (RBAC) coming soon in Astronomer v0.9).
 
 **Note:** If you'd like to invite a user to your workspace, they must first [create an account on Astronomer](https://app.astronomer.cloud/signup).
 
@@ -103,6 +104,8 @@ From here, you'll be able to access:
 1. Airflow UI (DAG Dashboard)
 2. Flower dashboard
 
+The former will link you directly to your DAG Dashboard on Airflow itself. Your Flower Dashboard is your go-to spot to monitor your Celery Workers.
+
 For a breakdown the Airflow UI itself, check out [this guide](https://www.astronomer.io/guides/airflow-ui/).
 
 ### Deployment Configuration
@@ -112,15 +115,37 @@ If you jump into the `Configure` tab on the deployment overview page, you'll be 
 1. Change the name + description of your deployment
 2. See what version of Airflow + Astronomer your deployment is running
 3. Insert environment variables (*new*)
+4. Manage resource allocations (see below)
 4. Deprovision your deployment
 
-This tab also allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
+#### Environment Variables
 
-1. Choose your executor (local or celery)
+### Resource Allocations
+
+The second half of this tab allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
+
+1. Choose your Executor (Local or Celery)
 2. Adjust worker count
 3. Add extra capacity to your cluster
-4. Adjust worker termination grace period
+4. Adjust your `Worker Termination Grace Period`
 
-By default, workers on your Astronomer deployment will run with 3.75GB, 1 CPU.
+
+#### Choose an Executor 
+
+On Astronomer, you have full freedom to decide which Airflow Executor you want to equip your deployment with.
+
+You might decide to stick with the LocalExecutor for testing and later move towards the CeleryExecutor as you get ready to scale, but the decision fully depends on your use case.
+
+
+
+Keep in mind that you're not locked into an Executor either way at any time - you're free to adjust from one to the other as needed at any time (with proportional changes to your Astronomer bill)
+
+Not sure which to go with? Check out our [Airflow Executor Guide](https://www.astronomer.io/guides/airflow-executors-explained/).
+
+#### Components
+
+#### Resources
+
+
 
 Wondering what resources you need to start? It's hard to say, but we're happy to chat through your use case. Reach out to support@astronomer.io to set something up with us.
