@@ -120,6 +120,12 @@ If you jump into the `Configure` tab on the deployment overview page, you'll be 
 
 #### Environment Variables
 
+Environment Variables ("Env Vars") are a set of configurable values that allow you to dynamically fine tune your Airflow deployment - they encompass everything from [email alerts](https://www.astronomer.io/docs/setting-up-airflow-emails/) to DAG concurrency. They're traditionally defined in your `airflow.cfg`, but you can now insert them directly via Astronomer's UI.
+
+For a full list of Environment Variables you can configure, go [here](https://github.com/astronomer/orbit-ui/blob/2a713304dacebf9cc00409fa710e933a3179236e/src/modules/deployments/info/envVars/named.js).
+
+**Note**: Environment Variables are distinct from Airflow Variables/XComs, which you can configure directly via the Airflow UI/our CLI/your DAG code and are used for inter-task communication.
+
 ### Resource Allocations
 
 The second half of this tab allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
@@ -129,23 +135,21 @@ The second half of this tab allows you to adjust your resource components - empo
 3. Add extra capacity to your cluster
 4. Adjust your `Worker Termination Grace Period`
 
-
-#### Choose an Executor 
+#### Executor 
 
 On Astronomer, you have full freedom to decide which Airflow Executor you want to equip your deployment with.
 
 You might decide to stick with the LocalExecutor for testing and later move towards the CeleryExecutor as you get ready to scale, but the decision fully depends on your use case.
 
-
-
 Keep in mind that you're not locked into an Executor either way at any time - you're free to adjust from one to the other as needed at any time (with proportional changes to your Astronomer bill)
 
 Not sure which to go with? Check out our [Airflow Executor Guide](https://www.astronomer.io/guides/airflow-executors-explained/).
 
-#### Components
+#### Resource omponents
 
-#### Resources
+In the `Components` section of this page, you're free to adjust how many AU's (Astronomer Units) you want to allocate towards your Scheduler, Webserver, and Celery Workers.
 
-
-
-Wondering what resources you need to start? It's hard to say, but we're happy to chat through your use case. Reach out to support@astronomer.io to set something up with us.
+A few notes:
+- If you're running the Local Executor, everything will be running on the Scheduler's resources. Don't worry about the Webserver resources.
+- Extra capacity is only applicable if you're using the Kube Executor (_coming soon_), so you can keep that at 0.
+- Pricing on Astronomer Cloud is based on the resource allocations above. For a full list of defaults and more info, check out our [Pricing Doc](https://www.astronomer.io/docs/pricing/).

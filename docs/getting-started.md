@@ -42,7 +42,7 @@ If you run into issues, check out our [CLI Install guide](https://www.astronomer
 Create a new project directory somewhere on your computer where we'll store all of the files necessary to build our Airflow image. Open a terminal, navigate to the place where you usually store your code, and run the following command to make a new project directory and cd into it:
 
 ```
-mkdir astronomer-trial && cd astronomer-trail
+mkdir astronomer-trial && cd astronomer-trial
 ```
 
 Once you're in that project directory, run:
