@@ -12,7 +12,7 @@ To contribute to our documentation, follow the steps below.
 
 3. Add markdown files for docs and rearrange the `nav.json` file in this repository to adjust the side nav arrangement.
 
-4. From your terminal, run `python nav.py > ../website/src/layouts/docs_nav.json to build docs_nav.json`. This will cause that the `docs_nav.json` file in your website directory is up to date with the latest `nav.json` file in your docs directory.
+4. From your terminal, run `python nav.py > ../website/src/layouts/docs_nav.json` to build docs_nav.json. This will cause that the `docs_nav.json` file in your website directory is up to date with the latest `nav.json` file in your docs directory.
 
 5. Push all docs changes up to Github.
 
