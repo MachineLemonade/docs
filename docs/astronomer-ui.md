@@ -145,7 +145,7 @@ Keep in mind that you're not locked into an Executor either way at any time - yo
 
 Not sure which to go with? Check out our [Airflow Executor Guide](https://www.astronomer.io/guides/airflow-executors-explained/).
 
-#### Resource omponents
+#### Resource Components
 
 In the `Components` section of this page, you're free to adjust how many AU's (Astronomer Units) you want to allocate towards your Scheduler, Webserver, and Celery Workers.
 
