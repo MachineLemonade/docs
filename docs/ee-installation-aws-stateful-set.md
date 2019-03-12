@@ -1,5 +1,5 @@
 ---
-title: "Installing AWS Stateful Set"
+title: "Installing AWS Storage Class"
 description: "Creating your stateful storage"
 date: 2018-07-23T00:00:00.000Z
 slug: "ee-installation-aws-stateful-set"
