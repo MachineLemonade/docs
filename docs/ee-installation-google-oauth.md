@@ -1,5 +1,5 @@
 ---
-title: "Getting Create Google OAuth Creds"
+title: "Create Google OAuth Creds"
 description: "How to create Google OAuth Creds for Enterprise installs"
 date: 2018-07-18T00:00:00.000Z
 slug: "ee-installation-google-oauth"
