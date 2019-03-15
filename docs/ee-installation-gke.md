@@ -5,7 +5,33 @@ date: 2018-10-12T00:00:00.000Z
 slug: "ee-installation-gke"
 ---
 
-This guide describes the process to install Astronomer on Google Cloud Platform (GCP).
+# GKE Installation
+## Install necessary tools
+* [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* [Google Cloud SDK](https://cloud.google.com/sdk/install)
+
+* [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [Helm](https://docs.helm.sh/using_helm/#installing-helm)
+## Clone helm charts locally
+    $ git clone https://github.com/astronomer/helm.astronomer.io.git
+## Domain and SSL Setup
+### Select base domain
+### Obtain TLS certificate
+## Configure GCP for Astronomer deployment
+### Create GKE cluster
+### Create static IP
+### Create Kubernetes Namespace
+## Configure Helm
+### Create tiller service account and cluster role
+### Deploy Tiller pod
+## Deploy PostgreSQL Database
+## Create Kubernetes Secrets
+## Create Google OAuth Credentials
+## Configure Helm Chart
+## Install Astronomer
+    $ helm install -f config.yaml . --namespace astronomer
+
+<!-- This guide describes the process to install Astronomer on Google Cloud Platform (GCP).
 
 ## Are you admin-y enough to do this alone?
 
@@ -44,4 +70,4 @@ Click the link in the output notes to log in to the Astronomer app.
 
 Feel free to check out our video walkthrough of the Install below:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IoeesuFNG9Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IoeesuFNG9Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
