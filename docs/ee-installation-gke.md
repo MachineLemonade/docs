@@ -1,7 +1,7 @@
 ---
 title: "GCP GKE"
 description: "Installing Astronomer on GCP GKE."
-date: 2018-10-12T00:00:00.000Z
+date: 2019-03-15T00:00:00.000Z
 slug: "ee-installation-gke"
 ---
 
