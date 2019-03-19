@@ -21,11 +21,47 @@ slug: "ee-installation-gke"
 ### Create GKE cluster
 ### Create static IP
 ### Create Kubernetes Namespace
+`$ kubectl create namespace <my-namespace>`
 ## Configure Helm
 ### Create tiller service account and cluster role
+Save the following in a file named `rbac-config.yaml`:
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+```
+Run the following command to apply these configurations to your Kubernetes cluster:
+
+`$ kubectl create -f rbac-config.yaml`
 ### Deploy Tiller pod
+Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
+
+`$ helm init --service-account tiller`
 ## Deploy PostgreSQL Database
+`$ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>`
 ## Create Kubernetes Secrets
+`$ export PGPASSWORD=$(kubectl get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)`
+
+`$ echo $PGPASSWORD`
+
+`$ kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>`
+
+`$ kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mycompany.com/privkey.pem --cert /etc/letsencrypt/live/astro.mycompany.com/fullchain.pem --namespace <my-namespace>`
 ## Create Google OAuth Credentials
 ## Configure Helm Chart
 ## Install Astronomer
