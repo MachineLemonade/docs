@@ -16,10 +16,29 @@ slug: "ee-installation-gke"
     $ git clone https://github.com/astronomer/helm.astronomer.io.git
 ## Domain and SSL Setup
 ### Select base domain
+All Astronomer services will be tied to a base domain of your choice. You will need to add / edit DNS records under this domain, so make sure you have the proper privileges.
+
+Here are some examples of accessible services when we use the base domain `astro.mydomain.com`:
+* Astronomer UI: `app.astro.mydomain.com`
+* New Airflow Deployments: `unique-name-airflow.astro.mydomain.com`
+* Grafana Dashboard: `grafana.astro.mydomain.com`
+* Kibana Dashboard: `kibana.astro.mydomain.com`
+
 ### Obtain TLS certificate
+```
+$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mycompany.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
+```
+
 ## Configure GCP for Astronomer deployment
+### Create a GCP project
+`gcloud projects create astro-project`
 ### Create GKE cluster
+
 ### Create static IP
+`$ gcloud compute addresses create astronomer-ip --region us-east4 --project astronomer-project-190903`
+
+`$ gcloud compute addresses describe astronomer-ip --region us-east4 --project astronomer-project-190903 --format 'value(address)'`
+
 ### Create Kubernetes Namespace
 `$ kubectl create namespace <my-namespace>`
 ## Configure Helm
