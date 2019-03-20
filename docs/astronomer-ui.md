@@ -118,9 +118,13 @@ If you jump into the `Configure` tab on the deployment overview page, you'll be 
 4. Manage resource allocations (see below)
 4. Deprovision your deployment
 
+![Astro UI Deployment Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-DeploymentInfo.png)
+
 #### Environment Variables
 
 Environment Variables ("Env Vars") are a set of configurable values that allow you to dynamically fine tune your Airflow deployment - they encompass everything from [email alerts](https://www.astronomer.io/docs/setting-up-airflow-emails/) to DAG concurrency. They're traditionally defined in your `airflow.cfg`, but you can now insert them directly via Astronomer's UI.
+
+![Astro UI Env Vars Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-EnvVars.png)
 
 For a full list of Environment Variables you can configure, go [here](https://github.com/astronomer/orbit-ui/blob/2a713304dacebf9cc00409fa710e933a3179236e/src/modules/deployments/info/envVars/named.js).
 
@@ -135,6 +139,8 @@ The second half of this tab allows you to adjust your resource components - empo
 3. Adjust worker count (*Celery only*)
 4. Adjust your `Worker Termination Grace Period` (*Celery only*)
 5. Add Extra Capacity (*Kubernetes only*)
+
+![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Executor.png)
 
 #### Executor 
 
@@ -158,6 +164,8 @@ A few notes:
 #### Extra Capacity
 
 The `Extra Capacity` setting is tied to several dimensions related the KubernetesPodOperator and the Kubernetes Executor, as it maps to extra pods created in the cluster. Namely, the slider has an effect on (1) CPU and memory quotas and (2) database connection limits.
+
+![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Resources.png)
 
 Central to the latter is the PgBouncer, a light-weight connection pool manager for Postgres (Airflow's underlying database on Astronomer). Each Airflow deployment has a PgBouncer sitting between itself and the Postgres database to limit the amount of actual connections to Postgres used. Airflow can get greedy (depending on a variety of settings), but the PgBouncer keeps those connections contained so as to not exhaust the underlying database too quickly.
 
