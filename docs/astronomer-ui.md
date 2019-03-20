@@ -131,9 +131,10 @@ For a full list of Environment Variables you can configure, go [here](https://gi
 The second half of this tab allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
 
 1. Choose your Executor (Local or Celery)
-2. Adjust worker count
-3. Add extra capacity to your cluster
-4. Adjust your `Worker Termination Grace Period`
+2. Adjust resources to your Scheduler and Webserver
+3. Adjust worker count (*Celery only*)
+4. Adjust your `Worker Termination Grace Period` (*Celery only*)
+5. Add Extra Capacity (*Kubernetes only*)
 
 #### Executor 
 
@@ -141,15 +142,26 @@ On Astronomer, you have full freedom to decide which Airflow Executor you want t
 
 You might decide to stick with the LocalExecutor for testing and later move towards the CeleryExecutor as you get ready to scale, but the decision fully depends on your use case.
 
-Keep in mind that you're not locked into an Executor either way at any time - you're free to adjust from one to the other as needed at any time (with proportional changes to your Astronomer bill)
+Keep in mind that you're not locked into an Executor either way at any time - you're free to adjust from one to the other as needed whenever you'd like (with proportional changes to your Astronomer bill).
 
-Not sure which to go with? Check out our [Airflow Executor Guide](https://www.astronomer.io/guides/airflow-executors-explained/).
+*Not sure which to go with?* Check out our [Airflow Executor Guide](https://www.astronomer.io/guides/airflow-executors-explained/).
 
 #### Resource Components
 
-In the `Components` section of this page, you're free to adjust how many AU's (Astronomer Units) you want to allocate towards your Scheduler, Webserver, and Celery Workers.
+In the `Components` section of this page, you're free to adjust how many AU's (Astronomer Units) you want to allocate towards your Scheduler, Webserver, and Celery Workers, if applicable.
 
 A few notes:
 - If you're running the Local Executor, everything will be running on the Scheduler's resources. Don't worry about the Webserver resources.
-- Extra capacity is only applicable if you're using the Kube Executor (_coming soon_), so you can keep that at 0.
-- Pricing on Astronomer Cloud is based on the resource allocations above. For a full list of defaults and more info, check out our [Pricing Doc](https://www.astronomer.io/docs/pricing/).
+- Extra capacity is only applicable if you're using the KubernetesPodOperator or the Kubernetes Executor (*coming soon*), so you can keep that at 0 otherwise.
+- Pricing on Astronomer Cloud is based on the resource allocations above. For a full list of resource defaults and billing details, check out our [Pricing Doc](https://www.astronomer.io/docs/pricing/).
+
+#### Extra Capacity
+
+The `Extra Capacity` setting is tied to several dimensions related the KubernetesPodOperator and the Kubernetes Executor, as it maps to extra pods created in the cluster. Namely, the slider has an effect on (1) CPU and memory quotas and (2) database connection limits.
+
+Central to the latter is the PgBouncer, a light-weight connection pool manager for Postgres (Airflow's underlying database on Astronomer). Each Airflow deployment has a PgBouncer sitting between itself and the Postgres database to limit the amount of actual connections to Postgres used. Airflow can get greedy (depending on a variety of settings), but the PgBouncer keeps those connections contained so as to not exhaust the underlying database too quickly.
+
+In general, `database connections` shows how many actual connections to the database are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer for a particular deployment. This will normally be a higher and more variable number.
+
+If you're running Astronomer Enterprise, you can check live connection stats on your Grafana dashboard.
+
