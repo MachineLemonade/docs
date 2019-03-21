@@ -18,7 +18,7 @@ $ git clone https://github.com/astronomer helm.astronomer.io.git
 ```
 Checkout desired branch
 
-## Choose a Suitable Domain and 
+## Choose a Suitable Domain
 All Astronomer services will be tied to a base domain of your choice. You will need to add / edit DNS records under this domain, so make sure you have the proper privileges.
 
 Here are some examples of accessible services when we use the base domain `astro.mydomain.com`:
