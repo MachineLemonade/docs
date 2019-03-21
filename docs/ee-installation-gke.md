@@ -13,7 +13,11 @@ slug: "ee-installation-gke"
 * [Helm](https://docs.helm.sh/using_helm/#installing-helm)
 
 ## Clone helm charts locally
-    $ git clone https://github.com/astronomer/helm.astronomer.io.git
+```
+$ git clone https://github.com/astronomer helm.astronomer.io.git
+```
+Checkout desired branch
+
 ## Choose a Suitable Domain and 
 All Astronomer services will be tied to a base domain of your choice. You will need to add / edit DNS records under this domain, so make sure you have the proper privileges.
 
@@ -61,26 +65,85 @@ Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/
 $ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE]
 ```
 
+```
+$ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-4 --enable-autoscaling --max-nodes 10 --min-nodes 4
+```
+
 ### Create static IP
 ```
-$ gcloud compute addresses create astronomer-ip --region us-east4 --project astronomer-project-190903
+$ gcloud compute addresses create astronomer-ip --region [COMPUTE_REGION] --project [PROJECT_ID]
 ```
 
 ```
-$ gcloud compute addresses describe astronomer-ip --region us-east4 --project astronomer-project-190903 --format 'value(address)'
+$ gcloud compute addresses describe astronomer-ip --region [COMPUTE_REGION] --project [PROJECT_ID] --format 'value(address)'
 ```
+Record the output of this command - it will be used later on.
 
-### Create Kubernetes Namespace
-```
-$ kubectl create namespace <my-namespace>
-```
 ## SSL Configuration
 ### Obtain TLS certificate
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mycompany.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
 ```
 
+```
+$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.datarouter.ai" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator manual, Installer None
+Obtaining a new certificate
+Performing the following challenges:
+dns-01 challenge for astro.datarouter.ai
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+NOTE: The IP of this machine will be publicly logged as having requested this
+certificate. If you're running certbot in manual mode on a machine that is not
+your server, please ensure you're okay with that.
+
+Are you OK with your IP being logged?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name
+_acme-challenge.astro.datarouter.ai with the following value:
+
+lqq19Uazhj7nXNz4nscCyCj997xr2ddD6sWnSgkX2qc
+
+Before continuing, verify the record is deployed.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+```
+Deploy a TXT record using the values in the output above:
+
+<!-- screenshot -->
+
+Wait a few minutes before continuing in your terminal:
+```
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/astro.datarouter.ai/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/astro.datarouter.ai/privkey.pem
+   Your cert will expire on 2019-06-18. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+
+
+```
+
 ## Configure Helm
+### Create Kubernetes Namespace
+```
+$ kubectl create namespace <my-namespace>
+```
+
 ### Create tiller service account and cluster role
 Save the following in a file named `rbac-config.yaml`:
 ```
@@ -114,6 +177,7 @@ Your Helm client communicates with your kubernetes cluster through a `tiller` po
 ```
 $ helm init --service-account tiller
 ```
+helm version to confirm success
 
 ## Deploy PostgreSQL Database
 ```
@@ -135,12 +199,35 @@ $ kubectl create secret generic astronomer-bootstrap --from-literal connection="
 ```
 
 ```
-$ kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mycompany.com/privkey.pem --cert /etc/letsencrypt/live/astro.mycompany.com/fullchain.pem --namespace <my-namespace>
+$ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mycompany.com/privkey.pem --cert /etc/letsencrypt/live/astro.mycompany.com/fullchain.pem --namespace <my-namespace>
 ```
 
 ## Create Google OAuth Credentials
 ## Configure Helm Chart
+```
+# This is starter yaml configuation file to serve as a template for
+# a production installation.
+
+#################################
+## Astronomer global configuration
+#################################
+global:
+  # Base domain for all subdomains exposed through ingress
+  baseDomain: ~
+
+  # Name of secret containing TLS certificate
+  tlsSecret: ~
+
+
+#################################
+## Nginx configuration
+#################################
+nginx:
+  # IP address the nginx ingress should bind to
+  loadBalancerIP: ~
+```
+
 ## Install Astronomer
 ```
-$ helm install -f config.yaml . --namespace astronomer
+$ helm install -f config.yaml . --namespace <my-namespace>
 ```
