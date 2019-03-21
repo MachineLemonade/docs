@@ -6,15 +6,17 @@ slug: "ee-installation-gke"
 ---
 
 # Installing Astronomer on GCP GKE
-## Install necessary tools
+## Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Google Cloud SDK](https://cloud.google.com/sdk/install)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [Helm](https://docs.helm.sh/using_helm/#installing-helm)
 
-## Clone helm charts locally
+<!-- kubectx? -->
+
+## Clone Astronomer Helm Charts Locally
 ```
-$ git clone https://github.com/astronomer helm.astronomer.io.git
+$ git clone https://github.com/astronomer/helm.astronomer.io.git
 ```
 Checkout desired branch
 
@@ -31,8 +33,8 @@ Here are some examples of accessible services when we use the base domain `astro
 
 <!-- screenshot -->
 
-## Configure GCP for Astronomer deployment
-### Create a GCP project
+## Configure GCP for Astronomer Deployment
+### Create a GCP Project
 ```
 $ gcloud auth login
 ```
@@ -56,7 +58,7 @@ $ gcloud config set project [PROJECT_ID]
 $ gcloud config set compute/zone [COMPUTE_ZONE]
 ```
 
-### Create GKE cluster
+### Create a GKE Cluster
 Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
 
 <!-- screenshot -->
@@ -69,7 +71,7 @@ $ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE]
 $ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-4 --enable-autoscaling --max-nodes 10 --min-nodes 4
 ```
 
-### Create static IP
+### Create a Static IP
 ```
 $ gcloud compute addresses create astronomer-ip --region [COMPUTE_REGION] --project [PROJECT_ID]
 ```
@@ -80,7 +82,7 @@ $ gcloud compute addresses describe astronomer-ip --region [COMPUTE_REGION] --pr
 Record the output of this command - it will be used later on.
 
 ## SSL Configuration
-### Obtain TLS certificate
+### Obtain a TLS certificate
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mycompany.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
 ```
@@ -138,13 +140,13 @@ IMPORTANT NOTES:
 
 ```
 
-## Configure Helm
-### Create Kubernetes Namespace
+## Configure Helm with your GKE Cluster
+### Create a Kubernetes Namespace
 ```
 $ kubectl create namespace <my-namespace>
 ```
 
-### Create tiller service account and cluster role
+### Create a `tiller` Service Account
 Save the following in a file named `rbac-config.yaml`:
 ```
 apiVersion: v1
@@ -172,14 +174,14 @@ Run the following command to apply these configurations to your Kubernetes clust
 $ kubectl create -f rbac-config.yaml
 ```
 
-### Deploy Tiller pod
+### Deploy a `tiller` Pod
 Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
 ```
 $ helm init --service-account tiller
 ```
 helm version to confirm success
 
-## Deploy PostgreSQL Database
+## Deploy a PostgreSQL Database
 ```
 $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 ```
@@ -203,7 +205,7 @@ $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astr
 ```
 
 ## Create Google OAuth Credentials
-## Configure Helm Chart
+## Configure your Helm Chart
 ```
 # This is starter yaml configuation file to serve as a template for
 # a production installation.
