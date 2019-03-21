@@ -34,6 +34,8 @@ Here are some examples of accessible services when we use the base domain `astro
 <!-- screenshot -->
 
 ## Configure GCP for Astronomer Deployment
+*NOTE - You can view Google Cloud Platform's Web Console at https://console.cloud.google.com/*
+
 ### Create a GCP Project
 
 Authenticate the `gcloud` CLI with your Google account:
