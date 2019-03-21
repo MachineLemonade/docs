@@ -35,26 +35,32 @@ Here are some examples of accessible services when we use the base domain `astro
 
 ## Configure GCP for Astronomer Deployment
 ### Create a GCP Project
+
+Authenticate the `gcloud` CLI with your Google account:
 ```
 $ gcloud auth login
 ```
 
+Create a project:
 ```
 $ gcloud projects create [PROJECT_ID]
 ```
 
-Confirm
+Confirm the project was successfully created:
 ```
 $ gcloud projects list
 PROJECT_ID             NAME                PROJECT_NUMBER
 astronomer-project     astronomer-project  364686176109
 ```
 
+Configure the `gcloud` CLI for use with your new project:
 ```
 $ gcloud config set project [PROJECT_ID]
 ```
 
+Set your preferred compute zone. *NOTE - The compute zone will have a compute region tied to it. You'll need this later on*:
 ```
+$ gcloud compute zones list
 $ gcloud config set compute/zone [COMPUTE_ZONE]
 ```
 
@@ -63,19 +69,19 @@ Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/
 
 <!-- screenshot -->
 
-```
-$ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE]
-```
-
+Create your cluster:
 ```
 $ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-4 --enable-autoscaling --max-nodes 10 --min-nodes 4
 ```
 
 ### Create a Static IP
+
+Create a static IP address 
 ```
 $ gcloud compute addresses create astronomer-ip --region [COMPUTE_REGION] --project [PROJECT_ID]
 ```
 
+View the generated IP address:
 ```
 $ gcloud compute addresses describe astronomer-ip --region [COMPUTE_REGION] --project [PROJECT_ID] --format 'value(address)'
 ```
@@ -86,7 +92,7 @@ Record the output of this command - it will be used later on.
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mycompany.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
 ```
-
+Example output:
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.datarouter.ai" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
