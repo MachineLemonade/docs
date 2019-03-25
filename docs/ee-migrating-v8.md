@@ -24,21 +24,26 @@ This grabs the `dag`, `dag_pickle`, `dag_run`, `dag_stats`, `import_error`, `kno
 
 You'll want to run this for each of your Airflow deployments you are looking to migrate.
 
-4) Delete your old Astronomer Platform, **not** the Airflow deployment.
+4) Get the fernet key from your old install. 
+`kubectl get secret {old deployment name}-fernet-key -o yaml`
+Copy the value after fernet-key: somewhere safe. This will be applied to the new install a few steps below.
+
+5) Delete your old Astronomer Platform, **not** the Airflow deployment.
 `helm delete --purge [PLATFORM RELEASE NAME]`
 
 **Note**: If you are simply moving everything over to a new cluster, you can skip this step.
 
-5) Install Astronomer v0.8 on your cluster.
+6) Install Astronomer v0.8 on your cluster.
 
-6) Create an Airflow deployment on your new Astronomer version.
+7) Create an Airflow deployment on your new Astronomer version.
 
-7) Run pg_restore:
+8) Restore your fernet key into the new v8 installation. `kubectl edit secret {new deployment name}-fernet-key -o yaml` This will open the secret for editing in Vi. You will need to remove the value that was created after fernet-key: and replace it with the value you got from step 4 and save. 
+
+9) Run pg_restore:
 ```
 psql -d {dbname} -c "TRUNCATE TABLE airflow.connection;"
 psql {dbname} < /tmp/{pg_dump_file_path}  
 ```
 
-**Note:** This will clear out the `Connections` tab. You'll have to  enter those in again.
-
-8) Redeploy your code to its corresponding instance.
+10) Edit first line of your project's Dockerfile to `FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild`
+11) Redeploy your code to its corresponding instance.
