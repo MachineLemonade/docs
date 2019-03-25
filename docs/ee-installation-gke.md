@@ -31,7 +31,7 @@ Here are some examples of accessible services when we use the base domain `astro
 
 ### Create a GCP Project
 
-Authenticate the `gcloud` CLI with your Google account:
+Login to your Google account with the `gcloud` CLI:
 ```
 $ gcloud auth login
 ```
@@ -194,10 +194,14 @@ $ helm version
 <!-- NOTE HELM CLIENT AND TILLER VERSION NEED TO MATCH -->
 
 ## 6. Deploy a PostgreSQL Database
+We recommend you deploy a PostgreSQL database through a cloud provider database service like Compose, Amazon RDS, or Google Cloud SQL.
+
+<!-- NOTES FROM EACH PROVIDER? -->
+
+For demonstration purposes, we'll use the PostgreSQL helm chart:
 ```
 $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 ```
-<!-- BRING YOUR OWN POSTGRESQL -->
 
 ## 7. Create Kubernetes Secrets
 
@@ -234,15 +238,20 @@ Clone the Astronomer helm charts locally and checkout your desired branch:
 $ git clone https://github.com/astronomer/helm.astronomer.io.git
 $ git checkout <branch-name>
 ```
-
+Create your `config.yaml` by copying our `starter.yaml` template:
 ```
 $ cp /configs/starter.yaml ./config.yaml
 ```
 <!-- WHY NOT JUST USE STARTER.YAML? -->
-Set the following values:
+<!-- ADD MORE ABOUT WHAT CAN BE ADDED TO THIS FILE? -->
+
+Set the following values in `config.yaml`:
 * `baseDomain: astro.mydomain.com`
 * `tlsSecret: astronomer-tls`
 * `loadBalancerIP: <my-static-ip>`
+
+Add the following line in the `nginx:` section:
+* `preserveSourceIP: true`
 
 ## 10. Install Astronomer
 ```
