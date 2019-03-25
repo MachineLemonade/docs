@@ -39,7 +39,7 @@ Copy the value after fernet-key: somewhere safe. This will be applied to the new
 
 8) Restore your fernet key into the new v8 installation. `kubectl edit secret {new deployment name}-fernet-key -o yaml` This will open the secret for editing in Vi. You will need to remove the value that was created after fernet-key: and replace it with the value you got from step 4 and save. 
 
-9) Run pg_restore:
+9) Run pg_restore against the new database created by the v8 install:
 ```
 psql -d {dbname} -c "TRUNCATE TABLE airflow.connection;"
 psql {dbname} < /tmp/{pg_dump_file_path}  
