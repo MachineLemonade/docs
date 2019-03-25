@@ -92,10 +92,10 @@ You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mycompany.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
 ```
-Example output:
+<!-- Example output:
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.datarouter.ai" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
-```
+``` -->
 <!-- Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator manual, Installer None
 Obtaining a new certificate
@@ -122,11 +122,12 @@ Before continuing, verify the record is deployed.
 Press Enter to Continue
 ``` -->
 
-Deploy a TXT record using the values in the output above:
+* Follow the on-screen prompts and deploy a TXT record through your DNS provider
+* Wait a few minutes before continuing in your terminal
+
 
 <!-- screenshot -->
 
-Wait a few minutes before continuing in your terminal:
 <!-- ```
 Waiting for verification...
 Cleaning up challenges
@@ -217,7 +218,7 @@ $ kubectl create secret generic astronomer-bootstrap --from-literal connection="
 ```
 
 ### Create TLS Secret
-Create a TLS secret named `astronomer-tls` using the previously generated certificate files:
+Create a TLS secret named `astronomer-tls` using the previously generated SSL certificate files:
 ```
 $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mycompany.com/privkey.pem --cert /etc/letsencrypt/live/astro.mycompany.com/fullchain.pem --namespace <my-namespace>
 ```
@@ -239,9 +240,9 @@ $ cp /configs/starter.yaml ./config.yaml
 ```
 <!-- WHY NOT JUST USE STARTER.YAML? -->
 Set the following values:
-* `baseDomain: `
-* `tlsSecret: `
-* `loadBalancerIP: `
+* `baseDomain: astro.mydomain.com`
+* `tlsSecret: astronomer-tls`
+* `loadBalancerIP: <my-static-ip>`
 
 ## 10. Install Astronomer
 ```
