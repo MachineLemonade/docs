@@ -20,7 +20,7 @@ pg_dump --host={host} --dbname={dbname} --schema=airflow --data-only --blobs --u
 
 This grabs the `dag`, `dag_pickle`, `dag_run`, `dag_stats`, `import_error`, `known_event`, `sla_miss`, `slot_pool`, `task_fail`, `task_instance`, and `task_reschedule` tables.
 
-**However, this cannot be used
+**This cannot be used to migrate the `users` table.**
 
 You'll want to run this for each of your Airflow deployments you are looking to migrate.
 
@@ -36,7 +36,7 @@ You'll want to run this for each of your Airflow deployments you are looking to 
 7) Run pg_restore:
 ```
 psql -d {dbname} -c "TRUNCATE TABLE airflow.connection;"
-psql {dbname} < /tmp/{pg_dump_file_path}
+psql {dbname} < /tmp/{pg_dump_file_path}  
 ```
 
 **Note:** This will clear out the `Connections` tab. You'll have to  enter those in again.
