@@ -83,7 +83,11 @@ $ gcloud compute addresses describe astronomer-ip --region [COMPUTE_REGION] --pr
 
 ## 4. SSL Configuration
 
-### Obtain a TLS certificate
+You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
+* Purchase a wildcard certificate from your preferred vendor.
+* Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
+
+### Obtain a Free SSL Certificate from Let's Encrypt
 <!-- NEED TO COMPLETE -->
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mycompany.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
@@ -195,8 +199,9 @@ $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 <!-- BRING YOUR OWN POSTGRESQL -->
 
 ## 7. Create Kubernetes Secrets
-<!-- NEED TO COMPLETE -->
+
 ### Create Database Connection Secret
+Set an environment variable `$PGPASSWORD` containing your PostgreSQL database password:
 ```
 $ export PGPASSWORD=$(kubectl get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
 ```
@@ -206,49 +211,37 @@ Confirm your `$PGPASSWORD` variable is set properly:
 $ echo $PGPASSWORD
 ```
 
+Create a Kubernetes secret named `astronomer-bootstrap` to hold your database connection string:
 ```
 $ kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
 ```
 
 ### Create TLS Secret
-Create a TLS secrete named `astronomer-tls` using the previously generated certificate files:
+Create a TLS secret named `astronomer-tls` using the previously generated certificate files:
 ```
 $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mycompany.com/privkey.pem --cert /etc/letsencrypt/live/astro.mycompany.com/fullchain.pem --namespace <my-namespace>
 ```
 
 ## 8. Create Google OAuth Credentials
+<!-- NEED TO COMPLETE -->
 
 ## 9. Configure your Helm Chart
 <!-- NEED TO COMPLETE -->
-Clone the Astronomer helm charts locally and checkout your desired branch:
 
+Clone the Astronomer helm charts locally and checkout your desired branch:
 ```
 $ git clone https://github.com/astronomer/helm.astronomer.io.git
 $ git checkout <branch-name>
 ```
 
 ```
-# This is starter yaml configuation file to serve as a template for
-# a production installation.
-
-#################################
-## Astronomer global configuration
-#################################
-global:
-  # Base domain for all subdomains exposed through ingress
-  baseDomain: ~
-
-  # Name of secret containing TLS certificate
-  tlsSecret: ~
-
-
-#################################
-## Nginx configuration
-#################################
-nginx:
-  # IP address the nginx ingress should bind to
-  loadBalancerIP: ~
+$ cp /configs/starter.yaml ./config.yaml
 ```
+<!-- WHY NOT JUST USE STARTER.YAML? -->
+Set the following values:
+* `baseDomain: `
+* `tlsSecret: `
+* `loadBalancerIP: `
 
 ## 10. Install Astronomer
 ```
