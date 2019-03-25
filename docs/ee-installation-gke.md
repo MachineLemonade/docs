@@ -209,6 +209,28 @@ Set the following values in `config.yaml`:
 Add the following line in the `nginx:` section:
 * `preserveSourceIP: true`
 
+Here is an example of what your `config.yaml` might look like:
+```
+#################################
+## Astronomer global configuration
+#################################
+global:
+  # Base domain for all subdomains exposed through ingress
+  baseDomain: astro.mydomain.com
+
+  # Name of secret containing TLS certificate
+  tlsSecret: astronomer-tls
+
+
+#################################
+## Nginx configuration
+#################################
+nginx:
+  # IP address the nginx ingress should bind to
+  loadBalancerIP: 0.0.0.0
+  preserveSourceIP: true
+```
+
 ## 10. Install Astronomer
 ```
 $ helm install -f config.yaml . --namespace <my-namespace>
