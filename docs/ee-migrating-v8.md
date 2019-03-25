@@ -46,4 +46,5 @@ psql {dbname} < /tmp/{pg_dump_file_path}
 ```
 
 10) Edit first line of your project's Dockerfile to `FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild`
+
 11) Redeploy your code to its corresponding instance.
