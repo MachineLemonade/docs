@@ -12,6 +12,7 @@ slug: "ee-installation-gke"
 * [Google Cloud SDK](https://cloud.google.com/sdk/install)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [Helm](https://docs.helm.sh/using_helm/#installing-helm)
+* SMTP Creds (Mailgun, Sendgrid) or any service will  work!
 
 <!-- kubectx? -->
 
@@ -229,6 +230,18 @@ nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP: 0.0.0.0
   preserveSourceIP: true
+
+#################################
+## SMTP configuration
+#################################  
+  
+astronomer:
+  houston:
+    config:
+      email:
+        enabled: true
+        smtpUrl: YOUR_URI_HERE
+
 ```
 
 ## 10. Install Astronomer
