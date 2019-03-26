@@ -1,5 +1,5 @@
-# Migrating to Astronomer v0.8.0
-_Moving from Astronomer v0.7.5 to Astronomer v0.8.0_
+# Migrating to Astronomer v0.8
+_Moving from Astronomer v0.7.5 to Astronomer v0.8
 
 Astronomer v0.8.0 is full of new features that make the user experience better as well as set the stage for features we're building out in the future. Unfortunately, due to the fact that we had to rewrite our API for this release, upgrading is going to be a bit of a more manual process.
 
