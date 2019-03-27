@@ -105,6 +105,7 @@ Create an A record through your DNS provider for `*.astro.mydomain.com` using yo
 <!-- SCREENSHOT -->
 
 ## 5. Configure Helm with your GKE Cluster
+Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
 ### Create a Kubernetes Namespace
 ```
 $ kubectl create namespace <my-namespace>
