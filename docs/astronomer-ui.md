@@ -167,9 +167,9 @@ The `Extra Capacity` setting is tied to several dimensions related the Kubernete
 
 ![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Resources.png)
 
-Central to the latter is the PgBouncer, a light-weight connection pool manager for Postgres (Airflow's underlying database on Astronomer). Each Airflow deployment has a PgBouncer sitting between itself and the Postgres database to limit the amount of actual connections to Postgres used. Airflow can get greedy (depending on a variety of settings), but the PgBouncer keeps those connections contained so as to not exhaust the underlying database too quickly.
+In general, `database connections` shows how many actual connections to Astronomer's database (not yours) are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer (a light-weight connection pool manager for Postgres) for a particular deployment. This will normally be a higher and more variable number.
 
-In general, `database connections` shows how many actual connections to the database are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer for a particular deployment. This will normally be a higher and more variable number.
+Importantly, these connections do NOT have any impact on the way you write your DAGs or how many concurrent connections you hold to your own databases. It's really just about how the Webserver, Scheduler, and Workers connect to Astronomer's Postgres to update the state of variables, DAGs, tasks, etc. Unless you're implementing the Kubernetes Pod operator or the soon-to-come Kubernetes Executor, don't worry about it.
 
 If you're running Astronomer Enterprise, you can check live connection stats on your Grafana dashboard.
 
