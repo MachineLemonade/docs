@@ -277,7 +277,7 @@ Refer to the native [Airflow CLI](https://airflow.apache.org/cli.html) for a lis
 
 ## VI. Adding Environment Variables
 
-Astronomer v0.8 comes with the ability to inject Environment Variables directly through the UI. With that said, you can also throw any overrides in a `.env` if you want to make sure those variables get version controlled. Airflow configuration variables can be found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
+Astronomer v0.7 comes with the ability to inject Environment Variables directly through the UI. With that said, you can also throw any overrides in a `.env` if you want to make sure those variables get version controlled. Airflow configuration variables can be found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
 
 ```
 AIRFLOW__SECTION__PARAMETER=VALUE
