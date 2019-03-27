@@ -64,7 +64,9 @@ This will generate some skeleton files:
 └── requirements.txt #For any python packages
 ```
 
-Note that running this command generates an example DAG for you to deploy while getting started. This DAG doesn't have much functionality (it just prints the date a bunch of times), as it's designed to help you get accustomed with our deployment flow. If you'd like to deploy some more functional example DAGs, [check out the one's we've open sourced here](https://github.com/airflow-plugins/example-dags).
+Running this command generates an example DAG for you to deploy while getting started. The DAG itself doesn't have much functionality (it just prints the date a bunch of times), as it's designed to help you get accustomed with our deployment flow. 
+
+If you'd like to deploy some more functional example DAGs, [check out the ones we've open sourced here](https://github.com/airflow-plugins/example-dags).
 
 ### Customize Your Image
 
@@ -72,8 +74,8 @@ Our base image runs Alpine Linux, so it is very slim by default.
 
 - Add DAGs in the `dags` directory
 - Add custom airflow plugins in the `plugins` directory
-- Python packages can go in `requirements.txt`. By default, you get all the python packages required to run airflow.
-- OS level packages  can go in `packages.txt`
+- Python packages can go in `requirements.txt`. By default, you get all the python packages required to run Airflow.
+- OS-level packages  can go in `packages.txt`
 - Any environment variable overrides can go in `Dockerfile` (_note_: with Astronomer 0.7, you can also inject env vars directly through the UI)
 
 If you are unfamiliar with Alpine Linux, look here for some examples of what
@@ -93,7 +95,7 @@ If you've made sure everything you need to your image is set, you can run:
 astro airflow start
 ```
 
-This will spin up a local Airflow for you to develop on that includes locally running docker containers - one for the Airflow Scheduler, one for the Webserver, and one for postgres (Airflow's underlying database).
+This will spin up a local Airflow for you to develop on that includes locally running docker containers - one for the Airflow Scheduler, one for the Webserver, and one for Postgres (Airflow's underlying database).
 
 To verify, you can run: `docker ps`
 
@@ -107,7 +109,7 @@ docker logs $(docker ps | grep scheduler | awk '{print $1}')
 
 ## Start a Trial with Astronomer
 
-To sign up for a free trial on Astronomer, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat or are interested in exploring Astronomer Enterprise, [contact us](https://www.astronomer.io/contact/?from=/).
+To sign up for a free trial on Astronomer Cloud, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat or are interested in exploring Astronomer Enterprise, [contact us](https://www.astronomer.io/contact/?from=/).
 
 ### Create a Workspace
 
@@ -115,19 +117,19 @@ Once you've kicked off your trial, you'll be directed to create an account on As
 
 Your account will be equipped with a personal Workspace by default. You can think of your Workspaces the same way you'd think of teams - they're collections of Airflow deployments that specific user groups have access to.  Airflow deployments are hierarchically lower - from a workspace, you can create one or more Airflow deployments.
 
+Check out our [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/) doc for more guidance on navigating our app.
+
 ### Join another Workspace
 
-If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account*.
+If you're new to Astronomer but someone else on your team has an existing workspace you want to join, you'll still need to create an account (ask your teammate for the login link in their Welcome email). A personal workspace for you will be generated regardless, and that team member will be able to add you as a user to a shared workspace directly from their account.
 
-Read more about Astronomer's UI [here](https://www.astronomer.io/docs/airflow-deployments/).
-
-*If you have any trouble with the confirmation email, feel free to reach out. It's usually becuase of network security settings, so check your spam folder and try to whitelist our domain if you can.
+**Note**: If you If you have any trouble with the confirmation email, check your spam filter. If that doesn't do the trick, reach out to us.
 
 ### Create an Airflow Deployment
 
 If you already have a deployment created in your Astronomer Workspace, you can skip this step. If not, go ahead and create a deployment directly from our app by following the steps below:
 
-- Start from https://app.astronomer.cloud/workspaces
+- Start from Astronomer's login page (the link is in your trial welcome email)
 - Click into the workspace you want to create a deployment from
 - Hit `New Deployment` on the top right of the page
 - Give your deployment a name and description
@@ -147,7 +149,7 @@ To log into your existing account and pass our authorization flow, run the follo
 astro auth login astronomer.cloud
 ```
 
-You _can_ login via app.astronomer.cloud directly but our UI currently does not display the workspace ID you'll need to complete a deployment.
+You _can_ authorize in via your browser directly but our UI currently does not display the workspace ID you'll need to complete a deployment.
 
 #### Step 2: Make sure you're in the right place
 
