@@ -23,8 +23,6 @@ Before running the Astronomer install command you must:
 
 Note: the current AMI provided by AWS has a bug in it that prevents ElasticSearch from working correctly. In the link above `Step 3: Launch and Configure Amazon EKS Worker Nodes`, you will need to use the CloudFormation yaml provided [here](https://gist.github.com/andrewhharmon/434f872e53178cb991c0465955423b5b) instead of the one provided in the AWS doc.
 
-<script src="https://gist.github.com/andrewhharmon/434f872e53178cb991c0465955423b5b.js"></script>
-
 2. [Select a base domain](https://astronomer.io/docs/ee-installation-base-domain)
 3. [Get your machine setup with needed dev tools](https://astronomer.io/docs/ee-installation-dev-env)
 4. [Create a stateful storage set](https://astronomer.io/docs/ee-installation-aws-stateful-set)
