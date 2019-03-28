@@ -277,7 +277,31 @@ Refer to the native [Airflow CLI](https://airflow.apache.org/cli.html) for a lis
 
 ## VI. Adding Environment Variables
 
-Astronomer v0.7 comes with the ability to inject Environment Variables directly through the UI. With that said, you can also throw any overrides in a `.env` if you want to make sure those variables get version controlled. Airflow configuration variables can be found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
+Astronomer makes it easier to inject Environment Variables. Depending on what version of our CLI you're running, check out the guidelines below.
+
+### On Astronomer v0.7.5 (Current for Cloud)
+
+If you're developing locally on Astronomer v0.7.5, you can add Environment Variables directly to your Dockerfile as seen below:
+
+```
+ENV ADMIN_USER="mark"
+```
+
+### On Astronomer v0.8 (Current for Enterprise)
+
+Astronomer v0.8's CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro airflow start` with an `--env` flag as seen below:
+
+```
+astro airflow start --env .env
+```
+
+**Note**: Whatever `.env` you use locally will not be bundled up when you deploy to Astronomer. To add Environment Variables when you deploy to Astronomer, you'll have to add them via the Astronomer UI (`Deployment` > `Configure` > `Environment Vars`).
+
+**Some Guidelines:**
+
+1. First, throw your environment variables of choice in an `.env` file.
+
+2. Airflow configuration variables found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
 
 ```
 AIRFLOW__SECTION__PARAMETER=VALUE
@@ -288,9 +312,9 @@ For example, setting `max_active_runs` to 3 would look like:
 AIRFLOW__CORE__MAX_ACTIVE_RUNS=3
 ```
 
-**Note:** Be sure your configuration names match up with the version of Airflow you're using.
+3. Make sure your configuration names match up with the version of Airflow you're using.
 
-While the CLI will look for `.env` by default, you may also specify multiple .env files if you have different settings you need to toggle between.
+4. The CLI will look for `.env` by default, but if you have different settings you need to toggle between and want to specify multiple .env files, you can do following:
 
 ```
 my_project
@@ -304,20 +328,19 @@ my_project
   └── prod.env
 ```
 
- On start, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
+ 5. On `astro airflow start`, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
 
  ```
  astro airflow start --env dev.env
  astro airflow start -e prod.env
  ```
 
-**Note:** Whatever .env you use locally will not be bundled up when you deploy. For environment variables needed in production, it is recommended that you add them via the Astro UI.
+## VII. Advanced Dockerfile Configuration
 
-## VII. Advanced Dockerfile configuration
-
-Beyond pure environment variables, if you have any custom scripts or configuration that you want to bring into the image, you can do so by adding them to your Dockerfile. These follow type
+Beyond pure Environment Variables, you can add additional custom scripts or configurations that you want to bring into the image by adding them to your Dockerfile.
 
 For example, Any bash scripts you want to run as `sudo` when the image builds can be added as such:
+
 `RUN echo 'This is a cool feature!'`
 
 These commands should go after the `FROM` line that pulls down the Airflow image.
