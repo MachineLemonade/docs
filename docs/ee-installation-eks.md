@@ -130,7 +130,7 @@ You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.
 ### Obtain a Free SSL Certificate from Let's Encrypt
 <!-- NEED TO COMPLETE -->
 ```
-$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https:/acme-v02.api.letsencrypt.org/directory
+$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
