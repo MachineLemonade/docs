@@ -18,6 +18,8 @@ This guide describes the prerequisite steps to install Astronomer on Amazon Web 
 * Permissions to create/modify resources on AWS
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide) 
 
+*NOTE - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
+
 <!-- kubectx? -->
 
 ## 2. Choose a Suitable Domain
