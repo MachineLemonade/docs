@@ -6,42 +6,294 @@ slug: "ee-installation-eks"
 ---
 This guide describes the prerequisite steps to install Astronomer on Amazon Web Services (AWS).
 
-## Are you devops-y enough to do this alone?
 
-You will need to be able to:
+# Installing Astronomer on AWS EKS
 
-* Obtain a wildcard SSL certificate
-* Edit your DNS records
-* Create resources on AWS
-* Install/run Kubernetes command line tools to your machine
+## 1. Install Necessary Tools
+* [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+* [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [Helm](https://docs.helm.sh/using_helm/#installing-helm)
+* SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
+* Permissions to create/modify resources on AWS
+* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide) 
 
-## Prerequisites
+<!-- kubectx? -->
 
-Before running the Astronomer install command you must:
+## 2. Choose a Suitable Domain
+All Astronomer services will be tied to a base domain of your choice. You will need the ability to add / edit DNS records under this domain.
 
-1. [Set up an EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html)
-2. [Select a base domain](https://astronomer.io/docs/ee-installation-base-domain)
-3. [Get your machine setup with needed dev tools](https://astronomer.io/docs/ee-installation-dev-env)
-4. [Create a stateful storage set](https://astronomer.io/docs/ee-installation-aws-stateful-set)
-5. [Get a Postgres server running](https://astronomer.io/docs/ee-installation-postgres)
-6. [Obtain SSL](https://astronomer.io/docs/ee-installation-ssl)
-7. [Install Helm and Tiller](https://astronomer.io/docs/ee-installation-helm)
-8. [Set a few Kubernetes secrets](https://astronomer.io/docs/ee-installation-k8s-secrets)
-9. [Build your config.yaml](https://preview.astronomer.io/docs/ee-configyaml/)
+Here are some examples of accessible services when we use the base domain `astro.mydomain.com`:
+* Astronomer UI: `app.astro.mydomain.com`
+* New Airflow Deployments: `unique-name-airflow.astro.mydomain.com`
+* Grafana Dashboard: `grafana.astro.mydomain.com`
+* Kibana Dashboard: `kibana.astro.mydomain.com`
+
+<!-- screenshot -->
+
+## 3. Spin up the EKS Control Plane and a Kubernetes Cluster
+You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as well as the worker nodes in your Kubernetes cluster. Amazon built EKS off of their pre-existing EC2 service, so you can manage your Kubernetes nodes the same way you would manage your EC2 nodes.
+
+[This guide](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html) by Amazon will take you through this process. **Before you go through this, keep in mind:**
+
+- We generally advise running the EKS control plane in a single security group. The worker nodes you spin up should have the same setup as the EKS control plane.
+- All security/access settings needed for your worker nodes should be configured in your Cloud Formation template.
+- If you are creating the EKS cluster from the UI **only the user who created the cluster will have kubectl access to the cluster**. To give more users `kubectl` access, you'll have to configure that manually. [This post](http://marcinkaszynski.com/2018/07/12/eks-auth.html) goes through how IAM plays with EKS.
+- Currently, the default EKS AMI does not work with Elasticsearch, which handles logs in the Astronomer platform. You'll have to use a different CloudFormation template found [here](https://forum.astronomer.io/t/elasticsearch-wont-work-on-eks/163/2)
+- You'll be able to see each of your underlying nodes in the EC2 console.
 
 
-## Install Astronomer
+<!-- screenshot -->
 
-You're ready to go!
 
-```shell
-helm install -f config.yaml . --namespace astronomer
+## 4. Create a stateful storage set
+
+You'll need a stateful storage set for the persistent data Astronomer needs (mostly Airflow logs).
+
+Create a new `.yaml` file (`storageclass.yaml`) that consists of:
+```
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: gp2
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  fsType: ext4
+```
+Once you do that, you can run `kubectl apply -f storageclass.yaml`.
+
+## 5. Create a Namespace and Configure Helm+Tiller
+
+Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a _seperate_ namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
+
+```
+kubectl create ns astronomer
+```
+### Create a `tiller` Service Account
+Save the following in a file named `rbac-config.yaml`:
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
 ```
 
-## DNS routing
+Run the following command to apply these configurations to your Kubernetes cluster:
+```
+$ kubectl create -f rbac-config.yaml
+```
 
-Your final step is to setup your DNS to route traffic to your airflow resources following [these steps](https://astronomer.io/docs/ee-installation-aws-dns).
+### Deploy a `tiller` Pod
+Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
+```
+$ helm init --service-account tiller
+```
 
-Click the link in the output notes to log in to the Astronomer app.
+Confirm your `tiller` pod was deployed successfully:
+```
+$ helm version
+```
+## 6. Configure Postgres
 
----
+To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
+
+If you are using RDS, you'll need the full connection string for a user that has the ability to create, delete, and updated databases **and** users.
+
+If you just want to get something up and running, you can also use the PostgreSQL helm chart:
+```
+helm install --name astro-db stable/postgresql --namespace astronomer
+```
+
+## 7. SSL Configuration
+
+You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
+* Purchase a wildcard SSL certificate from your preferred vendor.
+* Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
+
+### Obtain a Free SSL Certificate from Let's Encrypt
+<!-- NEED TO COMPLETE -->
+
+If you are on a Mac:
+
+```
+$ docker run -it --rm --name letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt1:/etc/letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt2:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+```
+
+If you are running Linux:
+```
+$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+```
+
+Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
+
+
+<!-- screenshot -->
+
+## 7. Create Kubernetes Secrets
+You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
+
+### If you are using the PostgreSQL helm chart
+Set an environment variable `$PGPASSWORD` containing your PostgreSQL database password:
+```
+$ export PGPASSWORD=$(kubectl get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
+```
+
+Confirm your `$PGPASSWORD` variable is set properly:
+```
+$ echo $PGPASSWORD
+```
+
+Create a Kubernetes secret named `astronomer-bootstrap` to hold your database connection string:
+
+```
+kubectl create secret generic astronomer-bootstrap \
+  --from-literal connection="postgres://postgres:${PGPASSWORD}@astro-db-postgresql.astronomer.svc.cluster.local:5432" \
+  --namespace astronomer
+```
+
+### If you are using RDS:
+You'll need the full connection string for a user that has the ability to create, delete, and updated databases **and** users.
+
+```
+$ kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
+```
+
+### Create TLS Secret
+Create a TLS secret named `astronomer-tls` using the previously generated SSL certificate files.
+```
+$ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mydomain.com/privkey.pem --cert /etc/letsencrypt/live/astro.mydomain.com/fullchain.pem --namespace <my-namespace>
+```
+**Note:** If you generated your certs using LetsEncrypt, you will need to run the command above as `sudo`
+
+## 9. Configure your Helm Chart
+
+Now that your Kubernetes cluster has been configured with all prerequisites, you can deploy Astronomer!
+
+Clone the Astronomer helm charts locally and checkout your desired branch:
+```
+$ git clone https://github.com/astronomer/helm.astronomer.io.git
+$ git checkout <branch-name>
+```
+
+Create your `config.yaml` by copying our `starter.yaml` template:
+```
+$ cp /configs/starter.yaml ./config.yaml
+```
+<!-- WHY NOT JUST USE STARTER.YAML? -->
+<!-- ADD MORE ABOUT WHAT CAN BE ADDED TO THIS FILE? -->
+
+Set the following values in `config.yaml`:
+* `baseDomain: astro.mydomain.com`
+* `tlsSecret: astronomer-tls`
+*  SMTP credentails as a houston config
+
+
+Here is an example of what your `config.yaml` might look like:
+```
+#################################
+## Astronomer global configuration
+#################################
+global:
+  # Base domain for all subdomains exposed through ingress
+  baseDomain: astro.mydomain.com
+
+  # Name of secret containing TLS certificate
+  tlsSecret: astronomer-tls
+
+
+#################################
+## Nginx configuration
+#################################
+nginx:
+  # IP address the nginx ingress should bind to
+  loadBalancerIP: ~
+
+#################################
+## SMTP configuration
+#################################  
+
+astronomer:
+  houston:
+    config:
+      email:
+        enabled: true
+        smtpUrl: YOUR_URI_HERE
+
+```
+Note - the SMTP URI will take the form:
+```
+smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
+```
+
+## 10. Install Astronomer
+```
+$ helm install -f config.yaml . --namespace <my-namespace>
+```
+
+## 11. Verify all pods are up
+To verify all pods are up and running, run:
+```
+kubectl get pods --namespace <my-namespace>
+```
+
+You should see something like this:
+```
+virajparekh@orbiter:~/Code/Astronomer/docs$ kubectl get pods --namespace astronomer
+NAME                                                    READY   STATUS      RESTARTS   AGE
+newbie-norse-alertmanager-0                            1/1     Running     0          30m
+newbie-norse-cli-install-565658b84d-bqkm9              1/1     Running     0          30m
+newbie-norse-commander-7d9fd75476-q2vxh                1/1     Running     0          30m
+newbie-norse-elasticsearch-client-7cccf77496-ks2s2     1/1     Running     0          30m
+newbie-norse-elasticsearch-client-7cccf77496-w5m8p     1/1     Running     0          30m
+newbie-norse-elasticsearch-curator-1553734800-hp74h    1/1     Running     0          30m
+newbie-norse-elasticsearch-data-0                      1/1     Running     0          30m
+newbie-norse-elasticsearch-data-1                      1/1     Running     0          30m
+newbie-norse-elasticsearch-exporter-748c7c94d7-j9cvb   1/1     Running     0          30m
+newbie-norse-elasticsearch-master-0                    1/1     Running     0          30m
+newbie-norse-elasticsearch-master-1                    1/1     Running     0          30m
+newbie-norse-elasticsearch-master-2                    1/1     Running     0          30m
+newbie-norse-elasticsearch-nginx-5dcb5ffd59-c46gw      1/1     Running     0          30m
+newbie-norse-fluentd-gprtb                             1/1     Running     0          30m
+newbie-norse-fluentd-qzwwn                             1/1     Running     0          30m
+newbie-norse-fluentd-rv696                             1/1     Running     0          30m
+newbie-norse-fluentd-t8mqt                             1/1     Running     0          30m
+newbie-norse-fluentd-wmjvh                             1/1     Running     0          30m
+newbie-norse-grafana-57df948d9-jv2m9                   1/1     Running     0          30m
+newbie-norse-houston-dbc647654-tcxbz                   1/1     Running     0          30m
+newbie-norse-kibana-58bdf9bdb8-2j67t                   1/1     Running     0          30m
+newbie-norse-kube-state-549f45544f-mcv7m               1/1     Running     0          30m
+newbie-norse-nginx-7f6b5dfc9c-dm6tj                    1/1     Running     0          30m
+newbie-norse-nginx-default-backend-5ccdb9554d-5cm5q    1/1     Running     0          30m
+newbie-norse-orbit-d5585ccd8-h8zkr                     1/1     Running     0          30m
+newbie-norse-prisma-699bd664bb-vbvlf                   1/1     Running     0          30m
+newbie-norse-prometheus-0                              1/1     Running     0          30m
+newbie-norse-registry-0                                1/1     Running     0          30m
+
+```
+
+
+## 12. Configure DNS
+Now that you've successfully installed Astronomer, a new load balancer will have spun up for your Kubernetes cluster. You will need to create a new CNAME record in your DNS to route traffic to the ELB.
+
+### If you are using route53 as your DNS provider:
+Navigate to your newly created load balancer and copy the DNS name: route and use this to create a new wildcard CNAME record in you DNS. If your base domain is *organization.io* your wildcard record should be *.organization.io* and will route traffic to your ELB using that DNS name.
+
+### 13. Verify you can access orbit.
+Go to `app.BASEDOMAIN` to see the Astronomer UI!
