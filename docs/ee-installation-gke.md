@@ -62,13 +62,17 @@ $ gcloud config set compute/zone [COMPUTE_ZONE]
 ```
 
 ### Create a GKE Cluster
+Astronomer will deploy to Google's managed Kubernetes service (Google Kubernetes Engine). Learn more about GKE [here](https://cloud.google.com/kubernetes-engine/).
+
 Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
 
 <!-- screenshot -->
 
-Create your Kubernetes cluster: 
+Create your Kubernetes cluster:
+ 
+*NOTE - You can choose the machine type to use, but we recommend using larger nodes vs smaller nodes.*
 ```
-$ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-4 --enable-autoscaling --max-nodes 10 --min-nodes 4
+$ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-8 --enable-autoscaling --max-nodes 10 --min-nodes 3
 ```
 
 ### Create a Static IP Address
@@ -83,35 +87,7 @@ View your newly generated IP address and record the output for use later on:
 $ gcloud compute addresses describe astronomer-ip --region [COMPUTE_REGION] --project [PROJECT_ID] --format 'value(address)'
 ```
 
-## 4. SSL Configuration
-
-You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
-* Purchase a wildcard SSL certificate from your preferred vendor.
-* Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
-
-### Obtain a Free SSL Certificate from Let's Encrypt
-
-Linux:
-```
-$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
-```
-
-macOS:
-```
-$ docker run -it --rm --name letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt1:/etc/letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt2:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
-```
-
-Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
-
-
-<!-- screenshot -->
-
-### Create a DNS A Record
-Create an A record through your DNS provider for `*.astro.mydomain.com` using your previously created static IP address.
-
-<!-- SCREENSHOT -->
-
-## 5. Configure Helm with your GKE Cluster
+## 4. Configure Helm with your GKE Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
 ### Create a Kubernetes Namespace
 Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a seperate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
@@ -160,15 +136,43 @@ $ helm version
 ```
 <!-- NOTE HELM CLIENT AND TILLER VERSION NEED TO MATCH -->
 
-## 6. Deploy a PostgreSQL Database
+## 5. Deploy a PostgreSQL Database
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
 
-We recommend you deploy a PostgreSQL database through a cloud provider database service like Google Cloud SQL.
+We recommend you deploy a PostgreSQL database through a cloud provider database service like Google Cloud SQL.  This will require the full connection string for a user that has the ability to create, delete, and updated databases and users.
 
 For demonstration purposes, we'll use the PostgreSQL helm chart:
 ```
 $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 ```
+
+## 6. SSL Configuration
+
+You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
+* Purchase a wildcard SSL certificate from your preferred vendor.
+* Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
+
+### Obtain a Free SSL Certificate from Let's Encrypt
+
+Linux:
+```
+$ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+```
+
+macOS:
+```
+$ docker run -it --rm --name letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt1:/etc/letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt2:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+```
+
+Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
+
+
+<!-- screenshot -->
+
+### Create a DNS A Record
+Create an A record through your DNS provider for `*.astro.mydomain.com` using your previously created static IP address.
+
+<!-- SCREENSHOT -->
 
 ## 7. Create Kubernetes Secrets
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
@@ -194,11 +198,9 @@ Create a TLS secret named `astronomer-tls` using the previously generated SSL ce
 ```
 $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mydomain.com/privkey.pem --cert /etc/letsencrypt/live/astro.mydomain.com/fullchain.pem --namespace <my-namespace>
 ```
+**Note:** If you generated your certs using LetsEncrypt, you will need to run the command above as `sudo`
 
-## 8. Create Google OAuth Credentials
-<!-- NEED TO COMPLETE -->
-
-## 9. Configure your Helm Chart
+## 8. Configure your Helm Chart
 Now that your Kubernetes cluster has been configured with all prerequisites, you can deploy Astronomer!
 
 Clone the Astronomer helm charts locally and checkout your desired branch:
@@ -218,6 +220,7 @@ Set the following values in `config.yaml`:
 * `baseDomain: astro.mydomain.com`
 * `tlsSecret: astronomer-tls`
 * `loadBalancerIP: <my-static-ip>`
+* SMTP credentails as a houston config
 
 Add the following line in the `nginx:` section:
 * `preserveSourceIP: true`
@@ -260,12 +263,12 @@ Note - the SMTP URI will take the form:
 smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 
-## 10. Install Astronomer
+## 9. Install Astronomer
 ```
 $ helm install -f config.yaml . --namespace <my-namespace>
 ```
 
-## 11. Verify all pods are up
+## 10. Verify all pods are up
 To verify all pods are up and running, run:
 
 ```
@@ -307,5 +310,5 @@ newbie-norse-prometheus-0                              1/1     Running     0    
 newbie-norse-registry-0                                1/1     Running     0          30m
 ```
 
-## 12. Access Astronomer's Orbit UI
+## 11. Access Astronomer's Orbit UI
 Go to app.BASEDOMAIN to see the Astronomer UI!
