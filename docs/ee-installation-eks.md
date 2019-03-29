@@ -50,7 +50,7 @@ You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as w
 
 You'll need a stateful storage set for the persistent data Astronomer needs (mostly Airflow logs).
 
-Create a new `.yaml` file (`storageclass.yaml,`) that consists of:
+Create a new `.yaml` file (`storageclass.yaml`) that consists of:
 ```
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
