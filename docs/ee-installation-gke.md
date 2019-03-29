@@ -13,13 +13,14 @@ slug: "ee-installation-gke"
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [Helm](https://docs.helm.sh/using_helm/#installing-helm)
 * SMTP Creds (Mailgun, Sendgrid) or any service will  work!
+* Permissions to create / modify resources on Google Cloud Platform
+* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)!
 
-<!-- kubectx? -->
+*NOTE - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
 
 ## 2. Choose a Suitable Domain
-All Astronomer services will be tied to a base domain of your choice. You will need the ability to add / edit DNS records under this domain.
+All Astronomer services will be tied to a base domain of your choice. You will need the ability to add / edit DNS records under this domain. Here are some examples of accessible services when we use the base domain `astro.mydomain.com`:
 
-Here are some examples of accessible services when we use the base domain `astro.mydomain.com`:
 * Astronomer UI: `app.astro.mydomain.com`
 * New Airflow Deployments: `unique-name-airflow.astro.mydomain.com`
 * Grafana Dashboard: `grafana.astro.mydomain.com`
@@ -28,8 +29,8 @@ Here are some examples of accessible services when we use the base domain `astro
 <!-- screenshot -->
 
 ## 3. Configure GCP for Astronomer Deployment
-*NOTE - You can view Google Cloud Platform's Web Console at https://console.cloud.google.com/*
 
+*NOTE - You can view Google Cloud Platform's Web Console at https://console.cloud.google.com/*
 ### Create a GCP Project
 
 Login to your Google account with the `gcloud` CLI:
@@ -107,6 +108,8 @@ Create an A record through your DNS provider for `*.astro.mydomain.com` using yo
 ## 5. Configure Helm with your GKE Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
 ### Create a Kubernetes Namespace
+Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a seperate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
+
 ```
 $ kubectl create namespace <my-namespace>
 ```
@@ -152,9 +155,9 @@ $ helm version
 <!-- NOTE HELM CLIENT AND TILLER VERSION NEED TO MATCH -->
 
 ## 6. Deploy a PostgreSQL Database
-We recommend you deploy a PostgreSQL database through a cloud provider database service like Compose, Amazon RDS, or Google Cloud SQL.
+To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
 
-<!-- NOTES FROM EACH PROVIDER? -->
+We recommend you deploy a PostgreSQL database through a cloud provider database service like Google Cloud SQL.
 
 For demonstration purposes, we'll use the PostgreSQL helm chart:
 ```
@@ -162,6 +165,7 @@ $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 ```
 
 ## 7. Create Kubernetes Secrets
+You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
 
 ### Create Database Connection Secret
 Set an environment variable `$PGPASSWORD` containing your PostgreSQL database password:
@@ -189,6 +193,7 @@ $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astr
 <!-- NEED TO COMPLETE -->
 
 ## 9. Configure your Helm Chart
+Now that your Kubernetes cluster has been configured with all prerequisites, you can deploy Astronomer!
 
 Clone the Astronomer helm charts locally and checkout your desired branch:
 ```
@@ -244,8 +249,57 @@ astronomer:
         smtpUrl: YOUR_URI_HERE
 
 ```
+Note - the SMTP URI will take the form:
+```
+smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
+```
 
 ## 10. Install Astronomer
 ```
 $ helm install -f config.yaml . --namespace <my-namespace>
 ```
+
+## 11. Verify all pods are up
+To verify all pods are up and running, run:
+
+```
+$ kubectl get pods --namespace <my-namespace>
+```
+
+You should see something like this:
+
+```
+$ kubectl get pods --namespace astronomer
+NAME                                                    READY   STATUS      RESTARTS   AGE
+newbie-norse-alertmanager-0                            1/1     Running     0          30m
+newbie-norse-cli-install-565658b84d-bqkm9              1/1     Running     0          30m
+newbie-norse-commander-7d9fd75476-q2vxh                1/1     Running     0          30m
+newbie-norse-elasticsearch-client-7cccf77496-ks2s2     1/1     Running     0          30m
+newbie-norse-elasticsearch-client-7cccf77496-w5m8p     1/1     Running     0          30m
+newbie-norse-elasticsearch-curator-1553734800-hp74h    1/1     Running     0          30m
+newbie-norse-elasticsearch-data-0                      1/1     Running     0          30m
+newbie-norse-elasticsearch-data-1                      1/1     Running     0          30m
+newbie-norse-elasticsearch-exporter-748c7c94d7-j9cvb   1/1     Running     0          30m
+newbie-norse-elasticsearch-master-0                    1/1     Running     0          30m
+newbie-norse-elasticsearch-master-1                    1/1     Running     0          30m
+newbie-norse-elasticsearch-master-2                    1/1     Running     0          30m
+newbie-norse-elasticsearch-nginx-5dcb5ffd59-c46gw      1/1     Running     0          30m
+newbie-norse-fluentd-gprtb                             1/1     Running     0          30m
+newbie-norse-fluentd-qzwwn                             1/1     Running     0          30m
+newbie-norse-fluentd-rv696                             1/1     Running     0          30m
+newbie-norse-fluentd-t8mqt                             1/1     Running     0          30m
+newbie-norse-fluentd-wmjvh                             1/1     Running     0          30m
+newbie-norse-grafana-57df948d9-jv2m9                   1/1     Running     0          30m
+newbie-norse-houston-dbc647654-tcxbz                   1/1     Running     0          30m
+newbie-norse-kibana-58bdf9bdb8-2j67t                   1/1     Running     0          30m
+newbie-norse-kube-state-549f45544f-mcv7m               1/1     Running     0          30m
+newbie-norse-nginx-7f6b5dfc9c-dm6tj                    1/1     Running     0          30m
+newbie-norse-nginx-default-backend-5ccdb9554d-5cm5q    1/1     Running     0          30m
+newbie-norse-orbit-d5585ccd8-h8zkr                     1/1     Running     0          30m
+newbie-norse-prisma-699bd664bb-vbvlf                   1/1     Running     0          30m
+newbie-norse-prometheus-0                              1/1     Running     0          30m
+newbie-norse-registry-0                                1/1     Running     0          30m
+```
+
+## 12. Access Astronomer's Orbit UI
+Go to app.BASEDOMAIN to see the Astronomer UI!
