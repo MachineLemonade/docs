@@ -16,7 +16,7 @@ This guide describes the prerequisite steps to install Astronomer on Amazon Web 
 * [Helm](https://docs.helm.sh/using_helm/#installing-helm)
 * SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create/modify resources on AWS
-* A wildcart SSL cert (we'll show you how to create a free 90 day cert in this guide)!
+* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide) 
 
 <!-- kubectx? -->
 
@@ -32,15 +32,15 @@ Here are some examples of accessible services when we use the base domain `astro
 <!-- screenshot -->
 
 ## 3. Spin up the EKS Control Plane and a Kubernetes Cluster
-You'll need to spin up the EKS Control Plane as well as the worker nodes in your Kubernetes cluster. Amazon built EKS off of their pre-existing EC2 service, so you can manage your Kubernetes nodes the same way you would manage your EC2 nodes.
+You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as well as the worker nodes in your Kubernetes cluster. Amazon built EKS off of their pre-existing EC2 service, so you can manage your Kubernetes nodes the same way you would manage your EC2 nodes.
 
-[This guide](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html) by Amazon will take you through this process. **Before** you go through this, you should keep in mind:
+[This guide](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html) by Amazon will take you through this process. **Before you go through this, keep in mind:**
 
 - We generally advise running the EKS control plane in a single security group. The worker nodes you spin up should have the same setup as the EKS control plane.
-- All security/access settings needed for your worker nodes should be configured here
+- All security/access settings needed for your worker nodes should be configured in your Cloud Formation template.
 - If you are creating the EKS cluster from the UI **only the user who created the cluster will have kubectl access to the cluster**. To give more users `kubectl` access, you'll have to configure that manually. [This post](http://marcinkaszynski.com/2018/07/12/eks-auth.html) goes through how IAM plays with EKS.
 - Currently, the default EKS AMI does not work with Elasticsearch, which handles logs in the Astronomer platform. You'll have to use a different CloudFormation template found [here](https://forum.astronomer.io/t/elasticsearch-wont-work-on-eks/163/2)
-- You'll be able to see each of your underlying nodes in the EC2 view once they've joined the Kubernetes cluster.
+- You'll be able to see each of your underlying nodes in the EC2 console.
 
 
 <!-- screenshot -->
@@ -129,6 +129,14 @@ You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.
 
 ### Obtain a Free SSL Certificate from Let's Encrypt
 <!-- NEED TO COMPLETE -->
+
+If you are on a Mac:
+
+```
+$ docker run -it --rm --name letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt1:/etc/letsencrypt -v /Users/<my-username>/<my-project>/letsencrypt2:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+```
+
+If you are running Linux:
 ```
 $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt certbot/certbot:latest certonly -d "*.astro.mydomain.com" --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 ```
@@ -137,9 +145,6 @@ Follow the on-screen prompts and create a TXT record through your DNS provider. 
 
 
 <!-- screenshot -->
-
-### Create a DNS A Record
-Create an A record through your DNS provider for `*.astro.mydomain.com` using your previously created static IP address.
 
 ## 7. Create Kubernetes Secrets
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
@@ -155,19 +160,27 @@ Confirm your `$PGPASSWORD` variable is set properly:
 $ echo $PGPASSWORD
 ```
 
+Create a Kubernetes secret named `astronomer-bootstrap` to hold your database connection string:
+
+```
+kubectl create secret generic astronomer-bootstrap \
+  --from-literal connection="postgres://postgres:${PGPASSWORD}@astro-db-postgresql.astronomer.svc.cluster.local:5432" \
+  --namespace astronomer
+```
+
 ### If you are using RDS:
 You'll need the full connection string for a user that has the ability to create, delete, and updated databases **and** users.
 
-Create a Kubernetes secret named `astronomer-bootstrap` to hold your database connection string:
 ```
 $ kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
 ```
 
 ### Create TLS Secret
-Create a TLS secret named `astronomer-tls` using the previously generated SSL certificate files:
+Create a TLS secret named `astronomer-tls` using the previously generated SSL certificate files.
 ```
 $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mydomain.com/privkey.pem --cert /etc/letsencrypt/live/astro.mydomain.com/fullchain.pem --namespace <my-namespace>
 ```
+**Note:** If you generated your certs using LetsEncrypt, you will need to run the command above as `sudo`
 
 ## 9. Configure your Helm Chart
 
@@ -189,6 +202,7 @@ $ cp /configs/starter.yaml ./config.yaml
 Set the following values in `config.yaml`:
 * `baseDomain: astro.mydomain.com`
 * `tlsSecret: astronomer-tls`
+*  SMTP credentails as a houston config
 
 
 Here is an example of what your `config.yaml` might look like:
