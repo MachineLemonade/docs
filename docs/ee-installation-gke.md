@@ -26,8 +26,6 @@ All Astronomer services will be tied to a base domain of your choice. You will n
 * Grafana Dashboard: `grafana.astro.mydomain.com`
 * Kibana Dashboard: `kibana.astro.mydomain.com`
   
-<!-- screenshot -->
-
 ## 3. Configure GCP for Astronomer Deployment
 
 *NOTE - You can view Google Cloud Platform's Web Console at https://console.cloud.google.com/*
@@ -66,7 +64,6 @@ Astronomer will deploy to Google's managed Kubernetes service (Google Kubernetes
 
 Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
 
-<!-- screenshot -->
 
 Create your Kubernetes cluster:
  
@@ -134,7 +131,6 @@ Confirm your `tiller` pod was deployed successfully:
 ```
 $ helm version
 ```
-<!-- NOTE HELM CLIENT AND TILLER VERSION NEED TO MATCH -->
 
 ## 5. Deploy a PostgreSQL Database
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
@@ -167,12 +163,9 @@ $ docker run -it --rm --name letsencrypt -v /Users/<my-username>/<my-project>/le
 Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
 
 
-<!-- screenshot -->
-
 ### Create a DNS A Record
 Create an A record through your DNS provider for `*.astro.mydomain.com` using your previously created static IP address.
 
-<!-- SCREENSHOT -->
 
 ## 7. Create Kubernetes Secrets
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
@@ -213,8 +206,7 @@ Create your `config.yaml` by copying our `starter.yaml` template:
 ```
 $ cp /configs/starter.yaml ./config.yaml
 ```
-<!-- WHY NOT JUST USE STARTER.YAML? -->
-<!-- ADD MORE ABOUT WHAT CAN BE ADDED TO THIS FILE? -->
+
 
 Set the following values in `config.yaml`:
 * `baseDomain: astro.mydomain.com`
