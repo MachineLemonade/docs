@@ -20,8 +20,6 @@ This guide describes the prerequisite steps to install Astronomer on Amazon Web 
 
 *NOTE - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
 
-<!-- kubectx? -->
-
 ## 2. Choose a Suitable Domain
 
 All Astronomer services will be tied to a base domain of your choice. You will need the ability to add / edit DNS records under this domain.
@@ -32,8 +30,6 @@ Here are some examples of accessible services when we use the base domain `astro
 * New Airflow Deployments: `unique-name-airflow.astro.mydomain.com`
 * Grafana Dashboard: `grafana.astro.mydomain.com`
 * Kibana Dashboard: `kibana.astro.mydomain.com`
-
-<!-- screenshot -->
 
 ## 3. Spin up the EKS Control Plane and a Kubernetes Cluster
 
@@ -46,8 +42,6 @@ You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as w
 * If you are creating the EKS cluster from the UI **only the user who created the cluster will have kubectl access to the cluster**. To give more users `kubectl` access, you'll have to configure that manually. [This post](http://marcinkaszynski.com/2018/07/12/eks-auth.html) goes through how IAM plays with EKS.
 * Currently, the default EKS AMI does not work with Elasticsearch, which handles logs in the Astronomer platform. You'll have to use a different CloudFormation template found [here](https://forum.astronomer.io/t/elasticsearch-wont-work-on-eks/163/2)
 * You'll be able to see each of your underlying nodes in the EC2 console.
-
-<!-- screenshot -->
 
 ## 4. Create a Stateful Storage Set
 
@@ -141,7 +135,6 @@ You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.
 * Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
 
 ### Obtain a Free SSL Certificate from Let's Encrypt
-<!-- NEED TO COMPLETE -->
 
 If you are on a Mac:
 
@@ -220,8 +213,6 @@ Create your `config.yaml` by copying our `starter.yaml` template:
 $ cp /configs/starter.yaml ./config.yaml
 ```
 
-<!-- WHY NOT JUST USE STARTER.YAML? -->
-<!-- ADD MORE ABOUT WHAT CAN BE ADDED TO THIS FILE? -->
 
 Set the following values in `config.yaml`:
 
