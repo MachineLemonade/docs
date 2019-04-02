@@ -25,23 +25,24 @@ _This should not contain any information about workspaces, Astronomer Cloud, or 
 
 #### Enterprise Edition
 - Overview - summary of each component
-- Submenu: Install GKE
-- Submenu: Install AWS
-- Submenu: Install General K8s
-- Submenu:
+- Install GKE
+- Install AWS
+- Install General K8s
 
 #### Using Astronomer
-- Submenu: UI+Terms
-- Submenu: Managing users
-- Submenu: Spinning up environments
-- Submenu: When to scale your instance
-- Submenu: Alerts
+- UI+Terms
+- Managing users
+- Spinning up environments
+- When to scale your instance
+- Alerts
 
-#### Integrating with Astronomer
+#### Integrating Services with Astronomer
 _Shows how to connect to external services_
-- Submenu: CI/CD
-- Submenu: Connecting to Redshift
-- Submenu: Other
+- CI/CD
+- Connecting to Redshift
+- Other
+- Datadog?
+
 
 #### Enterprise Edition
 _Everything you need for running Enterprise_
@@ -53,19 +54,17 @@ _Everything you need for running Enterprise_
   - DO
   - Openshift
   - General
-- Customizing your install
-  - Submenu: Integrating Auth system
+- Submenu: Customizing your install
+  - Integrating Auth system
   - Changing resource requests
   - Single Namespace Mode
   - Turning Services off
-- Metrics
+- Submenu: Metrics
   - Using Grafana
   - Adding your own queries
 - Grafana
-- Components (and developing on them)
+- Submenu: Components (and developing on them)
   - Houston API
-    - Playground
-    - Developing
 - Administration
   - Roles
 - Upgrading
