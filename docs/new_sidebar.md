@@ -21,7 +21,19 @@
 #### The Astronomer CLI
 _This should not focus on workspaces, Astronomer Cloud, or deploying. Simply using the CLI for itself._
 - Getting started - quickstart
+- Logs
 - Customizing your image
+
+#### Using Astronomer
+_Using our platform specifically. This part should be the same for both cloud and enterprise users_
+- UI+Terms
+- Managing users
+- Deploying Code
+- Spinning up environments
+- Picking your executor
+- When to scale your instance
+- Alerts
+
 
 #### Enterprise Edition
 _Everything you need for running Enterprise_
@@ -50,14 +62,6 @@ _Everything you need for running Enterprise_
   - Roles
 
 
-#### Using Astronomer
-_Using our platform specifically. This part should be the same for both cloud and enterprise users_
-- UI+Terms
-- Managing users
-- Deploying Code
-- Spinning up environments
-- When to scale your instance
-- Alerts
 
 #### Integrating Services with Astronomer
 _Shows how to connect to external services_
