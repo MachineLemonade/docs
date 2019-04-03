@@ -35,20 +35,38 @@ Copy the value after fernet-key: somewhere safe. This will be applied to the new
 
 **Note**: If you are simply moving everything over to a new cluster, you can skip this step.
 
-7) Install Astronomer v0.8 on your cluster.
+7) Install Astronomer v0.8 on your cluster:
+- Checkout `v0.8.2` of the Astronomer helm chart
+- Add a section for SMTP credential in your `config.yaml` in the format
+```
+astronomer:
+  houston:
+    config:
+      email:
+        enabled: true
+        smtpUrl: smtps://USER:PW@HOST/?pool=true
+
+```
+`helm install -f config.yaml . --namespace astronomer`
+You can leave the rest of your `config.yaml` the same.
 
 8) Create an Airflow deployment on your new Astronomer version.
 
 9) Restore your fernet key into the new v8 installation. `kubectl edit secret {new deployment name}-fernet-key -o yaml` This will open the secret for editing in Vi. You will need to remove the value that was created after fernet-key: and replace it with the value you got from step 4 and save. 
+
+**Note: Keep your the fernet key somewhere safe you are replacing until after you are doen with the upgrade as there is no way to recover it**
 
 10) Run pg_restore against the new database created by the v8 install:
 ```
 psql -d {dbname} -c "TRUNCATE TABLE airflow.connection;"
 psql {dbname} < /tmp/{pg_dump_file_path}  
 ```
+11) Run `kubectl delete --all pods --namespace=<namespace>` in the namespace your Airflow deployment is in. This will force each of the new pods to pick up the secret.
 
-11) Edit first line of your project's Dockerfile to `FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild`
+12 Edit first line of your project's Dockerfile to `FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild`
 
-12) Run `astro upgrade` to ensure you are on the latest version of the CLI
+13) Run `astro upgrade` to ensure you are on the latest version of the CLI
 
-13) Redeploy your code to its corresponding instance.
+14) Redeploy your code to its corresponding instance.
+
+15) In Admin-> Connections, try editing one of the connections you loaded in to ensure the Fernet key was transferred properly.
