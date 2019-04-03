@@ -2,47 +2,26 @@
 ### The easiest way to run Apache Airflow
 
 #### Overview
-- Platform diagram
-
-This page should talk about what Astronomer is on
-
+- Platform diagram and brief description of what we are
 
 #### Astronomer Cloud vs Astronomer Enterprise
 - Difference of the two
 - Links to getting started on each one.
+- Blurb about Managed Enterprise
 
 #### Getting started
 - Security Model
 - Submenu on Cloud
   - Quickstart Astronomer Cloud
+  - Cloud FAQs
 - Submenu on Enterprise
   - Quickstart Astronomer Enterprise
+  - Enterprise FAQs
 
 #### The Astronomer CLI
+_This should not focus on workspaces, Astronomer Cloud, or deploying. Simply using the CLI for itself._
 - Getting started - quickstart
 - Customizing your image
-_This should not contain any information about workspaces, Astronomer Cloud, or anything. Simply using the CLI for itself._
-
-#### Enterprise Edition
-- Overview - summary of each component
-- Install GKE
-- Install AWS
-- Install General K8s
-
-#### Using Astronomer
-- UI+Terms
-- Managing users
-- Spinning up environments
-- When to scale your instance
-- Alerts
-
-#### Integrating Services with Astronomer
-_Shows how to connect to external services_
-- CI/CD
-- Connecting to Redshift
-- Other
-- Datadog?
-
 
 #### Enterprise Edition
 _Everything you need for running Enterprise_
@@ -53,21 +32,39 @@ _Everything you need for running Enterprise_
   - AKS
   - DO
   - Openshift
-  - General
+  - General K8s install
 - Submenu: Customizing your install
   - Integrating Auth system
   - Changing resource requests
   - Single Namespace Mode
   - Turning Services off
+- Upgrading
 - Submenu: Metrics
-  - Using Grafana
+  - Tour of Grafana dashboards
   - Adding your own queries
-- Grafana
 - Submenu: Components (and developing on them)
   - Houston API
+  - Orbit
+  - etc.
 - Administration
   - Roles
-- Upgrading
+
+
+#### Using Astronomer
+_Using our platform specifically. This part should be the same for both cloud and enterprise users_
+- UI+Terms
+- Managing users
+- Deploying Code
+- Spinning up environments
+- When to scale your instance
+- Alerts
+
+#### Integrating Services with Astronomer
+_Shows how to connect to external services_
+- CI/CD
+- Connecting to Redshift
+- Other
+- Datadog?
 
 #### Resources
 - Release Notes
