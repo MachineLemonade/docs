@@ -2,23 +2,47 @@
   "overview",
   "getting-started",
   "security-model",
-  "astronomer-ui",
   {
-    "menu": "Astro CLI",
+    "menu": "Getting Started",
     "contents": [
-      "cli-installation",
-      "cli-getting-started"
+      "quickstart",
+      "cloud-vs-enterprise",
+      {
+        "menu": "Cloud",
+        "contents": [
+          "cloud-quickstart",
+          "cloud-faqs"
+        ]
+      },
+      {
+        "menu": "Astro CLI",
+        "contents": [
+          "quickstart",
+          "customizing-your-image",
+          "logs-and-debugging"
+        ]
+      },
+      {
+        "menu": "Enterprise",
+        "contents": [
+          "enterprise-quickstart",
+          "enterprise-faqs",
+        ]
+      },
     ]
   },
-  "houston-api",
-  "ci-cd",
   {
-    "menu": "Alerts",
+    "menu": "Using Astronomer",
     "contents": [
-      "alerts",
-      "setting-up-airflow-emails"
+      "astronomer-ui",
+      "houston-api",
+      "workspaces-and-users",
+      "managing-environments-code",
+      "executor-and-scaling",
+      "adding-email-alerts",
     ]
   },
+
   {
     "menu": "Enterprise Edition",
     "contents": [
@@ -27,30 +51,38 @@
       {
         "menu": "Installation",
         "contents": [
-          "ee-installation-config",
-          "ee-installation-helm",
-          "ee-installation-general-kubernetes",
+          "ee-installation-gke",
           "ee-installation-eks",
-          "ee-installation-gke"
+          "ee-installation-aks",
+          "ee-installation-do",
+          "ee-installation-openshift",
+          "ee-installation-general-kubernetes",
         ]
       },
       {
-        "menu": "Post Installation",
+        "menu": "Customizing Your Install",
         "contents": [
-          "ee-dag-deployment",
-          "ee-platform-tour"
+          "integrating-auth-system",
+          "configuring-resources",
+          "single-namespace-mode",
         ]
       },
       {
-        "menu": "Administration",
+        "menu": "Logging, Monitoring, and Alerting",
         "contents": [
-          "ee-administration-airflow-cli",
-          "ee-administration-recovery-guide",
-          "ee-administration-the-database",
-          "ee-administration-update"
+          "adding-admins",
+          "prometheus-grafana-alertmanager",
+          "kibana"
         ]
-      },
-      "ee-metrics"
+      }
+    ]
+  },
+
+  {
+    "menu": "Connecting Services with Astronomer",
+    "contents": [
+      "CI/CD",
+      "Redshift"
     ]
   },
   {

@@ -23,6 +23,7 @@ _This should not focus on workspaces, Astronomer Cloud, or deploying. Simply usi
 - Getting started - quickstart
 - Logs
 - Customizing your image
+- Developing on the CLI
 
 #### Using Astronomer
 _Using our platform specifically. This part should be the same for both cloud and enterprise users_
@@ -60,8 +61,6 @@ _Everything you need for running Enterprise_
   - etc.
 - Administration
   - Roles
-
-
 
 #### Integrating Services with Astronomer
 _Shows how to connect to external services_
