@@ -5,6 +5,8 @@ Astronomer v0.8.0 is full of new features that make the user experience better a
 
 We'll walk through migrating all your DAG data to your new environment in this guide.
 
+**Note:** You can only migrate over Postgres data for instances running Airflow 1.10.1
+
 
 1) Backup your database.
 Most managed databases (RDS, CloudSQL, etc.) are automatically backed up at a regular interval, but it might help to do so manually just incase.
