@@ -17,7 +17,7 @@
       "astronomer-ui",
       "create-deployment-deploying-code",
       "running-jobs-and-scaling",
-      "setting-up-airflow-emails",
+      "setting-up-airflow-emails"
     ]
   },
 
@@ -34,7 +34,7 @@
           "ee-installation-aks",
           "ee-installation-do",
           "ee-installation-openshift",
-          "ee-installation-general-kubernetes",
+          "ee-installation-general-kubernetes"
         ]
       },
       {
@@ -42,7 +42,7 @@
         "contents": [
           "ee-integrating-auth-system",
           "ee-configuring-resources",
-          "ee-single-namespace-mode",
+          "ee-single-namespace-mode"
         ]
       },
       {
