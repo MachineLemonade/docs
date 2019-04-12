@@ -1,7 +1,7 @@
 [
   "overview",
   "security-model",
-  "Getting Started",
+  "getting-started",
   {
     "menu": "Developing Locally with the CLI",
     "contents": [
