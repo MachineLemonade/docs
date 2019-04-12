@@ -1,45 +1,23 @@
 [
   "overview",
-  "getting-started",
   "security-model",
+  "Getting Started",
   {
-    "menu": "Getting Started",
+    "menu": "Developing Locally with the CLI",
     "contents": [
-      "quickstart",
-      "cloud-vs-enterprise",
-      {
-        "menu": "Cloud",
-        "contents": [
-          "cloud-quickstart",
-          "cloud-faqs"
-        ]
-      },
-      {
-        "menu": "Astro CLI",
-        "contents": [
-          "quickstart",
-          "customizing-your-image",
-          "logs-and-debugging"
-        ]
-      },
-      {
-        "menu": "Enterprise",
-        "contents": [
-          "enterprise-quickstart",
-          "enterprise-faqs",
-        ]
-      },
+      "cli-quickstart",
+      "customizing-your-image",
+      "logs-and-source-control"
     ]
   },
+
   {
     "menu": "Using Astronomer",
     "contents": [
       "astronomer-ui",
-      "houston-api",
-      "workspaces-and-users",
-      "managing-environments-code",
-      "executor-and-scaling",
-      "adding-email-alerts",
+      "create-deployment-deploying-code",
+      "running-jobs-and-scaling",
+      "setting-up-airflow-emails",
     ]
   },
 
@@ -62,17 +40,17 @@
       {
         "menu": "Customizing Your Install",
         "contents": [
-          "integrating-auth-system",
-          "configuring-resources",
-          "single-namespace-mode",
+          "ee-integrating-auth-system",
+          "ee-configuring-resources",
+          "ee-single-namespace-mode",
         ]
       },
       {
-        "menu": "Logging, Monitoring, and Alerting",
+        "menu": "Administration",
         "contents": [
-          "adding-admins",
-          "prometheus-grafana-alertmanager",
-          "kibana"
+          "houston-api",
+          "ee-metrics",
+          "ee-kibana"
         ]
       }
     ]
@@ -81,8 +59,7 @@
   {
     "menu": "Connecting Services with Astronomer",
     "contents": [
-      "CI/CD",
-      "Redshift"
+      "ci-cd"
     ]
   },
   {

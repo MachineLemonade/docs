@@ -1,3 +1,10 @@
+---
+title: "CLI Quickstart"
+description: "Quickstart with the Astro CLI"
+date: 2018-07-17T00:00:00.000Z
+slug: "cli-quickstart"
+---
+
 # Getting Started with the CLI:
 
 ## Prerequisites
@@ -71,15 +78,15 @@ astro airflow init
 
 Once that command is run, you'll see the following skeleton project generated:
 
-```py
+```bash
 .
-├── dags #Where your DAGs go
+├── dags # Where your DAGs go
 │   ├── example-dag.py
-├── Dockerfile #For runtime overrides
-├── include #For any other files you'd like to include
-├── packages.txt #For OS-level packages
-├── plugins #For any custom or community Airflow plugins
-└── requirements.txt #For any python packages
+├── Dockerfile # For runtime overrides
+├── include # For any other files you'd like to include
+├── packages.txt # For OS-level packages
+├── plugins # For any custom or community Airflow plugins
+└── requirements.txt # For any python packages
 ```
 
 Our image also comes with an `example_dag` (with 12 branching tasks) that you're free to play around with.
@@ -87,3 +94,5 @@ Our image also comes with an `example_dag` (with 12 branching tasks) that you're
 **Note:** The image will take some time to build the first time. Right now, you have to rebuild the image each time you want to add an additional package or requirement.
 
 Now you can run `astro airflow start` and see Airflow running on `localhost:8080/admin`
+
+For more information on using the CLI, see the Developing Locally with the CLI section.

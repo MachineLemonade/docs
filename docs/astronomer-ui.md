@@ -109,14 +109,3 @@ If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be a
 **Note:** If you'd like to invite a user to your workspace, they must first [create an account on Astronomer](https://app.astronomer.cloud/signup).
 
 ![Users](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/user_dashboard.png)
-
-
-#### Environment Variables
-
-Environment Variables ("Env Vars") are a set of configurable values that allow you to dynamically fine tune your Airflow deployment - they encompass everything from [email alerts](https://www.astronomer.io/docs/setting-up-airflow-emails/) to the number of tasks that can run at once (concurrency). They're traditionally defined in your `airflow.cfg`, but you can now insert them directly via Astronomer's UI.
-
-![Astro UI Env Vars Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-EnvVars.png)
-
-For a full list of Environment Variables you can configure, go [here](https://github.com/apache/airflow/blob/1.10.1/airflow/config_templates/default_airflow.cfg). Every environment variable you set will be stored as a Kubernetes secret in your deployment.
-
-**Note**: Environment Variables are distinct from Airflow Variables/XComs, which you can configure directly via the Airflow UI/our CLI/your DAG code and are used for inter-task communication.

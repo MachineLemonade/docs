@@ -5,13 +5,6 @@ date: 2018-10-12T00:00:00.000Z
 slug: "ee-logging"
 ---
 
-In v0.8 of our platform (coming soon!), we'll pipe Airflow task logs from Elasticsearch to Airflow UI, and scheduler and web-server logs from Elasticsearch to Astronomer UI.
-
-Here, you will find how to configure that logging setup, when it is released.
-
-# Logging
-
-> Capture and filter Airflow event data to a wide range of output streams. Utilize Airflow's custom logging interface and manage deployment-by-deployment logging behavior and log persistence.
 
 #### Overview
 Astronomer's Enterprise offering has a robust logging structure sitting atop Airflow. To get a better sense of how logging is structured in Airflow, check out our guide on [customizing logging in Airflow](https://www.astronomer.io/guides/logging/). We highly recommend you read through the guide if you are unfamiliar Airflow's logging, or with Python's `logging` module in general. Log output is smooth and intuitive, to make diagnosing potential Airflow failures simpler and less stressful. Logging configurations are controlled from the environment, and filtering is configured in a combined FluentD and Elasticsearch stack. Since the platform runs on top of Kubernetes, the stack has been designed to efficiently route and store large volumes of events without relying too much on stateful set persistent volumes.

@@ -1,11 +1,14 @@
-title: "Scaling Airflow"
+---
+title: "Running DAGs and Scaling"
 description: "A thorough breakdown of Apache Airflow's Executors: Celery, Local and Kubernetes."
 date: 2019-03-04T00:00:00.000Z
-slug: "airflow-executors-explained"
-heroImagePath: null
-tags: ["Executor", "Airflow"]
+slug: "runing-jobs-and-scaling"
+---
+
+Once you've created your deployment, you can configure it for the use case at hand.
 
 ## Allocating Resources
+
 
 The second half of the `Configure` tab allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
 
@@ -19,7 +22,7 @@ The second half of the `Configure` tab allows you to adjust your resource compon
 
 ### Components
 
-In the `Components` section of this page, you're free to adjust how many AU's (Astronomer Units) you want to allocate towards your Scheduler, Webserver, and Celery Workers, if applicable.
+In the `Components` section, you can adjust the  AU's (Astronomer Units of CPU and memory) you want to allocate towards your Scheduler, Webserver, and Celery Workers, if applicable.
 
 If you're running Astronomer Enterprise, you can watch these in real time with your Grafana dashboards.
 
@@ -37,7 +40,7 @@ The local executor will execute your dags in the same pod as the scheduler. If y
 
 ## Scaling the Scheduler and Webserver.
 
-If you are seeing delays in tasks being scheduled (check the Gantt Chart), it's usually a time to scale up your scheduler.
+If you are seeing delays in tasks being scheduled (check the Gantt Chart), it's usually a time to scale up your scheduler. You can also receive email alerts when your scheduler is underprovisioned (more on this in the Alerting section).
 
 If your Airflow UI is really slow or crashes when you try to load a large DAG, you'll want to scale up your webserver.
 
