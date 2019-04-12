@@ -55,9 +55,9 @@ For more insight on how each alert is triggered, it might be helpful to take a l
 
 ### Triggering Alerts on DAG Run
 
-Email alerting set up via `email_on_failure` is handled at the task level. If a handful of your tasks fail for related reasons, you'll receive an individual email for each of those failures. 
+Email alerting set up via `email_on_failure` is handled at the task level. If a handful of your tasks fail for related reasons, you'll receive an individual email for each of those failures.
 
-If you're interested in limiting failure alerts to the DAG run level, you can instead pass `on_failure_callback` ([source](https://github.com/apache/airflow/blob/v1-10-stable/airflow/models.py#L3311)) directly in your DAG file to define a Python function that sends you an email denoting failure. 
+If you're interested in limiting failure alerts to the DAG run level, you can instead pass `on_failure_callback` ([source](https://github.com/apache/airflow/blob/v1-10-stable/airflow/models.py#L3311)) directly in your DAG file to define a Python function that sends you an email denoting failure.
 
 ```
  :param on_failure_callback: A function to be called when a DagRun of this dag fails.
@@ -74,13 +74,3 @@ def new_email_alert(self, **kwargs):
                 "to say whatever I want it to say.<br>")
   send_email('my_email@email.com', title, body)
   ```
-
-
-
-
-
-
-
-
-
-

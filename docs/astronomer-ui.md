@@ -44,8 +44,6 @@ For Cloud customers, that cluster is hosted on Astronomer. For Enterprise custom
 
 With [Astronomer v0.7](https://www.astronomer.io/blog/astronomer-v0-7-0-release/), you're now able to adjust the resources given to your Airflow deployment directly from our app's UI. This functionality allows you to choose executor (local or celery) and easily provision additional resources as you scale up.
 
-Resources aside, you won’t technically see any limitations or maximums on your deployment. Airflow is designed to run as much as resources to that environment permit.
-
 # The Astronomer UI
 
 To help achieve Astronomer's goal of improving Airflow's usability, we have built a custom UI that makes user access and deployment management dead simple. In this guide, we'll walk through the specific components of the Astronomer UI and discuss the design principles that led to their creation.
@@ -81,15 +79,9 @@ From this screen, you can:
 3. Generate tokens for CI/CD systems via service accounts.
 4. Rename your Workspace
 
-**Note:** Since all of our app activity is routed through a GraphQL API, you're free to create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
+Since all of our app activity is routed through a GraphQL API, you're free to create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
 
-### User Management
-
-If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace (role-based access control (RBAC) coming soon in Astronomer v0.9).
-
-**Note:** If you'd like to invite a user to your workspace, they must first [create an account on Astronomer](https://app.astronomer.cloud/signup).
-
-![Users](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/user_dashboard.png)
+**Note:** The concept of a "workspace" only exists at the API level to help with permissions. It does **not** have anything to do with how Airflow will run jobs.
 
 ## Deployments
 
@@ -102,74 +94,18 @@ If you click into one of your Airflow deployments, you'll land on a page that lo
 From here, you'll be able to access:
 
 1. Airflow UI (DAG Dashboard)
-2. Flower dashboard
+2. Flower dashboard (if you are running the Celery executor)
 
 The former will link you directly to your DAG Dashboard on Airflow itself. Your Flower Dashboard is your go-to spot to monitor your Celery Workers.
 
 For a breakdown the Airflow UI itself, check out [this guide](https://www.astronomer.io/guides/airflow-ui/).
 
-### Deployment Configuration
+**Each deployment will run in a separate Kubernetes namespace, so they'll all get resources and maintain metadata independently. You should assume that each deployment is unaware of the others.**
 
-If you jump into the `Configure` tab on the deployment overview page, you'll be able to:
+### User Management
 
-1. Change the name + description of your deployment
-2. See what version of Airflow + Astronomer your deployment is running
-3. Insert environment variables (*new*)
-4. Manage resource allocations (see below)
-4. Deprovision your deployment
+If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace (role-based access control (RBAC) coming soon in Astronomer v0.9).
 
-![Astro UI Deployment Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-DeploymentInfo.png)
+**Note:** If you'd like to invite a user to your workspace, they must first [create an account on Astronomer](https://app.astronomer.cloud/signup).
 
-#### Environment Variables
-
-Environment Variables ("Env Vars") are a set of configurable values that allow you to dynamically fine tune your Airflow deployment - they encompass everything from [email alerts](https://www.astronomer.io/docs/setting-up-airflow-emails/) to DAG concurrency. They're traditionally defined in your `airflow.cfg`, but you can now insert them directly via Astronomer's UI.
-
-![Astro UI Env Vars Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-EnvVars.png)
-
-For a full list of Environment Variables you can configure, go [here](https://github.com/astronomer/orbit-ui/blob/2a713304dacebf9cc00409fa710e933a3179236e/src/modules/deployments/info/envVars/named.js).
-
-**Note**: Environment Variables are distinct from Airflow Variables/XComs, which you can configure directly via the Airflow UI/our CLI/your DAG code and are used for inter-task communication.
-
-### Resource Allocations
-
-The second half of this tab allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
-
-1. Choose your Executor (Local or Celery)
-2. Adjust resources to your Scheduler and Webserver
-3. Adjust worker count (*Celery only*)
-4. Adjust your `Worker Termination Grace Period` (*Celery only*)
-5. Add Extra Capacity (*Kubernetes only*)
-
-![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Executor.png)
-
-#### Executor 
-
-On Astronomer, you have full freedom to decide which Airflow Executor you want to equip your deployment with.
-
-You might decide to stick with the LocalExecutor for testing and later move towards the CeleryExecutor as you get ready to scale, but the decision fully depends on your use case.
-
-Keep in mind that you're not locked into an Executor either way at any time - you're free to adjust from one to the other as needed whenever you'd like (with proportional changes to your Astronomer bill).
-
-*Not sure which to go with?* Check out our [Airflow Executor Guide](https://www.astronomer.io/guides/airflow-executors-explained/).
-
-#### Resource Components
-
-In the `Components` section of this page, you're free to adjust how many AU's (Astronomer Units) you want to allocate towards your Scheduler, Webserver, and Celery Workers, if applicable.
-
-A few notes:
-- If you're running the Local Executor, everything will be running on the Scheduler's resources. Don't worry about the Webserver resources.
-- Extra capacity is only applicable if you're using the KubernetesPodOperator or the Kubernetes Executor (*coming soon*), so you can keep that at 0 otherwise.
-- Pricing on Astronomer Cloud is based on the resource allocations above. For a full list of resource defaults and billing details, check out our [Pricing Doc](https://www.astronomer.io/docs/pricing/).
-
-#### Extra Capacity
-
-The `Extra Capacity` setting is tied to several dimensions related the KubernetesPodOperator and the Kubernetes Executor, as it maps to extra pods created in the cluster. Namely, the slider has an effect on (1) CPU and memory quotas and (2) database connection limits.
-
-![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Resources.png)
-
-In general, `database connections` shows how many actual connections to Astronomer's database (not yours) are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer (a light-weight connection pool manager for Postgres) for a particular deployment. This will normally be a higher and more variable number.
-
-Importantly, these connections do NOT have any impact on the way you write your DAGs or how many concurrent connections you hold to your own databases. It's really just about how the Webserver, Scheduler, and Workers connect to Astronomer's Postgres to update the state of variables, DAGs, tasks, etc. Unless you're implementing the Kubernetes Pod operator or the soon-to-come Kubernetes Executor, don't worry about it.
-
-If you're running Astronomer Enterprise, you can check live connection stats on your Grafana dashboard.
-
+![Users](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/user_dashboard.png)

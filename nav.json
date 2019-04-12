@@ -1,24 +1,26 @@
 [
   "overview",
-  "getting-started",
   "security-model",
-  "astronomer-ui",
+  "Getting Started",
   {
-    "menu": "Astro CLI",
+    "menu": "Developing Locally with the CLI",
     "contents": [
-      "cli-installation",
-      "cli-getting-started"
+      "cli-quickstart",
+      "customizing-your-image",
+      "logs-and-source-control"
     ]
   },
-  "houston-api",
-  "ci-cd",
+
   {
-    "menu": "Alerts",
+    "menu": "Using Astronomer",
     "contents": [
-      "alerts",
-      "setting-up-airflow-emails"
+      "astronomer-ui",
+      "create-deployment-deploying-code",
+      "running-jobs-and-scaling",
+      "setting-up-airflow-emails",
     ]
   },
+
   {
     "menu": "Enterprise Edition",
     "contents": [
@@ -27,30 +29,37 @@
       {
         "menu": "Installation",
         "contents": [
-          "ee-installation-config",
-          "ee-installation-helm",
-          "ee-installation-general-kubernetes",
+          "ee-installation-gke",
           "ee-installation-eks",
-          "ee-installation-gke"
+          "ee-installation-aks",
+          "ee-installation-do",
+          "ee-installation-openshift",
+          "ee-installation-general-kubernetes",
         ]
       },
       {
-        "menu": "Post Installation",
+        "menu": "Customizing Your Install",
         "contents": [
-          "ee-dag-deployment",
-          "ee-platform-tour"
+          "ee-integrating-auth-system",
+          "ee-configuring-resources",
+          "ee-single-namespace-mode",
         ]
       },
       {
         "menu": "Administration",
         "contents": [
-          "ee-administration-airflow-cli",
-          "ee-administration-recovery-guide",
-          "ee-administration-the-database",
-          "ee-administration-update"
+          "houston-api",
+          "ee-metrics",
+          "ee-kibana"
         ]
-      },
-      "ee-metrics"
+      }
+    ]
+  },
+
+  {
+    "menu": "Connecting Services with Astronomer",
+    "contents": [
+      "ci-cd"
     ]
   },
   {
