@@ -2,7 +2,7 @@
 title: "Running DAGs and Scaling"
 description: "A thorough breakdown of Apache Airflow's Executors: Celery, Local and Kubernetes."
 date: 2019-03-04T00:00:00.000Z
-slug: "runing-jobs-and-scaling"
+slug: "running-jobs-and-scaling"
 ---
 
 Once you've created your deployment, you can configure it for the use case at hand.

@@ -1,3 +1,10 @@
+---
+title: "Logs and Source Control"
+description: "Getting Logs and checking into source control"
+date: 2018-10-12T00:00:00.000Z
+slug: "logs-and-source-control"
+---
+
 ### Logs
 
 You can view the logs from the various Airflow components through the astro CLI.
