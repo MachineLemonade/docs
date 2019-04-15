@@ -1,25 +1,12 @@
-# Astronomer Platform Docs
+# Astronomer Docs
 
-To contribute to our documentation, follow the steps below.
+This repo contains Markdown files and scripts used to build [Astronomer docs](https://astronomer.io/docs/).
 
-1. Clone this repository on your machine.
+## Building docs
 
-`git clone https://github.com/astronomer/docs.git`
-
-2. If you wish to update the docs themselves, edit/add markdown files and push them back up to this repository. Then, rebuild our website via Netlify to view changes on staging/production sites (creds are in 1password).
-
-2. If you wish to change the structure or add content to the nav, head over to our [Website repo](https://github.com/astronomer/website) and clone it on your machine. **Be sure that you have the latest version of the website on your machine before continuing.**
-
-3. Add markdown files for docs and rearrange the `nav.json` file in this repository to adjust the side nav arrangement.
-
-4. From your terminal, run `python nav.py > ../website/src/layouts/docs_nav.json` to build docs_nav.json. This will cause that the `docs_nav.json` file in your website directory is up to date with the latest `nav.json` file in your docs directory.
-
-5. Push all docs changes up to Github.
-
-6. Change into your website directory and push all changes up to rebuild preview. Ensure changes look good then merge preview branch into master to rebuild our production site.
-
-## Building Nav Meta
-
-Metadata for navigation is built by `nav.py`. This script parses front matter in the markdown files in the `docs` directory, and the navigation structure defined in `nav.json`.
-
-It depends on Python packages in `requirements.txt`. Run `pip install -r requirements.txt` to install these deps. Then run `python nav.py > ../website/src/layouts/docs_nav.json` to build `docs_nav.json`.
+1. Run `pip install -r requirements.txt` to install Python dependencies in `requirements.txt`.
+1. Clone the [website](https://github.com/astronomer/website) to your machine to a directory next to this one.
+1. Run `python scripts/build_nav.py > ../website/src/layouts/docs_nav.json`. This script parses front matter in the markdown files, and the navigation structure defined in `nav.json` to generate `docs_nav.json` in the website project.
+1. Push `docs` changes up to Github.
+1. Push `website` changes to the `preview` branch, which will trigger a rebuild to the [preview site](https://preview.astronomer.io/docs/).
+1. Ensure changes look good, then merge `preview` into `master` to rebuild the production site.
