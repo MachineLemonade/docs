@@ -1,0 +1,74 @@
+[
+  "overview",
+  "security-model",
+  "getting-started",
+  {
+    "menu": "Developing Locally with the CLI",
+    "contents": [
+      "cli-quickstart",
+      "customizing-your-image",
+      "logs-and-source-control"
+    ]
+  },
+
+  {
+    "menu": "Using Astronomer",
+    "contents": [
+      "astronomer-ui",
+      "create-deployment-deploying-code",
+      "running-jobs-and-scaling",
+      "setting-up-airflow-emails"
+    ]
+  },
+
+  {
+    "menu": "Enterprise Edition",
+    "contents": [
+      "ee-overview",
+      "ee-getting-started",
+      {
+        "menu": "Installation",
+        "contents": [
+          "ee-installation-gke",
+          "ee-installation-eks",
+          "ee-installation-aks",
+          "ee-installation-do",
+          "ee-installation-openshift",
+          "ee-installation-general-kubernetes"
+        ]
+      },
+      {
+        "menu": "Customizing Your Install",
+        "contents": [
+          "ee-integrating-auth-system",
+          "ee-configuring-resources",
+          "ee-single-namespace-mode"
+        ]
+      },
+      {
+        "menu": "Administration",
+        "contents": [
+          "houston-api",
+          "ee-metrics",
+          "ee-kibana"
+        ]
+      }
+    ]
+  },
+
+  {
+    "menu": "Connecting Services with Astronomer",
+    "contents": [
+      "ci-cd"
+    ]
+  },
+  {
+    "menu": "Resources",
+    "contents": [
+      "release-notes",
+      "roadmap",
+      "pricing",
+      "support"
+    ]
+  }
+]
