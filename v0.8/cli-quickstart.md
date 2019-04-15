@@ -7,8 +7,9 @@ slug: "cli-quickstart"
 
 ## Prerequisites
 
-1. Install [Docker](www.docker.com) on your computer.
-2. Install the Astro CLI. If you are a Cloud customer, run:
+First you must install [Docker](www.docker.com) on your computer. Then, install the Astro CLI.
+
+If you are a Cloud customer, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash -s -- 0.7.5
@@ -23,9 +24,7 @@ curl -sSL https://install.astronomer.io | sudo bash
 
 **Note:** The `curl` command will work for Unix (Linux+Mac) based systems. If you want to run on Windows 10, you'll need to run through [this guide](https://www.astronomer.io/docs/cli-installation-windows-10/?_ga=2.105008643.146962510.1554994254-1828434170.1536931577) on getting Docker for WSL working.
 
-## Quickstart
-
-### Confirm the Install & Create a Project
+## Confirm the Install
 
 Let's make sure you have Astro CLI installed on your machine, and that you have a project to work from.
 
@@ -59,7 +58,7 @@ Flags:
 
 For a breakdown of subcommands and corresponding descriptions, you can run: `astro help`
 
-### Create a project
+## Create a project
 
 Your first step is to create a project to work from that lives in a folder on your local machine. The command you'll need is listed below, with an example `hello-astro` project.
 
