@@ -77,7 +77,7 @@ Everything in your top level directory (and all children directory) that you ran
 For more information on what gets built into your image, jump over to the [CLI section](https://www.astronomer.io/docs/customizing-your-image/).
 
 
-### Deployments, workspaces, and Kubernetes Namespaces
+### Deployments, Workspaces, and Kubernetes Namespaces
 
 Each deployment lives in its own Kubernetes [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and are completely unaware of each other. Each deployment is allocated resources separately, is configured independently, and maintains its own metadata - **the only thing deployments have in common is they run on the same underlying Kubernetes cluster.**
 
