@@ -5,15 +5,10 @@ date: 2018-07-17T00:00:00.000Z
 slug: "cli-quickstart"
 ---
 
-# Getting Started with the CLI:
-
 ## Prerequisites
 
-[Docker](www.docker.com)
-
-## Install:
-
-If you are a Cloud customer, run:
+1. Install [Docker](www.docker.com) on your computer.
+2. Install the Astro CLI. If you are a Cloud customer, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash -s -- 0.7.5
@@ -28,10 +23,9 @@ curl -sSL https://install.astronomer.io | sudo bash
 
 **Note:** The `curl` command will work for Unix (Linux+Mac) based systems. If you want to run on Windows 10, you'll need to run through [this guide](https://www.astronomer.io/docs/cli-installation-windows-10/?_ga=2.105008643.146962510.1554994254-1828434170.1536931577) on getting Docker for WSL working.
 
-
 ## Quickstart
 
-### I. Confirm the Install & Create a Project
+### Confirm the Install & Create a Project
 
 Let's make sure you have Astro CLI installed on your machine, and that you have a project to work from.
 
@@ -93,6 +87,4 @@ Our image also comes with an `example_dag` (with 12 branching tasks) that you're
 
 **Note:** The image will take some time to build the first time. Right now, you have to rebuild the image each time you want to add an additional package or requirement.
 
-Now you can run `astro airflow start` and see Airflow running on `localhost:8080/admin`
-
-For more information on using the CLI, see the Developing Locally with the CLI section.
+Now you can run `astro airflow start` and see Airflow running on `localhost:8080/admin`.
