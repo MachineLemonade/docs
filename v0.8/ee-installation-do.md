@@ -29,6 +29,8 @@ All Astronomer services will be tied to a base domain of your choice. You will n
 
 Login to your DO account and navigate to Kubernetes -> Create Cluster:
 
+![Create Cluster](https://s3.amazonaws.com/astronomer-cdn/website/img/docs/ee/create_do_cluster.png)
+
 
 You'll probably want to use 3 6CPU 16GB of memory nodes. You can read more about our resource requirements [here](https://www.astronomer.io/docs/ee-configuring-resources/)!
 
@@ -36,6 +38,8 @@ You'll probably want to use 3 6CPU 16GB of memory nodes. You can read more about
 
 Now that you have your cluster up, navigate to it and download the `kubeconfig` file associated with it.
 
+
+![Kube Config](https://s3.amazonaws.com/astronomer-cdn/website/img//docs/ee/kube_config.png)
 
 You can either add this file to your `.kube/config` or you can refer to it explicility when you run your `kubectl` commands. For the rest of this guide, we will refer to it specifically.
 
