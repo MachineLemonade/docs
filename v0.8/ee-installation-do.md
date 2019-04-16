@@ -95,7 +95,7 @@ $ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm version
 ## 5. Deploy a PostgreSQL Database
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
 
-We recommend you deploy a PostgreSQL database through a cloud provider database service like Google Cloud SQL.  This will require the full connection string for a user that has the ability to create, delete, and updated databases and users.
+We recommend you deploy a PostgreSQL database through a cloud provider database service like Google Cloud SQL or DO databases.  This will require the full connection string for a user that has the ability to create, delete, and updated databases and users.
 
 For demonstration purposes, we'll use the PostgreSQL helm chart:
 ```
