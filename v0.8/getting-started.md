@@ -1,6 +1,6 @@
 ---
-title: "Getting Started"
-description: "How to get up and running with Astronomer"
+title: "Quickstart"
+description: "How to get up and running with Astronomer Cloud"
 date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
 ---
