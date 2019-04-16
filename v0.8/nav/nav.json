@@ -1,6 +1,25 @@
 [
   "overview",
   "security-model",
+  {
+    "menu": "Getting Started",
+    "contents": [
+      {
+        "menu": "Cloud",
+        "contents": [
+          "getting-started",
+          "cloud-faq"
+        ]
+      },
+      {
+        "menu": "Enterprise",
+        "contents": [
+          "ee-getting-started",
+          "ee-faq"
+        ]
+      }
+    ]
+  },
   "getting-started",
   {
     "menu": "Developing Locally with the CLI",

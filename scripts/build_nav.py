@@ -40,7 +40,7 @@ for version in versions:
         if isinstance(o, (datetime.date, datetime.datetime)):
             return o.isoformat()
 
-    path = "../website/src/layouts/" + version + "/docs_nav.json"
+    path = "../website/src/layouts/docs_nav.json" # I removed the "Version" tag here for now, as it's not implemented in our website repo yet
     print("Creating... " + path)
     f = open(path, "w")
     f.write(json.dumps(nav_meta, indent=2, default=encoder))
