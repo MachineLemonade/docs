@@ -29,14 +29,53 @@ All Astronomer services will be tied to a base domain of your choice. You will n
 ## 3. Configure Azure for Astronomer Deployment
 
 *NOTE - You can view Microsoft Azure's Web Portal at https://portal.azure.com/*
-### Create an Azure Project
+### Create an Azure Resource Group
+A resource group is... Learn more about resource groups [here]().
 
+Login to your Azure account with the `az` CLI:
+```
+$ az login
+```
+
+Your active Azure subscriptions will print to your terminal.  Set your preferred Azure subscription:
+```
+$ az account set --subscription <subscription_id>
+```
+
+Confirm your preferred subscription is set:
+```
+$ az account show
+```
+
+Create a resource group:
+```
+$ az group create --location <location> --name <my_resource_group>
+```
+*NOTE - For a list of available locations, run `az account list-locations`*
 
 ### Create an AKS Cluster
-
+```
+$ az aks create --name <my_cluster_name> --resource-group <my_resource_group> --node-vm-size Standard_D8s_v3 --node-count 3
+```
+*NOTE - You may need to increase your resource quota in order to provision these nodes*
 
 ### Create a Static IP Address
+List the name of your cluster's infrastructure resource group:
+```
+$ az aks show --resource-group <my-resource-group> --name <my_cluster_name> --query nodeResourceGroup -o tsv
+```
 
+Create a static IP in your infrastructure resource group:
+```
+$ az network public-ip create --resource-group <infrastructure-resource-group-name> --name astro-ip --allocation-method static
+```
+
+### Authenticate with your AKS Cluster
+
+Run the following command to set your AKS cluster as current context in your kubeconfig:
+```
+$ az aks get-credentials --resource-group <my_resource_group> --name <my_cluster_name>
+```
 
 ## 4. Configure Helm with your AKS Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
