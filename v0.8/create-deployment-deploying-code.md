@@ -5,8 +5,8 @@ date: 2018-07-17T00:00:00.000Z
 slug: "create-deployment-deploying-code"
 ---
 
+## Creating a Deployment
 
-# Creating a Deployment
 The best place to create a deployment right now is directly from the UI.
 
 From your workspace, click New Deployment and Configure your deployment accordingly!
