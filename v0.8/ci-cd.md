@@ -133,6 +133,32 @@ workflows:
                 - master
 ```
 
+Simialry, a jenkins script could look like:
+
+
+```
+pipeline {
+ agent any
+   stages {
+     stage('Deploy to astronomer') {
+       when { branch 'master' }
+       steps {
+         script {
+           sh 'docker build -t registry.astronomer.cloud/foo-bar-8077/airflow:ci-${BUILD_NUMBER} .'
+           sh 'docker login registry.astronomer.cloud -u _ -p ${ASTRO_KEY}'
+           sh 'docker push registry.astronomer.cloud/foo-bar-8077/airflow:ci-${BUILD_NUMBER}'
+         }
+       }
+     }
+   }
+ post {
+   always {
+     cleanWs()
+   }
+ }
+}
+
+```
 
 Breaking this down:
 

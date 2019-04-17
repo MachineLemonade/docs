@@ -44,7 +44,7 @@ Now that you have your cluster up, navigate to it and download the `kubeconfig` 
 You can either add this file to your `.kube/config` or you can refer to it explicility when you run your `kubectl` commands. For the rest of this guide, we will refer to it specifically.
 
 
-## 4. Configure Helm with your Digital Cluster
+## 4. Configure Helm with your Digital Ocean Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
 ### Create a Kubernetes Namespace
 Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a seperate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
@@ -128,7 +128,7 @@ You'll need to create two Kubernetes secrets - one for the databases to be creat
 ### Create Database Connection Secret
 Set an environment variable `$PGPASSWORD` containing your PostgreSQL database password:
 ```
-$ export PGPASSWORD=$(kubectl get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
+$ export PGPASSWORD=$(kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
 ```
 
 Confirm your `$PGPASSWORD` variable is set properly:
@@ -297,13 +297,13 @@ helm upgrade -f config.yaml eyewitness-hare  . --namespace <my-namespace>
 To verify all pods are up and running, run:
 
 ```
-$ kubectl get pods --namespace <my-namespace>
+$ kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get pods --namespace <my-namespace>
 ```
 
 You should see something like this:
 
 ```
-kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get pods -n astronomer
+$ kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get pods -n astronomer
 NAME                                                     READY   STATUS      RESTARTS   AGE
 astro-db-postgresql-0                                    1/1     Running     0          22d
 eyewitness-hare-alertmanager-0                           1/1     Running     0          22d
