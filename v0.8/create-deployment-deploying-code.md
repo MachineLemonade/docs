@@ -1,5 +1,5 @@
 ---
-title: "Creating Deployments and Deploying Code"
+title: "Deploying Your Code"
 description: "Create your Airflow environment and push up your DAGs"
 date: 2018-07-17T00:00:00.000Z
 slug: "create-deployment-deploying-code"

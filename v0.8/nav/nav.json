@@ -21,7 +21,7 @@
     ]
   },
   {
-    "menu": "Developing Locally with the CLI",
+    "menu": "The Astro CLI",
     "contents": [
       "cli-quickstart",
       "customizing-your-image",
@@ -43,7 +43,6 @@
     "menu": "Enterprise Edition",
     "contents": [
       "ee-overview",
-      "ee-getting-started",
       {
         "menu": "Installation",
         "contents": [
@@ -75,7 +74,7 @@
   },
 
   {
-    "menu": "Connecting Services with Astronomer",
+    "menu": "Integrating Services",
     "contents": [
       "ci-cd"
     ]
