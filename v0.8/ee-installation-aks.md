@@ -30,7 +30,7 @@ All Astronomer services will be tied to a base domain of your choice. You will n
 
 *NOTE - You can view Microsoft Azure's Web Portal at https://portal.azure.com/*
 ### Create an Azure Resource Group
-A resource group is... Learn more about resource groups [here]().
+A resource group is a collection of related resources for an Azure solution. Your AKS cluster will reside in the resource group you create. Learn more about resource groups [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups).
 
 Login to your Azure account with the `az` CLI:
 ```
@@ -51,28 +51,35 @@ Create a resource group:
 ```
 $ az group create --location <location> --name <my_resource_group>
 ```
-*NOTE - For a list of available locations, run `az account list-locations`*
+*NOTE - For a list of available locations, run `az account list-locations`.*
 
 ### Create an AKS Cluster
+Astronomer will deploy to Azure's managed Kubernetes service (Azure Kubernetes Service). Learn more about AKS [here](https://docs.microsoft.com/en-us/azure/aks/)
+
+*NOTE - You can choose the machine type to use, but we recommend using larger nodes vs smaller nodes.*
+
+Create your Kubernetes cluster:
 ```
 $ az aks create --name <my_cluster_name> --resource-group <my_resource_group> --node-vm-size Standard_D8s_v3 --node-count 3
 ```
-*NOTE - You may need to increase your resource quota in order to provision these nodes*
+*NOTE - You may need to increase your resource quota in order to provision these nodes.*
 
 ### Create a Static IP Address
+You'll need to create a static IP address within your cluster's infrastructure resource group. This resource group is different from the one previously created.
+
 List the name of your cluster's infrastructure resource group:
 ```
 $ az aks show --resource-group <my-resource-group> --name <my_cluster_name> --query nodeResourceGroup -o tsv
 ```
 
-Create a static IP in your infrastructure resource group:
+Create a static IP in your infrastructure resource group. Record the output for use later on:
 ```
 $ az network public-ip create --resource-group <infrastructure-resource-group-name> --name astro-ip --allocation-method static
 ```
 
 ### Authenticate with your AKS Cluster
 
-Run the following command to set your AKS cluster as current context in your kubeconfig:
+Run the following command to set your AKS cluster as current context in your kubeconfig. This will configure `kubectl` to point to your new AKS cluster:
 ```
 $ az aks get-credentials --resource-group <my_resource_group> --name <my_cluster_name>
 ```
