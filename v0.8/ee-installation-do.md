@@ -297,13 +297,13 @@ helm upgrade -f config.yaml eyewitness-hare  . --namespace <my-namespace>
 To verify all pods are up and running, run:
 
 ```
-$ kubectl get pods --namespace <my-namespace>
+$ kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get pods --namespace <my-namespace>
 ```
 
 You should see something like this:
 
 ```
-kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get pods -n astronomer
+$ kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get pods -n astronomer
 NAME                                                     READY   STATUS      RESTARTS   AGE
 astro-db-postgresql-0                                    1/1     Running     0          22d
 eyewitness-hare-alertmanager-0                           1/1     Running     0          22d
