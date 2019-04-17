@@ -128,7 +128,7 @@ You'll need to create two Kubernetes secrets - one for the databases to be creat
 ### Create Database Connection Secret
 Set an environment variable `$PGPASSWORD` containing your PostgreSQL database password:
 ```
-$ export PGPASSWORD=$(kubectl get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
+$ export PGPASSWORD=$(kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
 ```
 
 Confirm your `$PGPASSWORD` variable is set properly:
