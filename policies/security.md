@@ -1,8 +1,8 @@
 ---
-title: "Security Model"
-description: "The Astronomer Security Model"
+title: "Security"
+description: "Security sepcifications of the Astronomer platform."
 date: 2018-10-12T00:00:00.000Z
-slug: "security-model"
+slug: "security"
 ---
 
 Astronomer allows you to dictate who has access to specific Airflow deployments.
