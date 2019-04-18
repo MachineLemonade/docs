@@ -207,7 +207,7 @@ smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 
 ## 9. Install Astronomer
 ```
-$ helm install -f config.yaml . --namespace <my-namespace>
+$ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm install -f config.yaml . --namespace <my-namespace>
 ```
 
 ## 10. Find your loadbalancer IP and update DNS
@@ -281,7 +281,7 @@ Create an A record through your DNS provider for `*.astro.mydomain.com` using yo
 Find your platform name:
 
 ```
-KUBECONFIG="astro-do-test-kubeconfig.yaml" helm ls
+$ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm ls
 NAME                   	REVISION	UPDATED                 	STATUS  	CHART           	NAMESPACE                         
 astro-db               	1       	Fri Mar 15 08:31:23 2019	DEPLOYED	postgresql-3.9.5	astronomer                        
 eyewitness-hare        	4       	Tue Mar 26 11:13:26 2019	DEPLOYED	astronomer-0.8.2	astronomer                        
@@ -290,7 +290,7 @@ eyewitness-hare        	4       	Tue Mar 26 11:13:26 2019	DEPLOYED	astronomer-0.
 Now upgrade accordingly:
 
 ```
-helm upgrade -f config.yaml eyewitness-hare  . --namespace <my-namespace>
+$ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm upgrade -f config.yaml eyewitness-hare  . --namespace <my-namespace>
 ```
 
 ## 11. Verify all pods are up
