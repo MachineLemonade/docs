@@ -23,7 +23,7 @@ To connect Astronomer Cloud to any database in your VPC, you'll just have to Whi
 
 If you're whitelisting that IP on Amazon Redshift, check out [this forum post](https://forum.astronomer.io/t/how-do-i-whitelist-astronomer-cloud-on-aws-redshift/165).
 
-### Will I have access to Airflow's underlying database for my deployment?
+#### Will I have access to Airflow's underlying database for my deployment?
 
 Yes! Each Astronomer Cloud customer has has an isolated Postgres database per deployment. To access that database and access the Ad-Hoc Query feature, for example, check out our guidelines in [this forum post](https://forum.astronomer.io/t/how-can-i-set-up-the-ad-hoc-query-feature-in-a-remote-deployment/143).
 
@@ -60,7 +60,7 @@ As for the code itself, we’ve seen effective organization where external code 
 
 Right now, we offer authentication via Google, Github, and Username/Password in Cloud. Once you've created a Workspace on Astronomer, you'll use that same method to authenticate to the Astronomer CLI.
 
-If you're interested in Enterprise, the options are there.
+If you're interested in Enterprise, the options there are more flexible. Check out [this doc](https://www.astronomer.io/docs/ee-integrating-auth-system/) for more info.
 
 #### Where do I log in?
 
