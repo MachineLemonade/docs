@@ -76,9 +76,11 @@ psql {dbname} < /tmp/{pg_dump_file_path}
 
 
 CONTAINER ID        IMAGE                                            COMMAND                  CREATED             STATUS              PORTS                                        NAMES
-a424b7152307        subpropensity-astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8793/tcp, 0.0.0.0:8080->8080/tcp   astronomer29cd88_webserver_1
-416922ddefac        subpropensity-astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8080/tcp, 8793/tcp                 astronomer29cd88_scheduler_1
+a424b7152307        astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8793/tcp, 0.0.0.0:8080->8080/tcp   astronomer29cd88_webserver_1
+416922ddefac        astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8080/tcp, 8793/tcp                 astronomer29cd88_scheduler_1
 75baf5f2f931        postgres:10.1-alpine                             "docker-entrypoint.s…"   31 minutes ago      Up 10 minutes       0.0.0.0:5432->5432/tcp                       astronomer29cd88_postgres_1
 ```
+
+Verify that the scheduler and webserver containers were created at the same time and have hashed names as above.
 
 15) In Admin-> Connections, try editing one of the connections you loaded in to ensure the Fernet key was transferred properly.
