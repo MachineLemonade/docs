@@ -10,8 +10,8 @@ One of the most useful features of the Astro CLI during development is the abili
 
 **NOTE**: Connections, variables, and pools defined through this process will only be available locally. To ensure they are available in your remote deployments, please add them via the Airflow UI.
 
-## settings.yaml
-When you first `astro airflow init` to create a new project, a file titled `settings.yaml` will be created to add connections, pools, and variables. By default, the structure within this file will look like the following:
+## airflow_settings.yaml
+When you first `astro airflow init` to create a new project, a file titled `airflow_settings.yaml` will be created to add connections, pools, and variables. By default, the structure within this file will look like the following:
 
 ```
 airflow:

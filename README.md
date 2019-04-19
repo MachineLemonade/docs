@@ -1,6 +1,6 @@
 # Astronomer Docs
 
-This repo contains Markdown files and scripts used to build [Astronomer docs](https://astronomer.io/docs/).
+This repo contains Markdown files and scripts used to build [Astronomer docs](https://astronomer.io/docs/). We are currently on v0.8 of our docs and all changes should be made in the v`0.8` folder.
 
 ## Building docs
 

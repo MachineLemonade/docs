@@ -5,41 +5,55 @@ date: 2018-08-24T00:00:00.000Z
 slug: "cli-installation-windows-10"
 ---
 
-## Astronomer CLI in WSL
+Welcome to Astronomer!
 
-This guide will walk you through the setup and configuration process for using the Astronomer CLI in the Windows Subsystem for Linux (WSL) on Windows 10. At this point, you should be running in the bash terminal and have the [the WSL enabled](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+If you're a Windows User looking to install and use the Astronomer CLI, you have 2 options:
 
-(*Note:* We're using Ubuntu as our Linux flavor of choice,but this giude should work for other distrubutions as well).
+1. Install the Unix-based CLI a Windows Subsystem for Linux (WSL)
+2. Install the Windows-based CLI 
+
+**Note:** Either option will require Windows 10 or greater.
+
+## Astronomer CLI on Windows Subsystem for Linux (WSL)
+
+This guide will walk you through the setup and configuration process for using the Astronomer CLI in the Windows Subsystem for Linux (WSL) on Windows 10. Before you start, make sure:
+ - You're running the bash terminal
+ - You have the [the WSL enabled](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+ - You're on Windows 10
+
+**Note:** We use Ubuntu as our Linux flavor of choice, but this giude should work for other distrubutions as well.
 
 Much of the setup process is borrowed from a guide written by Nick Janetakis. Find the full guide here: [Setting Up Docker for Windows and WSL to Work Flawlessly](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-## Step 1. Install Docker ce for Windows
+### Step 1. Install Docker CE for Windows
 
-Follow the docker for windows install guide here: [Install Docker for windows](https://docs.docker.com/docker-for-windows/install/)
+Follow the [Docker for Windows Install Guide](https://docs.docker.com/docker-for-windows/install/).
 
-## Step 2. Expose the Docker Daemon
+### Step 2. Expose the Docker Daemon
 
-In your docker settings, under general, enable the `Expose daemon on tcp://localhost:2375 without TLS` setting. This will allow the docker daemon running on windows to act as a remote docker service for our WSL instance.
+In your docker settings, under general, enable the `Expose daemon on tcp://localhost:2375 without TLS` setting.
 
-## Step 3. Install Docker for Linux in WSL
+This will allow the docker daemon running on windows to act as a remote docker service for our WSL instance.
 
-In your WSL termninal, follow the Docker CE for Ubuntu install guide here: [Install Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+### Step 3. Install Docker for Linux in WSL
 
-Docker wil lnot run in the WSL instance, however this will give us access to the docker cli through our linux environment.
+In your WSL terminal, follow the Docker CE for Ubuntu install guide here: [Install Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
-## Step 4. Connect your WSL instance to Docker on Windows
+Docker wil lnot run in the WSL instance, however this will give us access to the docker CLI through our Linux environment.
 
-We now need to point our docker host route to the remote docker daemon running in Windows. To do this we need to add an export path to our `~/.bashrc` file.
+### Step 4. Connect your WSL instance to Docker on Windows
+
+Now, you need to point our docker host route to the remote docker daemon running in Windows. To do this we need to add an export path to our `~/.bashrc` file.
 
 Run: `echo "export DOCKER_HOST=tcp://0.0.0.0:2375" >> ~/.bashrc && source ~/.bashrc` to add a new line to your bashrc file pointing the docker host to your exposed  daemon and re-source your bashrc file.
 
-## Step 5. Custom mount points
+### Step 5. Custom Mount Points
 
 To ensure docker can properly mount volumes, we need to create custom mount paths that work in the WSL instance.
 
-(*Note:* The process differs depending on the version of Windows 10 you're running. In our case we're running build 1709. See the full guide for more details about later builds).
+This process differs depending on the version of Windows 10 you're running. In our case, we're running build 1709.
 
-Create a new mount point directory:
+First, create a new mount point directory:
 
 `sudo mkdir /c`
 
@@ -47,13 +61,66 @@ Then bind this mount point:
 
 `sudo  mount --bind /mnt/c /c`
 
-You're all set. You can now run `docker run hello-world` through your WSL instance to ensure everything works as expected. Keep in mind you will need to bind your mount point each time you start up a new WSL instance.
+You're all set! You can now run `docker run hello-world` through your WSL instance to ensure everything works as expected. Keep in mind that you will need to bind your mount point each time you start up a new WSL instance.
 
-You can now setup the Astronomer CLI and begin deploying DAGs following our guide here: [Astronomer CLI](/guides/cli)
+**Last thing**: Whenever you run Docker-compose up, you'll want to make sure you navigate to the `/c/Users/name/dev/myapplocation` first, otherwise your volume won't work. In other words, never access `/mnt/c` directly.
 
-### Potential Postgres Error
+### Step 6. Final Install
 
-- As a WSL user, you might see the following error when trying to call `astro airflow start` on your newly created workspace:
+Once you've completed the steps above, head over to our [CLI Quickstart Guide](https://preview.astronomer.io/docs/cli-quickstart/) to finish the installation and start deployment DAGs.
+
+## Astronomer CLI on Windows 10
+
+If for any reason you can't install WSL, you can install a Windows adapted version of the Astronomer CLI directly by following the instructions below.
+
+### Step 1. Pre-Flight Checklist
+
+Make sure you have the following installed:
+
+- Windows 10
+- [Docker](https://docs.docker.com/docker-for-windows/install/)
+
+### Step 2. Enable Hyper-V
+
+Make sure you enabled Hyper-V, which is required to run Docker and Linux Containers. 
+
+If you have any issues with Docker, check out [Docker's Troubleshooting Guide for Windows](https://docs.docker.com/docker-for-windows/troubleshoot/).
+
+### Step 3. Download the Astro CLI
+
+Currently, Astronomer on Windows outside of WSL is only supported by Astronomer CLI versions v0.8.x.
+
+To install our latest version, go [here](https://github.com/astronomer/astro-cli/releases/download/v0.8.2/astro_0.8.2_windows_386.zip).
+
+### Step 4. Extract the contents
+
+After following step 3, you should see a zip file on your machine that contains the following:
+
+- CHANGELOG
+- README
+- LICENSE
+- A file titled `astro.exe`
+
+Grab that `astro.exe` file and move it to a location that won't be deleted.
+
+### Step 5. Extract the contents 
+Add the location of `astro.exe` in your %PATH%. If you don't know how to do this, check out [this helpful guide](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/).
+
+### Step 6. Final Command
+
+Now, open your Terminal or PowerShell console and run the following:
+
+```
+C:\Windows\system32>astro version
+Astro CLI Version: 0.8.2
+Git Commit: f5cdab8f832da3c6184a7ac167b491e3bac3c022
+```
+
+If you get a response like the above, you're all set! Happy Airflow-ing.
+
+## Potential Postgres Error
+
+As a Windows user, you might see the following error when trying to call `astro airflow start` on your newly created workspace:
 
 ```
 Sending build context to Docker daemon  8.192kB
