@@ -11,7 +11,7 @@ We use Google Cloud Platform for our Cloud datacenter and Kubernetes cluster, wh
 
 We will also begin issuing regular penetration and vulnerability tests via a third party vendor for all versions of Astronomer 0.8 and later. It is our top priority to ensure your data is secure, so we look forward to building a company culture where security is deeply engrained.
 
-Towards that objective, we have quite a few internal practices in place that help us ensure that security remains a top priority. Astronomer audits changes to our application throughout the development lifecycle via architecture reviews and stringent automated and manual code review processes. We also monitor our applicaiton servers, infrastructure, and the Astronomer network environment to protect potential abuse.
+Towards that objective, we have quite a few internal practices in place that help us ensure that security remains a top priority. Astronomer audits changes to our application throughout the development lifecycle via architecture reviews and stringent automated and manual code review processes. We also monitor our application servers, infrastructure, and the Astronomer network environment to protect potential abuse.
 
 ## Cloud Edition
 
