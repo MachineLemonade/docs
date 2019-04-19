@@ -5,13 +5,17 @@ date: 2018-10-12T00:00:00.000Z
 slug: "security"
 ---
 
-A deep respect for our customers and the data that they touch with their Airflow deployments has always been central to what we value here at Astronomer. We recognize that our customers use our products to run business-critical jobs that often involve sensitive data sets. That is why we have implemented a holistic security program that we continue to build upon with each of our product releases.
+A deep respect for our customers and the data that they move with their Airflow deployments has always been central to what we value here at Astronomer. We recognize that our customers use our products to run business-critical jobs that often involve sensitive data sets. That is why we have implemented rigorous security policies that we continue to build upon with each of our product releases.
 
-We use Google Cloud Platform internally for our Cloud datacenter and Kubernetes cluster, which means our customers benefit from GCP's comprehensive security practices and compliance certifications. We will also begin issuing regular penetration and vulnerability tests via a third party vendor for all versions of Astronomer 0.8 and later. It is our top priority to ensure your data is secure, so we look forward to building a company culture where security is deeply engrained.
+We use Google Cloud Platform for our Cloud datacenter and Kubernetes cluster, which means our customers benefit from GCP's comprehensive security practices and compliance certifications. We do not host customer data on our premises or store customer data with any other third party services. GCP is a leading cloud provider that holds industry best security certifications such as SOC2 and ISO 27001 and provides encryption in transit and at rest.
+
+We will also begin issuing regular penetration and vulnerability tests via a third party vendor for all versions of Astronomer 0.8 and later. It is our top priority to ensure your data is secure, so we look forward to building a company culture where security is deeply engrained.
+
+Towards that objective, we have quite a few internal practices in place that help us ensure that security remains a top priority. Astronomer audits changes to our application throughout the development lifecycle via architecture reviews and stringent automated and manual code review processes. We also monitor our applicaiton servers, infrastructure, and the Astronomer network environment to protect potential abuse.
 
 ## Cloud Edition
 
-Astronomer Cloud is hosted on infrastructure that we control. To allow it to communicate with your systems, we run a single NAT that all internet bound traffic flows through. We don't persist any of your data, and all computation runs in short-lived containers that terminate after tasks are completed.
+Astronomer Cloud is hosted on infrastructure that we control via [GCP's Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview). To allow it to communicate with your systems, we run a single NAT that all internet bound traffic flows through. We don't persist any of your data, and all computation runs in short-lived containers that terminate after tasks are completed.
 
 Our cluster and databases are all hosted in a private VPC with all private IPs. We connect to the cluster via SSH to a bastion node set up with authorized networks.
 
@@ -61,8 +65,6 @@ To create an Astronomer Workspace, users have the option to authenticate via Goo
 *Do you share any PI data with external entity or service?*
 
 No, we never share any PI data with any external services.
-
-
 
 ## Enterprise Edition
 
