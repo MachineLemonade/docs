@@ -1,6 +1,5 @@
 [
   "overview",
-  "security-model",
   {
     "menu": "Getting Started",
     "contents": [
@@ -82,6 +81,7 @@
   {
     "menu": "Resources",
     "contents": [
+      "security-model",
       "release-notes",
       "roadmap",
       "pricing",

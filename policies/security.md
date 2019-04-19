@@ -1,30 +1,12 @@
 ---
 title: "Security"
-description: "Security sepcifications of the Astronomer platform."
+description: "Security specifications of the Astronomer platform."
 date: 2018-10-12T00:00:00.000Z
 slug: "security"
 ---
-
-Astronomer allows you to dictate who has access to specific Airflow deployments.
-
-We do this through a concept we call **Workspaces**.
-
-Workspaces are conceptually similar to Teams, and are collections of Airflow
-deployments that only specific users have access to, allowing you to ensure that
-only those you want viewing your production deployments are capable of doing so.
-
-In an upcoming release, we'll include Airflow 1.10 features, which will include
-[role-based access control (RBAC)](https://medium.com/datareply/apache-airflow-1-10-0-released-highlights-6bbe7a37a8e1).
-
-To learn more about Workspaces and see screenshots of what their user management
-capability looks like, check out the [Platform Overview](https://astronomer.io/docs/overview).
-
 ## Cloud Edition
 
-Astronomer Cloud is hosted on infrastructure we control. We run a single NAT
-that all internet bound traffic flows through. We don't persist any of your
-data, and all computation runs in short-lived containers that terminate after
-the task is finished.
+Astronomer Cloud is hosted on infrastructure that we control. To allow it to communicate with your systems, we run a single NAT that all internet bound traffic flows through. We don't persist any of your data, and all computation runs in short-lived containers that terminate after tasks are completed.
 
 Our cluster and databases are all hosted in a private VPC with all private IPs. We connect to the cluster via SSH to a bastion node set up with authorized networks.
 
@@ -65,7 +47,17 @@ In Cloud, we allow user access to your scheduler, webserver, and worker logs via
 
 Airflow-specific alerts for task and DAG run failures (or other triggers) can be configured via environment variables as needed.
 
+*Do your users use MFA and/or IDP to login and authenticate to the service or management or infrastructure resources?*
+
+To create an Astronomer Workspace, users have the option to authenticate via Google, GitHub, or username/password.
+
+*Do you share any PI data with external entity or service?*
+
+No, we never share any PI data with any external services.
+
+
+
 ## Enterprise Edition
 
 Astronomer Enterprise is deployed in your cloud, on your Kubernetes. As such,
-it should comply with your internal security specifications.
+it will comply with your internal security specifications.
