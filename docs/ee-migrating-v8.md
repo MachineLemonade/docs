@@ -72,7 +72,8 @@ psql {dbname} < /tmp/{pg_dump_file_path}
 14) Ensure that your new images build and run on your machine - you may need to clean out old Docker images if you are running into issues with Docker caching. Redeploy your code to its corresponding instance.
 
 
-``docker ps
+```docker ps
+
 
 CONTAINER ID        IMAGE                                            COMMAND                  CREATED             STATUS              PORTS                                        NAMES
 a424b7152307        subpropensity-astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8793/tcp, 0.0.0.0:8080->8080/tcp   astronomer29cd88_webserver_1
