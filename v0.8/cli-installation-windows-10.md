@@ -37,7 +37,7 @@ This will allow the docker daemon running on windows to act as a remote docker s
 
 In your WSL terminal, follow the Docker CE for Ubuntu install guide here: [Install Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
-Docker wil lnot run in the WSL instance, however this will give us access to the docker cli through our linux environment.
+Docker wil lnot run in the WSL instance, however this will give us access to the docker CLI through our Linux environment.
 
 ### Step 4. Connect your WSL instance to Docker on Windows
 
@@ -45,11 +45,11 @@ Now, you need to point our docker host route to the remote docker daemon running
 
 Run: `echo "export DOCKER_HOST=tcp://0.0.0.0:2375" >> ~/.bashrc && source ~/.bashrc` to add a new line to your bashrc file pointing the docker host to your exposed  daemon and re-source your bashrc file.
 
-### Step 5. Custom mount points
+### Step 5. Custom Mount Points
 
 To ensure docker can properly mount volumes, we need to create custom mount paths that work in the WSL instance.
 
-**Note:** The process differs depending on the version of Windows 10 you're running. In our case we're running build 1709. See the full guide for more details about later builds).
+This process differs depending on the version of Windows 10 you're running. In our case, we're running build 1709.
 
 First, create a new mount point directory:
 
@@ -61,7 +61,11 @@ Then bind this mount point:
 
 You're all set! You can now run `docker run hello-world` through your WSL instance to ensure everything works as expected. Keep in mind that you will need to bind your mount point each time you start up a new WSL instance.
 
-Once that's confirmed, head over to our [CLI Quickstart Guide](https://preview.astronomer.io/docs/cli-quickstart/) to finish the installation and start deployment DAGs.
+**Last thing**: Whenever you run Docker-compose up, you'll want to make sure you navigate to the `/c/Users/name/dev/myapplocation` first, otherwise your volume won't work. In other words, never access `/mnt/c` directly.
+
+### Step 6. Final Install
+
+Once you've completed the steps above, head over to our [CLI Quickstart Guide](https://preview.astronomer.io/docs/cli-quickstart/) to finish the installation and start deployment DAGs.
 
 ## Astronomer CLI on Windows 10
 
