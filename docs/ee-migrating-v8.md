@@ -65,10 +65,19 @@ psql {dbname} < /tmp/{pg_dump_file_path}
 ```
 11) Run `kubectl delete --all pods --namespace=<namespace>` in the namespace your Airflow deployment is in. This will force each of the new pods to pick up the secret.
 
-12 Edit first line of your project's Dockerfile to `FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild`
+12) Edit first line of your project's Dockerfile to `FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild`
 
 13) Run `astro upgrade` to ensure you are on the latest version of the CLI
 
-14) Redeploy your code to its corresponding instance.
+14) Ensure that your new images build and run on your machine - you may need to clean out old Docker images if you are running into issues with Docker caching. Redeploy your code to its corresponding instance.
+
+
+``docker ps
+
+CONTAINER ID        IMAGE                                            COMMAND                  CREATED             STATUS              PORTS                                        NAMES
+a424b7152307        subpropensity-astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8793/tcp, 0.0.0.0:8080->8080/tcp   astronomer29cd88_webserver_1
+416922ddefac        subpropensity-astronomer_29cd88/airflow:latest   "tini -- /entrypoint…"   11 minutes ago      Up 10 minutes       5555/tcp, 8080/tcp, 8793/tcp                 astronomer29cd88_scheduler_1
+75baf5f2f931        postgres:10.1-alpine                             "docker-entrypoint.s…"   31 minutes ago      Up 10 minutes       0.0.0.0:5432->5432/tcp                       astronomer29cd88_postgres_1
+```
 
 15) In Admin-> Connections, try editing one of the connections you loaded in to ensure the Fernet key was transferred properly.
