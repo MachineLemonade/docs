@@ -16,9 +16,9 @@ On initial login you'll be prompted to create a tenant domain. You can use the d
 *NOTE - Your full tenant domain name may differ if you've created it outside the United States.*
 
 ## 3. Create Connection between Auth0 and your Identity Management Provider
+The steps required for establishing a connection will vary by identity provider. Auth0 provides connection guides for each identity provider [here](https://auth0.com/docs/identityproviders). Follow the link and click on your identity provider of choice for detailed instructions. Continue on to Step 4 once your connection is established.
 
 ## 4. Configure Auth0 Application Settings
-
 ### Enable / disable desired connections:
 * Navigate to `https://manage.auth0.com/dashboard/us/<tenant-name>/applications`.
 * Under `Applications`, select `Default App`.
