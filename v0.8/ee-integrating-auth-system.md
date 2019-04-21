@@ -12,3 +12,13 @@ By default, the Astronomer platform allows you to authenticate using your Google
 You'll need an Auth0 account in order to set up connections with the identity provider of your choice. Sign up for an Auth0 account [here](https://auth0.com/signup).
 
 ## 2. Configure Astronomer
+```
+astronomer:
+  houston:
+    config:
+      auth:
+        auth0:
+          enabled: true
+          clientId: ""
+          baseDomain: ""
+```
