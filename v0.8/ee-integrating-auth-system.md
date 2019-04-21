@@ -33,11 +33,6 @@ On initial login you'll be prompted to create a tenant domain. You can use the d
 * Under `Allowed Logout URLs`, add `https://app.<your-astronomer-base-domain>/logout`
 * Under `Allowed Origins (CORS)`, add `https://*.<your-astronomer-base-domain>`
 
-* edit default app settings
-  * allowed callback URLs
-  * allowed logout URLs
-  * allowed origins
-
 ## 5. Create Auth0 API
 
 ## 6. Configure Astronomer
