@@ -11,25 +11,38 @@ By default, the Astronomer platform allows you to authenticate using your Google
 ## 1. Create Auth0 Account
 You'll need an Auth0 account in order to set up connections with the identity provider of your choice. Sign up for an Auth0 account [here](https://auth0.com/signup).
 
-## Create Auth0 Tenant Domain
+## 2. Create Auth0 Tenant Domain
 On initial login you'll be prompted to create a tenant domain. You can use the default or your own unique`tenant-name`. Your full tenant domain will look something like `astronomer.auth0.com`.
 
 *NOTE - Your full tenant domain name may differ if you've created it outside the United States.*
 
-## Create Connection between Auth0 and your Identity Management Provider
+## 3. Create Connection between Auth0 and your Identity Management Provider
 
-## Create Auth0 API
+## 4. Configure Auth0 Application Settings
 
-## Confiure Auth0 Application Settings
+### Enable / disable desired connections:
+* Navigate to `https://manage.auth0.com/dashboard/us/<tenant-name>/applications`.
+* Under `Applications`, select `Default App`.
+* Click the `Connections` tab. You should see your connection created in Step 3 listed here. Enable your new connection, and disable any connections that you won't be using.
 
-* app connections
-  * enable / disable desired connections created in step ...
+### Edit the Default App settings:
+* Navigate to `https://manage.auth0.com/dashboard/us/<tenant-name>/applications`.
+* Under `Applications`, select `Default App`.
+* Click the `Settings` tab.
+* Under `Allowed Callback URLs`, add `https://houston.<your-astronomer-base-domain>/v1/oauth/redirect`
+* Under `Allowed Logout URLs`, add `https://app.<your-astronomer-base-domain>/logout`
+* Under `Allowed Origins (CORS)`, add `https://*.<your-astronomer-base-domain>`
+
 * edit default app settings
   * allowed callback URLs
   * allowed logout URLs
   * allowed origins
 
-## 2. Configure Astronomer
+## 5. Create Auth0 API
+
+## 6. Configure Astronomer
+Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
+
 ```
 astronomer:
   houston:
@@ -37,6 +50,6 @@ astronomer:
       auth:
         auth0:
           enabled: true
-          clientId: ""
-          baseDomain: ""
+          clientId: "<default-app-client-id>"
+          baseDomain: "<tenant-name>.auth0.com"
 ```
