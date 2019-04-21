@@ -1,10 +1,9 @@
 ---
 title: "Integrating Auth Systems"
-description: "Installing Astronomer on Azure's AKS."
+description: "Integrating Auth Systems with Auth0"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-integrating-auth-system"
 ---
-We're working on this guide right now - if you are trying to deploy here, drop us a line and we can help you through it.
 
 By default, the Astronomer platform allows you to authenticate using your Google or GitHub account. We provide the option to authenticate using alternative providers through a platform called [Auth0](https://auth0.com/). Auth0 is an identity management platform that allows for seamless integration with numerous identity providers, including Azure Active Directory, LinkedIn, and Twitter. For a full list of supported identity providers, click [here](https://auth0.com/docs/identityproviders).
 
