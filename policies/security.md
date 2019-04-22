@@ -7,7 +7,7 @@ slug: "security"
 
 A deep respect for our customers and the data that they move with their Airflow deployments has always been central to what we value here at Astronomer. We recognize that our customers use our products to run business-critical jobs that often involve sensitive data sets. That is why we have implemented rigorous security policies that we continue to build upon with each of our product releases.
 
-We use Google Cloud Platform for our Cloud datacenter and Kubernetes cluster, which means our customers benefit from GCP's comprehensive security practices and compliance certifications. We do not host customer data on our premises or store customer data with any other third party services. GCP is a leading cloud provider that holds industry best security certifications such as SOC2 and ISO 27001 and provides encryption in transit and at rest.
+We use Google Cloud Platform for our Cloud datacenter, which means our customers benefit from GCP's comprehensive security practices and compliance certifications. We do not host customer data on our premises or store customer data with any other third party services. GCP is a leading cloud provider that holds industry best security certifications such as SOC2 and ISO 27001 and provides encryption in transit and at rest.
 
 We will also begin issuing regular penetration and vulnerability tests via a third party vendor for all versions of Astronomer 0.8 and later. It is our top priority to ensure your data is secure, so we look forward to building a company culture where security is deeply engrained.
 
