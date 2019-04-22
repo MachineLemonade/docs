@@ -1,7 +1,7 @@
 ---
 title: "Integrating Auth Systems"
 description: "Integrating Auth Systems with Auth0"
-date: 2018-10-12T00:00:00.000Z
+date: 2019-04-21T00:00:00.000Z
 slug: "ee-integrating-auth-system"
 ---
 # Integrating Auth Systems with Auth0
