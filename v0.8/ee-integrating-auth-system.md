@@ -28,13 +28,18 @@ The steps required for establishing a connection will vary by identity provider.
 * Navigate to `https://manage.auth0.com/dashboard/us/<tenant-name>/applications`.
 * Under `Applications`, select `Default App`.
 * Click the `Settings` tab.
-* Under `Allowed Callback URLs`, add `https://houston.<your-astronomer-base-domain>/v1/oauth/redirect`
-* Under `Allowed Logout URLs`, add `https://app.<your-astronomer-base-domain>/logout`
-* Under `Allowed Origins (CORS)`, add `https://*.<your-astronomer-base-domain>`
+* Under `Allowed Callback URLs`, add `https://houston.<your-astronomer-base-domain>/v1/oauth/redirect`.
+* Under `Allowed Logout URLs`, add `https://app.<your-astronomer-base-domain>/logout`.
+* Under `Allowed Origins (CORS)`, add `https://*.<your-astronomer-base-domain>`.
 
-## 5. Create Auth0 API
+### Create Auth0 API:
+* Navigate to `https://manage.auth0.com/dashboard/us/<tenant-name>/apis`.
+* Click `+ Create API`.
+* Under `Name`, enter `astronomer-ee`.
+* Under `Identifier`, enter `astronomer-ee`.
+* Leave the value under `Signing Algorithm` as `RS256`.
 
-## 6. Configure Astronomer
+## 5. Configure Astronomer
 Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
 
 ```
@@ -46,4 +51,14 @@ astronomer:
           enabled: true
           clientId: "<default-app-client-id>"
           baseDomain: "<tenant-name>.auth0.com"
+```
+
+## 6. Upgrade your Astronomer Deployment
+
+If you're already running Astronomer, list your deployment release names and upgrade your deployment:
+```
+$ helm ls --namespace <your-namespace>
+```
+```
+$ helm upgrade <release-name> -f config.yaml . --namespace <your-namespace>
 ```
