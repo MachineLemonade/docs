@@ -1,72 +1,94 @@
 ---
 title: "Security"
-description: "Security specifications of the Astronomer platform."
+description: "Security of the Astronomer platform"
 date: 2018-10-12T00:00:00.000Z
 slug: "security"
 ---
 
-A deep respect for our customers and the data that they move with their Airflow deployments has always been central to what we value here at Astronomer. We recognize that our customers use our products to run business-critical jobs that often involve sensitive data sets. That is why we have implemented rigorous security policies that we continue to build upon with each of our product releases.
+A deep respect for our customers and their sensitive data workflows has always been central to to our values at Astronomer. This is why we have implemented rigorous security policies that we continue to build upon, with every product release.
+
+Astronomer Cloud is our growing family of Airflow-based SaaS offerings. For each Astronomer Cloud service, we strive to provide security and privacy for your data.
+
+## We are Committed to Information Security and Privacy
+
+Astronomer maintains a comprehensive information security program that includes appropriate technical and organizational measures designed to protect our customers' cluster data against unauthorized access, modification or deletion.
+
+## Our Privacy Statement is Transparent and Clear
+
+Elastic respects the privacy rights of individuals. Our [privacy policy](https://www.astronomer.io/privacy/) make it very clear when we collect personal data and how we use it. We've written our privacy policy in plain language to be transparent to our users and customers.
+
+## We Operate a Modern Cloud SaaS Platform
 
 We use Google Cloud Platform for our Cloud datacenter, which means our customers benefit from GCP's comprehensive security practices and compliance certifications. We do not host customer data on our premises or store customer data with any other third party services. GCP is a leading cloud provider that holds industry best security certifications such as SOC2 and ISO 27001 and provides encryption in transit and at rest.
 
-We will also begin issuing regular penetration and vulnerability tests via a third party vendor for all versions of Astronomer 0.8 and later. It is our top priority to ensure your data is secure, so we look forward to building a company culture where security is deeply engrained.
+Astronomer Cloud is hosted on infrastructure that we control via [GCP's Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview), in GCP us-east1. To allow it to communicate with your systems, we run a single NAT that all internet bound traffic flows through. We don't persist any of your data, and all computation runs in short-lived containers that terminate after tasks are completed.
 
-Towards that objective, we have quite a few internal practices in place that help us ensure that security remains a top priority. Astronomer audits changes to our application throughout the development lifecycle via architecture reviews and stringent automated and manual code review processes. We also monitor our application servers, infrastructure, and the Astronomer network environment to protect potential abuse.
+Our cluster and databases are all hosted in a private VPC with all private IPs. We connect to the cluster via SSH to a bastion node set up with authorized networks. We use the [GKE managed firewall rules]((https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview#node_security) at the VPC layer.
 
-## Cloud Edition
-
-Astronomer Cloud is hosted on infrastructure that we control via [GCP's Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview). To allow it to communicate with your systems, we run a single NAT that all internet bound traffic flows through. We don't persist any of your data, and all computation runs in short-lived containers that terminate after tasks are completed.
-
-Our cluster and databases are all hosted in a private VPC with all private IPs. We connect to the cluster via SSH to a bastion node set up with authorized networks.
-
-We also have a full Prometheus/Grafana monitoring stack that allows our employees to keep an eye on the health of all Airflow deployments running in Astronomer Cloud. We regularly check these dashboards and have alerts set up to notify our team if anything ever looks out of place.
-
-If you're interested in having a dedicated NAT or IP, you'll have to use our
-Enterprise product, which is installed into your Kubernetes.
-
-### Cloud Security FAQ
-
-*What encryption algorithm do you use to encrypt data?*
+## We encrypt all data
 
 We use AES to encrypt all data that is stored in underlying databases.
-
-*Do you have a firewall in place?*
-
-Yes, we use the GKE managed firewall rules at the VPC layer. [More on that here](https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview#node_security).
-
-*What PI data do you have access to?*
-
-The only PI data we have access to is an email address associated with each account created on Astronomer Cloud?
-
-*Do you encrypt client data at rest and during transfer?*
 
 Secrets, credentials, and connection details pertaining to an Astronomer Workspace are stored as Environment Variables in the Astronomer UI and are encrypted both at rest and in transit as Kubernetes Secrets.
 
 Our platform is additionally configured with a valid TLS certificate for our Cloud's base domain. All traffic to the system API and the docker registry is encrypted with this cert. Our system ensures that any sensitive data is encrypted in our database. We also ensure Airflow deployments are secured and configured with a Fernet Key to encrypt connection / variable data. All data related to payment is stored in Stripe and not in our database.
 
-*Describe how client data is segregated and protected from other client’s data if in a multi-client environment.*
+## We isolate customers from each other
 
 All customers are isolated within their own Postgres database with unique and randomly generated credentials that are randomly generated, secured and encrypted using Kubernetes Secrets. All customers are isolated inside of their own namespace within Kubernetes, with network policies, roles, and other security measures in place to ensure each tenant is truly isolated.
 
-*Where is Astronomer Cloud hosted?*
+## We provide real-time access to Airflow logs
 
-Astronomer Cloud is hosted in GCP us-east1.
+We allow user access to your scheduler, webserver, and worker logs via an EFK stack. Airflow-specific alerts for task and DAG run failures (or other triggers) can be configured via environment variables as needed.
 
-*How is logging handled in Astronomer Cloud?*
+## We provide SSO access to the platform
 
-In Cloud, we allow user access to your scheduler, webserver, and worker logs via an EFK stack. As of now, you cannot pull the logs via API or download a pre-saved file - access to the raw files is only achievable via Astronomer Enterprise, which is an install of our platform in your own VPC.
+Users have the option to authenticate with their Google account, GitHub account, or standard username/password.
 
-Airflow-specific alerts for task and DAG run failures (or other triggers) can be configured via environment variables as needed.
+## We proactively monitor the service
 
-*Do your users use MFA and/or IDP to login and authenticate to the service or management or infrastructure resources?*
+We also have a full Prometheus/Grafana monitoring stack that allows our employees to keep an eye on the health of all Airflow deployments running in Astronomer Cloud. We regularly check these dashboards and have alerts set up to notify our team if anything ever looks out of place.
 
-To create an Astronomer Workspace, users have the option to authenticate via Google, GitHub, or username/password.
+## We audit continuously during the development process
 
-*Do you share any PI data with external entity or service?*
+Astronomer audits changes to our application throughout the development lifecycle via architecture reviews and stringent automated and manual code review processes.
 
-No, we never share any PI data with any external services.
+## We've Built In Security Controls
 
-## Enterprise Edition
+We've taken significant measures to ensure that Astronomer Cloud customer data cannot be read, copied, modified, or deleted during electronic transmission, transport, or storage through unauthorized means. To reduce the likelihood of vulnerability-related incidents, the Astronomer Cloud team deploys Airflow instances based on the latest operating system kernels, and patches the computing “fleet” whenever a critical CVE (i.e., "Common Vulnerability and Exposure," in security-speak) is discovered in any component software. Similarly, Astronomer software, including Astronomer Enterprise, used in the provisioning of Astronomer Cloud SaaS offerings, is updated soon after released to ensure that latest versions are deployed.
 
-Astronomer Enterprise is deployed in your cloud, on your Kubernetes. As such,
-it will comply with your internal security specifications.
+Clusters are deployed behind proxies and are not visible to internet scanning. Transport Layer Security (TLS) encrypted communication from the Internet is provided in the default configuration. Astronomer nodes run in isolated containers, configured according to the principle of least privilege, and with restrictions on system calls and allowed root operations. Astronomer nodes communicate using TLS. Cluster data is encrypted at rest. API access is limited to Astronomer APIs, and no remote access to the instance or container at the Linux level is allowed. Containers have no means of setting up communication with containers from another cluster.
+
+We do not perform Internet-based penetration testing against production Astronomer Cloud SaaS offerings, however, we do use third parties to perform application security assessments against the Astronomer software components used to deliver these services.
+
+## We Practice Responsible Vulnerability Management
+
+Astronomer recognizes that software development inherently includes the possibility of introducing vulnerabilities. We accept and disclose vulnerabilities discovered in our software in a transparent manner.
+
+## We Operate in Compliance with the Principles of GDPR
+
+The only personal information data we have access to is the email address associated with each account created on Astronomer Cloud. We never share any personal information data with external services.
+
+Astronomer has prepared for GDPR by carefully reviewing and documenting how it handles personal data, implementing technical and organizational measures to protect the personal data it does handle, and defining and implementing processes to respect the rights of data subjects, across all its products and services. Astronomer is operating in compliance with the principles of GDPR. Astronomer Cloud customers can request a Data Processing Addendum (DPA) by creating a [support case](mailto:support@astronomer.io).
+
+## Protecting Your Account
+
+At Astronomer, we know that security is everyone's responsibility. That's why we bake security into the development of our products and into the foundation of Astronomer Cloud. The security and privacy of your Astronomer Cloud SaaS data also relies on you maintaining the confidentiality of your Astronomer Cloud login credentials.
+
+Here's a quick checklist:
+
+* Don't share your credentials with others.
+* Update your account profile to make sure information is correct and current.
+* Ensure that you've set secure passwords.
+* If you believe an account has been compromised, please email [security@astronomer.io](mailto:security@astronomer.io). If you need to make an erasure request, please email [privacy@astronomer.io](mailto:privacy@astronomer.io).
+
+## Learn more details
+
+1. https://www.astronomer.io/docs/ee-overview/
+1. Elastic Cloud is hosted on third-party platforms that have the following certifications:
+SOC 1, SOC 2, ISO 27001, ISO 27017, ISO 27018. Please see: https://cloud.google.com/security/compliance
+1. Elastic Cloud provides the following:
+  * Availability monitoring
+  * Backups for critical platform data
+  * 24/7 operations
+1. Astronomer Enterprise is deployed in your cloud, on your Kubernetes. As such, it will comply with your internal security specifications.
