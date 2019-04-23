@@ -9,8 +9,10 @@ Welcome to Astronomer!
 
 If you're a Windows User looking to install and use the Astronomer CLI, you have 2 options:
 
-1. Install the CLI directly on Windows 10
-2. Install a Windows Subsystem for Linux (WSL)
+1. Install the Unix-based CLI a Windows Subsystem for Linux (WSL)
+2. Install the Windows-based CLI 
+
+**Note:** Either option will require Windows 10 or greater.
 
 ## Astronomer CLI on Windows Subsystem for Linux (WSL)
 
@@ -69,7 +71,7 @@ Once you've completed the steps above, head over to our [CLI Quickstart Guide](h
 
 ## Astronomer CLI on Windows 10
 
-If for any reason you can't install WSL, you can install the Astronomer CLI directly by following the instructions below.
+If for any reason you can't install WSL, you can install a Windows adapted version of the Astronomer CLI directly by following the instructions below.
 
 ### Step 1. Pre-Flight Checklist
 
@@ -90,7 +92,7 @@ Currently, Astronomer on Windows outside of WSL is only supported by Astronomer 
 
 To install our latest version, go [here](https://github.com/astronomer/astro-cli/releases/download/v0.8.2/astro_0.8.2_windows_386.zip).
 
-### Step 4. Exract an Astro Windows file
+### Step 4. Extract the contents
 
 After following step 3, you should see a zip file on your machine that contains the following:
 
@@ -99,9 +101,12 @@ After following step 3, you should see a zip file on your machine that contains 
 - LICENSE
 - A file titled `astro.exe`
 
-Grab that `astro.exe` file and move it somewhere in your %PATH%. For more info on how to do so, check out [this doc]().
+Grab that `astro.exe` file and move it to a location that won't be deleted.
 
-### Step 5. Final Command
+### Step 5. Extract the contents 
+Add the location of `astro.exe` in your %PATH%. If you don't know how to do this, check out [this helpful guide](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/).
+
+### Step 6. Final Command
 
 Now, open your Terminal or PowerShell console and run the following:
 
@@ -111,9 +116,9 @@ Astro CLI Version: 0.8.2
 Git Commit: f5cdab8f832da3c6184a7ac167b491e3bac3c022
 ```
 
-You're all set! Happy Airflowing.
+If you get a response like the above, you're all set! Happy Airflow-ing.
 
-### Potential Postgres Error
+## Potential Postgres Error
 
 As a Windows user, you might see the following error when trying to call `astro airflow start` on your newly created workspace:
 
