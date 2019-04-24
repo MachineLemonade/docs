@@ -25,7 +25,7 @@ All Astronomer services will be tied to a base domain of your choice. You will n
 * New Airflow Deployments: `unique-name-airflow.astro.mydomain.com`
 * Grafana Dashboard: `grafana.astro.mydomain.com`
 * Kibana Dashboard: `kibana.astro.mydomain.com`
-  
+
 ## 3. Configure GCP for Astronomer Deployment
 
 *NOTE - You can view Google Cloud Platform's Web Console at https://console.cloud.google.com/*
@@ -62,11 +62,13 @@ $ gcloud config set compute/zone [COMPUTE_ZONE]
 ### Create a GKE Cluster
 Astronomer will deploy to Google's managed Kubernetes service (Google Kubernetes Engine). Learn more about GKE [here](https://cloud.google.com/kubernetes-engine/).
 
-Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
+Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine).
+
+We recommend using `n1-standard-8` nodes as a starting sport.
 
 
 Create your Kubernetes cluster:
- 
+
 *NOTE - You can choose the machine type to use, but we recommend using larger nodes vs smaller nodes.*
 ```
 $ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-8 --enable-autoscaling --max-nodes 10 --min-nodes 3
@@ -141,6 +143,8 @@ For demonstration purposes, we'll use the PostgreSQL helm chart:
 ```
 $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 ```
+
+**Note:** We recommend using a Postgres instance with 3CPUs and 10GB of memory.
 
 ## 6. SSL Configuration
 
@@ -241,7 +245,7 @@ nginx:
 #################################
 ## SMTP configuration
 #################################  
-  
+
 astronomer:
   houston:
     config:
@@ -254,6 +258,9 @@ Note - the SMTP URI will take the form:
 ```
 smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
+
+
+Check out our `Customizing Your Install` section for guidance on setting an (auth system)[https://www.astronomer.io/docs/ee-integrating-auth-system/] and (resource requests)[https://www.astronomer.io/docs/ee-configuring-resources/] in this `config.yaml`.
 
 ## 9. Install Astronomer
 ```
