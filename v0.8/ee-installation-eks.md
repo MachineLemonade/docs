@@ -40,7 +40,6 @@ You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as w
 * We generally advise running the EKS control plane in a single security group. The worker nodes you spin up should have the same setup as the EKS control plane.
 * All security/access settings needed for your worker nodes should be configured in your Cloud Formation template.
 * If you are creating the EKS cluster from the UI **only the user who created the cluster will have kubectl access to the cluster**. To give more users `kubectl` access, you'll have to configure that manually. [This post](http://marcinkaszynski.com/2018/07/12/eks-auth.html) goes through how IAM plays with EKS.
-* Currently, the default EKS AMI does not work with Elasticsearch, which handles logs in the Astronomer platform. You'll have to use a different CloudFormation template found [here](https://forum.astronomer.io/t/elasticsearch-wont-work-on-eks/163/2)
 * You'll be able to see each of your underlying nodes in the EC2 console. We recommend using 3 [t2.2xlarge](https://aws.amazon.com/ec2/instance-types/) nodes as a starting cluster size. You are free to use whatever node types you'd like, but Astronomer takes ~11 CPUs and ~40GB of memory as the default overhead. You can customize the default resource requests (see step 9).
 
 ## 4. Create a Stateful Storage Set
