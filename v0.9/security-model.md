@@ -26,8 +26,11 @@ that all internet bound traffic flows through. We don't persist any of your
 data, and all computation runs in short-lived containers that terminate after
 the task is finished.
 
+Our cluster and databases are all hosted in a private VPC with all private IPs. We connect to the cluster via SSH to a bastion node set up with authorized networks.
+
 If you're interested in having a dedicated NAT or IP, you'll have to use our
 Enterprise product, which is installed into your Kubernetes.
+
 
 ## Enterprise Edition
 

@@ -1,6 +1,6 @@
 ---
-title: "Quickstart Guide"
-description: "How to get up and running with Astronomer Clou"
+title: "Quickstart"
+description: "How to get up and running with Astronomer Cloud"
 date: 2018-10-12T00:00:00.000Z
 slug: "getting-started"
 ---
@@ -15,23 +15,13 @@ This guide will help you kick off your trial on Astronomer by walking you throug
 
 Let's begin by downloading our open-source CLI. This will allow you to quickly establish a local testing environment and is completely free to use.
 
-For starters, be sure that you have [Docker](https://www.docker.com/) and [Go](https://golang.org/) installed on your machine. 
-
-#### If you're using Astronomer Cloud or Astronomer Enterprise v0.7.x
+For starters, be sure that you have [Docker](https://www.docker.com/) and [Go](https://golang.org/) installed on your machine.
 
 Open your terminal and run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5
  ```
-
- #### If you're using Astronomer Enterprise v0.8
-
- Open your terminal and run:
-
- ```
-curl -sSL https://install.astronomer.io | sudo bash
-```
 
 Running either of the above will run a script that installs the [CLI](https://github.com/astronomer/astro-cli). You can take a look at that script [here](https://install.astronomer.io).
 
@@ -55,35 +45,37 @@ This will generate some skeleton files:
 
 ```py
 .
-├── dags #Where your DAGs go
-│   ├── example-dag.py ##An example dag that comes with the initialized project.
-├── Dockerfile #For runtime overrides
-├── include #For any other files you'd like to include
-├── packages.txt #For OS-level packages
-├── plugins #For any custom or community Airflow plugins
-└── requirements.txt #For any python packages
+├── dags # Where your DAGs go
+│   ├── example-dag.py # An example dag that comes with the initialized project.
+├── Dockerfile # For runtime overrides
+├── include # For any other files you'd like to include
+├── packages.txt # For OS-level packages
+├── plugins # For any custom or community Airflow plugins
+└── requirements.txt # For any python packages
 ```
 
-Running this command generates an example DAG for you to deploy while getting started. The DAG itself doesn't have much functionality (it just prints the date a bunch of times), as it's designed to help you get accustomed with our deployment flow. 
+Running this command generates an example DAG for you to deploy while getting started. The DAG itself doesn't have much functionality (it just prints the date a bunch of times), as it's designed to help you get accustomed with our deployment flow.
 
 If you'd like to deploy some more functional example DAGs, [check out the ones we've open sourced here](https://github.com/airflow-plugins/example-dags).
 
 ### Customize Your Image
 
-Our base image runs Alpine Linux, so it is very slim by default.
+To stay slim, our base image is [Alpine Linux](https://alpinelinux.org/).
 
 - Add DAGs in the `dags` directory
 - Add custom airflow plugins in the `plugins` directory
 - Python packages can go in `requirements.txt`. By default, you get all the python packages required to run Airflow.
 - OS-level packages  can go in `packages.txt`
-- Any environment variable overrides can go in `Dockerfile` (_note_: with Astronomer 0.7, you can also inject env vars directly through the UI)
+- Any environment variable overrides can go in `Dockerfile` (or you can put these in the UI)
 
 If you are unfamiliar with Alpine Linux, look here for some examples of what
 you will need to add based on your use-case:
 
 - [GCP](https://github.com/astronomer/airflow-guides/tree/master/example_code/gcp/example_code)
 - [Snowflake](https://github.com/astronomer/airflow-guides/tree/master/example_code/snowflake/example_code)
-- More coming soon!
+- More coming soonC
+
+You can read more about customizing your image in our [Customizing Your Image](https://www.astronomer.io/docs/customizing-your-image/) doc.
 
 ### Run Apache Airflow Locally
 
@@ -99,11 +91,7 @@ This will spin up a local Airflow for you to develop on that includes locally ru
 
 To verify, you can run: `docker ps`
 
-The Airflow UI doesn't always show the full stacktrace. To get some more information while you're developing locally, you can run:
-
-```bash
-docker logs $(docker ps | grep scheduler | awk '{print $1}')
-```
+We highlight a few ways you can get logs in our [Logging](https://www.astronomer.io/docs/logs-and-source-control/) doc
 
 **Note on Python Versioning:** Astronomer Cloud runs Python 3.6.6. If you're running a different version, don't sweat it. Our CLI spins up a containerized environment, so you don't need to change anything on your machine if you don't want to.
 
@@ -135,7 +123,7 @@ If you already have a deployment created in your Astronomer Workspace, you can s
 - Give your deployment a name and description
 - Wait a few minutes (might have to refresh) for your webserver, scheduler, and celery flower (worker monitoring) to spin up
 
-Once you see an active URL under “Apache Airflow” in the middle of the page, you are set and ready to deploy your DAGs.
+You can find a full walkthrough in Once you see an active URL under “Apache Airflow” in the middle of the page, you are set and ready to deploy your DAGs.
 
 ### Deploy your First DAG
 
@@ -179,7 +167,7 @@ After you deploy your example DAG, you'll be able to see it running in your Clou
 
 ### Migrating your DAGs
 
-If you're a previous user of Astronomer Cloud or have a pre-existing Airflow instance, migrating your DAGs should be straightforward.
+If you have a pre-existing Airflow instance, migrating your DAGs should be straightforward - just move the DAGs and plugins over to their respective directories in your new `astro` directory.
 
 For the sake of not over-exposing data and credentials, there's no current functionality that allows you to automatically port over connections and variables from a prior Apache Airflow instance. You'll have to do this manually as you complete the migration.
 

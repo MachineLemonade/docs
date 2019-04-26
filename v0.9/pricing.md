@@ -64,6 +64,10 @@ For example, the cost of running 1 deployment on 25 AUs (a standard deployment w
 
 **Note**: Scheduled downtime is not currently supported. Check out a [related forum question](https://forum.astronomer.io/t/can-i-have-scheduled-downtime/35) for more info.
 
+### Non-Profit Discount
+
+We offer non-profit customers a 20% discount on their monthly Astronomer bill. Please reach out to us at humans@astronomer.io if you believe you may be eligible for this discount.
+
 ## Enterprise Pricing
 
 Astronomer Enterprise is priced via an annual licensing fee. You'll get access to the entire source code that powers Astronomer and pay us a flat fee for unlimited workers and Airflow deployments on your Kubernetes cluster.

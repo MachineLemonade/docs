@@ -15,7 +15,7 @@ Start by finding your Astronomer platform release name:
 
 ```
 helm ls
-``` 
+```
 
 The Astronomer platform release is identified by the CHART name, in this case our platform release name is `quiet-moose`
 
@@ -23,7 +23,7 @@ The Astronomer platform release is identified by the CHART name, in this case ou
 quiet-moose        	2       	Thu Aug  2 09:18:35 2018	DEPLOYED	astronomer-platform-0.3.1	astronomer-cloud
 ```
 
-Ensure you do not attempt to run the helm upgrade command on your airflow release, this can create issues with the airflow deployment. 
+Ensure you do not attempt to run the helm upgrade command on your airflow release, this can create issues with the airflow deployment.
 
 Switch to your astronomer EE helm chart cirectory:
 
