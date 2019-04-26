@@ -15,7 +15,7 @@ Astronomer maintains a comprehensive information security program that includes 
 
 ## Our Privacy Statement is Transparent and Clear
 
-Elastic respects the privacy rights of individuals. Our [privacy policy](https://www.astronomer.io/privacy/) make it very clear when we collect personal data and how we use it. We've written our privacy policy in plain language to be transparent to our users and customers.
+Astronomer respects the privacy rights of individuals. Our [privacy policy](https://www.astronomer.io/privacy/) make it very clear when we collect personal data and how we use it. We've written our privacy policy in plain language to be transparent to our users and customers.
 
 ## We Operate a Modern Cloud SaaS Platform
 
@@ -35,7 +35,7 @@ Our platform is additionally configured with a valid TLS certificate for our Clo
 
 ## We isolate customers from each other
 
-All customers are isolated within their own Postgres database with unique and randomly generated credentials that are randomly generated, secured and encrypted using Kubernetes Secrets. All customers are isolated inside of their own namespace within Kubernetes, with network policies, roles, and other security measures in place to ensure each tenant is truly isolated.
+All customers are isolated within their own Postgres database with unique and randomly generated credentials, secured and encrypted using Kubernetes Secrets. All customers are isolated inside of their own namespace within Kubernetes, with network policies, roles, and other security measures in place to ensure each tenant is truly isolated.
 
 ## We provide real-time access to Airflow logs
 
@@ -85,9 +85,9 @@ Here's a quick checklist:
 ## Learn more details
 
 1. https://www.astronomer.io/docs/ee-overview/
-1. Elastic Cloud is hosted on third-party platforms that have the following certifications:
+1. Astronomer Cloud is hosted on third-party platforms that have the following certifications:
 SOC 1, SOC 2, ISO 27001, ISO 27017, ISO 27018. Please see: https://cloud.google.com/security/compliance
-1. Elastic Cloud provides the following:
+1. Astronomer Cloud provides the following:
   * Availability monitoring
   * Backups for critical platform data
   * 24/7 operations
