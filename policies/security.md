@@ -87,8 +87,5 @@ Here's a quick checklist:
 1. https://www.astronomer.io/docs/ee-overview/
 1. Astronomer Cloud is hosted on third-party platforms that have the following certifications:
 SOC 1, SOC 2, ISO 27001, ISO 27017, ISO 27018. Please see: https://cloud.google.com/security/compliance
-1. Astronomer Cloud provides the following:
-  * Availability monitoring
-  * Backups for critical platform data
-  * 24/7 operations
+1. Astronomer Cloud provides availability monitoring, backups for critical platform data, and 24/7 operations.
 1. Astronomer Enterprise is deployed in your cloud, on your Kubernetes. As such, it will comply with your internal security specifications.
