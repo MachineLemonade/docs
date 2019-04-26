@@ -60,3 +60,38 @@ Once all the changes are made, run `helm upgrade` to switch your platform to the
 helm upgrade -f config.yaml $release_name . --namespace $namespace
 ```
 Be sure to specify the platform namespace, not an Airflow namespace.
+
+
+## Infrastructure Estimates
+
+To ensure plenty of room to run Airflow environments and hefty jobs, these estimates are going to be for a cluster with around 24CPUs in the US-East region.
+
+### AWS
+
+| Component | Item          | Yearly Cost (annual upfront pricing)  |
+| -------------- | ------------- | ------------- |
+| Compute        | 3 t2.2xlarge (8 vCPU 32 GiB)  | $5640 |
+| EKS Control Plane     | $0.20 * 24 * 365 | $1752 |
+| Database       | db.t2.medium Postgres, Multi-AZ at $0.29/hr \*24hr \* 365 | $424 |
+| Total            |  | $7816 |
+
+
+### GCP
+
+| Component | Item          | Yearly Cost (annual upfront pricing)  |
+| -------------- | ------------- | ------------- |
+| Compute        | 3 t2.2xlarge (8 vCPU 32 GiB) at $0.376/hr \* 24hr \* 365 days | $6,291.17 |
+| Database       | db.t2.medium Postgres, Multi-AZ at $0.29/hr \*24hr \* 365 | $1397.98 |
+| Total            |  | $7689.15 |
+
+For added customization, check out the [GCP Pricing Calculator](https://cloud.google.com/products/calculator/#id=f899c077-6b8b-4ccd-8f8c-974e04cbe872).
+
+### Azure
+
+| Component | Item          | Yearly Cost (annual upfront pricing)  |
+| -------------- | ------------- | ------------- |
+| Compute        | 3 x D8s v3 (8 vCPU(s), 32 GiB) | $8343.12 |
+| Database       | 1 x Gen 5 (2 vCore), 25 GB Storage,LRS redundancy	 | $1568 |
+| Total            |  | $9911.12 |
+
+The [Azure Price Calculator](https://azure.microsoft.com/en-us/pricing/calculator/?service=kubernetes-service) can be used to get an estimate for further customization.

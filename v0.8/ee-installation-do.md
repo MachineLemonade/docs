@@ -47,7 +47,7 @@ You can either add this file to your `.kube/config` or you can refer to it expli
 ## 4. Configure Helm with your Digital Ocean Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
 ### Create a Kubernetes Namespace
-Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a seperate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
+Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a separate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
 
 ```
 $ kubectl  --kubeconfig="astro-do-test-kubeconfig.yaml" create namespace <my-namespace>
