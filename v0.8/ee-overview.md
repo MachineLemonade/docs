@@ -8,7 +8,7 @@ slug: "ee-overview"
 
 Astronomer Enterprise Edition allows you to run a private version of the Astronomer platform within your own Kubernetes.
 
-## Astronomer Platform Deployment Components
+## Astronomer Platform Components
 
 ### Astro CLI
 Command Line tool for pushing deployments from your local machine to your workspaces running on Kubernetes. The CLI also provides the ability to launch a local stack via docker for local development and testing of DAGs, hooks and operators.
