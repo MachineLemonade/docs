@@ -42,6 +42,28 @@ curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5
 
     cat godownloader.sh | bash -s -- -b /usr/local/bin
 
+## Alternative Option for Install
+If you would rather not provide root access to the install script, you can alternatively install the CLI by downloading the relevant version [here](https://github.com/astronomer/astro-cli/tags). Click into the version and scroll down to the `Assets` section of the corresponding release page. Click on the CLI version corresponding to your local machine (e.g. `astro_0.7.5_linux_386.tar.gz`) and unzip the `.tar.gz` that downloads. Place it in a location that ensures it will not be deleted and add an alias to the `astro` binary or quick access.
+
+```
+alias astro-='~/astro-cli-0.7.5/astro'
+```
+
 ## Windows 10
 
 If you're interested in running the Astronomer CLI on the Windows 10 subsystem for Linux, [check out this doc](https://astronomer.io/docs/cli-installation-windows-10).
+
+## Build from Source
+To build from source, navigate to your `GOPATH` and `git clone https://github.com/astronomer/astro-cli.git`. If you don't already have `go` installed, install it now by following the [instructions](https://golang.org/doc/install) relevant to your local machine.
+
+Once you have `go` installed, issue `make build` from the main directory (the one with `Makefile` in it). You will  see a message like the following:
+```
+go build -o astro -ldflags "-X github.com/astronomer/astro-cli/version.CurrVersion=SNAPSHOT-2571362  -X github.com/astronomer/astro-cli/version.CurrCommit=2571362770b7540ec5d37382d03c176f9e25cc41" main.go
+```
+Check that there is now a `astro` binary in the directory. If there is, the build was successful. If there are any errors, the build will fail to compile.
+
+Alias the location of this local build for quick access.
+```
+export GOPATH=${HOME}/go
+alias astro-local=${GOPATH}/src/github.com/astronomer/astro-cli/astro
+```

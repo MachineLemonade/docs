@@ -5,6 +5,7 @@ date: 2019-01-14T00:00:00.000Z
 slug: "setting-up-airflow-emails"
 ---
 
+# Airflow Alerting
 Airflow emails are a useful way to get notified of DAG retries, failures, and anything else you want to custom set through the [email util](https://github.com/apache/airflow/blob/master/airflow/utils/email.py). By default, Astronomer does not bundle in a SMTP service to send emails through Airflow but there are a number of easy (and free) options to include your own account.
 
 This guide will walk through the setup of a free Sendgrid account and how to connect it to your Airflow deployment.
@@ -48,11 +49,6 @@ SMTP__SMTP_MAIL_FROM={ENTER_RELEVENT_FROM_EMAIL_HERE}
 
 Click `Update` to save the configuration and redeploy to propagate to your deployment. Your deployment will use that configuration to send emails from then on.
 
-## Additional Configuration
-
-For more insight on how each alert is triggered, it might be helpful to take a look at the [underlying configs](https://github.com/astronomer/helm.astronomer.io/blob/387bcfcc06885d9253c2e1cfd6a5a08428323c57/charts/prometheus/values.yaml#L99
-). For example, you'll see that the alert `AirflowFailureRate` will occur at any given time relative to the failure rate for the prior two days, etc.
-
 ### Triggering Alerts on DAG Run
 
 Email alerting set up via `email_on_failure` is handled at the task level. If a handful of your tasks fail for related reasons, you'll receive an individual email for each of those failures.
@@ -74,3 +70,53 @@ def new_email_alert(self, **kwargs):
                 "to say whatever I want it to say.<br>")
   send_email('my_email@email.com', title, body)
   ```
+# Astronomer Alerting
+
+
+In the Astronomer UI, you can subscribe to additional alerts in the `Alerts` tab. These alerts are _platform_ level alerts that pertain to how the underlying components are performing (e.g. is the scheduler healthy? Are tasks failing at an abnormal _rate_? )
+
+**Note:** You do **not** need to create an SMTP URI for this feature to work.
+
+### Airflow Depoloyment Alerts
+
+| Alert | Description |
+| ------------- | ------------- |
+| `AirflowDeploymentUnhealthy` | Airflow deployment is unhealthy, not completely available. |
+| `AirflowFailureRate` | Airflow tasks are failing at a higher rate than normal. |
+| `AirflowSchedulerUnhealthy` | Airflow scheduler is unhealthy, heartbeat has dropped below the acceptable rate. |
+| `AirflowPodQuota` | Deployment is near its pod quota, has been using over 95% of it's pod quota for over 10 minutes. |
+| `AirflowCPUQuota` | Deployment is near its CPU quota, has been using over 95% of it's CPU quota for over 10 minutes. |
+| `AirflowMemoryQuota` | Deployment is near its memory quota, has been using over 95% of it's memory quota for over 10 minutes. |
+
+### Platform Alerts (Enterprise Only)
+
+| Alert | Description |
+| ------------- | ------------- |
+| `PrometheusDiskUsage` | Prometheus high disk usage, has less than 10% disk space available. |
+| `RegistryDiskUsage` | Docker Registry high disk usage, has less than 10% disk space available. |
+| `ElasticsearchDiskUsage` | Elasticsearch high disk usage, has less than 10% disk space available. |
+| `IngessCertificateExpiration` | TLS Certificate expiring soon, expiring in less than a week. |
+
+
+
+```
+alert: AirflowSchedulerUnhealthy
+      expr: round(rate(airflow_scheduler_heartbeat{type="counter"}[1m]) * 5) == 0
+      for: 3m # Scheduler should reboot quick
+      labels:
+        tier: airflow
+        component: scheduler
+        deployment: "{{ $labels.deployment }}"
+      annotations:
+        summary: "{{ $labels.deployment }} scheduler is unhealthy"
+        description: "The {{ $labels.deployment }} scheduler's heartbeat has dropped below the acceptable rate."
+```
+_This alert fires when the scheduler is not heartbeating every 5 seconds for more than 3 minutes._
+
+The full PQL ([Prometheus Query Language](https://prometheus.io/docs/prometheus/latest/querying/basics/)) for how all these alerts are triggered can be found in our helm [helm charts ](https://github.com/astronomer/helm.astronomer.io/blob/387bcfcc06885d9253c2e1cfd6a5a08428323c57/charts/prometheus/values.yaml#L99
+).
+
+
+
+
+**Note:** Customizing these alerts is currently only a feature available to Enterprise customers.

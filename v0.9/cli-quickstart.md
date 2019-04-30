@@ -22,7 +22,7 @@ curl -sSL https://install.astronomer.io | sudo bash
 
 ```
 
-**Note:** The `curl` command will work for Unix (Linux+Mac) based systems. If you want to run on Windows 10, you'll need to run through [this guide](https://www.astronomer.io/docs/cli-installation-windows-10/?_ga=2.105008643.146962510.1554994254-1828434170.1536931577) on getting Docker for WSL working.
+**Note:** The `curl` command will work for Unix (Linux+Mac) based systems. If you want to run on Windows 10, you'll need to run through [this guide](https://www.astronomer.io/docs/cli-installation-windows-10) on getting Docker for WSL working.
 
 ## Confirm the Install
 
@@ -81,9 +81,12 @@ Once that command is run, you'll see the following skeleton project generated:
 ├── plugins # For any custom or community Airflow plugins
 └── requirements.txt # For any python packages
 ```
+The sample dag that gets generated has a few tasks that run bash commands
 
-Our image also comes with an `example_dag` (with 12 branching tasks) that you're free to play around with.
+**Note:** The image will take some time to build the first time, after that it will build from cached layers.
 
-**Note:** The image will take some time to build the first time. Right now, you have to rebuild the image each time you want to add an additional package or requirement.
+Now you can run `astro airflow start` and see Airflow running on `localhost:8080/admin`
 
-Now you can run `astro airflow start` and see Airflow running on `localhost:8080/admin`.
+All changes made to the `dags` and `plugins` directory will be picked up automatically - any changes made to any of the other files will need the image to be rebuilt (`astro airflow stop` and `astro airflow start`).
+
+For more information on using the CLI, see the Developing Locally with the CLI section.

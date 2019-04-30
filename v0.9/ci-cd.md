@@ -48,6 +48,7 @@ https://app.[BaseDomain]/login
 ### Configuring Your CI/CD Pipeline
 
 Depending on your CI/CD tool, configuration will be slightly different. This section will focus on outlining what needs to be accomplished, not the specifics of how.
+
 At it's core, your CI/CD pipeline will be authenticating to the private registry installed with the platform, then building, tagging and pushing an image to that registry.
 
 An example pipeline (using DroneCI) could look like:
@@ -133,6 +134,32 @@ workflows:
                 - master
 ```
 
+Similarly, a Jenkins script could look like:
+
+
+```
+pipeline {
+ agent any
+   stages {
+     stage('Deploy to astronomer') {
+       when { branch 'master' }
+       steps {
+         script {
+           sh 'docker build -t registry.astronomer.cloud/foo-bar-8077/airflow:ci-${BUILD_NUMBER} .'
+           sh 'docker login registry.astronomer.cloud -u _ -p ${ASTRO_KEY}'
+           sh 'docker push registry.astronomer.cloud/foo-bar-8077/airflow:ci-${BUILD_NUMBER}'
+         }
+       }
+     }
+   }
+ post {
+   always {
+     cleanWs()
+   }
+ }
+}
+
+```
 
 Breaking this down:
 
@@ -166,7 +193,7 @@ Tag name allows you to track all Airflow deployments made for that cluster over 
 
 In the below example we use the prefix `ci-` and the ENV `${DRONE_BUILD_NUMBER}`. This guarentees that we always know which CI/CD build triggered the build and push.
 
-Example
+Example:
 
 ```bash
 docker build -t registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD_NUMBER} .
@@ -175,4 +202,5 @@ docker build -t registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD
 If you would like to see a more complete working example please visit our [full example using Drone-CI](https://github.com/astronomerio/example-dags/blob/master/.drone.yml).
 
 Check out this video for a full walkthrough of this process:
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8h9lXzGa4sQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

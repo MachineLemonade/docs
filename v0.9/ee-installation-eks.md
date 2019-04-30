@@ -16,7 +16,7 @@ This guide describes the prerequisite steps to install Astronomer on Amazon Web 
 * [Helm](https://docs.helm.sh/using_helm/#installing-helm)
 * SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create/modify resources on AWS
-* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide) 
+* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)
 
 *NOTE - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
 
@@ -40,8 +40,7 @@ You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as w
 * We generally advise running the EKS control plane in a single security group. The worker nodes you spin up should have the same setup as the EKS control plane.
 * All security/access settings needed for your worker nodes should be configured in your Cloud Formation template.
 * If you are creating the EKS cluster from the UI **only the user who created the cluster will have kubectl access to the cluster**. To give more users `kubectl` access, you'll have to configure that manually. [This post](http://marcinkaszynski.com/2018/07/12/eks-auth.html) goes through how IAM plays with EKS.
-* Currently, the default EKS AMI does not work with Elasticsearch, which handles logs in the Astronomer platform. You'll have to use a different CloudFormation template found [here](https://forum.astronomer.io/t/elasticsearch-wont-work-on-eks/163/2)
-* You'll be able to see each of your underlying nodes in the EC2 console.
+* You'll be able to see each of your underlying nodes in the EC2 console. We recommend using 3 [t2.2xlarge](https://aws.amazon.com/ec2/instance-types/) nodes as a starting cluster size. You are free to use whatever node types you'd like, but Astronomer takes ~11 CPUs and ~40GB of memory as the default overhead. You can customize the default resource requests (see step 9).
 
 ## 4. Create a Stateful Storage Set
 
@@ -184,6 +183,8 @@ You'll need the full connection string for a user that has the ability to create
 kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
 ```
 
+**Note**: We recommend using a [t2 meduium](https://aws.amazon.com/rds/instance-types/) as the minimum RDS instance size.
+
 ### Create TLS Secret
 
 Create a TLS secret named `astronomer-tls` using the previously generated SSL certificate files.
@@ -257,6 +258,8 @@ Note - the SMTP URI will take the form:
 ```
 smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
+
+Check out our `Customizing Your Install` section for guidance on setting an (auth system)[https://www.astronomer.io/docs/ee-integrating-auth-system/] and (resource requests)[https://www.astronomer.io/docs/ee-configuring-resources/] in this `config.yaml`.
 
 ## 10. Install Astronomer
 
