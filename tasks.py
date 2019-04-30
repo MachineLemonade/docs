@@ -21,7 +21,7 @@ def render(c):
     and the navigation structure defined in `nav.json`.
     
     """
-    print('writing tne following to the docs_nav.json file...')
+    print('writing the following to the docs_nav.json file...')
 
     new_layouts_content = get_metadata()
 
