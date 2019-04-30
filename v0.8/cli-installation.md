@@ -57,7 +57,7 @@ If you're interested in running the Astronomer CLI on the Windows 10 subsystem f
 To build from source, navigate to your `GOPATH` and `git clone https://github.com/astronomer/astro-cli.git`. If you don't already have `go` installed, install it now by following the [instructions](https://golang.org/doc/install) relevant to your local machine.
 
 Once you have `go` installed, issue `make build` from the main directory (the one with `Makefile` in it). You will  see a message like the following:
-``
+```
 go build -o astro -ldflags "-X github.com/astronomer/astro-cli/version.CurrVersion=SNAPSHOT-2571362  -X github.com/astronomer/astro-cli/version.CurrCommit=2571362770b7540ec5d37382d03c176f9e25cc41" main.go
 ```
 Check that there is now a `astro` binary in the directory. If there is, the build was successful. If there are any errors, the build will fail to compile.
