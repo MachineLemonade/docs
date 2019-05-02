@@ -273,6 +273,8 @@ astronomer:
 
 ```
 
+Check out our `Customizing Your Install` section for guidance on setting an [auth system](https://www.astronomer.io/docs/ee-integrating-auth-system/) and [resource requests(https://www.astronomer.io/docs/ee-configuring-resources/) in this `config.yaml`.
+
 ### Create a DNS A Record
 Create an A record through your DNS provider for `*.astro.mydomain.com` using your previously created static IP address.
 

@@ -25,7 +25,7 @@ All Astronomer services will be tied to a base domain of your choice. You will n
 * New Airflow Deployments: `unique-name-airflow.astro.mydomain.com`
 * Grafana Dashboard: `grafana.astro.mydomain.com`
 * Kibana Dashboard: `kibana.astro.mydomain.com`
-  
+
 ## 3. Configure Azure for Astronomer Deployment
 
 *NOTE - You can view Microsoft Azure's Web Portal at https://portal.azure.com/*
@@ -237,7 +237,7 @@ nginx:
 #################################
 ## SMTP configuration
 #################################  
-  
+
 astronomer:
   houston:
     config:
@@ -255,6 +255,8 @@ smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 $ helm install -f config.yaml . --namespace <my-namespace>
 ```
+
+Check out our `Customizing Your Install` section for guidance on setting an [auth system](https://www.astronomer.io/docs/ee-integrating-auth-system/) and [resource requests(https://www.astronomer.io/docs/ee-configuring-resources/) in this `config.yaml`.
 
 ## 10. Verify all pods are up
 To verify all pods are up and running, run:

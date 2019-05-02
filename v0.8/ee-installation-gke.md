@@ -260,7 +260,7 @@ smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 
 
-Check out our `Customizing Your Install` section for guidance on setting an (auth system)[https://www.astronomer.io/docs/ee-integrating-auth-system/] and (resource requests)[https://www.astronomer.io/docs/ee-configuring-resources/] in this `config.yaml`.
+Check out our `Customizing Your Install` section for guidance on setting an [auth system](https://www.astronomer.io/docs/ee-integrating-auth-system/) and [resource requests(https://www.astronomer.io/docs/ee-configuring-resources/) in this `config.yaml`.
 
 ## 9. Install Astronomer
 ```
