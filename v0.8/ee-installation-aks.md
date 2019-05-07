@@ -6,6 +6,8 @@ slug: "ee-installation-aks"
 ---
 
 # Installing Astronomer on Azure AKS
+_Deploy a Kubernetes native (Apache Airflow)[https://airflow.apache.org/] platform onto (Azure Kubernetes Service)[https://azure.microsoft.com/en-us/services/kubernetes-service/] (AKS)_
+
 
 ## 1. Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)

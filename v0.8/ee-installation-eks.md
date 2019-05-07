@@ -7,6 +7,7 @@ slug: "ee-installation-eks"
 This guide describes the prerequisite steps to install Astronomer on Amazon Web Services (AWS).
 
 # Installing Astronomer on AWS EKS
+_Deploy a Kubernetes native (Apache Airflow)[https://airflow.apache.org/] platform onto (AWS Elastic Kubernetes Service)[https://aws.amazon.com/eks/] (EKS)_
 
 ## 1. Install Necessary Tools
 

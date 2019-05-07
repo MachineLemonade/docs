@@ -6,6 +6,7 @@ slug: "ee-installation-gke"
 ---
 
 # Installing Astronomer on GCP GKE
+_Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platform onto Google Kubernetes Engine (or [GKE](https://cloud.google.com/kubernetes-engine/) for short)._
 
 ## 1. Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)

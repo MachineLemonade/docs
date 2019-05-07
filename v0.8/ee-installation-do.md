@@ -6,6 +6,8 @@ slug: "ee-installation-do"
 ---
 
 # Installing Astronomer on Digital Ocean Kubernetes
+_Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platform onto [Digital Ocean Kubernetes](https://www.digitalocean.com/products/kubernetes/)_
+
 
 ## 1. Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
