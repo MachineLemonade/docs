@@ -5,41 +5,40 @@ date: 2019-04-29T00:00:00.000Z
 slug: "kubepod-operator"
 ---
 
-If you're already using Airflow, the [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) can be a powerful component to incorporate in your architecture. Contributed mid-2018 by the Bloomberg engineering team, the KubePodOperator allows you to natively launch arbitrary Kubernetes Pods in which to run a Docker container using the Kube Python Client to generate a Kubernetes API request. A few benefits (taken from the [Kubernetes blog](https://kubernetes.io/blog/2018/06/28/airflow-on-kubernetes-part-1-a-different-kind-of-operator/) itself):
+The [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) allows you to natively launch arbitrary Kubernetes Pods in which to run a Docker container using the Kube Python Client to generate a Kubernetes API request.
 
-- Increased flexibility for deployments, as any task that can be run within a Docker container is accessible through the exact same operator, with no extra Airflow code to maintain
-- A Custom Docker image for flexibility on dependencies and configurations
-- Added security with Kubernetes secrets
+To leverage this component into your Airflow infrastructure on Astronomer Cloud or Enterprise, check out the guidelines below.
 
-If you're using Astronomer, we want you to be able to leverage this component - on both Cloud and Enterprise. Read below for guidelines.
+### Description
 
-## KubernetesPodOperator on Astronomer Cloud
+The KubePodOperator works the same way as the Docker Operator - all you need to do is supply a Docker image to run. Astronomer Cloud is a multi-tenant install of Astronomer Enterprise that sits on top of Google's Kubernetes Engine (GKE). As a Cloud customer, you do NOT need to provide the Kubernetes overhead. We'll take care of that for you.
 
-In general, the KubePodOperator works the same way as the Docker Operator - all you need to do is supply a Docker image to run. Astronomer Cloud is a multi-tenant install of Astronomer Enterprise that sits on top of Google's Kubernetes Engine (GKE). As a Cloud customer, you do NOT need to provide the Kubernetes overhead. We'll take care of that for you.
+Note: The Docker Operator is NOT supported on Astronomer for security reasons (we'd have to expose the Docker socket through to containers with a mount and let an unmanaged container run on the host machine).
 
-Note: The Docker Operator is NOT supported on Astronomer for security reasons (we'd have to expose the Doker socket through to containers with a mount), but the KubePodOperator is an excellent replacement.
+### Requirements
 
-### Initial Setup
+1. Astronomer Airflow 1.10.x
+    - If you're running Airflow 1.9, check out [this forum post](https://forum.astronomer.io/t/how-do-i-run-airflow-1-10-on-astronomer-v0-7/58) to upgrade.
+2. Have publicly hosted Docker image
 
-A Few Things:
+### Intial Setup
 
-- Make sure you're running Apache Airflow 1.10.x. If you're running Airflow 1.9, check out [this forum post](https://forum.astronomer.io/t/how-do-i-run-airflow-1-10-on-astronomer-v0-7/58) to upgrade.
 - You can import the Operator as you would any other plugin in [its GitHub Contrib Folder](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py)
-- You'll need a publicly hosted Docker image
-- Astronomer Cloud stores the Kube config in the cluster, so your namespace on Kubernetes will be astronomer-cloud-release_name (e.g. astronomer-cloud-frigid-vacuum-0996)
-- In your code, set the `in_cluster` parameter to `True`. This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
-- Make sure to scale the `Extra Capacity` slider in your Deployment `Configure` page to 10+ AU
+- For Astronomer Cloud, your namespace on Kubernetes will be astronomer-cloud-release_name (e.g. `astronomer-cloud-frigid-vacuum-0996`)
+    - For Astronomer Enterprise, this would be be your base namespace and deployment name (e.g. `astronomer-yourcompany-frigid-vacuum-0996`)
+- Set the `in_cluster` parameter to `True` in your code
+    - This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
+- Scale the `Extra Capacity` slider in your Deployment `Configure` page to 10+ AU (details below)
 
 
 **Additional Notes**:
 
-- Make sure you properly configure any relevant keys or credentials (e.g. AWS signature keys), to avoid the following error when you're pushing up your image:
+- Make sure you properly configure any relevant keys or credentials (e.g. AWS signature keys), to avoid the following error when pushing up your image:
 ```
 ERROR: S3 error: 403 (SignatureDoesNotMatch): The request signature we calculated does not match the signature you provided. Check your key and signing method.\n’
 ```
-- [Apache Airflow Source Code](http://airflow.apache.org/_modules/airflow/contrib/operators/kubernetes_pod_operator.html)
-- `imagePullSecrets` is only supported in Airflow 1.10.2 and beyond, even though the parameter was added earlier. 
-- The KubernetesPodOperator actually doesn't support passing in image pull secrets until [Airflow 1.10.2](https://github.com/apache/airflow/blob/master/CHANGELOG.txt#L526). If you have that parameter in your DAG and get an error, take that into account and upgrade your Airflow version if you can.
+- The KubernetesPodOperator doesn't support passing in image pull secrets until [Airflow 1.10.2](https://github.com/apache/airflow/blob/master/CHANGELOG.txt#L526). If you have that parameter in your DAG and get an error, take that into account and upgrade your Airflow version if you can.
+- [Apache Airflow Source Code](http://airflow.apache.org/_modules/airflow/contrib/operators/kubernetes_pod_operator.html)xs
 
 ###  Extra Capacity Resources
 
@@ -53,7 +52,7 @@ Reason: Forbidden
 "Failure","message":"pods is forbidden: User \"system:serviceaccount:astronomer-cloud-solar-orbit-4143:solar-orbit-4143-worker-serviceaccount\" cannot create pods in the namespace \"datarouter\"","reason":"Forbidden","details":{"kind":"pods"},"code":403}
 ```
 
-#### Example DAG
+### Example DAG
 
 Looking for an example? Check out the DAG below, and the original source code in the `airflow-plugins` repo [here](https://github.com/airflow-plugins/example_kubernetes_pod/blob/master/dags/kube_pod_test.py).
 
@@ -94,24 +93,24 @@ with dag:
 
 **Is there a resource cap on a KubernetesPod?**
 
-Right now, the largest node a single pod can occupy is 13.01GB and 3.92 CPU. We'll be introducing larger options in Astronomer v0.9, so stay tuned.
+Right now, the largest node a single pod can occupy is `13.01GB` and `3.92 CPU`. We'll be introducing larger options in Astronomer v0.9, so stay tuned.
 
 **What geographic region is Astronomer's Kubernetes Cluster?**
 
 Astronomer's GKE cluster is in us-east-4.
 
-**Can I use Minikube to test this out?**
+**What can I use to test this out locally?**
 
-Yep! [Minikube](https://kubernetes.io/docs/setup/minikube/) is a tool that makes it easy to run Kubernetes locally. You're free to install and use it alongside Astronomer for local testing.
+[Microk8s](https://microk8s.io/) is a great way to run devops-free Kubernetes for testing and offline development. You're free to use [Minikube](https://kubernetes.io/docs/setup/minikube/) as well. 
 
 **Can I pull images from a Private Registry?**
 
-Yes. To do so, you'll have to create a `dockerconfigjson` using your existing Docker credentials and securely send it over to us. We'll add it to your namespace on our Kubernetes cluster, and you can freely use it in your KubernetesPodOperator constructor from there.
+Yes. To do so, you'll have to create a `dockerconfigjson` using your existing Docker credentials.
 
-It looks like we'd be able to create a Kubernetes Secret  in that namespace (with the dockerconfigjson in it), and give you the name of it for you to refer to in [your KubernetesPodOperator constructor](https://github.com/apache/airflow/blob/master/airflow/contrib/operators/kubernetes_pod_operator.py#L43-L46).
+If you're using Astronomer Cloud, you'll have to securely send it over to us. We can create a Kubernetes Secret in that namespace (with the `dockerconfigjson` in it), and give you the name of it for you to refer to in [your KubernetesPodOperator constructor](https://github.com/apache/airflow/blob/master/airflow/contrib/operators/kubernetes_pod_operator.py#L43-L46).
 
 Give [this Kubernetes doc](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) an initial read, and reach out to us to configure that first step. You'll have to take care of the rest!
 
 **Do I have to add any Environment Variables to enable the KubePodOperator?**
 
-No, you're good. The Kube config should be built-in.
+Nope, you're good. The Kube config should be built-in.
