@@ -57,4 +57,4 @@ with dag:
         get_logs=True)
 
 ```
-This example simply runs the docker `hello-world` image. The `config_file` is pointing to the `.kube/config` file you just edited. Now run `astro airflow start` and unpause your DAG. You should see the task run successfully. If you installed `kubectl` above, you can use this to examine the pod that just ran.
+This example simply runs the docker `hello-world` image. The `config_file` is pointing to the `.kube/config` file you just edited. Now run `astro airflow start` and unpause your DAG. You should see the task run successfully. You can use `kubectl get pods` and `kubectl logs {pod_name}` to examine the logs for the pod that just ran.
