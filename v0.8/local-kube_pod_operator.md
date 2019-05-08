@@ -1,5 +1,5 @@
 ---
-title: "Running KupePodOperator Locally"
+title: "Running KubePodOperator Locally"
 description: "How to set up a local instance of Kubernetes for testing your KubePodOperators"
 date: 2019-05-08T00:00:00.000Z
 slug: "setting-up-airflow-emails"
