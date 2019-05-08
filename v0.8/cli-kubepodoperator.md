@@ -67,7 +67,7 @@ with dag:
 ```
 This example simply runs the docker `hello-world` image.
 
-Before deploying,
+If you are on Linux, the `cluster_context` will be `microk8s`
 
 ## View Kubernetes Logs
 
