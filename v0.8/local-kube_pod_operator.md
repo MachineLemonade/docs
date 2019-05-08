@@ -17,9 +17,6 @@ The latest versions of Docker for Windows comes with the ability to run a single
 #### Linux
 Coming Soon…
 
-#### Kubectl
-You don’t technically need kubectl for this, but it’s nice to have so you can interact with your cluster and view the pods, logs etc. [Here](https://kubernetes.io/docs/tasks/tools/install-kubectl/) is the guide for installing kubectl.
-
 ### Astronomer
 Navigate to an existing Astro project or create a new one in an empty folder with `astro airflow init`. Create a new folder in this directory named `.kube`. Now navigate to your user home directory and look for a folder named `.kube`. It may be hidden. This was created when you enabled Kubernetes in Docker and contains a file named `config`. Copy this file into the `.kube` folder of your Astro project. Now open this file up with a text editor. This file contains all the information the KubePodOperator uses to connect to your cluster. Under cluster, you should see `server: https://localhost:6445`. Change this to `server: https://host.docker.internal:6445`. This way the docker container running airflow knows to look at your machine’s localhost.
 
