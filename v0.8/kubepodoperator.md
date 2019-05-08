@@ -71,4 +71,4 @@ For Enterprise customers, follow the [official Kubernetes](https://kubernetes.io
 
 **What can I use to test this out locally?**
 
-Follow our CLI doc on using [Microk8s](https://microk8s.io/) or [Docker for Kubernetes](https://matthewpalmer.net/kubernetes-app-developer/articles/how-to-run-local-kubernetes-docker-for-mac.html).
+Follow our [CLI doc](https://github.com/astronomer/docs/blob/master/v0.8/cli-kubepodoperator.md) on using [Microk8s](https://microk8s.io/) or [Docker for Kubernetes](https://matthewpalmer.net/kubernetes-app-developer/articles/how-to-run-local-kubernetes-docker-for-mac.html).
