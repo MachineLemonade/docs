@@ -46,7 +46,7 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
 - Set the `in_cluster` parameter to `True` in your code
     - This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
 
-#### Add resources to your Deployment on Astronomer
+#### Add Resources to your Deployment on Astronomer
 
 The KubernetesPodOperator will launch pods on resources allocated to it in the `Extra Capacity` section of your deployment's `Configure` page of the [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/). Pods will **only** run on the resources configured here. The rest of your deployment will run on standard resources.
 
@@ -62,7 +62,7 @@ On Astronomer Cloud, the largest node a single pod can occupy is `13.01GB` and `
 
 On Enterprise, it will depend on the size of your underlying node pool.
 
-#### Pulling from a Private Registry
+### Pulling from a Private Registry
 
 By default, the KubePodOperator will look for images hosted publicly on [Dockerhub](https://hub.docker.com/). If you want to pull from a private registry, you'll have to create a `dockerconfigjson` using your existing Docker credentials.
 If you're an Astronomer Cloud customer, [reach out to us](support@astronomer.io) and we can get this secret added for you.
