@@ -22,8 +22,8 @@ Navigate to an existing Astro project or create a new one in an empty folder wit
 
 **Note:** This file does contain a key to connect to your local Kubernetes cluster, so you may want to add this file to `.gitignore` so it’s not pushed to your git repo.
 
-Airflow
-The KubePodOperator is available in Airflow 1.10 or later so make sure your Dockerfile is using a 1.10 image. example `FROM astronomerinc/ap-airflow:0.7.5-1.10.2-onbuild`. Now create a DAG that uses the KubePodOperator like the example below.
+### Airflow
+The KubePodOperator is available in Airflow 1.10 or later so make sure your Dockerfile is using a 1.10 image. (Ex: `FROM astronomerinc/ap-airflow:0.7.5-1.10.2-onbuild`). Now create a DAG that uses the KubePodOperator like the example below.
 
 ```python
 from airflow import DAG
