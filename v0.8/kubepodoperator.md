@@ -5,7 +5,7 @@ date: 2019-04-29T00:00:00.000Z
 slug: "kubepod-operator"
 ---
 
-The [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) allows you to natively launch arbitrary Kubernetes Pods in which to run a Docker container using the Kube Python Client to generate a Kubernetes API request.
+The [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) allows you to natively launch arbitrary Kubernetes Pods in which to run a Docker container, all using the Kube Python Client to generate a Kubernetes API request.
 
 To leverage this component into your Airflow infrastructure on Astronomer Cloud or Enterprise, check out the guidelines below.
 
@@ -15,13 +15,13 @@ The KubePodOperator works the same way as the Docker Operator - all you need to 
 
 Note: The Docker Operator is NOT supported on Astronomer for security reasons (we'd have to expose the Docker socket through to containers with a mount and let an unmanaged container run on the host machine).
 
-### Requirements
+### Pre-Requisites
 
 1. Astronomer Airflow 1.10.x
     - If you're running Airflow 1.9, check out [this forum post](https://forum.astronomer.io/t/how-do-i-run-airflow-1-10-on-astronomer-v0-7/58) to upgrade.
-2. Have publicly hosted Docker image
+2. Have a publicly hosted Docker image
 
-### Intial Setup
+### Usage Guidelines
 
 - You can import the Operator as you would any other plugin in [its GitHub Contrib Folder](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py)
 - For Astronomer Cloud, your namespace on Kubernetes will be astronomer-cloud-release_name (e.g. `astronomer-cloud-frigid-vacuum-0996`)
