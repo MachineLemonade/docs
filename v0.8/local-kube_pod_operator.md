@@ -7,12 +7,12 @@ slug: "setting-up-airflow-emails"
 
 ### Setup Kubernetes
 #### Mac
-The latest version of Docker for Mac comes with the ability to run a single node Kubernetes cluster on your local machine. You can enable this by going into the Kubernetes section of you docker settings and checking the `Enable Kubernetes` checkbox. Click apply, and the docker service will restart. When it’s back up and running, you should see the green dot in the bottom left hand corner indicating Kubernetes is running
+The latest version of Docker for Mac comes with the ability to run a single node Kubernetes cluster on your local machine. You can enable this by going into the Kubernetes section of you docker settings and checking the `Enable Kubernetes` checkbox. Also change the default orchestrator to Kubernetes. Click apply, and the docker service will restart. When it’s back up and running, you should see the green dot in the bottom left hand corner indicating Kubernetes is running. [Docker's docs](https://docs.docker.com/docker-for-mac/#kubernetes)
 
 #### Windows 10 with WSL
 Follow [this guide](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) for setting up Docker for Windows 10 and WSL. (you don’t need to install docker-compose if you don’t want to)
 
-The latest versions of Docker for Windows comes with the ability to run a single node Kubernetes cluster on your local machine. You can enable this by going into the Kubernetes section of you docker settings and checking the `Enable Kubernetes` checkbox. Click apply, and the docker service will restart. When it’s back up and running, you should see the green dot in the bottom left hand corner indicating Kubernetes is running
+The latest versions of Docker for Windows comes with the ability to run a single node Kubernetes cluster on your local machine. You can enable this by going into the Kubernetes section of you docker settings and checking the `Enable Kubernetes` checkbox. Also change the default orchestrator to Kubernetes. Click apply, and the docker service will restart. When it’s back up and running, you should see the green dot in the bottom left hand corner indicating Kubernetes is running. [Docker's docs](https://docs.docker.com/docker-for-windows/#kubernetes)
 
 #### Linux
 Coming Soon…
