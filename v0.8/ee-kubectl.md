@@ -1,6 +1,6 @@
 ---
 title: "Using kubectl and Astronomer"
-description: "Using kubectl with Astronomer Enterprise"
+description: "Using kubectl"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-kubectl"
 ---

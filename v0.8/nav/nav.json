@@ -68,7 +68,8 @@
         "contents": [
           "houston-api",
           "ee-metrics",
-          "ee-kibana"
+          "ee-kibana",
+          "ee-kubectl"
         ]
       }
     ]
