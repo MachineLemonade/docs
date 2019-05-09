@@ -74,7 +74,7 @@ If you are on Linux, the `cluster_context` will be `microk8s`
 
 ### Windows and Mac
 
-You can use `kubectl get pods -n $namespace` and `kubectl logs {pod_name} -n $namespace` to examine the logs for the pod that just ran.
+You can use `kubectl get pods -n $namespace` and `kubectl logs {pod_name} -n $namespace` to examine the logs for the pod that just ran.git 
 
 ### Linux
 Run the same commands as above prefixed with microk8s:
