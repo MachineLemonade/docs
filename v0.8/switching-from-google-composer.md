@@ -1,5 +1,5 @@
 ---
-title: "Switching from Google Composer"
+title: "Switching from Google Cloud Composer"
 description: "How to easily transition your Airflow project from Google Cloud Composer"
 date: 2019-04-29T00:00:00.000Z
 slug: "switching-from-google-composer"
@@ -16,7 +16,7 @@ Because Python 2 is being fully deprecated on Dec 31, 2019, Astronomer strongly 
 If absolutely necessary, a Python 2 image can be provided on request but please bear in mind that Airflow will be dropping support for Python 2 as of the Airflow 2.0 release and it is highly recommended you transition your code sooner rather than later.
 
 ### Starting a New Project
-The main method of interaction with the Astronomer Cloud when developing is through the [Astro CLI](https://github.com/astronomer/astro-cli) which also provides a useful environment to develop locally. To start a new project simply create a new project, initialize a new Astronomer project, and then start it up. 
+The main method of interaction with the Astronomer Cloud when developing is through the [Astro CLI](https://github.com/astronomer/astro-cli) which also provides a useful environment to develop locally. To start a new project simply create a new project, initialize a new Astronomer project, and then start it up.
 ```
 mkdir new_project
 cd new_project
@@ -37,7 +37,7 @@ For anything else that may be required for your DAGs, a `include/` directory is 
 Whereas Composer reads DAGs and Plugins from a GCS bucket while keeping dependencies separate, everything in an Astronomer project is kept together in the various files and directories created with `astro airflow init`. When pushing new code to your Astro deployment, whether it is a new dependency or new DAG, the process is the same. Simply `astro airflow deploy` from the CLI, authenticate if you need to, and select the appropriate workspace and deployment name. A new image will be built containing all code and dependencies that is then pushed up to the Astronomer Cloud.
 
 ### Choosing an Airflow Version
-Astronomer offers at least one major version of each Airflow release from 1.9 onwards. But where you would otherwise choose your Airflow version in the Composer UI, you specify it in your Dockerfile when starting a new Astronomer project. For example, a Dockerfile with the following contents will run Airflow 1.9.0. 
+Astronomer offers at least one major version of each Airflow release from 1.9 onwards. But where you would otherwise choose your Airflow version in the Composer UI, you specify it in your Dockerfile when starting a new Astronomer project. For example, a Dockerfile with the following contents will run Airflow 1.9.0.
 ```
 FROM astronomerinc/ap-airflow:0.7.5-1.9.0-onbuild
 ```
