@@ -5,7 +5,7 @@ date: 2019-04-29T00:00:00.000Z
 slug: "kubepodoperator"
 ---
 
-The [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) allows you to natively launch Kubernetes Pods in which to run a Docker container, all using the [Kube Python Client](https://github.com/kubernetes-client/python) to generate a Kubernetes API request. This lets Airflow act as an orchestrator of your jobs, no matters what language they are written in.
+The [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) allows you to natively launch Kubernetes Pods in which to run a Docker container, all using the [Kube Python Client](https://github.com/kubernetes-client/python) to generate a Kubernetes API request. This allows Airflow to act as an orchestrator of your jobs, no matter the language they're written in.
 
 ### Description
 
@@ -13,18 +13,19 @@ The KubePodOperator works the same way as the Docker Operator - all you need to 
 
 Note: The Docker Operator is NOT supported on Astronomer for security reasons (we'd have to expose the Docker socket through to containers with a mount and let an unmanaged container run on the host machine).
 
-### Usage
+### Usage on Astronomer
 
-### Make sure you are running Astronomer Airflow 1.10.x
-    - If you're running Airflow 1.9, check out [this forum post](https://forum.astronomer.io/t/how-do-i-run-airflow-1-10-on-astronomer-v0-7/58) to upgrade.
+#### Make sure you are running Astronomer Airflow 1.10.x
+   - If you're running Airflow 1.9, check out [this forum post](https://forum.astronomer.io/t/how-do-i-run-airflow-1-10-on-astronomer-v0-7/58) to upgrade.
 
 
-### Specify Parameters
+#### Specify Parameters
 You can import the Operator as you would any other plugin in [its GitHub Contrib Folder](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py)
 
 ```python
 from airflow.contrib.operators.kubernetes_pod_operator import kubernetes_pod_operator
 ```
+
 Instantiate the operator based on your image and setup:
 
 ```python
@@ -45,11 +46,11 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
 - Set the `in_cluster` parameter to `True` in your code
     - This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
 
-### Add resources to your deployment
+#### Add Resources to your Deployment on Astronomer
 
-The KubernetesPodOperator will launch pods on resources allocated to it in the `Extra Capacity` section of your deployment's `Configure` page of the [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/). Pods will **only** run on the resources configured here, the rest of your deployment will run on standard resources.
+The KubernetesPodOperator will launch pods on resources allocated to it in the `Extra Capacity` section of your deployment's `Configure` page of the [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/). Pods will **only** run on the resources configured here. The rest of your deployment will run on standard resources.
 
-For `Extra Capacity`, we recommend starting with **10AU**, and scaling up from there as needed. If it's set to 0, you will get a permissions error:
+For `Extra Capacity`, we recommend starting with **10AU**, and scaling up from there as needed. If it's set to 0, you'll get a permissions error:
 
 ```
 ERROR - Exception when attempting to create Namespaced Pod.
@@ -58,17 +59,19 @@ Reason: Forbidden
 ```
 
 On Astronomer Cloud, the largest node a single pod can occupy is `13.01GB` and `3.92 CPU`. We'll be introducing larger options in Astronomer v0.9, so stay tuned.
+
 On Enterprise, it will depend on the size of your underlying node pool.
 
-### Pulling from private registries
-By default, the pod operator will look for images hosted publicly on [Dockerhub](https://hub.docker.com/). If you want to pull from a private registry, you'll have to create a `dockerconfigjson` using your existing Docker credentials.
-On Astronomer Cloud, contact us and we can get this secret added for you.
+### Pulling from a Private Registry
+
+By default, the KubePodOperator will look for images hosted publicly on [Dockerhub](https://hub.docker.com/). If you want to pull from a private registry, you'll have to create a `dockerconfigjson` using your existing Docker credentials.
+If you're an Astronomer Cloud customer, [reach out to us](support@astronomer.io) and we can get this secret added for you.
 
 For Enterprise customers, follow the [official Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) doc to add that secret to the right namespace.
 
 **Note:** The KubernetesPodOperator doesn't support passing in image pull secrets until [Airflow 1.10.2](https://github.com/apache/airflow/blob/master/CHANGELOG.txt#L526).
 
 
-**What can I use to test this out locally?**
+### Local Testing
 
 Follow our [CLI doc](https://github.com/astronomer/docs/blob/master/v0.8/cli-kubepodoperator.md) on using [Microk8s](https://microk8s.io/) or [Docker for Kubernetes](https://matthewpalmer.net/kubernetes-app-developer/articles/how-to-run-local-kubernetes-docker-for-mac.html).
