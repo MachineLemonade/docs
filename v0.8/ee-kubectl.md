@@ -104,7 +104,7 @@ accurate-bolide-9914-flower-84f7d67fbd-q5sd7                1/1     Running   0 
 
 Since this deployment is running the Celery executor with 1 worker, there are pods for Redis and Flower.
 
-### Logs and Debugging
+### Managing Pods
 
 Airflow logs can be fetched directly from the underlying pods:
 
@@ -154,6 +154,15 @@ Labels:             component=scheduler
                     workspace=cjvgu6b2d00110b785tfxyqp0
 
 ```
+
+Pods can also be deleted as a way to restart any Airflow component.
+
+```
+root@orbiter: kubectl delete po/accurate-bolide-9914-scheduler-7d4f5596b5-r457d
+```
+
+This will delete that copy of the pod and spin up a new one. All pods in an Airflow deployment are meant to be stateless, so deleting one and letting it recreate should not cause any
+
 
 ### Other Resources
 
