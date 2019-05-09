@@ -7,14 +7,14 @@ slug: "setting-up-airflow-emails"
 
 # Airflow Email Alerting
 
-Airflow emails are a useful way to get notified of DAG retries, failures, and anything else you want to custom set through the [email util](https://github.com/apache/airflow/blob/master/airflow/utils/email.py). By default, Astronomer does not bundle in a SMTP service to send emails through Airflow, but there are a number of easy (and free)options you can incorporate.
+Airflow emails are a useful way to get notified of DAG retries, failures, and anything else you want to custom set through the [email util](https://github.com/apache/airflow/blob/master/airflow/utils/email.py). By default, Astronomer does not bundle in a SMTP service to send emails through Airflow, but there are a number of easy (and free) options you can incorporate.
 
-This guide will walk through setup with 2 services:
+This guide will walk through setup with 2 services, equivalent in functionality:
 
 1. Sendgrid
 2. Amazon's Simple Email Service (SES)
 
-Which tool you use is up to you. Check out the guidelines below.
+Which tool you use is up to you.
 
 ## Sendgrid
 
@@ -65,13 +65,13 @@ Two things:
 - You'll need to specify a `SMTP__SMTP_MAIL_FROM` value with the same email you used to sign up with Sendgrid.
 
 ```
-AIRFLOW_SMTP__SMTP_HOST=smtp.sendgrid.net
-AIRFLOW_SMTP__SMTP_STARTTLS=True
-AIRFLOW_SMTP__SMTP_SSL=False
-AIRFLOW_SMTP__SMTP_USER=apikey
-AIRFLOW_SMTP__SMTP_PASSWORD={ENTER_SENDGRID_APIKEY_HERE}
-AIRFLOW_SMTP__SMTP_PORT=587
-AIRFLOW_SMTP__SMTP_MAIL_FROM={ENTER_RELEVENT_FROM_EMAIL_HERE}
+AIRFLOW__SMTP__SMTP_HOST=smtp.sendgrid.net
+AIRFLOW__SMTP__SMTP_STARTTLS=True
+AIRFLOW__SMTP__SMTP_SSL=False
+AIRFLOW__SMTP__SMTP_USER=apikey
+AIRFLOW__SMTP__SMTP_PASSWORD={ENTER_SENDGRID_APIKEY_HERE}
+AIRFLOW__SMTP__SMTP_PORT=587
+AIRFLOW__SMTP__SMTP_MAIL_FROM={ENTER_RELEVENT_FROM_EMAIL_HERE}
 ```
 ![Astro Create Envs](https://assets2.astronomer.io/main/docs/emails/astro_create_envs.png)
 
@@ -79,7 +79,7 @@ Click `Update` to save the configuration and redeploy to propagate to your deplo
 
 ## Amazon SES
 
-To start, there are a handful of components to configure.
+If you choose to use Amazon SES, the process is similar to the one outlined above for Sendgrid users.
 
 ### Verify Email Addresses
 
@@ -107,7 +107,7 @@ AIRFLOW__SMTP__SMTP_PORT=587
 AIRFLOW__SMTP__SMTP_STARTTLS=True
 AIRFLOW__SMTP__SMTP_SSL=False
 AIRFLOW__SMTP__SMTP_USER={ENTER_USERNAME_FROM_STEP2A}
-AIRFLOW__S_MTP__SMTP_PASSWORD={ENTER_PASSWORD_FROM_STEP2A}
+AIRFLOW__SMTP__SMTP_PASSWORD={ENTER_PASSWORD_FROM_STEP2A}
 AIRFLOW__SMTP__SMTP_MAIL_FROM={ENTER_FROM_EMAIL_HERE}
 ```
 
