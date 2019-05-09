@@ -2,7 +2,7 @@
 title: "KubernetesPodOperator on Astronomer"
 description: "How to run the KubernetesPodOperator on Astronomer"
 date: 2019-04-29T00:00:00.000Z
-slug: "kubepod-operator"
+slug: "kubepodoperator"
 ---
 
 The [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) allows you to natively launch Kubernetes Pods in which to run a Docker container, all using the [Kube Python Client](https://github.com/kubernetes-client/python) to generate a Kubernetes API request. This lets Airflow act as an orchestrator of your jobs, no matters what language they are written in.
