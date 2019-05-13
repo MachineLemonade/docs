@@ -7,13 +7,11 @@ slug: "support"
 
 ## Astronomer Support Portal
 
-Astronomer provides Support Services through its [online Support Portal](https://support.astronomer.io) which enables submission of support requests. Any necessary telephone support discussions will be scheduled at a time mutually agreed by the parties and for durations and at a frequency that is commercially reasonable for Astronomer.
+(a) Astronomer provides Support Services through its [online Support Portal](https://support.astronomer.io) which enables submission of support requests. Any necessary telephone support discussions will be scheduled at a time mutually agreed by the parties and for durations and at a frequency that is commercially reasonable for Astronomer.
 
 ## Submitting a Support Request
 
-Customer may submit Support Requests 24×7 through the Support Portal.
-
-Astronomer’s response will be governed by which SLA support option you have purchased:
+Customer may submit Support Requests 24×7 through the Support Portal. Astronomer’s response will be governed by which SLA support option you have purchased:
 
 * Gold — Astronomer support operates only within 6am-6pm PST on your Support Requests
 * Platinum — Astronomer operates 24×7 on your Support Requests
@@ -24,10 +22,10 @@ Please consider the severity or priority level before submitting a Support Reque
 
 | Priority | Definition | Response Time | Astronomer Responsibility |
 | -------- | ---------- | ------------- | ------------------------- |
-| P1 | Critical production issue that severely impacts your business operations, and no workaround exists. Data corrupted or lost and must restore from backup.<br />P1 issues require the customer to have dedicated resources available to work on the issue on an ongoing basis with us. | Platinum: Within 60 minutes<br />Gold: Within 4 hours | Astronomer will: (i) assign specialist to the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
-| P2 | Service is operational but highly degraded performance to the point of major impact on usage, or important features are unavailable with no acceptable workaround; however, operations can continue in a restricted fashion. | Platinum: Within 4 hours<br />Gold: Within 1 day | Astronomer will: (i) assign specialist to correct the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
-| P3 | There is a partial, non-critical loss of use of the service with a medium-to-low impact on your business, but your business continues to function. Short-term workaround is available, but not scalable. | Platinum: Within 1 business day<br />Gold: Within 2 business days | Astronomer will use resources available during local Business Hours until the Issue is resolved or a workaround is in place. |
-| P4 |  Inquiry regarding a routine technical issue; information requested on application capabilities, navigation, installation or configuration; bug affecting a small number of users. Acceptable workaround available. | Platinum: Within 2 business days<br />Gold: Within 3 business days | Astronomer will triage the request, provide clarification where possible, and may include a resolution in a future Maintenance Release. |
+| P1 | Critical production issue that severely impacts your business operations, and no workaround exists. Data corrupted or lost and must restore from backup.<br />P1 issues require the customer to have dedicated resources available to work on the issue on an ongoing basis with us. | Platinum: Within 60 minutes<br />Gold: Within 4 hours | Astronomer will: (i) assign specialist to the Issue; (ii) provide ongoing communication every two hours on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
+| P2 | Service is operational but highly degraded performance to the point of major impact on usage, or important features are unavailable with no acceptable workaround; however, operations can continue in a restricted fashion. | Platinum: Within 2 hours<br />Gold: Within 4 hours | Astronomer will: (i) assign specialist to correct the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
+| P3 | There is a partial, non-critical loss of use of the service with a medium-to-low impact on your business, but your business continues to function. Short-term workaround is available, but not scalable. | Platinum: Within 4 hours<br />Gold: Within 1 business day | Astronomer will use resources available during local Business Hours until the Issue is resolved or a workaround is in place. |
+| P4 |  Inquiry regarding a routine technical issue; information requested on application capabilities, navigation, installation or configuration; bug affecting a small number of users. Acceptable workaround available. | Platinum: Within 1 business day<br />Gold: Within 2 business days | Astronomer will triage the request, provide clarification where possible, and may include a resolution in a future Maintenance Release. |
 
 All times reported here are estimates and should not be considered as guarantees on Support.
 
@@ -72,8 +70,12 @@ If Customer does not receive Astronomer’s Response within the applicable Targe
 | Escalation Level | Resolution Owner | Escalation Trigger | Escalation Path |
 | ---------------- | ---------------- | ------------------ | --------------- |
 | 1 | Astronomer Manager, Customer Operations | Response is not received within the Target Initial Response Time | Customer to email support-manager@astronomer.io |
-| 2 | Astronomer Director of Support & Services | Response is not received within twice the Target Initial Response Time | Customer to email support-escalation@astronomer.io |
+| 2 | Astronomer Director, Support & Services | Response is not received within twice the Target Initial Response Time | Customer to email support-escalation@astronomer.io |
 
 ## Upgrade/Downgrade of Severity Level
 
 If, during the Support Request process, the issue either warrants assignment of a higher severity level than currently assigned or no longer warrants the severity level currently assigned based on its current impact on the production operation of the SaaS offering, then the severity level will be upgraded or downgraded accordingly to the severity level that most appropriately reflects its current impact.
+
+---
+
+*document version 0.9 - last updated May 13, 2019 - RW*
