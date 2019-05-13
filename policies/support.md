@@ -1,6 +1,6 @@
 ---
-title: "Astronomer Support"
-description: "Support for the Astronomer platform"
+title: "Astronomer SLA Support"
+description: "SLA Support for the Astronomer platform"
 date: 2019-05-13T00:00:00.000Z
 slug: "support"
 ---
@@ -11,22 +11,22 @@ Astronomer provides Support Services through its [online Support Portal](https:/
 
 ## Submitting a Support Request
 
-Customer may submit Support Requests twenty-four (24) hours a day, seven (7) days per week, through the Support Portal.
+Customer may submit Support Requests 24×7 through the Support Portal.
 
-Astronomer’s response will be governed by which support option you have purchased:
+Astronomer’s response will be governed by which SLA support option you have purchased:
 
-* Business Day — Astronomer support operates only within 6am-6pm PST on your Support Requests
-* Business Critical — Astronomer operates 24×7 on your Support Requests
+* Gold — Astronomer support operates only within 6am-6pm PST on your Support Requests
+* Platinum — Astronomer operates 24×7 on your Support Requests
 
 ## Priority Levels
 
 Please consider the severity or priority level before submitting a Support Request, in accordance with the following definitions, and Astronomer will take corresponding actions:
 
-| Priority Level | Definition | Target&nbsp;Initial Response&nbsp;Time | Astronomer Responsibility |
-| -------------- | ---------- | ---------------------------- | ------------------------- |
-| P1 | Critical production issue that severely impacts your use of the service. The situation halts your business operations and no procedural workaround exists. Service is down or unavailable. Data corrupted or lost and must restore from backup. A critical documented feature/function is not available.<br />Severity 1 issues require the customer to have dedicated resources available to work on the issue on an ongoing basis with Astronomer. | Within 60 minutes | Astronomer will: (i) assign specialists to correct the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
-| P2 | Major functionality is impacted or significant performance degradation is experienced. The situation is causing a high impact to portions of your business operations and no reasonable workaround exists.<br />Service is operational but highly degraded performance to the point of major impact on usage.<br />Important features of the Software as a Service offering are unavailable with no acceptable workaround; however, operations can continue in a restricted fashion. | Within 4 hours | Astronomer will: (i) assign specialists to correct the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
-| P3 | There is a partial, non-critical loss of use of the service with a medium-to-low impact on your business, but your business continues to function. Short-term workaround is available, but not scalable. | Within 1 business day | Astronomer will use resources available during local Business Hours until the Issue is resolved or a workaround is in place.  For Issues in Third Party Software, Astronomer will use reasonable efforts to liaise with the applicable project steward. |
+| Priority | Definition | Response Time | Astronomer Responsibility |
+| -------- | ---------- | ------------- | ------------------------- |
+| P1 | Critical production issue that severely impacts your business operations, and no workaround exists. Data corrupted or lost and must restore from backup.<br />P1 issues require the customer to have dedicated resources available to work on the issue on an ongoing basis with us. | Within 60 minutes | Astronomer will: (i) assign specialist to the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
+| P2 | Service is operational but highly degraded performance to the point of major impact on usage, or important features are unavailable with no acceptable workaround; however, operations can continue in a restricted fashion. | Within 4 hours | Astronomer will: (i) assign specialist to correct the Issue; (ii) provide ongoing communication on the status of an Update or Issue resolution; and (iii) simultaneously begin work to provide a temporary workaround or fix. |
+| P3 | There is a partial, non-critical loss of use of the service with a medium-to-low impact on your business, but your business continues to function. Short-term workaround is available, but not scalable. | Within 1 business day | Astronomer will use resources available during local Business Hours until the Issue is resolved or a workaround is in place. |
 | P4 |  Inquiry regarding a routine technical issue; information requested on application capabilities, navigation, installation or configuration; bug affecting a small number of users. Acceptable workaround available. | Within 2 business days | Astronomer will triage the request, provide clarification where possible, and may include a resolution in a future Maintenance Release. |
 
 All times reported here are estimates and should not be considered as guarantees on Support.
