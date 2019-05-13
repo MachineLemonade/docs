@@ -7,7 +7,7 @@ slug: "support"
 
 ## Astronomer Support Portal
 
-(a) Astronomer provides Support Services through its [online Support Portal](https://support.astronomer.io) which enables submission of support requests. Any necessary telephone support discussions will be scheduled at a time mutually agreed by the parties and for durations and at a frequency that is commercially reasonable for Astronomer.
+Astronomer provides Support Services through its [online Support Portal](https://support.astronomer.io) which enables submission of support requests. Any necessary telephone support discussions will be scheduled at a time mutually agreed by the parties and for durations and at a frequency that is commercially reasonable for Astronomer.
 
 ## Submitting a Support Request
 
