@@ -1,4 +1,9 @@
-# Astronomer Support
+---
+title: "Astronomer Support"
+description: "Support for the Astronomer platform"
+date: 2019-05-13T00:00:00.000Z
+slug: "support"
+---
 
 ## Astronomer Support Portal
 
@@ -71,4 +76,4 @@ If Customer does not receive Astronomer’s Response within the applicable Targe
 
 ## Upgrade/Downgrade of Severity Level
 
-If, during the Support Request process, the issue either warrants assignment of a higher severity level than currently assigned or no longer warrants the severity level currently assigned based on its current impact on the production operation of the SaaS offering, then the severity level will be upgraded or downgraded accordingly to the severity level that most appropriately reflects its current impact. 
+If, during the Support Request process, the issue either warrants assignment of a higher severity level than currently assigned or no longer warrants the severity level currently assigned based on its current impact on the production operation of the SaaS offering, then the severity level will be upgraded or downgraded accordingly to the severity level that most appropriately reflects its current impact.
