@@ -69,7 +69,7 @@ If Customer does not receive Astronomer’s Response within the applicable Targe
 
 | Escalation Level | Resolution Owner | Escalation Trigger | Escalation Path |
 | ---------------- | ---------------- | ------------------ | --------------- |
-| 1 | Astronomer Manager, Customer Operations | Response is not received within the Target Initial Response Time | Customer to email support-manager@astronomer.io |
+| 1 | Astronomer Manager, Customer Operations | Response is not received within the Target Initial Response Time | Customer to email support-manager@astronomer.io or by calling +1 (831) 777-2768 |
 | 2 | Astronomer Director, Support & Services | Response is not received within twice the Target Initial Response Time | Customer to email support-escalation@astronomer.io |
 
 ## Upgrade/Downgrade of Severity Level
