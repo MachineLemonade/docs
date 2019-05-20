@@ -14,7 +14,7 @@ _Deploy a Kubernetes native (Apache Airflow)[https://airflow.apache.org/] platfo
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm](https://docs.helm.sh/using_helm/#installing-helm)
+* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
 * SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create/modify resources on AWS
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)
