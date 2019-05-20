@@ -7,13 +7,14 @@ slug: "ee-installation-eks"
 This guide describes the prerequisite steps to install Astronomer on Amazon Web Services (AWS).
 
 # Installing Astronomer on AWS EKS
+_Deploy a Kubernetes native (Apache Airflow)[https://airflow.apache.org/] platform onto (AWS Elastic Kubernetes Service)[https://aws.amazon.com/eks/] (EKS)_
 
 ## 1. Install Necessary Tools
 
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm](https://docs.helm.sh/using_helm/#installing-helm)
+* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
 * SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create/modify resources on AWS
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)
@@ -259,7 +260,7 @@ Note - the SMTP URI will take the form:
 smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 
-Check out our `Customizing Your Install` section for guidance on setting an (auth system)[https://www.astronomer.io/docs/ee-integrating-auth-system/] and (resource requests)[https://www.astronomer.io/docs/ee-configuring-resources/] in this `config.yaml`.
+Check out our `Customizing Your Install` section for guidance on setting an [auth system](https://www.astronomer.io/docs/ee-integrating-auth-system/) and [resource requests(https://www.astronomer.io/docs/ee-configuring-resources/) in this `config.yaml`.
 
 ## 10. Install Astronomer
 

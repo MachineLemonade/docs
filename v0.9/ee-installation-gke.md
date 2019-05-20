@@ -6,12 +6,13 @@ slug: "ee-installation-gke"
 ---
 
 # Installing Astronomer on GCP GKE
+_Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platform onto Google Kubernetes Engine (or [GKE](https://cloud.google.com/kubernetes-engine/) for short)._
 
 ## 1. Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Google Cloud SDK](https://cloud.google.com/sdk/install)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm](https://docs.helm.sh/using_helm/#installing-helm)
+* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
 * SMTP Creds (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create / modify resources on Google Cloud Platform
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)!
@@ -260,7 +261,7 @@ smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 
 
-Check out our `Customizing Your Install` section for guidance on setting an (auth system)[https://www.astronomer.io/docs/ee-integrating-auth-system/] and (resource requests)[https://www.astronomer.io/docs/ee-configuring-resources/] in this `config.yaml`.
+Check out our `Customizing Your Install` section for guidance on setting an [auth system](https://www.astronomer.io/docs/ee-integrating-auth-system/) and [resource requests(https://www.astronomer.io/docs/ee-configuring-resources/) in this `config.yaml`.
 
 ## 9. Install Astronomer
 ```

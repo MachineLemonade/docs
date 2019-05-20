@@ -24,7 +24,8 @@
     "contents": [
       "cli-quickstart",
       "customizing-your-image",
-      "logs-and-source-control"
+      "logs-and-source-control",
+      "cli-kubepodoperator"
     ]
   },
 
@@ -34,7 +35,8 @@
       "astronomer-ui",
       "create-deployment-deploying-code",
       "running-jobs-and-scaling",
-      "setting-up-airflow-emails"
+      "setting-up-airflow-emails",
+      "kubepodoperator"
     ]
   },
 
@@ -66,7 +68,8 @@
         "contents": [
           "houston-api",
           "ee-metrics",
-          "ee-kibana"
+          "ee-kibana",
+          "ee-kubectl"
         ]
       }
     ]

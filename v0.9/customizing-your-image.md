@@ -65,6 +65,8 @@ pymongo==3.7.2
 ```
 This package is now installed.
 
+A list of default packages included in the Astronomer base image can be found [here](https://forum.astronomer.io/t/which-python-packages-come-default-with-astronomer/38)
+
 
 **Note:** We run Alpine linux as our base image so you may need to add a few os-level packages in `packages.txt` to get your image to build. You can also "throw the kitchen sink" at it if image size is not a concern:
 
