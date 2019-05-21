@@ -36,6 +36,7 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
     arguments=["echo", "10", "echo pwd"],
     labels={"foo": "bar"},
     name="airflow-test-pod",
+    is_delete_pod_operator=True,
     in_cluster=True,
     task_id="task-two",
     get_logs=True)
@@ -45,15 +46,17 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
     - For Astronomer Enterprise, this would be be your `base-namespace-deployment` name (e.g. `astronomer-frigid-vacuum-0996`)
 - Set the `in_cluster` parameter to `True` in your code
     - This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
+- Set the `is_delete_pod_operator` parameter to `True` in your code
+    - This will delete completed pod in the namespace as they finish, keeping Airflow below its resource quotas.
 
 #### Add Resources to your Deployment on Astronomer
 
-The KubernetesPodOperator will launch pods on resources allocated to it in the `Extra Capacity` section of your deployment's `Configure` page of the [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/). Pods will **only** run on the resources configured here. The rest of your deployment will run on standard resources.
+The KubernetesPodOperator will launch pods on resources allocated to it in the `Extra Capacity` section of your deployment's `Configure` page of the [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/). Pods will **only** run on the resources configured here. Adding `Extra Capacity` will increase your namespace's [resource quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) so that Airflow has permissions to launch pods in the namespace.
 
 For `Extra Capacity`, we recommend starting with **10AU**, and scaling up from there as needed. If it's set to 0, you'll get a permissions error:
 
 ```
-ERROR - Exception when attempting to create Namespaced Pod.
+ERROR - Exception when attempting to create Namespace Pod.
 Reason: Forbidden
 "Failure","message":"pods is forbidden: User \"system:serviceaccount:astronomer-cloud-solar-orbit-4143:solar-orbit-4143-worker-serviceaccount\" cannot create pods in the namespace \"datarouter\"","reason":"Forbidden","details":{"kind":"pods"},"code":403}
 ```
@@ -61,6 +64,8 @@ Reason: Forbidden
 On Astronomer Cloud, the largest node a single pod can occupy is `13.01GB` and `3.92 CPU`. We'll be introducing larger options in Astronomer v0.9, so stay tuned.
 
 On Enterprise, it will depend on the size of your underlying node pool.
+
+**Note:** If you need your [limit range](https://kubernetes.io/docs/concepts/policy/limit-range/) increased, please contact your system admin if you are an Enterprise customer (or Astronomer if you are a cloud customer).
 
 ### Pulling from a Private Registry
 
