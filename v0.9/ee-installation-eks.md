@@ -323,3 +323,20 @@ Navigate to your newly created load balancer and copy the DNS name: route and us
 ### 13. Verify You Can Access the Orbit UI
 
 Go to `app.BASEDOMAIN` to see the Astronomer UI!
+
+## 14. Verify SSL  
+To make sure that the certs were accepted, log into the platform and head to `app.BASEDOMAIN/token` and run:
+
+`curl -v -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <token>"`
+
+Verify that this output matches with:
+
+`curl -v -k -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <token>"`
+(The `-k` flag will run the command without looking for SSL)
+
+Finally, to make sure the registry accepted SSL, try to log into the registry:
+
+```docker login registry.BASEDOMAIN -u _ p <token>
+
+Login Succeeded
+```
