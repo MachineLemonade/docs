@@ -65,8 +65,7 @@ Astronomer will deploy to Google's managed Kubernetes service (Google Kubernetes
 
 Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine).
 
-We recommend using `n1-standard-8` nodes as a starting sport.
-
+We recommend using `n1-standard-8` nodes as a starting sport, with a minimum of 3 nodes (24 CPUs). Astronomer platform and components takes ~11 CPUs and ~40GB of memory as the default overhead.
 
 Create your Kubernetes cluster:
 
