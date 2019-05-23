@@ -161,6 +161,28 @@ pipeline {
 
 ```
 
+If you are using [Bitbucket](https://bitbucket.org/), this script should work (courtesy of our friends at [Das42](https://www.das42.com/))
+
+```
+image: astronomerio/ap-build:0.0.7
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Deploy to production
+          deployment: production
+          script:
+            - echo ${ASTRONOMER_PASSWORD}
+            - docker login registry.astronomer.cloud -u _ -p ${ASTRONOMER_PASSWORD}
+            - docker push registry.astronomer.cloud/infrared-photon-7780/airflow:ci-${BITBUCKET_BUILD_NUMBER}
+          services:
+            - docker
+          caches:
+            - docker
+
+```
+
 Breaking this down:
 
 #### Authenticating to Docker
