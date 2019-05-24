@@ -6,7 +6,7 @@ slug: "ssh-with-astronomer"
 ---
 # Using a bastion host with SSH Operator
 
-The SSHHook supports the use of a ProxyCommand to allow you to connect to a host in a private subnet via a bastion host that is public facing. The SSHook looks in `~/.ssh/config` to determine how to make that connection. This file doesn’t exist by default in the docker image, so it must be added to the Dockerfile. This article assumes you can access your bastion host from your airflow custer via port 22. If you want to whitelist Astronomer's IP, please contact support and they can provide it. 
+The SSHHook supports the use of a ProxyCommand to allow you to connect to a host in a private subnet via a bastion host that is public facing. The SSHook looks in `~/.ssh/config` to determine how to make that connection. This file doesn’t exist by default in the docker image, so it must be added to the Dockerfile. This article assumes you can access your bastion host from your airflow cluster via port 22. If you want to whitelist Astronomer's IP, please contact support and they can provide it. 
 
 ## Ssh config file
 Create a file in the `include` folder named `config`. Make it look like the example below with your bastion host DNS on the 2nd line.
