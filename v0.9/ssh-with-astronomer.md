@@ -2,7 +2,7 @@
 title: "Using a bastion host with SSH Operator"
 description: "Using a bastion host to access private host with the SSH Operator"
 date: 2019-05-24T00:00:00.000Z
-slug: "ee-integrating-bastion"
+slug: "ssh-with-astronomer"
 ---
 # Using a bastion host with SSH Operator
 
