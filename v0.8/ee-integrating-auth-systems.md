@@ -5,11 +5,11 @@ date: 2019-04-21T00:00:00.000Z
 slug: "ee-integrating-auth-systems"
 ---
 
-By default, the Astronomer platform allows you to authenticate using your Google or GitHub account. We provide the option to authenticate using alternative providers via [Auth0](https://auth0.com/) and [Okta](https://okta.com). Auth0 is an identity management platform that allows for seamless integration with numerous identity providers, including Azure Active Directory, LinkedIn, and Twitter. For a full list of supported identity providers, click [here](https://auth0.com/docs/identityproviders).
+By default, the Astronomer platform allows you to authenticate using your Google or GitHub account. We provide the option to authenticate using alternative providers via [Auth0](https://auth0.com/) and [Okta](https://okta.com). Both Okta and Auth0 are an identity management platforms that allow for seamless integration with numerous identity providers, including Azure Active Directory, LinkedIn, and Twitter.
 
-## Okta Configuration
+## Okta
 
-### In Okta
+### Okta Configuration
 
 1. Create an [Okta account](https://www.okta.com/) if you don't already have one you plan on using.
 
@@ -19,15 +19,25 @@ By default, the Astronomer platform allows you to authenticate using your Google
 
 4. Save the `Client ID` generated for this Okta app for use in the next steps.
 
-### In Houston
+### Astronomer Configuration
 
-1. In your Houston environment variables, make sure you have `"AUTH__OKTA__ENABLED="true"`. You can also disable Google, Github, and Auth0 if you don't plan on using any of these methods of authentication within your organization.
+Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory:
 
-2. Create an environment variable called `AUTH_OKTA_CLIENT_ID` and set that equal to your Okta application's client ID.
+```yaml
+astronomer:
+  houston:
+    config:
+      auth:
+        auth0:
+          enabled: true
+          clientId: "<okta-client-id>"
+          baseDomain: "<okta-base-domain>"
+```
 
-3. Create a new environment variable called `AUTH_OKTA_BASE_DOMAIN` and set that equal to the basedomain of your Okta server. Note that this may be different from the basedomain of your Astronomer installation. You can read their docs on [finding your Okta domain](https://developer.okta.com/docs/api/getting_started/finding_your_domain/) if you are unsure what this value should be.
+Note that your okta-base-domain may be different from the basedomain of your Astronomer installation. You can read their docs on [finding your Okta domain](https://developer.okta.com/docs/api/getting_started/finding_your_domain/) if you are unsure what this value should be.
 
-## Auth0 Configuration
+
+## Auth0
 
 ### 1. Create Auth0 Account
 
