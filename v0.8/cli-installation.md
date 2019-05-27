@@ -12,9 +12,10 @@ The Astronomer CLI provides a local and dockerized version of Apache Airflow to 
 To install the CLI, make sure you have the following on your machine:
 
 - [Docker](https://www.docker.com/)
-- [Go](https://golang.org/)
 
 ## Install
+
+### Latest Version
 
 For the most recent version of our CLI, run the following command.
 
@@ -24,9 +25,9 @@ Via `curl`:
    curl -sSL https://install.astronomer.io | sudo bash
    ```
 
-## Previous Versions
+### Previous Versions
 
-If you'd like to install a previous version of our CLI, the following command should do the trick:
+If you'd like to install a previous version of our CLI
 
 Via `curl`:
    ```bash
@@ -35,7 +36,7 @@ Via `curl`:
 
 To install CLI v0.7.5, for example, run:
    ```
-curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5
+curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5-2
    ```
 
 **Note:** If you get a mkdir error while going through the install, please download and run the [godownloader](https://raw.githubusercontent.com/astronomer/astro-cli/master/godownloader.sh) script locally.

@@ -5,10 +5,11 @@ date: 2018-07-17T00:00:00.000Z
 slug: "customizing-your-image"
 ---
 
-### Customizing your Docker image
+### Customizing your Docker Image
 
-Now that you've started running Airflow with the Astro CLI, there will be some docker images running on your machine with their own mounted volumes. When going through this doc, keep in mind that the astro CLI is built on top of Docker Compose.
+Now that you've started running Airflow with the Astro CLI, there will be some Docker images running on your machine with their own mounted volumes.
 
+When going through this doc, keep in mind that the Astro CLI is built on top of Docker Compose.
 
 ```
 docker ps
@@ -20,19 +21,17 @@ c572fe53093e        postgres:10.1-alpine                 "docker-entrypoint.s…
 ```
 
 These containers will mount volumes for their respective metadata.
-```
 
+```
 docker volumes ls
 
 DRIVER              VOLUME NAME
 local               airflow6f4ef6_airflow_logs
 local               airflow6f4ef6_postgres_data
 local               airflowcode66a665_airflow_logs
-
 ```
 
 To enter one of these containers:
-
 
 ```
 docker exec -it c572fe53093e /bin/bash
@@ -43,6 +42,8 @@ Dockerfile             airflow.cfg            airflow_settings.yaml  dags       
 bash-4.4$
 
 ```
+
+### Running Commands on Build
 
 Any extra commands you want to run when the image builds can be added in the `Dockerfile` as a `RUN` command - these will run as the last step in the image build.
 
@@ -65,7 +66,7 @@ pymongo==3.7.2
 ```
 This package is now installed.
 
-A list of default packages included in the Astronomer base image can be found [here](https://forum.astronomer.io/t/which-python-packages-come-default-with-astronomer/38)
+A list of default packages included in the Astronomer base image can be found [here](https://forum.astronomer.io/t/which-python-packages-come-default-with-astronomer/38).
 
 
 **Note:** We run Alpine linux as our base image so you may need to add a few os-level packages in `packages.txt` to get your image to build. You can also "throw the kitchen sink" at it if image size is not a concern:
@@ -88,7 +89,7 @@ make
 musl-dev
 ```
 
-In the same way, to add a folder of `helper_functions` or any other files for my DAGs to use - I can build that into my image. Add the folder into your project directory and run rebuild your image.
+In the same way, you can add a folder of `helper_functions` (or any other files for your DAGs to use) to build into your image. To do so, just add the folder into your project directory and rebuild your image.
 
 
 ```
@@ -126,20 +127,19 @@ For example, a connection can be added with:
 docker exec -it SCHEDULER_CONTAINER bash -c "airflow connections -a --conn_id test_three  --conn_type ' ' --conn_login etl --conn_password pw --conn_extra {"account":"blah"}"
 ```
 
+## Environment Variables (--env)
 
-### On Astronomer v0.8 (Current for Enterprise)
-
-Astronomer v0.8's CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro airflow start` with an `--env` flag as seen below:
+Astronomer's v0.7.5-2 CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro airflow start` with an `--env` flag as seen below:
 
 ```
 astro airflow start --env .env
 ```
 
-**Note**: Whatever `.env` you use locally will not be bundled up when you deploy to Astronomer. To add Environment Variables when you deploy to Astronomer, you'll have to add them via the Astronomer UI (`Deployment` > `Configure` > `Environment Vars`).
+**Note**: This feature is currently only functional for local development. Whatever `.env` you use locally will _not_ be bundled up when you deploy to Astronomer. To add Environment Variables when you deploy to Astronomer, you'll have to add them via the Astronomer UI (`Deployment` > `Configure` > `Environment Vars`).
 
-**Some Guidelines:**
+**Guidelines:**
 
-1. First, throw your environment variables of choice in an `.env` file.
+1. Add your Environment Variables of choice in an `.env` file
 
 2. Airflow configuration variables found in [`airflow.cfg`](https://github.com/apache/incubator-airflow/blob/master/airflow/config_templates/default_airflow.cfg) can be overwritten with the following format:
 
@@ -152,7 +152,7 @@ For example, setting `max_active_runs` to 3 would look like:
 AIRFLOW__CORE__MAX_ACTIVE_RUNS=3
 ```
 
-3. Make sure your configuration names match up with the version of Airflow you're using.
+3. Confirm the Environment Variable configuration names match up with the version of Airflow you're using
 
 4. The CLI will look for `.env` by default, but if you have different settings you need to toggle between and want to specify multiple .env files, you can do following:
 
@@ -171,7 +171,7 @@ my_project
  5. On `astro airflow start`, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
 
  ```
- astro airflow start --env dev.env
+ astro airflow start --env dev.envs
  astro airflow start -e prod.env
  ```
 
