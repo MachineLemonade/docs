@@ -41,21 +41,21 @@ Note that your okta-base-domain may be different from the basedomain of your Ast
 
 ### Auth0 Configuration
 
-1. Create Auth0 Account
+#### Create Auth0 Account
 
 You'll need an Auth0 account in order to set up connections with the identity provider of your choice. Sign up for an Auth0 account [here](https://auth0.com/signup).
 
-2. Create Auth0 Tenant Domain
+#### Create Auth0 Tenant Domain
 
 On initial login you'll be prompted to create a tenant domain. You can use the default or your own unique`tenant-name`. Your full tenant domain will look something like `astronomer.auth0.com`.
 
 *NOTE - Your full tenant domain name may differ if you've created it outside the United States.*
 
-3. Create Connection between Auth0 and your Identity Management Provider
+#### Create Connection between Auth0 and your Identity Management Provider
 
 The steps required for establishing a connection will vary by identity provider. Auth0 provides connection guides for each identity provider [here](https://auth0.com/docs/identityproviders). Follow the link and click on your identity provider of choice for detailed instructions. Continue on to Step 4 once your connection is established.
 
-4. Configure Auth0 Application Settings
+#### Configure Auth0 Application Settings
 
 **Enable / disable desired connections:**
 
@@ -82,7 +82,7 @@ The steps required for establishing a connection will vary by identity provider.
 
 ### Astronomer Configuration
 
-1. Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
+Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
 
 ```yaml
 astronomer:
@@ -95,7 +95,7 @@ astronomer:
           baseDomain: "<tenant-name>.auth0.com"
 ```
 
-2. Upgrade your Astronomer Deployment
+#### Upgrade your Astronomer Deployment
 
 If you're already running Astronomer, list your deployment release names and upgrade your deployment:
 ```
