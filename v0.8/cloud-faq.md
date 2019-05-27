@@ -12,22 +12,22 @@ If you're thinking about Astronomer Cloud, you might have a few questions on you
 Astronomer Cloud v0.7.5 is officially compatible with Airflow v1.9 and 1.10.1. You'll find this reflected in your Dockerfile:
 
 ```
-FROM astronomerinc/ap-airflow:0.7.5-1.10.1-onbuild
+FROM astronomerinc/ap-airflow:0.7.5-2.10.1-onbuild
 ```
 
 Adjusting between Airflow versions just takes a [quick swap to your Dockerfile](https://forum.astronomer.io/t/how-do-i-run-airflow-1-10-on-astronomer-v0-7/58).
 
 #### How would I give Astronomer Cloud access to my VPC?
 
-To connect Astronomer Cloud to any database in your VPC, you'll just have to Whitelist our Static IP: `35.188.248.243`
+To connect Astronomer Cloud to any database in your VPC, you'll just have to whitelist our Static IP: `35.188.248.243`
 
 If you're whitelisting that IP on Amazon Redshift, check out [this forum post](https://forum.astronomer.io/t/how-do-i-whitelist-astronomer-cloud-on-aws-redshift/165).
 
 #### Will I have access to Airflow's underlying database for my deployment?
 
-Yes! Each Astronomer Cloud customer has has an isolated Postgres database per deployment. To access that database and access the Ad-Hoc Query feature, for example, check out our guidelines in [this forum post](https://forum.astronomer.io/t/how-can-i-set-up-the-ad-hoc-query-feature-in-a-remote-deployment/143).
+Yes! Each Astronomer Cloud customer has has an isolated Postgres database per deployment. To access that database and the Ad-Hoc Query feature for a deployment on Astronomer, check out our guidelines in [this forum post](https://forum.astronomer.io/t/how-can-i-set-up-the-ad-hoc-query-feature-in-a-remote-deployment/143).
 
-To set up an Airflow databasae when you're developing locally, check out [these guidelines](https://forum.astronomer.io/t/how-do-i-set-my-postgres-username-and-password-to-access-the-ad-hoc-query-feature-locally/139).
+To set up an Airflow database when you're developing locally, check out [these guidelines](https://forum.astronomer.io/t/how-do-i-set-my-postgres-username-and-password-to-access-the-ad-hoc-query-feature-locally/139).
 
 #### What are my options for monitoring our deployments?
 
@@ -38,13 +38,13 @@ Right now, your monitoring options for Cloud are:
 3. Flower dashboard in the Astro UI to check on your Celery Workers (whether or not they’re online, how many tasks they’re actively processing, etc.)
 4. Scheduler/Webserver/Worker logs coming soon on v0.8 to Astronomer's UI
 
-Access to deployment-level monitoring via Grafana is unfortunately an Enterprise-only feature at the moment since all Cloud deployments live within our wider Astronomer owned cluster, but we're actively working to increase exposure to deployment stats for Cloud. Stay peeled.
+Access to deployment-level monitoring via Grafana is unfortunately an Enterprise-only feature at the moment since all Cloud deployments live within our wider Astronomer-hosted cluster, but we're actively working to increase exposure to deployment stats for Cloud. Stay peeled.
 
 #### What Airflow Executors do you currently support?
 
 We currently support the Celery and Local Executors, with support for KubernetesExecutor coming up soon in Astronomer v0.9. You can switch between the two freely via the Astronomer UI.
 
-*Not sure which Executor to use?* We generally recommend starting off with the LocalExecutor and moving up from there once you see your deployment is in need of more effective horizontal scaling. Check out [Airflow Executors: Explained](https://www.astronomer.io/guides/airflow-executors-explained/) for a fully analysis on each.
+*Not sure which Executor to use?* We generally recommend starting off with the LocalExecutor and moving up from there once you see your deployment is in need of more effective horizontal scaling. Check out [Airflow Executors: Explained](https://www.astronomer.io/guides/airflow-executors-explained/) for a ful analysis on each.
 
 #### Do you have a recommended way to share code amongst my team members?
 
