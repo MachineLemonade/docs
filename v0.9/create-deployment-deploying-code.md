@@ -23,7 +23,9 @@ astro deployment list
  demo_cluster     infrared-photon-7780     v0.7.5     c2436025-d501-4944-9c29-19ca61e7f359  
 ```
 
-## Logging in and Deploying from the CLI
+## Deploying from the CLI
+
+### Authentication
 
 Before you can push your code up, you will need to authenticate.
 
@@ -49,6 +51,8 @@ This will take you through our authentication flow:
  Switched cluster
 Username (leave blank for oAuth):
 ```
+
+### Deployment
 
 Once you've authenticated, make sure you are in the right workspace:
 
@@ -77,8 +81,20 @@ Everything in your top level directory (and all children directory) that you ran
 For more information on what gets built into your image, jump over to the [CLI section](https://www.astronomer.io/docs/customizing-your-image/).
 
 
-### Deployments, Workspaces, and Kubernetes Namespaces
+## Deployments, Workspaces, and Kubernetes Namespaces
 
-Each deployment lives in its own Kubernetes [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and are completely unaware of each other. Each deployment is allocated resources separately, is configured independently, and maintains its own metadata - **the only thing deployments have in common is they run on the same underlying Kubernetes cluster.**
+### Kubernetes Namespaces
 
-Generally, most use cases will call for a `production` and `dev` deployment that exist within Workspace (so available to the same set of users). As we roll out more permission controls, you will be able to control amounts of access to different deployments.
+Airflow deployments live within their own Kubernetes [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) - each completely unaware of the rest. Each deployment is allocated separate resources, is configured in isolation, and maintains its own metadata. Whether it's ours on Astronomer Cloud or your own on Astronomer Enterprise, **the only thing deployments have in common is that they run on the same underlying Kubernetes cluster.**
+
+### Organizing your Code
+
+This is largely dependent on personal preference and your particular use case.
+
+Generally, most use cases will call for a `production` and `dev` deployment, both of which exist within a single Workspace and therefore available to a set of users, each with varying permissions (as of Astronomer v0.9).
+
+At a Workspace level, we recommend having 1 Astronomer Workspace per team of Airflow users. That way, anyone on each team has access to the same set of deployments under that Workspace (RBAC will soon allow you to adjust that access at a deployment level if you'd like). 
+
+Across deployments, we'd generally recommend one repository/parent directory per project. That way, you leave the door open for CI/CD down the line if that's something you ever want to set up.
+
+As for the code itself, we’ve seen effective organization where external code is partitioned by function and/or business case, so one directly for SQL, one for data processing tasks, one for data validation, etc.
