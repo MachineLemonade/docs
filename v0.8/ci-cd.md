@@ -9,7 +9,7 @@ With Service accounts, you can deploy your DAGs with the continuous integration/
 
 For background information and best practices on CI/CD, we recommend reading the article [An Introduction to CI/CD Best Practices](https://www.digitalocean.com/community/tutorials/an-introduction-to-ci-cd-best-practices) from DigitalOcean.
 
-## Steps for Setting up CI/CD with Your Astronomer Airflow Project
+## How to Set Up CI/CD with Your Astronomer Airflow Project
 
 Before we get started, this guide assumed you have installed Astronomer Enterprise Edition or are using Astronomer Cloud Edition, have the [astro-cli](https://github.com/astronomer/astro-cli) v0.6.0 or newer installed locally and are familiar with your CI/CD tool of choice. You can check your astro-cli version with the `astro version` command.
 
@@ -45,13 +45,15 @@ In both cases, this will spit out an API key that will be used for the CI/CD pro
 
 https://app.[BaseDomain]/login
 
-### Configuring Your CI/CD Pipeline
+### Configure Your CI/CD Pipeline
 
 Depending on your CI/CD tool, configuration will be slightly different. This section will focus on outlining what needs to be accomplished, not the specifics of how.
 
-At it's core, your CI/CD pipeline will be authenticating to the private registry installed with the platform, then building, tagging and pushing an image to that registry.
+At its core, your CI/CD pipeline will be authenticating to the private registry installed with the platform, then building, tagging and pushing an image to that registry.
 
-An example pipeline (using DroneCI) could look like:
+Here are a few example pipelines:
+
+#### DroneCI
 
 ```yaml
 pipeline:
@@ -79,7 +81,8 @@ pipeline:
       branch: [ master, release-* ]
 ```
 
-If you are using CircleCI, it might look like:
+#### CircleCI
+
 ```
 # Python CircleCI 2.0 configuration file
 #
@@ -134,8 +137,7 @@ workflows:
                 - master
 ```
 
-Similarly, a Jenkins script could look like:
-
+#### Jenkins Script
 
 ```
 pipeline {
@@ -161,9 +163,31 @@ pipeline {
 
 ```
 
-Breaking this down:
+#### Bitbucket
 
-#### Authenticating to Docker
+If you are using [Bitbucket](https://bitbucket.org/), this script should work (courtesy of our friends at [Das42](https://www.das42.com/))
+
+```
+image: astronomerio/ap-build:0.0.7
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Deploy to production
+          deployment: production
+          script:
+            - echo ${ASTRONOMER_PASSWORD}
+            - docker login registry.astronomer.cloud -u _ -p ${ASTRONOMER_PASSWORD}
+            - docker push registry.astronomer.cloud/infrared-photon-7780/airflow:ci-${BITBUCKET_BUILD_NUMBER}
+          services:
+            - docker
+          caches:
+            - docker
+
+```
+
+### Authenticating to Docker
 
 After you have created a service account, you will want to store the generated API key in an environment variable, or your secret management tool of choice.'
 
@@ -175,7 +199,7 @@ docker login registry.$${BASE_DOMAIN} -u _ -p $${API_KEY_SECRET}
 
 In this example, the BASE_DOMAIN is `astronomer.cloud` (for Astronomer Cloud). The `API_KEY_SECRET` is the API Key that you got from the CLI or the UI stored in your secret manager
 
-#### Building and Pushing an Image
+### Building and Pushing an Image
 
 Once you are authenticated you can build, tag and push your Airflow image to the private registry, where a webhook will trigger an update of your Airflow deployment on the platform.
 
