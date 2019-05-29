@@ -6,7 +6,7 @@ slug: "ee-installation-gke"
 ---
 
 # Installing Astronomer on GCP GKE
-_Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platform onto Google Kubernetes Engine (or [GKE](https://cloud.google.com/kubernetes-engine/) for short)._
+Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platform onto Google Kubernetes Engine ([GKE](https://cloud.google.com/kubernetes-engine/) for short).
 
 ## 1. Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -65,8 +65,7 @@ Astronomer will deploy to Google's managed Kubernetes service (Google Kubernetes
 
 Enable the [Google Kubernetes Engine API](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine).
 
-We recommend using `n1-standard-8` nodes as a starting sport.
-
+We recommend using `n1-standard-8` nodes as a starting sport, with a minimum of 3 nodes (24 CPUs). Astronomer platform and components takes ~11 CPUs and ~40GB of memory as the default overhead.
 
 Create your Kubernetes cluster:
 
@@ -312,3 +311,20 @@ newbie-norse-registry-0                                1/1     Running     0    
 
 ## 11. Access Astronomer's Orbit UI
 Go to app.BASEDOMAIN to see the Astronomer UI!
+
+## 12. Verify SSL  
+To make sure that the certs were accepted, log into the platform and head to `app.BASEDOMAIN/token` and run:
+
+`curl -v -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <token>"`
+
+Verify that this output matches with:
+
+`curl -v -k -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <token>"`
+(The `-k` flag will run the command without looking for SSL)
+
+Finally, to make sure the registry accepted SSL, try to log into the registry:
+
+```docker login registry.BASEDOMAIN -u _ p <token>
+
+Login Succeeded
+```
