@@ -64,8 +64,10 @@ astro auth login astronomer.cloud
 **Astronomer Enterprise**
 
 ```
-astro auth login airflow.BASEDOMAIN
+astro auth login BASEDOMAIN
 ```
+
+(E.g. If your base domain is airflow.mycompany.io, your login command would be `astro auth login airflow.mycompany.io`)
 
 Follow the authentication flow from there.
 
