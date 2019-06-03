@@ -37,7 +37,7 @@
       "running-jobs-and-scaling",
       "setting-up-airflow-emails",
       "kubepodoperator",
-      "query-postgres"
+      "query-airflow-database"
     ]
   },
 

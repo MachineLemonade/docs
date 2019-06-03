@@ -1,8 +1,8 @@
 ---
-title: "Query Postgres"
+title: "Query the Airflow Database"
 description: "Guide on how to query Postgres, Airflow's underlying Database, on Astronomer"
 date: 2019-06-03T00:00:00.000Z
-slug: "query-postgres"
+slug: "query-airflow-database"
 ---
 
 
