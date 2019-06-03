@@ -36,7 +36,8 @@
       "create-deployment-deploying-code",
       "running-jobs-and-scaling",
       "setting-up-airflow-emails",
-      "kubepodoperator"
+      "kubepodoperator",
+      "query-postgres"
     ]
   },
 
