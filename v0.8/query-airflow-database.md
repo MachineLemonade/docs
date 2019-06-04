@@ -80,7 +80,7 @@ login: planetary-magnitude-8405_airflow
 
 **4. Access your Postgres Credentials**
 
-Astronomer Cloud: If you're a Cloud customer, reach out to us at support@astronomer.io for your username and password.
+Astronomer Cloud: If you're a Cloud customer, reach out to us at [support@astronomer.io](support@astronomer.io) for your username and password.
 
-Astronomer Enterprise: An individual deployment's Postgres credentials are stored as a Kubernetes Secret, which you can access via kubectl. Instructions here.
+Astronomer Enterprise: [Instructions here](https://www.astronomer.io/docs/ee-administration-postgres-creds/). An individual deployment's Postgres credentials are stored as a Kubernetes Secret, which you can access via kubectl. 
 
