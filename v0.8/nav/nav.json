@@ -70,7 +70,8 @@
           "houston-api",
           "ee-metrics",
           "ee-kibana",
-          "ee-kubectl"
+          "ee-kubectl",
+          "ee-administration-postgres-creds"
         ]
       }
     ]
