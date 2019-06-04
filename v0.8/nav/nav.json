@@ -59,7 +59,7 @@
       {
         "menu": "Customizing Your Install",
         "contents": [
-          "ee-integrating-auth-system",
+          "ee-integrating-auth-systems",
           "ee-configuring-resources",
           "ee-single-namespace-mode"
         ]
