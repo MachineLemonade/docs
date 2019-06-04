@@ -37,7 +37,7 @@ kubens
 Find the Kubernetes Namespace that corresponds to the Airflow deployment whose database you'd like credentials to.
 
 ```
-kubens astronomer-cloud-quasaric-sun-9051
+kubens <NAMESPACE>
 ```
 
 You should see the following components appear:
@@ -57,7 +57,7 @@ quasaric-sun-9051-2346-worker-0
 **4. Describe Scheduler Pod**
 
 ```
-kubectl describe pod <SCHEDULER POD NAME>
+kubectl describe pod <SCHEDULER POD>
 ```
 
 **5. Get Secret**
@@ -71,10 +71,10 @@ kubectl get secret
 Then:
 
 ```
-kubectl get secret <insert airflow metadata pod>
+kubectl get secret <airflow metadata pod>
 ```
 
-Then:
+Now, let's decode it:
 
 ```
 echo
@@ -91,8 +91,8 @@ postgresql://quasaric_sun_9051_airflow:U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp@geocentr
 
 The credentials you're looking for are in between `postgresql://` and the `@` in the following format:
 
-Username: quasaric_sun_9051_airflow
-Password: U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp
+- Username: quasaric_sun_9051_airflow
+- Password: U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp
 
 And you're set! To finish connecting to this deployment's Postgres, go back to [our doc on querying the Airflow database](https://astronomer.io/docs/query-airflow-database/).
 
