@@ -11,12 +11,8 @@ If you're an Enterprise Customer looking to pull the Postgres credentials you ne
 
 ### Pre-Requisites
 
-- Access to your Kubernetes Cluster and the following permissions:
-    - `container.namespaces.list`
-    - `container.pods.list`
+- Access to your Kubernetes Cluster with permissions to list pods + namespaces
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-- Your Airflow Deployment's Release Name
-- Read ["Query the Airflow Database"](https://astronomer.io/docs/query-airflow-database/)
 
 **Note**: The example below is based on access to Google's Kubernetes Engine on GCP, but the process should be parallel for other Kubernetes Services.
 
