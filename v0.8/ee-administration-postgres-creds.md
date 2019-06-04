@@ -1,5 +1,5 @@
 ---
-title: "How to Pull Postgres Creds"
+title: "Pulling Postgres Credentials"
 description: "How to access the username and password you'll need to access a deployment's underlying Postgres Database"
 date: 2018-08-24T00:00:00.000Z
 slug: "ee-administration-postgres-creds"
