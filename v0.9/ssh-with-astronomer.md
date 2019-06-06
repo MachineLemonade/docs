@@ -48,7 +48,7 @@ Either use the ssh_default connection or create a new one.
 
 `Username` - username for (ec2-user is default for Amazon Linux)
 
-`Extra` - `{"key_file":"./include/PrivateKeyFile.pem", "allow_host_key_change": true, "no_host_key_check":true}`
+`Extra` - `{"key_file":"./include/PrivateKeyFile.pem", "allow_host_key_change": "true", "no_host_key_check":"true"}`
 
 
 
