@@ -72,7 +72,7 @@ If you want to cancel your trial and are having trouble accessing your Astronome
 
 Your first 14 days on Astronomer Cloud are entirely free of cost. When you sign up, you'll trigger a 14-day trial period that allows you to freely spin up a deployment without worrying about an invoice at the end of the month.
 
-After your first 14 days, we'll charge you based on exact resource usage per deployment at the end of the month. You can expect your first invoice on Day 60.
+After your first 14 days, we'll charge you based on exact resource usage per deployment at the end of the month. You can expect your first invoice on Day 45, for between the end of your trial and that date.
 
 For full pricing details, check out our [Pricing Doc](https://www.astronomer.io/docs/pricing/).
 
