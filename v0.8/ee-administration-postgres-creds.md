@@ -1,46 +1,44 @@
 ---
 title: "Pulling Postgres Credentials"
-description: "How to access the username and password you'll need to access a deployment's underlying Postgres Database"
+description: "How to get Credentials to access Metadata for an Airflow Deployment on Astronomer"
 date: 2018-08-24T00:00:00.000Z
 slug: "ee-administration-postgres-creds"
 ---
 
 ## Overview
 
-If you're an Enterprise Customer looking to pull the Postgres credentials you need to access an Airflow's deployment's underlying database on your Kubernetes Cluster, follow the guidelines below.
+Each Airflow deployment on Astronomer maintains a separate metadata database. The credentials for these are stored as Kubernetes secrets within that namespace. To pull the credentials you need to access your deployment's underlying database, follow the guidelines below.
 
 ### Pre-Requisites
 
 - Access to your Kubernetes Cluster with permissions to list pods + namespaces
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-**Note**: The example below is based on access to Google's Kubernetes Engine on GCP, but the process should be parallel for other Kubernetes Services.
-
 ## How To Pull Postgres Credentials via Kubectl
 
 **1. Switch into your Kubernetes Cluster**
 
-At Astronomer, most of us use [kubectx](https://github.com/ahmetb/kubectx) - a command line tool that allows you to easily switch between clusters and namespaces via kubectl.
+The rest of this guide will assume use of [kubectx](https://github.com/ahmetb/kubectx) - a command line tool that allows you to easily switch between clusters and namespaces via kubectl.
 
 **2. List the Namespaces in your Cluster**
 
-For each Airflow deployment in your Cluster, you should see a corresponding namespace.
+Each Airflow deployment on Astronomer runs in a separate [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
-To list them, run:
+To list the namespaces on your cluster, run:
 
 ```
 kubens
 ```
 
-**3. Enter the Corresponding Namespace**
+**3. Confirm your Deployment's Corresponding Namespace**
 
-Find the Kubernetes Namespace that corresponds to the Airflow deployment whose database you'd like credentials to.
+Find the Kubernetes Namespace that corresponds to the Airflow deployment whose database you'd like credentials to, and then run.
 
 ```
 kubens <NAMESPACE>
 ```
 
-You should see the following components appear:
+If you run `kubectl get pods` from there, you should see the following components appear:
 
 ```
 Paolas-MacBook-Pro:hello-astro paola$ kubectl get pods
@@ -54,13 +52,9 @@ quasaric-sun-9051-2346-webserver-56fb447559-gjg8n   1/1     Running   0         
 quasaric-sun-9051-2346-worker-0
 ```
 
-**4. Describe Scheduler Pod**
+**4. Get Secret**
 
-```
-kubectl describe pod <SCHEDULER POD>
-```
-
-**5. Get Secret**
+As a next step, you'll have to pull the Kubernetes secret that lives in your Scheduler pod.
 
 Run:
 
