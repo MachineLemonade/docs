@@ -146,7 +146,7 @@ $ git checkout <branch-name>
 
 Create your `config.yaml` by copying our `starter.yaml` template:
 ```
-$ cp /configs/starter.yaml ./config.yaml
+$ cp ./configs/starter.yaml ./config.yaml
 ```
 
 
