@@ -24,40 +24,38 @@ To pull the credentials you need to access your deployment's underlying database
 
 **1. Switch into your Kubernetes Cluster**
 
-The rest of this guide will assume use of [kubectx](https://github.com/ahmetb/kubectx) - a command line tool that allows you to easily switch between clusters and namespaces via kubectl.
+The rest of this guide will assume the use of [kubectx](https://github.com/ahmetb/kubectx) - a command line tool that allows you to easily switch between Kubernetes Clusters and Namespaces.
 
 ```
-kubectx
+$ kubectx
 ```
 
 **2. List the Namespaces in your Cluster**
 
-Each Airflow deployment on Astronomer runs in a separate [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
-
-To list the namespaces on your cluster, run:
+To list the namespaces on your Kubernetes cluster, run:
 
 ```
-kubens
+$ kubens
 ```
 
 **3. Confirm your Deployment's Corresponding Namespace**
 
-Find the Kubernetes Namespace that corresponds to the Airflow deployment whose database you'd like credentials to, and then run.
+Find the Kubernetes Namespace that corresponds to the Airflow deployment whose database you'd like credentials to and run:
 
 ```
-kubens <NAMESPACE>
+$ kubens <NAMESPACE>
 ```
 
 Then, run:
 
 ```
-kubectl get pods
+$ kubectl get pods
 ```
 
 You should see something like the following:
 
 ```
-hello-astro paola$ kubectl get pods
+$ kubectl get pods
 NAME                                                    READY   STATUS    RESTARTS   AGE
 quasaric-sun-9051-flower-7bbdf98d94-zxxjd      1/1     Running   0          93d
 quasaric-sun-9051-2346-pgbouncer-c997bbd9d-dgsjr    2/2     Running   0          2d
@@ -68,22 +66,22 @@ quasaric-sun-9051-2346-webserver-56fb447559-gjg8n   1/1     Running   0         
 quasaric-sun-9051-2346-worker-0
 ```
 
-On every Astronomer Deployment, you'll see a Kubernetes Pod fore each component, the combination of which depends on the Airflow Executor running in that deployment. The example above assumes the Celery Executor and includes a component for a Worker, Redis and Flower.
+On every Astronomer Deployment, you'll see a Kubernetes Pod fore each component - the combination of which depends on the Airflow Executor running in that deployment. The example above assumes the Celery Executor and includes an additional component for a Celery Worker, [Redis](https://redis.io/) and [Flower](https://flower.readthedocs.io/en/latest/).
 
 **4. Get Secret**
 
-As a next step, you'll have to pull one of many few Kubernetes secrets for the Kubernetes Namespace in which your Airflow Deployment lives.
+As a next step, you'll have to pull one of multiple Kubernetes Secrets for the Kubernetes Namespace in which your Airflow Deployment lives.
 
 To list those secrets, run:
 
 ```
-kubectl get secret
+$ kubectl get secret
 ```
 
 You'll see something like the following:
 
 ```
-hello-astro paola$ kubectl get secret
+$ kubectl get secret
 NAME                                                              TYPE                                  DATA   AGE
 default-token-fk86l                                               kubernetes.io/service-account-token   3      93d
 geocentric-instrument-2346-airflow-metadata                       Opaque                                1      93d
@@ -104,7 +102,7 @@ The secret we're looking for lives in that "airflow-metadata" pod (meaning Airfl
 Now, run:
 
 ```
-kubectl get secret <airflow metadata pod>
+$ kubectl get secret <airflow metadata pod>
 ```
 
 Here, you should see something like this:
@@ -117,10 +115,10 @@ geocentric-instrument-2346-airflow-metadata   Opaque   1      93d
 Next, run:
 
 ```
-kubectl get secret <airflow metadata pod> -o yaml
+$ kubectl get secret <airflow metadata pod> -o yaml
 ```
 
-This will pull some info on your Workspace, Namespace and Deployment, including a connection string at the top:
+This will pull some info on your Namespace, Deployment and Connection:
 
 ```
 apiVersion: v1
@@ -144,13 +142,13 @@ type: Opaque
 
 **6. Decode the Secret**
 
-Now, let's decode the secret and "connection" output from above:
+Now, let's grab the "connection" string from the top of that output and decode it:
 
 ```
-echo "<connectionstring>" | base64 --decode
+$ echo "<connectionstring>" | base64 --decode
 ```
 
-You'll get something like the following as output (don't worry, this is a sample deployment):
+You'll get something like the following (don't worry, this is a sample deployment):
 
 ```
 postgresql://quasaric_sun_9051_airflow:U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp@geocentric-instrument-2346-pgbouncer:6543/geocentric-instrument-2346-metadata
