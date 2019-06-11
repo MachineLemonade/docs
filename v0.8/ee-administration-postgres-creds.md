@@ -56,14 +56,14 @@ You should see something like the following:
 
 ```
 $ kubectl get pods
-NAME                                                    READY   STATUS    RESTARTS   AGE
-quasaric-sun-9051-flower-7bbdf98d94-zxxjd      1/1     Running   0          93d
+NAME                                                READY   STATUS    RESTARTS   AGE
+quasaric-sun-9051-flower-7bbdf98d94-zxxjd           1/1     Running   0          93d
 quasaric-sun-9051-2346-pgbouncer-c997bbd9d-dgsjr    2/2     Running   0          2d
 quasaric-sun-9051-2346-redis-0                      1/1     Running   0          93d
 quasaric-sun-9051-2346-scheduler-59f856bd5-d7gl4    1/1     Running   0          3h
 quasaric-sun-9051-2346-statsd-5c7d7b6777-x7v4x      1/1     Running   0          93d
 quasaric-sun-9051-2346-webserver-56fb447559-gjg8n   1/1     Running   0          3h
-quasaric-sun-9051-2346-worker-0
+quasaric-sun-9051-2346-worker-0                     2/2     Running   0          3h
 ```
 
 On every Astronomer Deployment, you'll see a Kubernetes Pod fore each component - the combination of which depends on the Airflow Executor running in that deployment. The example above assumes the Celery Executor and includes an additional component for a Celery Worker, [Redis](https://redis.io/) and [Flower](https://flower.readthedocs.io/en/latest/).
