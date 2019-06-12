@@ -26,6 +26,8 @@ To pull the credentials you need to access your deployment's underlying database
 
 The rest of this guide will assume the use of [kubectx](https://github.com/ahmetb/kubectx) - a command line tool that allows you to easily switch between Kubernetes Clusters and Namespaces.
 
+To start, switch into the Kubernetes Cluster that hosts Astronomer Enterprise.
+
 ```
 $ kubectx
 ```
@@ -66,7 +68,7 @@ quasaric-sun-9051-2346-webserver-56fb447559-gjg8n   1/1     Running   0         
 quasaric-sun-9051-2346-worker-0                     2/2     Running   0          3h
 ```
 
-On every Astronomer Deployment, you'll see a Kubernetes Pod fore each component - the combination of which depends on the Airflow Executor running in that deployment.
+On every Astronomer Deployment, you'll see a Kubernetes Pod for each component - the combination of which depends on the Airflow Executor running in that deployment.
 
 The example above assumes the Celery Executor and so includes an additional component for a Celery Worker, a [Redis](https://redis.io/) queue and [Flower](https://flower.readthedocs.io/en/latest/) dashboard.
 
