@@ -50,7 +50,7 @@ In the `airflow_db` connection object:
     ```
 Your connection should look something like:
 
-![Connections Details Page](https://assets2.astronomer.io/main/docs/query-postgres/query-postgres-connection-details.png)
+![Local Connections Details Page](https://assets2.astronomer.io/main/docs/query-postgres/query-postgres-connection-details.png)
 
 The port will be set to 5342 by default but if you’ve set a custom port, you’ll need to update that here as well.
 
@@ -67,22 +67,30 @@ To set up a connection for a remote deployment on Astronomer Cloud or Enterprise
 The same way you followed the steps above for a local deployment, add the following connection details to the `airflow_db` connection object:
 
 ```
-host: {host}-pgbouncer
-schema: {host}-metadata
-login: {host}_airflow
+host: {release-name}-pgbouncer
+schema: {release-name}-metadata
+login: {release_name}_airflow
+port: 6543
 ```
 
-For example, if your deployment name was planetary-magnitude-8405, the connection information would be the following:
+For example, if your deployment name was `quasaric-sun-9051`, the connection information would be the following:
 
-```
-host: planetary-magnitude-8405-pgbouncer
-schema: planetary-magnitude-8405-metadata
-login: planetary-magnitude-8405_airflow
-```
+![Remote Connections Details Page](https://assets2.astronomer.io/main/docs/query-postgres/query-postgres-remote-connection-details.png)
 
-**4. Access your Postgres Credentials**
+**4. Pull your Postgres Password**
 
-Astronomer Cloud: If you're a Cloud customer, reach out to us at [support@astronomer.io](support@astronomer.io) for your username and password.
+Astronomer Cloud: If you're a Cloud customer, reach out to us at [support@astronomer.io](support@astronomer.io) for the Password to your Deployment's Database.
 
-Astronomer Enterprise: [Instructions here](https://www.astronomer.io/docs/ee-administration-postgres-creds/). An individual deployment's Postgres credentials are stored as a Kubernetes Secret, which you can access via kubectl. 
+Astronomer Enterprise: [Instructions here](https://www.astronomer.io/docs/ee-administration-postgres-creds/). Your deployment's Postgres credentials are stored as a Kubernetes Secret in your deployment's Namespace, which you can access via kubectl.
 
+**5. Run an Ad Hoc Query to Confirm Access**
+
+To test your connection, try to query your deployment's metadata database via Airflow's Ad Hoc Query page.
+
+- Navigate to `Data Profiling` > `Ad Hoc Query` on the Airflow UI
+- Select `airflow_db` as the database from the menu
+- Run a sample query
+
+![Ad Hoc Query Page](https://assets2.astronomer.io/main/docs/query-postgres/query-postgres-adhocquery.png)
+
+This particular query will render total completed task count for your deployment. For a list of handy queries to reference, check out [Useful SQL queries for Apache Airflow](https://www.astronomer.io/guides/airflow-queries/).

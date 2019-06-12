@@ -52,7 +52,7 @@ Then, run:
 $ kubectl get pods
 ```
 
-You should see something like the following:
+You should see something like:
 
 ```
 $ kubectl get pods
@@ -66,7 +66,9 @@ quasaric-sun-9051-2346-webserver-56fb447559-gjg8n   1/1     Running   0         
 quasaric-sun-9051-2346-worker-0                     2/2     Running   0          3h
 ```
 
-On every Astronomer Deployment, you'll see a Kubernetes Pod fore each component - the combination of which depends on the Airflow Executor running in that deployment. The example above assumes the Celery Executor and includes an additional component for a Celery Worker, [Redis](https://redis.io/) and [Flower](https://flower.readthedocs.io/en/latest/).
+On every Astronomer Deployment, you'll see a Kubernetes Pod fore each component - the combination of which depends on the Airflow Executor running in that deployment.
+
+The example above assumes the Celery Executor and so includes an additional component for a Celery Worker, a [Redis](https://redis.io/) queue and [Flower](https://flower.readthedocs.io/en/latest/) dashboard.
 
 **4. Get Secret**
 
@@ -97,19 +99,12 @@ geocentric-instrument-2346-scheduler-serviceaccount-token-w29bn   kubernetes.io/
 geocentric-instrument-2346-worker-serviceaccount-token-gqr4w      kubernetes.io/service-account-token   3      93d
 ```
 
-The secret we're looking for lives in that "airflow-metadata" pod (meaning Airflow's Metadata database).
+The secret we're looking for lives in that "airflow-metadata" pod (for Airflow's Metadata database).
 
 Now, run:
 
 ```
 $ kubectl get secret <airflow metadata pod>
-```
-
-Here, you should see something like this:
-
-```
-NAME                                          TYPE     DATA   AGE
-geocentric-instrument-2346-airflow-metadata   Opaque   1      93d
 ```
 
 Next, run:
@@ -118,7 +113,7 @@ Next, run:
 $ kubectl get secret <airflow metadata pod> -o yaml
 ```
 
-This will pull some info on your Namespace, Deployment and Connection:
+This will pull some metadata on the secret itself, including an encoded "connection" string.
 
 ```
 apiVersion: v1
@@ -151,19 +146,26 @@ $ echo "<connectionstring>" | base64 --decode
 You'll get something like the following (don't worry, this is a sample deployment):
 
 ```
-postgresql://quasaric_sun_9051_airflow:U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp@geocentric-instrument-2346-pgbouncer:6543/geocentric-instrument-2346-metadata
+postgresql://quasaric_sun_9051_airflow:U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp@geocentric-instrument-2346-pgbouncer:6543echo /geocentric-instrument-2346-metadata
 ```
 
-**7. Copy Credentials**
+**7. Save your Credentials**
 
-The credentials you're looking for are in between `postgresql://` and the `@` in the following format:
+Based on the output above, you can find the credentials you're looking for in the following format: `login:password@host:port/schema`
 
-- Username: quasaric_sun_9051_airflow
+In this example, that'd be:
+
+```
+- Host: quasaric-sun-9051-pgbouncer
+- Schema: quasaric-sun-9051-metadata
+- Login: quasaric_sun_9051_airflow
 - Password: U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp
-- Host: Postgres
-- Port: 6543 (*optional*)
+- Port: 6543
+```
 
-And you're set! To finish connecting to this deployment's Postgres, go back to [our doc on querying the Airflow database](https://astronomer.io/docs/query-airflow-database/) for guidelines.
+**8. Update and Confirm your Connection**
+
+To finish creating and confirming your connection, go back to our [Query the Airflow Database](https://astronomer.io/docs/query-airflow-database/) doc.
 
 
 
