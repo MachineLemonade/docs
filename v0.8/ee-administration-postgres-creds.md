@@ -146,12 +146,12 @@ $ echo "<connectionstring>" | base64 --decode
 You'll get something like the following (don't worry, this is a sample deployment):
 
 ```
-postgresql://quasaric_sun_9051_airflow:U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp@geocentric-instrument-2346-pgbouncer:6543echo /geocentric-instrument-2346-metadata
+postgresql://quasaric_sun_9051_airflow:U2o7qvVulGvyqyvAXWm0RPhuPvjvlHOp@quasaric-sun-9051-pgbouncer:6543echo /quasaric-sun-9051-metadata
 ```
 
 **7. Save your Credentials**
 
-Based on the output above, you can find the credentials you're looking for in the following format: `login:password@host:port/schema`
+Based on the output above, you can find the connection credentials you're looking for in the following format: `login:password@host:port/schema`
 
 In this example, that'd be:
 
