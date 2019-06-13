@@ -64,9 +64,11 @@ If you're interested in Enterprise, the options there are more flexible. Check o
 
 #### Where do I log in?
 
-If you're interested in starting a trial, you can head [here](https://www.astronomer.io/trial/) to kick it off. You can expect a Welcome email from there with next steps on how to create an account on Astronomer Cloud.
+If you're interested in starting a trial on Astronomer Cloud, you can head [here](https://www.astronomer.io/trial/) to kick it off. Expect a Welcome email from there with next steps on how to create an account shortly thereafter.
 
-If you want to cancel your trial and are having trouble accessing your Astronomer account, reach out to us at support@astronomer.io.
+If have an existing account, go ahead to [app.astronomer.cloud/login](https://app.astronomer.cloud/login) to login.
+
+If you want to cancel your account or trial and are having trouble accessing your Astronomer account, reach out to us at support@astronomer.io.
 
 #### How does billing work?
 
