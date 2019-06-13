@@ -12,25 +12,25 @@ _If your org just started running Astronomer Enterprise, this is the doc you wil
 <iframe width="560" height="315" src="https://www.youtube.com/embed/02au2O3vDTk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-### 0. (Optional) Trial out Astronomer Cloud
-At its core, Astronomer Cloud is a large-scale deployment of Astronomer Enterprise that is fully managed by Astronomer's team.
+### 1. Start with Astronomer Cloud
 
-Astronomer Cloud is a SaaS version of Astronomer Enterprise, so you'll be able to deploy DAGs and manage Airflow environments the same way you would with Enterprise. A few differentiators:
+At its core, Astronomer Cloud is a large-scale deployment of Astronomer Enterprise that is fully managed by our team. Cloud provides parallel Airflwo functionality to Enterprise with just a few differences.
 
-- Astronomer Cloud runs in Astronomer's Cloud and uses the public internet, whereas Astronomer Enterprise will run in your cloud based on your security settings.
-- Astronomer Cloud is billed by usage, whereas Enterprise is billed through an annual license.
-- Astronomer Cloud does not give users access to the back-end Prometheus/Grafana monitoring stack.
-- Astronomer Cloud does not give users access to the Kibana interface for logs
-- Astronomer Cloud does not give you access to the underlying nodes your jobs run on.
+Astronomer Cloud:
 
-If you just want to get a feel for the Astronomer user experience, give our cloud product a try!
+- Runs in Astronomer's VPC and uses the public internet, whereas Astronomer Enterprise will run in *your* cloud according to your very own security settings
+- Is billed by usage, whereas Enterprise is billed through an annual license
+- Does not give users access to the back-end Prometheus/Grafana monitoring stack (though it's coming soon)
 
-### 1. Deploy Astronomer
+To get a sense of the Astronomer user experience, try out Cloud by [starting a 14-Day Trial](https://www.astronomer.io/trial/).
+
+### 2. Install Astronomer Enterprise
 
 If you are in charge of setting up Astronomer for your org, head over to our [Enterprise Edition](https://www.astronomer.io/docs/ee-overview/) section for get Astronomer running on your Kubernetes Cluster!
 
 
-### 2. Install the CLI
+### 3. Install the CLI
+
 Run:
 
 ```

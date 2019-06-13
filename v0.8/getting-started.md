@@ -97,7 +97,7 @@ We highlight a few ways you can get logs in our [Logging](https://www.astronomer
 
 ## Start a Trial with Astronomer
 
-To sign up for a free trial on Astronomer Cloud, fill out [this form](https://trial.astronomer.io). If you have an issue providing credit card information right off the bat or are interested in exploring Astronomer Enterprise, [contact us](https://www.astronomer.io/contact/?from=/).
+Once you're ready, [sign up for a free 14-Day Trial](https://www.astronomer.io/trial/) on Astronomer Cloud - no credit card required.
 
 ### Create a Workspace
 

@@ -50,7 +50,7 @@ We currently support the Celery and Local Executors, with support for Kubernetes
 
 This is largely dependent on personal preference and your particular use case.
 
-At a Workspace level, we recommend having 1 Astronomer Workspace per team of Airflow users. That way, anyone on each team has access to the same set of deployments under that Workspace (RBAC will soon allow you to adjust that access at a deployment level if you'd like). 
+At a Workspace level, we recommend having 1 Astronomer Workspace per team of Airflow users. That way, anyone on each team has access to the same set of deployments under that Workspace ([RBAC](https://www.astronomer.io/docs/ee-rbac/) will soon allow you to adjust that access at a deployment level if you'd like). 
 
 Across deployments, we'd generally recommend one repository/parent directory per project. That way, you leave the door open for CI/CD down the line if that's something you ever want to set up.
 
@@ -64,7 +64,7 @@ If you're interested in Enterprise, the options there are more flexible. Check o
 
 #### Where do I log in?
 
-If you're interested in starting a trial,you can head [here](https://trial.astronomer.io/) to kick it off. You can expect a Welcome email from there with next steps on how to create an account on Astronomer Cloud.
+If you're interested in starting a trial, you can head [here](https://www.astronomer.io/trial/) to kick it off. You can expect a Welcome email from there with next steps on how to create an account on Astronomer Cloud.
 
 If you want to cancel your trial and are having trouble accessing your Astronomer account, reach out to us at support@astronomer.io.
 
