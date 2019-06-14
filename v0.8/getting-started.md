@@ -200,7 +200,7 @@ you'll need based on your use-case:
 **Note:** If you're interested in trying out our Debian image (*alpha*), [reach out to us](support@astronomer.io) or read more about customizing your image in our [Customizing Your Image](https://www.astronomer.io/docs/customizing-your-image/) doc.
 
 
-## Deploy to Astrononer Cloud
+## Deploy to Astronomer Cloud
 
 ### Create an Airflow Deployment on Cloud
 
