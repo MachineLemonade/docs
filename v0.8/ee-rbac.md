@@ -1,22 +1,34 @@
 ---
-title: "Assigning Access Roles"
+title: "User Roles and Permissions"
 description: "Using RBAC with Astronomer"
 date: 2019-05-28T00:00:00.000Z
 slug: "ee-rbac"
 ---
 
-Astronomer v0.9.0 and beyond running supports role based access control (RBAC).
+Astronomer v0.9 and beyond supports role based access control (RBAC), allowing you to configure varying levels of access across all Users within your Workspace.
 
 The Astronomer image comes bundled with an astronomer-security-manager package that connects permissions between
-Houston (the Astronomer API) and Airflow's built in RBAC. Within a Workspace, you can now designate users a variety of permissions at the deployment-level.
+Houston (the Astronomer API) and Airflow's built-in RBAC.
+
+For details on how those levels of permission are defined and how to leverage them on both Astronomer and Airflow, read the guidelines below.
 
 ## Overview
 
-Astronomer supports three levels of Workspace roles: Admin, Editor, and Viewer.
+Astronomer supports three levels of Workspace roles:
+
+- Admin
+- Editor
+- Viewer
+
+Each of these roles maps to a combination of permissions to both Astronomer and Airflow itself.
+
+### View Roles
 
 To view roles within a Workspace, navigate to the `Users` tab.
 
 ![Users](https://assets2.astronomer.io/main/docs/astronomer-ui/users_permissions.png)
+
+### Edit Roles
 
 If you're a Workspace Admin, you can edit permissions by clicking into a user.
 
@@ -48,7 +60,7 @@ Viewers are limited to read-only mode. They can:
 
 Viewers _cannot_ push code to a deployment.
 
-**Note: By default, newly invited users are `Viewers` in a workspace.**
+**Note:** By default, newly invited users are `Viewers` in a Workspace.
 
 ## Airflow Access
 
@@ -76,9 +88,10 @@ User roles apply to all Airflow deployments within a single Workspace.
 
 - Read-only access to the Airflow UI
 - Cannot deploy to, modify, or delete anything within an Airflow deployment
-- Any attempts to view logs, trigger DAGs, or anything else of the sort will result in a `403` and an `Access Denied` message.
+- Any attempts to view logs, trigger DAGs, or anything else of the sort will result in a `403` and an `Access is Denied` message.
 
 ![Access Denied](https://assets2.astronomer.io/main/docs/astronomer-ui/access_denied.png)
 
 ## Coming soon
-We're rolling out Deployment level permissions to use in tandem with the Workspace level permissions!
+
+In coming releases, we'll be rolling out Deployment level permissions to use in tandem with Workspace level permissions.

@@ -58,7 +58,7 @@ One Celery worker, for example, is powered by 1 AU by default but can be modifie
 
 #### Extra Capacity
 
-On Astronomer v0.7 - v0.9, resources needed for either the [KubernetesPodOperator](https://www.astronomer.io/docs/kubepodoperator/) and the KubernetesExecutor are mapped to the `Extra Capacity` slider on your deployment's "Configure" page.
+On Astronomer v0.7 - v0.9, resources needed for either the [KubernetesPodOperator](https://www.astronomer.io/docs/kubepodoperator/) or the KubernetesExecutor are mapped to the `Extra Capacity` slider on your deployment's "Configure" page.
 
 The number of AUs (as a combination of CPU and Memory) maps to [*resource quotas*](https://kubernetes.io/docs/concepts/policy/resource-quotas/) on the [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) in which your Airflow deployment lives.
 
