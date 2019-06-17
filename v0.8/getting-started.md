@@ -113,9 +113,9 @@ $ astro airflow start
 ```
 
 This command will spin up a Docker container on your machine with 3 Airflow components:
-- Postgres: [Airflow's Metadata Database](https://www.astronomer.io/docs/query-airflow-database/)
-- Webserver: The Airflow component responsible for rendering the Airflow UI
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
+- **Postgres:** [Airflow's Metadata Database](https://www.astronomer.io/docs/query-airflow-database/)
+- **Webserver:** The Airflow component responsible for rendering the Airflow UI
+- **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
 
 You should see the following output:
 
@@ -262,6 +262,6 @@ Now that you're set up on Astronomer and familiar with our deployment flow, cons
 
 ### Additional Resources
 
-[**Community Forum**](https://forum.astronomer.io): General Airflow + Astronomer FAQs
-[**Astronomer's GitHub**](https://github.com/astronomer/astronomer): Feature Requests + Bug Reports
-[**Technical Support**](support@astronomer.io): Individual platform or Airflow issues
+- [**Community Forum**](https://forum.astronomer.io): General Airflow + Astronomer FAQs
+- [**Astronomer's GitHub**](https://github.com/astronomer/astronomer): Feature Requests + Bug Reports
+- [**Technical Support**](support@astronomer.io): Individual platform or Airflow issues

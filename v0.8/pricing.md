@@ -54,7 +54,37 @@ See below for out-of-the-box configurations and corresponding AU count:
 
 One Celery worker, for example, is powered by 1 AU by default but can be modified at any time.
 
-#### Billing
+### Kubernetes Executor
+
+#### Extra Capacity
+
+On Astronomer v0.7 - v0.9, resources needed for either the [KubernetesPodOperator](https://www.astronomer.io/docs/kubepodoperator/) and the KubernetesExecutor are mapped to the `Extra Capacity` slider on your deployment's "Configure" page.
+
+The number of AUs (as a combination of CPU and Memory) maps to [*resource quotas*](https://kubernetes.io/docs/concepts/policy/resource-quotas/) on the [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) in which your Airflow deployment lives.
+
+These resources, constrained by said quotas, power any Kubernetes Pod created by implementing either the KubernetesPodOperator or the Kubernetes Executor in your code.
+
+#### Node Limits on Astronomer Cloud
+
+On Astronomer Cloud v0.7.5, the node limits for any single task (based on Google's [standard-4 machine type](https://cloud.google.com/compute/docs/machine-types)) are:
+
+- 13.01 GB of Memory/RAM
+- 3.92 CPU
+
+On Astronomer Cloud v0.9, the node limits for any single task (based on Google's [standard-16 machine type](https://cloud.google.com/compute/docs/machine-types)) are:
+
+- 58 GB of Memory/RAM
+- 15 CPU
+
+#### Pricing
+
+Astronomer v0.9 introduces the KubernetesExecutor as an alpha feature that does not dynamically "scale to zero" (yet).
+
+Any AU's allocated in the `Extra Capacity` slider will be aggregated *in addition to* resources otherwise allocated to your Scheduler, Webserver, and Workers. If you're an Astronomer Cloud customer, they'll be added to your monthly resource bill at our standard rate of $10/AU.
+
+We'll be making a dynamically scaling KubernetesExecutor a reality on Astronomer in coming releases. Stay tuned.
+
+### Billing
 
 To calculate your bill at the end of the month, we take a snapshot of your deployment's resource allocations every individual hour your deployment is running on our platform (via an Airflow DAG, of course).
 
@@ -64,9 +94,13 @@ For example, the cost of running 1 deployment on 25 AUs (a standard deployment w
 
 **Note**: Scheduled downtime is not currently supported. Check out a [related forum question](https://forum.astronomer.io/t/can-i-have-scheduled-downtime/35) for more info.
 
-### Non-Profit Discount
+## Non-Profit Discount
 
-We offer non-profit customers a 20% discount on their monthly Astronomer bill. Please reach out to us at humans@astronomer.io if you believe you may be eligible for this discount.
+If you're a not-for-profit interested in Astronomer, our team wants to support you and your mission.
+
+On Astronomer, all organizations with a 501(c)(3) status are eligible for a 20% discount across all product offerings.
+
+If you're interested and believe you might be eligible, reach out to us at humans@astronomer.io.
 
 ## Enterprise Pricing
 
