@@ -93,4 +93,8 @@ To test your connection, try to query your deployment's metadata database via Ai
 
 ![Ad Hoc Query Page](https://assets2.astronomer.io/main/docs/query-postgres/query-postgres-adhocquery.png)
 
-This particular query will render total completed task count for your deployment. For a list of handy queries to reference, check out [Useful SQL queries for Apache Airflow](https://www.astronomer.io/guides/airflow-queries/).
+This particular query will render total completed task count for your deployment.
+
+### What's Next
+
+For a list of handy queries to reference, check out [Useful SQL queries for Apache Airflow](https://www.astronomer.io/guides/airflow-queries/).
