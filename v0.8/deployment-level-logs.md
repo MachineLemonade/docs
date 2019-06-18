@@ -7,9 +7,20 @@ slug: "deployment-level-logs"
 
 ## Overview
 
-As of Astronomer v0.8, the Astronomer UI allows you to look up and search Airflow logs emitted by your Webserver, Scheduler and Worker(s) for any deployment within your Workspace.
+As of Astronomer v0.8, the Astronomer UI allows you to look up and search Airflow logs emitted by your Webserver, Scheduler and Worker(s) for any deployment you have access to.
 
-**Note**: These are deployment level logs that will help you monitor the health of your deployment's components, _not_ task-level logs that you'd find in the Airflow Web UI.
+### Interpreting Logs
+
+We've designed this view to give you access to deployment level logs that will help you monitor the health of your deployment's component (Webserver, Scheduler, Worker).
+
+**Note:** These are _not_ task-level logs that you'd find in the Airflow Web UI. Logs on Astronomer are not a replacement for task-level logging in the Airflow UI.
+
+A few use cases:
+
+- See your Scheduler, Webserver, and Workers all restart after you push `astro airflow deploy`
+- If your Airflow UI is not loading as expected - is your Webserver in a CrashLoop?
+- How quickly is your Scheduler queuing up tasks?
+- Is your Celery worker behaving unexpectedly?
 
 ### Pre-Requisites
 
@@ -26,7 +37,7 @@ In the dropdown on the top-right, you'll see a button where you can toggle betwe
 
 - Scheduler
 - Webserver
-- Celery Workers (*if applicable*)
+- Workers (*if applicable*)
 
 ![Webserver Logs Page](https://assets2.astronomer.io/main/docs/logs/logs-webserver.png)
 
