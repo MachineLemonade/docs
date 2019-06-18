@@ -10,7 +10,7 @@ NAME                       	REVISION	UPDATED                 	STATUS  	CHART    
 excited-armadillo          	1       	Mon Jun 17 18:05:48 2019	DEPLOYED	astronomer-0.8.2                 	0.8.2        	astronomer
 ```
 
-The base platform release, `excited armadillo` lives in the `astronomer` namespace
+Here, base platform release, `excited armadillo` lives in the `astronomer` namespace.
 
 3) Upgrade helm/tiller to v2.14 or greater:
 
@@ -25,42 +25,51 @@ $ helm version
 Client: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 ```
-_Note_: You may need to upgrade your local version of helm. Go to [helm.sh](https://helm.sh/docs/using_helm/#from-snap-linux) to view instructions for your package manager.
+_Note_: You may need to upgrade your local version of helm.
 
+Brew (OS X):
+```
+$ brew upgrade kubernetes-helm
+```
 
-4) Delete the Astronomer platform release:
+Ubuntu:
+```
+$ sudo snap refresh helm
+```
+
+4) Delete the Astronomer platform release.
 
 ```
 $ helm delete --purge excited-armadillo
 ```
 
-Wait until the pods in your Astronomer namespace spin down, to watch them, run:
+Wait until the pods in your platform namespace spin down, to watch them, run:
 
 ```
 $ watch kubectl get pods -n astronomer
 ```
 
-5) Install the new platform onto your release and wait for all the pods to come up.
+5) Install the new platform onto the old release and wait for all the pods to come up.
 
 ```
-$ helm install -f config.yaml  . -n excited-armadillo --namespace astronomer
+$ helm install -f config.yaml . -n excited-armadillo --namespace astronomer
 ```
+
+You can watch the status of these with.
 
 ```
 $ watch kubectl get pods --namespace astronomer
 ```
-Once all pods are up - the base platform has been upgraded!
+Once all pods are up in the `Running` state - the base platform has been upgraded!
 
-
-
-6) Go to your app.BASEDOMAIN and log in (you may need to hard refresh (Cntrl+Refresh) the page for it to load).
+6) Go to your app.BASEDOMAIN and log in (you may need to hard refresh (Cntrl+Refresh Button) the page for it to load).
 
 7) Go into `Configure` for each Airflow deployment and Upgrade the Airflow instance and hit `Upgrade`.
 
 8) Change the `FROM` line in your `Dockerfile` to
 
 ```
-FROM astronomerinc/ap-airflow:0.9.0-1.10.3-onbuild
+FROM astronomerinc/ap-airflow:0.9.1-1.10.3-onbuild
 ```
 
 9) Upgrade your CLI:
@@ -76,4 +85,3 @@ You can install the latest tagged release with the following command
 ```
 
 10) Start pushing new DAGs!
-
