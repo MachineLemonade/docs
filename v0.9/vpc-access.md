@@ -91,33 +91,3 @@ After saving your connection:
 
 
 IF you're able to succesfully query, you're all done!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

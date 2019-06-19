@@ -1,3 +1,10 @@
+---
+title: "Upgrade Astronomer"
+description: "A guide to upgrading Astronomer on Enterprise"
+date: 2018-07-17T00:00:00.000Z
+slug: "ee-upgrade-guide"
+---
+
 1) Checkout the right version of Astronomer:
 
 `$ git checkout v0.9.1`
