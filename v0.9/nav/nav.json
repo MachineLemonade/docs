@@ -38,7 +38,8 @@
       "setting-up-airflow-emails",
       "kubepodoperator",
       "query-airflow-database",
-      "ee-rbac"
+      "ee-rbac",
+      "deployment-level-logs"
     ]
   },
 
@@ -82,7 +83,8 @@
   {
     "menu": "Integrating Services",
     "contents": [
-      "ci-cd"
+      "ci-cd",
+      "vpc-access"
     ]
   },
   {

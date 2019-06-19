@@ -76,7 +76,7 @@ Ubuntu:
 $ sudo snap refresh helm
 ```
 
-### Delete your current Astronomer Platform Release
+### Delete your current Platform Release
 
 ```
 $ helm delete --purge <PLATFORM-RELEASE>
@@ -114,7 +114,7 @@ $ watch kubectl get pods --namespace <NAMESPACE>
 
 Once all pods have reached `Running` state, you can consider the base platform upgraded.
 
-### Log In to the Astronomer UI
+### Log into the Astronomer UI
 
 Now that the platform has been upgraded, go to `app.BASEDOMAIN` in your browser and log into Astronomer.
 
