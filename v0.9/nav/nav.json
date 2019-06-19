@@ -72,7 +72,8 @@
           "ee-metrics",
           "ee-kibana",
           "ee-kubectl",
-          "ee-administration-postgres-creds"
+          "ee-administration-postgres-creds",
+          "ee-upgrade-guide"
         ]
       }
     ]

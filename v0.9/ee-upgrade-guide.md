@@ -1,38 +1,70 @@
 ---
 title: "Upgrade Astronomer"
-description: "A guide to upgrading Astronomer on Enterprise"
-date: 2018-07-17T00:00:00.000Z
+description: "A guide to upgrading your installation of the Astronomer Enterprise platform"
+date: 2019-06-19T00:00:00.000Z
 slug: "ee-upgrade-guide"
 ---
 
-1) Checkout the right version of Astronomer:
+To upgrade your installation of the Astronomer Enterprise platform, follow the guidelines below.
 
-`$ git checkout v0.9.1`
+#### Pre-Requisites
 
-2) Get the name of your platform release.
+- Access to an Astronomer Enterprise Installation (v0.8 or beyond)
+
+### Checkout the latest Astronomer Version
+
+As a first step, checkout the right version of Astronomer by running:
+
+```
+$ git checkout v0.9.1
+```
+
+### Get your Platform Release Name
+
+To grab the name of your platform release, run:
+
+```
+$helm ls
+```
+
+You should see something like the following:
 
 ```
 $ helm ls
-NAME                       	REVISION	UPDATED                 	STATUS  	CHART                            	APP VERSION  	NAMESPACE
-excited-armadillo          	1       	Mon Jun 17 18:05:48 2019	DEPLOYED	astronomer-0.8.2                 	0.8.2        	astronomer
+NAME              REVISION UPDATED                   STATUS  	CHART             APP VERSION   NAMESPACE
+excited-armadillo   1      Mon Jun 17 18:05:48 2019	 DEPLOYED	astronomer-0.8.2  0.8.2        	astronomer
 ```
 
-Here, base platform release, `excited armadillo` lives in the `astronomer` namespace.
+In this output,
 
-3) Upgrade helm/tiller to v2.14 or greater:
+- Base Platform Release Name: `excited armadillo`
+- Namespace: `astronomer`
+
+### Upgrade Helm/Tiller
+
+Now, upgrade Helm/Tiller to `v2.14` or greater.
 
 ```
 $ helm init --upgrade
 ```
 
-Ensure you are on a version 2.14 or later:
+To ensure you're on v2.14 or later, run:
+
+```
+$ helm version
+```
+
+You should see something like the following:
 
 ```
 $ helm version
 Client: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 ```
-_Note_: You may need to upgrade your local version of helm.
+
+#### Upgrade Local Version of Helm
+
+You may need to upgrade your local version of Helm.
 
 Brew (OS X):
 ```
@@ -44,51 +76,104 @@ Ubuntu:
 $ sudo snap refresh helm
 ```
 
-4) Delete the Astronomer platform release.
+### Delete your current Astronomer Platform Release
 
 ```
-$ helm delete --purge excited-armadillo
+$ helm delete --purge <PLATFORM-RELEASE>
 ```
 
-Wait until the pods in your platform namespace spin down, to watch them, run:
+This will delete your current platform.
+
+#### Wait for Pods to Spin Down
+
+Wait until the Pods (FluentD, Grafana, etc.) in your platform namespace spin down. 
+
+To watch them, run:
 
 ```
-$ watch kubectl get pods -n astronomer
+$ watch kubectl get pods -n <NAMESPACE>
 ```
 
-5) Install the new platform onto the old release and wait for all the pods to come up.
+### Install the New Platform
+
+Now, let's re-install the platform onto the old release.
 
 ```
-$ helm install -f config.yaml . -n excited-armadillo --namespace astronomer
+$ helm install -f config.yaml . -n <PLATFORM-RELEASE> --namespace <NAMESPACE>
 ```
 
-You can watch the status of these with.
+#### Wait for Pods to Spin Up
+
+Once you do this, wait for all the Pods to come up.
+
+You can watch them once again by running:
 
 ```
-$ watch kubectl get pods --namespace astronomer
+$ watch kubectl get pods --namespace <NAMESPACE>
 ```
-Once all pods are up in the `Running` state - the base platform has been upgraded!
 
-6) Go to your app.BASEDOMAIN and log in (you may need to hard refresh (Cntrl+Refresh Button) the page for it to load).
+Once all pods have reached `Running` state, you can consider the base platform upgraded.
 
-7) Go into `Configure` for each Airflow deployment and Upgrade the Airflow instance and hit `Upgrade`.
+### Log In to the Astronomer UI
 
-8) Change the `FROM` line in your `Dockerfile` to
+Now that the platform has been upgraded, go to `app.BASEDOMAIN` in your browser and log into Astronomer.
+
+**Note:** You may need to hard refresh (Cntrl+Refresh Button) the page for it to load.
+
+#### Upgrade Each Airflow Deployment
+
+From here, we'll need to upgrade each of your Airflow Deployments in your Workspace(s). When you enter your Worksapce, you should see the list of deployments that are available for an Upgrade (they should all be, initially).
+
+![Deployment List](https://assets2.astronomer.io/main/docs/upgrade-guide/upgrade-guide-deployment-list.png)
+
+For each Deployment,
+
+- Navigate to the `Configure` page
+- Hit `Upgrade`
+
+![Deployment Configure](https://assets2.astronomer.io/main/docs/upgrade-guide/upgrade-guide-deployment-configure.png)
+
+
+**Note:** You can expect to hit a `404 Error` if you try to acces the Airflwo UI for any Airflow deployment that you have not upgraded.
+
+### Update your Dockerfile
+
+Let's make sure your image builds with the latest Astronomer version.
+
+In your `Dockerfile`, change the `FROM` statement to:
 
 ```
 FROM astronomerinc/ap-airflow:0.9.1-1.10.3-onbuild
 ```
 
-9) Upgrade your CLI:
+### Upgrade your CLI
+
+As a final step, you'll need to upgrade the Astronomer CLI to our latest version - `v0.9.1`.
+
+To upgrade versions, run:
+
+```
+$ astro upgrade
+```
+
+Running that command should output your current version and confirm your upgrade versionm, as seen below:
 
 ```
 $ astro upgrade
 Astro CLI Version: v0.8.2  (2019.03.15)
-Astro CLI Latest: v0.9.0  (2019.05.17)
+Astro CLI Latest: v0.9.1  (2019.05.17)
 There is a more recent version of the Astronomer CLI available.
 You can install the latest tagged release with the following command
 	$ curl -sL https://install.astronomer.io | sudo bash
 
 ```
 
-10) Start pushing new DAGs!
+### Start Deploying DAGs
+
+With that, you're all set to run on Astronomer's latest. You're free to push DAGs to your upgraded Deployments.
+
+**Questions?**
+
+If you have any issues or questions, don't hesitate to reach out to your dedicated support member or to our wider team at support@astronomer.io.
+
+
