@@ -1,11 +1,13 @@
 ---
-title: "Configure a Google Cloud Storage Registry Back End"
-description: "Configure a Google Cloud Storage Registry Back End"
-date: 2018-07-17T00:00:00.000Z
-slug: "ee-registry-backend-gcs"
+title: "Configuring a Registry Back End"
+description: "Configuring a Registry Back End"
+date: 2019-06-26T00:00:00.000Z
+slug: "ee-registry-backend"
 ---
 
-The Astronomer platform uses a Docker Registry to store Airflow images pushed with the Astro CLI. The default storage back end for this Docker Registry is a Kubernetes Persistent Volume. This works great for most enterprise solutions. For those who desire a more scalable storage back end solution, we've added the ability to back the Astronomer Registry with a Google Cloud Storage bucket. Other registry storage backend solutions such as Amazon's S3 will be added in future releases.
+The Astronomer platform uses a Docker Registry to store Airflow images pushed with the Astro CLI. The default storage back end for this Docker Registry is a Kubernetes Persistent Volume. This works great for most enterprise solutions. For those who desire a more scalable storage back end solution, we've added the ability to back the Astronomer Registry with a Google Cloud Storage bucket. Additional registry storage back end solutions such as Amazon's S3 will be added in future releases.
+
+# Google Cloud Storage
 
 1. Download your Google Cloud Platform service account JSON key from https://console.cloud.google.com/apis/credentials/serviceaccountkey . Make sure the service account you use has roles `Storage Legacy Bucket Owner` and `Storage Object Admin`.
 2. Create kubernetes secret using the downloaded key: 
