@@ -10,7 +10,7 @@ The Astronomer platform uses a Docker Registry to store Airflow images pushed wi
 # Google Cloud Storage
 
 1. Download your Google Cloud Platform service account JSON key from https://console.cloud.google.com/apis/credentials/serviceaccountkey . Make sure the service account you use has roles `Storage Legacy Bucket Owner` and `Storage Object Admin`.
-2. Create kubernetes secret using the downloaded key: 
+2. Create Kubernetes secret using the downloaded key: 
 ```
 kubectl create secret generic astronomer-gcs-keyfile --from-file astronomer-gcs-keyfile=/path/to/key.json -n <your-namespace>
 ```
