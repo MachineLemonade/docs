@@ -28,7 +28,7 @@ astronomer:
   houston:
     config:
       auth:
-        auth0:
+        okta:
           enabled: true
           clientId: "<okta-client-id>"
           baseDomain: "<okta-base-domain>"
