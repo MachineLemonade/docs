@@ -5,31 +5,38 @@ date: 2018-07-17T00:00:00.000Z
 slug: "cli-quickstart"
 ---
 
-## Prerequisites
+Astronomer's [open-source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. 
 
-First you must install [Docker](www.docker.com) on your computer. Then, install the Astro CLI.
+From the CLI, you can establish a local testing environment and deploy to Astronomer, whether Cloud or Enterprise, whenever you're ready.
 
-If you are a Cloud customer, run:
+## Pre-Requisites
+
+To start using the CLI, make sure you've already installed:
+
+- [Docker](https://www.docker.com/)
+
+## Install
+
+If you're a Cloud customer, run:
 
 ```
-curl -sSL https://install.astronomer.io | sudo bash -s -- 0.7.5
+$ curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5-2
 ```
 
 If you are an Enterprise customer, run:
 
 ```
-curl -sSL https://install.astronomer.io | sudo bash
-
+$ curl -sSL https://install.astronomer.io | sudo bash
 ```
 
 **Note:** The `curl` command will work for Unix (Linux+Mac) based systems. If you want to run on Windows 10, you'll need to run through [this guide](https://www.astronomer.io/docs/cli-installation-windows-10) on getting Docker for WSL working.
 
-## Confirm the Install
+### Confirm the Install
 
 Let's make sure you have Astro CLI installed on your machine, and that you have a project to work from.
 
 ```bash
-astro
+$ astro
 ```
 
 If you're set up properly, you should see the following:
@@ -58,7 +65,7 @@ Flags:
 
 For a breakdown of subcommands and corresponding descriptions, you can run: `astro help`
 
-## Create a project
+## Create a Project
 
 Your first step is to create a project to work from that lives in a folder on your local machine. The command you'll need is listed below, with an example `hello-astro` project.
 
