@@ -7,16 +7,21 @@ slug: "ee-upgrade-guide"
 
 To upgrade your installation of the Astronomer Enterprise platform, follow the guidelines below.
 
+**Note:** This guide is **only** for upgrading from Astronomer v0.8.2 to v0.9.X.
+
+For help upgrading between different versions, please contact us at support@astronomer.io.
+
 #### Pre-Requisites
 
-- Access to an Astronomer Enterprise Installation (v0.8 or beyond)
+- Access to an Astronomer Enterprise Installation
+- Access to the Kubernetes cluster hosting the Astronomer Platform.
 
 ### Checkout the latest Astronomer Version
 
-As a first step, checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io):
+Checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io):
 
 ```
-$ git checkout v0.9.2
+$ git checkout v0.9.X
 ```
 
 ### Get your Platform Release Name
@@ -30,32 +35,21 @@ excited-armadillo   1      Mon Jun 17 18:05:48 2019	 DEPLOYED	astronomer-0.8.2  
 
 In this output,
 
-- Base Platform Release Name: `excited armadillo`
+- Base Platform Release Name: `excited-armadillo`
 - Namespace: `astronomer`
 
 ### Upgrade Helm/Tiller
 
-Now, upgrade Helm/Tiller to `v2.14` or greater.
-
-```
-$ helm init --upgrade
-```
-
-To ensure you're on v2.14 or later, run:
+Astronomer v0.9.2 requires helm 2.14 or later.
 
 ```
 $ helm version
-```
 
-You should see something like the following:
-
-```
-$ helm version
 Client: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 ```
 
-You may need to upgrade your local version of Helm.
+To upgrade helm locally:
 
 Brew (OS X):
 ```
@@ -66,6 +60,15 @@ Ubuntu:
 ```
 $ sudo snap refresh helm
 ```
+
+Once the right version of Helm is running locally, it can be upgraded on the cluster:
+
+```
+$ helm init --upgrade
+```
+
+Run `helm version` again to verify the Helm and Tiller versions.  
+
 
 ### Delete your current Platform Release
 
@@ -86,6 +89,14 @@ $ watch kubectl get pods -n <NAMESPACE>
 ### Install the New Platform
 
 Now, let's re-install the platform onto the old release.
+
+**Note:** If you are running your platform in a fully private networking setup, add
+```
+nginx:
+    privateLoadBalancer: True
+```
+
+into your `config.yaml`
 
 ```
 $ helm install -f config.yaml . -n <PLATFORM-RELEASE> --namespace <NAMESPACE>
@@ -123,21 +134,20 @@ For each Deployment,
 ![Deployment Configure](https://assets2.astronomer.io/main/docs/upgrade-guide/upgrade-guide-deployment-configure.png)
 
 
-**Note:** You can expect to hit a `404 Error` if you try to acces the Airflwo UI for any Airflow deployment that you have not upgraded.
+**Note:** You can expect to hit a `404 Error` if you try to acces the Airflow UI for any Airflow deployment that you have not upgraded.
 
 ### Update your Dockerfile
 
-Let's make sure your image builds with the latest Astronomer version.
-
+The image in the Dockerfile should match with the new version of Astronomer
 In your `Dockerfile`, change the `FROM` statement to:
 
 ```
-FROM astronomerinc/ap-airflow:0.9.1-1.10.3-onbuild
+FROM astronomerinc/ap-airflow:0.9.2-1.10.3-onbuild
 ```
 
 ### Upgrade your CLI
 
-As a final step, you'll need to upgrade the Astronomer CLI to our latest version - `v0.9.2`.
+As a final step, you'll need to upgrade the Astronomer CLI to a matching version
 
 To upgrade versions, run:
 
