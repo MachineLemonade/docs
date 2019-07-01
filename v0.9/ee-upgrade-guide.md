@@ -13,24 +13,17 @@ To upgrade your installation of the Astronomer Enterprise platform, follow the g
 
 ### Checkout the latest Astronomer Version
 
-As a first step, checkout the right version of Astronomer by running:
+As a first step, checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io):
 
 ```
-$ git checkout v0.9.1
+$ git checkout v0.9.2
 ```
 
 ### Get your Platform Release Name
 
-To grab the name of your platform release, run:
-
 ```
 $helm ls
-```
 
-You should see something like the following:
-
-```
-$ helm ls
 NAME              REVISION UPDATED                   STATUS  	CHART             APP VERSION   NAMESPACE
 excited-armadillo   1      Mon Jun 17 18:05:48 2019	 DEPLOYED	astronomer-0.8.2  0.8.2        	astronomer
 ```
@@ -62,8 +55,6 @@ Client: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002
 Server: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
 ```
 
-#### Upgrade Local Version of Helm
-
 You may need to upgrade your local version of Helm.
 
 Brew (OS X):
@@ -86,9 +77,7 @@ This will delete your current platform.
 
 #### Wait for Pods to Spin Down
 
-Wait until the Pods (FluentD, Grafana, etc.) in your platform namespace spin down. 
-
-To watch them, run:
+Wait until the Pods (FluentD, Grafana, etc.) in your platform namespace spin down. You can track this with:
 
 ```
 $ watch kubectl get pods -n <NAMESPACE>
@@ -148,7 +137,7 @@ FROM astronomerinc/ap-airflow:0.9.1-1.10.3-onbuild
 
 ### Upgrade your CLI
 
-As a final step, you'll need to upgrade the Astronomer CLI to our latest version - `v0.9.1`.
+As a final step, you'll need to upgrade the Astronomer CLI to our latest version - `v0.9.2`.
 
 To upgrade versions, run:
 
@@ -156,7 +145,7 @@ To upgrade versions, run:
 $ astro upgrade
 ```
 
-Running that command should output your current version and confirm your upgrade versionm, as seen below:
+Running that command should output your current version and confirm your upgrade version, as seen below:
 
 ```
 $ astro upgrade
@@ -175,5 +164,3 @@ With that, you're all set to run on Astronomer's latest. You're free to push DAG
 **Questions?**
 
 If you have any issues or questions, don't hesitate to reach out to your dedicated support member or to our wider team at support@astronomer.io.
-
-
