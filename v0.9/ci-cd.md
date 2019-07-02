@@ -33,12 +33,6 @@ __Workspace Level Service Account__
 astro service-account create -w [WORKSPACEUUID] -l [SERVICEACCOUNTLABEL]
 ```
 
-__System Level Service Account__
-
-```sa
-astro service-account create -s --label [SERVICEACCOUNTLABEL]
-```
-
 If you prefer to provision a service account through the orbit-ui you can create a service account on the project configuration page at the following link (replacing [BaseDomain] for your configured base domain).
 
 In both cases, this will spit out an API key that will be used for the CI/CD process.
