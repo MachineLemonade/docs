@@ -18,13 +18,16 @@ For help upgrading between different versions, please contact us at support@astr
 
 ### Checkout the latest Astronomer Version
 
-Checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io):
+Go into your `helm.astronomer.io` directory or wherever the config for your deployment lives.
+Checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io)
 
 ```
 $ git checkout v0.9.X
 ```
 
-### Get your Platform Release Name
+Use the same `config.yaml` as before.
+
+### Find the Platform Release Name
 
 ```
 $helm ls
@@ -40,7 +43,7 @@ In this output,
 
 ### Upgrade Helm/Tiller
 
-Astronomer v0.9.2 requires helm 2.14 or later.
+Astronomer v0.9.X requires helm 2.14 or later.
 
 ```
 $ helm version
@@ -145,9 +148,11 @@ In your `Dockerfile`, change the `FROM` statement to:
 FROM astronomerinc/ap-airflow:0.9.2-1.10.3-onbuild
 ```
 
+Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github.
+
 ### Upgrade your CLI
 
-As a final step, you'll need to upgrade the Astronomer CLI to a matching version
+As a final step, upgrade the Astronomer CLI to a matching version
 
 To upgrade versions, run:
 
