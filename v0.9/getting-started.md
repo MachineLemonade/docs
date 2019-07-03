@@ -112,7 +112,7 @@ With those files in place, you're ready to push to your local Airflow environmen
 $ astro airflow start
 ```
 
-This command will spin up a Docker container on your machine with 3 Airflow components:
+This command will spin up 3 Docker containers on your machine, each for a different Airflow component:
 - **Postgres:** [Airflow's Metadata Database](https://www.astronomer.io/docs/query-airflow-database/)
 - **Webserver:** The Airflow component responsible for rendering the Airflow UI
 - **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
@@ -145,17 +145,29 @@ Airflow Webserver: http://localhost:8080/admin/
 Postgres Database: localhost:5432/postgres
 ```
 
-To verify, you can also run:
+**Note**: If you're running version v0.7.5 of the CLI and get a `manifest not found` error, make sure to have the following image in your Dockerfile:
+
+```
+FROM astronomerinc/ap-airflow:0.7.5-1.10.1-onbuild
+```
+
+More info [here](https://forum.astronomer.io/t/astro-airflow-start-manifest-for-astronomerinc-ap-airflow-0-7-5-2-1-9-0-onbuild-not-found/261).
+
+#### Verify Docker Containers
+
+To verify that all 3 docker containers were created, you can also run:
 
 ```
 $ docker ps
 ```
 
+**Note**: Running `astro airflow start` will by default start your project with the Airflow Webserver exposed at port 8080 and postgres exposed at port 5432.
+
+If you already have either of those ports allocated, you can either [stop existing docker containers](https://forum.astronomer.io/t/docker-error-in-cli-bind-for-0-0-0-0-5432-failed-port-is-already-allocated/151) or [change the port](https://forum.astronomer.io/t/i-already-have-the-ports-that-the-cli-is-trying-to-use-8080-5432-occupied-can-i-change-the-ports-when-starting-a-project/48).
+
 ### Access the Airflow UI
 
 To check out the Airflow UI on your local Airflow project, navigate here - http://localhost:8080/admin/
-
-If you already have the 8080 port allocated, [you can change it](https://forum.astronomer.io/t/i-already-have-the-ports-that-the-cli-is-trying-to-use-8080-5432-occupied-can-i-change-the-ports-when-starting-a-project/48).
 
 ### See your Sample DAG
 
