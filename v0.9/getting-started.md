@@ -276,4 +276,4 @@ Now that you're set up on Astronomer and familiar with our deployment flow, cons
 
 - [**Community Forum**](https://forum.astronomer.io): General Airflow + Astronomer FAQs
 - [**Astronomer's GitHub**](https://github.com/astronomer/astronomer): Feature Requests + Bug Reports
-- [**Technical Support**](support@astronomer.io): Individual platform or Airflow issues
+- [**Technical Support**](mailto:support@astronomer.io): Individual platform or Airflow issues
