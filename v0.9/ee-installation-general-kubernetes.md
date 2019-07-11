@@ -27,7 +27,7 @@ Note: For the purpose of our tutorial, our application domain is astro.mycompany
 
 
 ## 2. Get the right dev tools:
-You'll need some tools to interact with your Kubernetes cluster. This tutorial will assume [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
+You'll need some tools to interact with your Kubernetes cluster. This tutorial will assume [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [Helm v2.14.1](https://github.com/helm/helm/releases/tag/v2.14.1)
 
 
 ## 3. Configure Helm on your Cluster

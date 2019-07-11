@@ -25,7 +25,7 @@ If you're whitelisting that IP on Amazon Redshift, check out [this forum post](h
 
 #### Will I have access to Airflow's underlying database for my deployment?
 
-Yes! Each Astronomer Cloud customer has has an isolated Postgres database per deployment. To access that database and the Ad-Hoc Query feature for a deployment on Astronomer, check out our guidelines in [this forum post](https://forum.astronomer.io/t/how-can-i-set-up-the-ad-hoc-query-feature-in-a-remote-deployment/143).
+Yes! Each Astronomer Cloud customer has an isolated Postgres database per deployment. To access that database and the Ad-Hoc Query feature for a deployment on Astronomer, check out our guidelines in [this forum post](https://forum.astronomer.io/t/how-can-i-set-up-the-ad-hoc-query-feature-in-a-remote-deployment/143).
 
 To set up an Airflow database when you're developing locally, check out [these guidelines](https://forum.astronomer.io/t/how-do-i-set-my-postgres-username-and-password-to-access-the-ad-hoc-query-feature-locally/139).
 

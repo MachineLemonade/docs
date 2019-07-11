@@ -25,8 +25,6 @@ Checkout the right version of the [Astronomer helm chart](https://github.com/ast
 $ git checkout v0.9.X
 ```
 
-Use the same `config.yaml` as before.
-
 ### Find the Platform Release Name
 
 ```
@@ -36,10 +34,14 @@ NAME              REVISION UPDATED                   STATUS  	CHART             
 excited-armadillo   1      Mon Jun 17 18:05:48 2019	 DEPLOYED	astronomer-0.8.2  0.8.2        	astronomer
 ```
 
+
 In this output,
 
 - Base Platform Release Name: `excited-armadillo`
 - Namespace: `astronomer`
+
+Use the same `config.yaml` as before. If you do not have the `config.yaml`, you can regenerate it with `helm get values excited-armadillo >>config.yaml`.
+This contains all the overrides and settings needed for your platform (basedomain, SMTP creds, etc.)
 
 ### Upgrade Helm/Tiller
 
@@ -79,7 +81,7 @@ Run `helm version` again to verify the Helm and Tiller versions.
 $ helm delete --purge <PLATFORM-RELEASE>
 ```
 
-This will delete your current platform.
+This will delete your current platform release, but leave the secrets and metadata.
 
 #### Wait for Pods to Spin Down
 
@@ -91,7 +93,7 @@ $ watch kubectl get pods -n <NAMESPACE>
 
 ### Install the New Platform
 
-Now, let's re-install the platform onto the old release.
+Now, let's re-install the platform onto the old release to have it pick up the old platform's metadata,
 
 **Note:** If you are running your platform in a fully private networking setup, add
 ```
@@ -148,7 +150,7 @@ In your `Dockerfile`, change the `FROM` statement to:
 FROM astronomerinc/ap-airflow:0.9.2-1.10.3-onbuild
 ```
 
-Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github.
+Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github. If you are seeing errors in previously working plugins, be sure to check if their import path changed with the new Airflow version.
 
 ### Upgrade your CLI
 
