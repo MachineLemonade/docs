@@ -14,20 +14,18 @@ For help upgrading between different versions, please contact us at support@astr
 #### Pre-Requisites
 
 - Access to an Astronomer Enterprise Installation
-- Access to the Kubernetes cluster hosting the Astronomer Platform.
+- Access to the Kubernetes cluster hosting the Astronomer Platform
 - The Astronomer version you want to upgrade to
-    - Platform Changelog [here](https://github.com/astronomer/astronomer/blob/master/CHANGELOG.md).
+    - Platform Changelog [here](https://github.com/astronomer/astronomer/blob/master/CHANGELOG.md)
 
 ### Checkout the latest Astronomer Version
 
 Go into your `helm.astronomer.io` directory or wherever the config for your deployment lives.
-Checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io).
+Checkout the version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io) you'd like to upgrade TO
 
 ```
 $ git checkout v0.9.X
 ```
-
-**Note:** This is the Astronomer version you want to upgrade TO (not FROM).
 
 ### Find the Platform Release Name
 
