@@ -15,25 +15,30 @@ For help upgrading between different versions, please contact us at support@astr
 
 - Access to an Astronomer Enterprise Installation
 - Access to the Kubernetes cluster hosting the Astronomer Platform.
+- The Astronomer version you want to upgrade to
+    - Platform Changelog [here](https://github.com/astronomer/astronomer/blob/master/CHANGELOG.md).
 
 ### Checkout the latest Astronomer Version
 
 Go into your `helm.astronomer.io` directory or wherever the config for your deployment lives.
-Checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io)
+Checkout the right version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io).
 
 ```
 $ git checkout v0.9.X
 ```
+
+**Note:** This is the Astronomer version you want to upgrade TO (not FROM).
 
 ### Find the Platform Release Name
 
 ```
 $helm ls
 
-NAME              REVISION UPDATED                   STATUS  	CHART             APP VERSION   NAMESPACE
-excited-armadillo   1      Mon Jun 17 18:05:48 2019	 DEPLOYED	astronomer-0.8.2  0.8.2        	astronomer
-```
+NAME             REVISION  UPDATED                  STATUS  	CHART                         excited-armadillo   1      Mon Jun 17 18:05:48 2019 DEPLOYED    astronomer-0.8.2           
 
+APP VERSION      NAMESPACE
+0.8.2            astronomer                                                                      
+```
 
 In this output,
 
@@ -93,15 +98,16 @@ $ watch kubectl get pods -n <NAMESPACE>
 
 ### Install the New Platform
 
-Now, let's re-install the platform onto the old release to have it pick up the old platform's metadata,
+Now, let's re-install the platform onto the old release to have it pick up the old platform's metadata.
 
-**Note:** If you are running your platform in a fully private networking setup, add
+**Note:** If you are running your platform in a fully private networking setup, first add the following into your `config.yaml`:
+
 ```
 nginx:
     privateLoadBalancer: True
 ```
 
-into your `config.yaml`
+To install the new platform, run:
 
 ```
 $ helm install -f config.yaml . -n <PLATFORM-RELEASE> --namespace <NAMESPACE>
@@ -123,7 +129,7 @@ Once all pods have reached `Running` state, you can consider the base platform u
 
 Now that the platform has been upgraded, go to `app.BASEDOMAIN` in your browser and log into Astronomer.
 
-**Note:** You may need to hard refresh (Cntrl+Refresh Button) the page for it to load.
+**Note:** You may need to hard refresh the page (Cntrl+Refresh Button) for it to load.
 
 #### Upgrade Each Airflow Deployment
 
@@ -152,11 +158,11 @@ FROM astronomerinc/ap-airflow:0.9.2-1.10.3-onbuild
 
 Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github. If you are seeing errors in previously working plugins, be sure to check if their import path changed with the new Airflow version.
 
-### Upgrade your CLI
+### Upgrade the CLI
 
-As a final step, upgrade the Astronomer CLI to a matching version
+As a final step, upgrade the Astronomer CLI to a matching version.
 
-To upgrade versions, run:
+To upgrade to the latest Astronomer version, run:
 
 ```
 $ astro upgrade
