@@ -63,7 +63,8 @@
         "contents": [
           "ee-integrating-auth-systems",
           "ee-configuring-resources",
-          "ee-single-namespace-mode"
+          "ee-single-namespace-mode",
+          "ee-registry-backend"
         ]
       },
       {
