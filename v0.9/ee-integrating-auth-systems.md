@@ -1,6 +1,6 @@
 ---
 title: "Integrating Auth Systems"
-description: "Integrating Auth Systems with Auth0 and Okta"
+description: "Integrating Astronomer with OIDC Providers"
 date: 2019-04-21T00:00:00.000Z
 slug: "ee-integrating-auth-systems"
 ---
@@ -17,7 +17,7 @@ astronomer:
     config:
       auth:
         openIdConnect:
-        clockTolerance: 0 // A field that can optionally be set to adjust for clock skew on a user's machine.
+        clockTolerance: 0 // A field that can optionally be set to adjust for clock skew on the server.
           <provider-name>:
             enabled: true
             discoveryUrl: <provider-discovery-url>
@@ -50,7 +50,7 @@ astronomer:
           okta:
             enabled: true
             clientId: "<okta-client-id>"
-            baseDomain: "<okta-base-domain>"
+            discoveryUrl: "https://<okta-base-domain>"
 ```
 
 Note that your okta-base-domain may be different from the basedomain of your Astronomer installation. You can read their docs on [finding your Okta domain](https://developer.okta.com/docs/api/getting_started/finding_your_domain/) if you are unsure what this value should be.
@@ -112,7 +112,7 @@ astronomer:
           auth0:
             enabled: true
             clientId: "<default-app-client-id>"
-            baseDomain: "<tenant-name>.auth0.com"
+            discoveryUrl: https://"<tenant-name>.auth0.com"
 ```
 
 #### Upgrade your Astronomer Deployment
