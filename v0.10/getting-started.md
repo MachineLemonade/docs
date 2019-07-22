@@ -33,9 +33,7 @@ To read more about navigating our app, go [here](https://www.astronomer.io/docs/
 
 ### Join another Workspace
 
-If you're new to Astronomer but someone else on your team has an existing Workspace you want to join, you'll still need to [create an account](https://app.astronomer.cloud/signup).
-
-Your fellow team member will be able to add you as a user to that shared Workspace directly from their account.
+If you're new to Astronomer but someone else on your team has an existing Workspace you want to join, your team member can add you as a user to that shared Workspace directly from their account.
 
 Role-based Access Control (RBAC) is roped into Astronomer v0.9 and beyond. For more info on that functionality, check out [this doc](https://www.astronomer.io/docs/ee-rbac/).
 

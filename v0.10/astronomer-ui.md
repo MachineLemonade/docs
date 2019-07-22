@@ -74,8 +74,6 @@ For a breakdown the Airflow UI itself, check out [this guide](https://www.astron
 
 ### User Management
 
-If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace (role-based access control (RBAC) coming soon in Astronomer v0.9).
-
-**Note:** If you'd like to invite a user to your workspace, they must first [create an account on Astronomer](https://app.astronomer.cloud/signup).
+If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace.
 
 ![Users](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/user_dashboard.png)

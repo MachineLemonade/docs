@@ -11,7 +11,7 @@ Astronomer Cloud is a managed [Apache Airflow](https://airflow.apache.org/) offe
 
 - Secure and easy-to-spin-up Airflow environments, with fully isolated resources
 - A [CLI](https://www.astronomer.io/docs/cli-getting-started/) for local development, deployment, monitoring, and connection management
-- A [UI](https://app.astronomer.cloud/signup) with secure authentication for workspace, deployment management and configuration, and user management
+- A UI with secure authentication for workspace, deployment management and configuration, and user management
 - Multiple [support options](https://www.astronomer.io/docs/support/) depending on your needs
 
 To get started, follow [this guide](https://www.astronomer.io/docs/getting-started/).
