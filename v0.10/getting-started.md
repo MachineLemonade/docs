@@ -11,13 +11,9 @@ This guide will help you kick off your trial on Astronomer by walking you throug
 
 Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [Cloud](https://astronomer.io/cloud) offering, we've designed this to be a great way to get to know our platform.
 
-## Start a Trial
+## Start Trial
 
-If you haven't already, kick off your 14-day Astronomer Trial [here](https://www.astronomer.io/trial/).
-
-## Create an Account on Astronomer
-
-Your first step after kicking off your trial is to [create an account on Astronomer](https://app.astronomer.cloud/signup).
+If you haven't already, [start an Astronomer Trial](https://www.astronomer.io/trial/).
 
 ### Authorization
 
@@ -47,7 +43,7 @@ Role-based Access Control (RBAC) is roped into Astronomer v0.9 and beyond. For m
 
 ## Start with the Astronomer CLI
 
-Astronomer's [open-source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. 
+Astronomer's [open-source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine.
 
 From the CLI, you can establish a local testing environment and deploy to Astronomer Cloud whenever you're ready.
 
@@ -104,7 +100,7 @@ If you'd like to deploy some more functional example DAGs, [check out the ones w
 
 ## Develop Locally
 
-With those files in place, you're ready to push to your local Airflow environment. 
+With those files in place, you're ready to push to your local Airflow environment.
 
 ### Start Airflow
 
