@@ -149,4 +149,4 @@ astronomer:
         value: http://my-proxy:3129
 ```
 
-Once you've made the change follow to instructions above to run `helm upgrade` and deploy these changes.c
+Once you've made the change follow to instructions above to run `helm upgrade` and deploy these changes.
