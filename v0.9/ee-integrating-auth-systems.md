@@ -124,3 +124,29 @@ $ helm ls --namespace <your-namespace>
 ```
 $ helm upgrade <release-name> -f config.yaml . --namespace <your-namespace>
 ```
+
+## Running behind an HTTPS Proxy
+
+The Identity provider integration of the Astronomer platform requires that Houston component is able to make outbound HTTPS requests to the configured Identity providers in order to fetch discovery documents, signing keys, and ask for user profile information upon login/signup.
+
+If your install is configured without a direct connection to the internet you will need to configure an HTTPS proxy server for Houston.
+
+To configure the proxy server used we need to set the `GLOBAL_AGENT_HTTPS_PROXY` environment variable for the Houston deployment, which we do by adding the following to your `config.yaml` file in your `helm.astronomer.io/` directory. The houston section of this file should now look something like this:
+
+
+```yaml
+astronomer:
+  houston:
+    config:
+      auth:
+        openIdConnect:
+          <provider>:
+            enabled: true
+            clientId: ...
+            discoveryUrl: ...
+    env:
+      - name: GLOBAL_AGENT_HTTPS_PROXY
+        value: http://my-proxy:3129
+```
+
+Once you've made the change follow to instructions above to run `helm upgrade` and deploy these changes.c
