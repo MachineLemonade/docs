@@ -1,19 +1,17 @@
 ---
 title: "The Houston API Playground"
-description: "Using the Graphql Playground."
+description: "Using The Graphql Playground."
 date: 2018-10-12T00:00:00.000Z
 slug: "houston-api"
 ---
 
 ## The Graphql Playground
 
-The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write graphql queries directly against the API.
+The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write Graphql queries directly against the API.You can interact submit these queries through the playground, or directly to the Houston endpoint.
 
 If you are an **enterprise** customer, your playground will be located at https://houston.BASEDOMAIN/v1/
 
-The Graphql playground allows you to directly interact with Astronomer API (Houston) via writing graphql queries. You can interact submit these queries through the playground, or directly to the Houston endpoint.
-
-The [Graphql-playground Github](https://github.com/prisma/graphql-playground) contains more information on playground features.
+The [Graphql-playground Github](https://github.com/prisma/Graphql-playground) contains more information on playground features.
 
 ## Querying Houston
 To start off, head to https://houston.BASEDOMAIN/v1/
@@ -25,62 +23,59 @@ Each query requires proper authentication in the request headers. To authenticat
 - Get a temporary token from `app.BASEDOMAIN/token`
 - Generate a Service Account key from the Astronomer UI.
 
-Place the token with in `HTTP Headers` as `{"authorization": $TOKEN}`
+Expand the `HTTP Headers` on the bottom left and include the token formatted as: `{"authorization": $TOKEN}`
 
-(https://assets2.astronomer.io/main/docs/ee/headers.png)
+![Headers](https://assets2.astronomer.io/main/docs/ee/headers.png)
 
 
 #### Query Types
 
 On Astronomer, you can ask for Graphql:
 
-- [Query](https://graphql.org/learn/queries/#fields) - These return information
-- [Mutatation](https://graphql.org/learn/queries/#mutations) - Queries to modify data
-- [Subscriptions](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) - Describes all of the events that can be subscribed to
+- [Queries](https://Graphql.org/learn/queries/#fields) - Queries to return information
+- [Mutations](https://Graphql.org/learn/queries/#mutations) - Queries to modify data
+- [Subscriptions](https://Graphql.org/blog/subscriptions-in-Graphql-and-relay/) - Describes all of the events that can be subscribed to
 
 This guide will stay away from Subscriptions.
 
 ### Schemas and Sample Query
 
-Now that there is a valid auth token, you should be able to query all endpoints your user has access to. The [`Schema`](https://graphql.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
+With a valid token in the HTTP headers, you should be able to query all endpoints your user has access to. The [`Schema`](https://graphql.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
 
-(https://assets2.astronomer.io/main/docs/ee/graphql_schema.png)
+![Schema](https://assets2.astronomer.io/main/docs/ee/Graphql_schema.png)
 
+The query for `deployment` needs either an `workspaceUuid`, `deploymentUuid`, or a `releaseName` as an input, and can return all of the fields under `Type Details`.
 
-The query for `users` needs either an `email`, `username`, or a `UserUuid` as an input, and can return all of the fields under `Type Details`.
-
-The below query, named `usersFullName`, can be used to return the `fullName` of a user:
+The below query, named `deploymentinfo`, can be used to return the `config` of a deployment:
 
 ```
-query usersFullName {
-  users(email:"viraj@astronomer.io")
+query deploymentinfo {
+  deployments(releaseName:"astral-perturbation-4616")
   {
-    username
     id
-    fullName
+    config
 
   }
 }
 ```
+Results are shown on the `Resuls Viewer` on the right side of the page after hitting the Play Button.
 
-This returns the `username`, `id`, and `fullName` of the user with `viraj@astronomer.io` email. Results are shown on the `Resuls Viewer` on the right side of the page after hitting the Play Button.
-
-(https://assets2.astronomer.io/main/docs/ee/query.gif)
+![Query](https://assets2.astronomer.io/main/docs/ee/deployment_query.gif)
 
 
 #### Custom Types
 
-Any datatype listed with `[]` in the `Schema` are compound datatypes and require additional fields to the query.
-For example, adding the `email` field to the query above:
+Any datatype listed with `[]` in the `Schema` requires additional fields to the query.
+For example, adding the `urls` field to the query above:
 
 ```
-query users {
-  users(email:"viraj@astronomer.io")
+query deploymentinfo {
+  deployments(releaseName:"astral-perturbation-4616")
   {
-    username
     id
-    fullName
-    emails
+    config
+    urls
+
   }
 }
 ```
@@ -92,10 +87,10 @@ This returns:
   "error": {
     "errors": [
       {
-        "message": "Field \"emails\" of type \"[Email!]!\" must have a selection of subfields. Did you mean \"emails { ... }\"?",
+        "message": "Field \"urls\" of type \"[DeploymentUrl]\" must have a selection of subfields. Did you mean \"urls { ... }\"?",
         "locations": [
           {
-            "line": 6,
+            "line": 5,
             "column": 5
           }
         ],
@@ -103,27 +98,29 @@ This returns:
           "code": "GRAPHQL_VALIDATION_FAILED"
         },
         "level": "ERROR",
-        "timestamp": "2019-07-24T14:45:55"
+        "timestamp": "2019-07-24T16:52:33"
       }
     ]
   }
 }
 ```
 
-The `emails` field requires additional subfields that can be found in the `Schema` tab.
+The `urls` field requires additional subfields that can be found in the `Schema` tab.
 
-(https://assets2.astronomer.io/main/docs/ee/users_custom_typeschema.png)
+![Custom Type](https://assets2.astronomer.io/main/docs/ee/deployment_custom_typeschema.png)
 
 
 ```
-query users {
-  users(email:"viraj@astronomer.io")
+query deployment {
+  deployments(releaseName:"astral-perturbation-4616")
   {
-    username
     id
-    fullName
-    emails
-    {createdAt}
+    config
+    urls
+    {
+      type
+      url
+    }
 
   }
 }
@@ -133,14 +130,26 @@ By specifying a subfield of the `emails` type, the query executes successfully.
 ```
 {
   "data": {
-    "users": [
+    "deployments": [
       {
-        "username": "viraj@astronomer.io",
-        "id": "cjx0ygnbf000t0a54ns8tmlum",
-        "fullName": "Viraj Parekh",
-        "emails": [
+        "id": "cjyem0p4m001a0b692dxk529v",
+        "config": {
+          "executor": "CeleryExecutor",
+          "images": {
+            "airflow": {
+              "repository": "registry.demo.datarouter.ai/astral-perturbation-4616/airflow",
+              "tag": "cli-5"
+            }
+          }
+        },
+        "urls": [
           {
-            "createdAt": "2019-06-17T22:33:38.548Z"
+            "type": "airflow",
+            "url": "https://undefined-airflow.demo.datarouter.ai/"
+          },
+          {
+            "type": "flower",
+            "url": "https://undefined-flower.demo.datarouter.ai"
           }
         ]
       }
@@ -153,7 +162,7 @@ By specifying a subfield of the `emails` type, the query executes successfully.
 ### Adding System Admins with a mutation
 Mutations can be used to generate auth tokens, add system admins, and other things that `modify` the underlying database.
 
-To add a system admin,
+To add a system admin, the `id` of the user is needed. This can be obtained by an Admin with a `users` query.
 
 ```
 query users {
@@ -165,8 +174,7 @@ query users {
 ```
 Grab the returned `id` and feed it into the next mutation.
 
-The `AddAdmin` query the mutation is named calls on the `createSystemRoleBinding`
-
+Call `createSystemRoleBinding` with the proper inputs as shown.
 ```
 mutation AddAdmin {
   createSystemRoleBinding(
