@@ -125,7 +125,7 @@ query deployment {
   }
 }
 ```
-By specifying a subfield of the `emails` type, the query executes successfully.
+By specifying a subfield of the `urls` type, the query executes successfully.
 
 ```
 {
