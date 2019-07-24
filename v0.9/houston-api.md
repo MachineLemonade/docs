@@ -16,6 +16,7 @@ The Graphql playground allows you to directly interact with Astronomer API (Hous
 The [Graphql-playground Github](https://github.com/prisma/graphql-playground) contains more information on playground features.
 
 ## Querying Houston
+To start off, head to https://houston.BASEDOMAIN/v1/
 
 ### Authenticating
 
@@ -37,7 +38,9 @@ On Astronomer, you can ask for Graphql:
 - [Mutatation](https://graphql.org/learn/queries/#mutations) - Queries to modify data
 - [Subscriptions](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) - Describes all of the events that can be subscribed to
 
-### Schemas
+This guide will stay away from Subscriptions.
+
+### Schemas and Sample Query
 
 Now that there is a valid auth token, you should be able to query all endpoints your user has access to. The [`Schema`](https://graphql.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
 
@@ -157,7 +160,6 @@ query users {
   users(email:"pete@astronomer.io")
   {
     id    
-
   }
 }
 ```
