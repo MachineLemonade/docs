@@ -9,21 +9,25 @@ slug: "vpc-access"
 
 On Astronomer, all deployments that live in our Astronomer Cloud cluster route traffic through the same single NAT. In other words, we have 1 NAT gateway out of our VPC through which all internet-bound traffic goes through.
 
-If you're looking to give Astronomer access to a database or a warehouse, follow the guidelines below. We'll use Amazon Redshift as an example.
+**Note**: If you need or would like Private IP access, consider [Astronomer Enterprise](https://www.astronomer.io/enterprise/) or [reach out to us](humans@astronomer.io).
 
-**Note**: If need or would like Private IP access, consider [Astronomer Enterprise](https://www.astronomer.io/enterprise/) or [reach out to us](humans@astronomer.io).
+## Allowing Astronomer Cloud Access to your VPC
 
-## Whitelist the Astronomer Cloud IP
-
-To give Astronomer Cloud access to any database withiny your VPC, whitelist the following Static IP:
+To give Astronomer Cloud access to any database, warehouse or service within your VPC, you'll just have to whitelist the following Static IP:
 
 `35.188.248.243`
 
-## Whitelist Astronomer Cloud on AWS Redshift
+Read below for an example of how to do so within Amazon Redshift.
 
-Many of our customers choose Amazon Redshift as their Data Warehouse of choice.
+## Whitelist Astronomer on Amazon Redshift
 
-Read below for a walkthrough of how to whitelist Astronomer Cloud on AWS Redshift.
+To Whitelist Astronomer on Redshift, you'll have to do the following:
+
+1. Make your Redshift Cluster Publicly Accessible
+2. Whitelist the Cloud IP
+3. Test the Connection
+
+**Note:** This assumes you have an existing Redshift Cluster. The guidelines below apply to both an EC2 Classic subnet or VPC subnet.
 
 ### Make your Redshift Cluster Publicly Accessible
 
@@ -42,15 +46,15 @@ From there,
 
 ![Make Publicly Accessible](https://assets2.astronomer.io/main/docs/vpc-access/whitelist-ip-publicly-accessible-redshift.png)
 
-### Whitelist the Cloud IP Address on AWS
+### Whitelist the Cloud IP
 
 Even though you’ve setup your Redshift to be publicly accessible, you’ll still want to limit where statements can be executed from.
 
 With Astronomer, all queries will come from the same IP address: `35.188.248.243`
 
-#### Access VPC Security Groups
+#### Navigate to "Security Groups"
 
-To whitelist this IP on your Cluster, go to “Security” on your Console and, depending on the specifics of your AWS account, click on “Go to the EC2 Console.”
+First, go to “Security” on your Console and, depending on the specifics of your AWS account, click on “Go to the EC2 Console.”
 
 ![Add IP Redshift](https://assets2.astronomer.io/main/docs/vpc-access/whitelist-ip-add-ip-redshift.png)
 
@@ -59,14 +63,14 @@ To whitelist this IP on your Cluster, go to “Security” on your Console and, 
 From there, click into the “Inbound” section of the relevant Security Group (which can be confirmed in the Cluster Profile page you were previously on in the “VPC security groups” section).
 
 - Open up the Inbound rules by clicking “Edit”
-- Add the Cloud IP address
+- Add the Cloud IP address: `35.188.248.243`
 - Click Save
 
 ![Edit Inbound Rules](https://assets2.astronomer.io/main/docs/vpc-access/whitelist-ip-inbound-rules-redshift.png)
 
 Give your cluster a minute to update and then test access from within any Airflow deployment.
 
-### Add and Test the Connection
+### Test the Connection
 
 Because Redshift uses the same drivers as Postgres,you can add a connection to Airflow using the same methods as any other Postgres db. 
 
@@ -90,7 +94,7 @@ Pick a recognizable Conn Id (anything that will help you remember):
 
 After saving your connection:
 
-- Go to Data Profiling>Ad Hoc Query from the top menu bar in the Airflow UI
+- Go to Data Profiling> Ad Hoc Query from the top menu bar in the Airflow UI
 - Choose the Redshift connection you just created
 - Run a simple query
 
