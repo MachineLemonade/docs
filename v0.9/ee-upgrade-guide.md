@@ -26,6 +26,9 @@ Checkout the version of the [Astronomer helm chart](https://github.com/astronome
 ```
 $ git checkout v0.9.X
 ```
+You can find the latest stable Astronomer release here:
+https://github.com/astronomer/astronomer/releases
+
 
 ### Find the Platform Release Name
 
@@ -151,8 +154,9 @@ The image in the Dockerfile should match with the new version of Astronomer
 In your `Dockerfile`, change the `FROM` statement to:
 
 ```
-FROM astronomerinc/ap-airflow:0.9.2-1.10.3-onbuild
+FROM astronomerinc/ap-airflow:0.9.X-1.10.3-onbuild
 ```
+The `X` should match with the release you are upgrading to.
 
 Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github. If you are seeing errors in previously working plugins, be sure to check if their import path changed with the new Airflow version.
 
@@ -171,11 +175,17 @@ Running that command should output your current version and confirm your upgrade
 ```
 $ astro upgrade
 Astro CLI Version: v0.8.2  (2019.03.15)
-Astro CLI Latest: v0.9.1  (2019.05.17)
+Astro CLI Latest: v0.9.6  (2019.07.23)
 There is a more recent version of the Astronomer CLI available.
 You can install the latest tagged release with the following command
 	$ curl -sL https://install.astronomer.io | sudo bash
 
+```
+
+### Change BaseSensor Import Path:
+If you are importing the `BaseSensor` in any of your plugins, it should be imported from:
+```
+from airflow.sensors.base_sensor_operator import BaseSensorOperator
 ```
 
 ### Start Deploying DAGs
