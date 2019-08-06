@@ -5,11 +5,11 @@ date: 2018-10-12T00:00:00.000Z
 slug: "ci-cd"
 ---
 
-With Astronomer's support for Service accounts, you're able to deploy to an Apache Airflow deployment via a Continious Integration/Continuious Delivery (CI/CD) tool of your choice.
+With Astronomer's support for Service accounts, you're able to deploy to an Apache Airflow deployment via a Continious Integration/Continuous Delivery (CI/CD) tool of your choice.
 
-This guide will walk you through configuring your CI/CD pipeline with either Astronomer Cloud or Astronomer Enteprise.
+This guide will walk you through configuring your CI/CD pipeline with either Astronomer Cloud or Astronomer Enterprise.
 
-For background and best practices on CI/CD, we recommend reading the article [An Introduction to CI/CD Best Practices](https://www.digitalocean.com/community/tutorials/an-introduction-to-ci-cd-best-practices) from DigitalOcean.
+For background and best practices on CI/CD, we recommend reading ["An Introduction to CI/CD Best Practices"](https://www.digitalocean.com/community/tutorials/an-introduction-to-ci-cd-best-practices) from DigitalOcean.
 
 ## Pre-Requisites
 
@@ -23,14 +23,14 @@ Before we get started, make sure you:
 
 In order to authenticate your CI/CD pipeline to the private Docker registry, you'll need to create a service account. Once created, you'll be able to delete this service account at any time either via the CLI or via the Astronomer UI. In both cases, this will spit out an API key that will be used for the CI/CD process.
 
-Note that you're able to create Service Accounts at:
+Note that you're able to create Service Accounts at the:
 
-- The Workspace Level
-- The Airflow Deployment Level
+- Workspace Level
+- Airflow Deployment Level
 
-Creating a Service Account at the Workspace level allows you to deploy to *multiple* Airflow instances with one push, while creating them at the Deployment level ensures that your CI/CD pipeline only deploys to one particular Deployment on Astronomer.
+Creating a Service Account at the Workspace level allows you to deploy to *multiple* Airflow deployments with one push, while creating them at the Deployment level ensures that your CI/CD pipeline only deploys to one particular deployment on Astronomer.
 
-Here are a few examples of creating service accounts with various permission levels via the Astronomer CLI.
+Read below for guidelines on how to create a service account via the CLI and via the Astronomer UI.
 
 ### Create a Service Account via the CLI
 
