@@ -181,7 +181,7 @@ kubectl create secret generic astronomer-bootstrap \
 You'll need the full connection string for a user that has the ability to create, delete, and updated databases **and** users.
 
 ```bash
-kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
+kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@HOST:5432" --namespace <my-namespace>
 ```
 
 **Note**: We recommend using a [t2 meduium](https://aws.amazon.com/rds/instance-types/) as the minimum RDS instance size.
