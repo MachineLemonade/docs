@@ -124,7 +124,7 @@ If you are using RDS, you'll need the full connection string for a user that has
 If you just want to get something up and running, you can also use the PostgreSQL helm chart:
 
 ```bash
-$ helm install --name astro-db stable/postgresql --namespace astronomer
+$ helm install --name astro-db stable/postgresql --namespace <namespace>
 ```
 
 ## 7. SSL Configuration
@@ -172,8 +172,8 @@ Create a Kubernetes secret named `astronomer-bootstrap` to hold your database co
 
 ```bash
 kubectl create secret generic astronomer-bootstrap \
-  --from-literal connection="postgres://postgres:${PGPASSWORD}@astro-db-postgresql.astronomer.svc.cluster.local:5432" \
-  --namespace astronomer
+  --from-literal connection="postgres://postgres:${PGPASSWORD}@astro-db-postgresql.<namespace>.svc.cluster.local:5432" \
+  --namespace <namespace>
 ```
 
 ### If you are using RDS:
