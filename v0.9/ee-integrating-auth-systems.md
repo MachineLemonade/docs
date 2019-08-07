@@ -16,11 +16,11 @@ astronomer:
   houston:
     config:
       auth:
-        openIdConnect:
+        openidConnect:
           clockTolerance: 0 # A field that can optionally be set to adjust for clock skew on the server.
           <provider-name>:
             enabled: true
-            discoveryUrl: <provider-discovery-url>
+            discoveryUrl: <provider-discovery-url> # Note this must be a URL that with an https:// prefix
             clientId: <provider-client-id>
             authUrlParams: # Additional required params set on case-by-case basis
 ```
@@ -46,7 +46,7 @@ astronomer:
   houston:
     config:
       auth:
-        openIdConnect:
+        openidConnect:
           okta:
             enabled: true
             clientId: "<okta-client-id>"
@@ -108,7 +108,7 @@ astronomer:
   houston:
     config:
       auth:
-        openIdConnect:
+        openidConnect:
           auth0:
             enabled: true
             clientId: "<default-app-client-id>"
@@ -139,7 +139,7 @@ astronomer:
   houston:
     config:
       auth:
-        openIdConnect:
+        openidConnect:
           <provider>:
             enabled: true
             clientId: ...
