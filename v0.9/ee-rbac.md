@@ -64,7 +64,7 @@ Viewers _cannot_ push code to a deployment.
 
 ## Airflow Access
 
-User roles apply to all Airflow deployments within a single Workspace.
+User roles apply to all Airflow deployments within a single Workspace. For a mapping of how Airflow-native roles map 1:1 to Astronomer, refer to our source code [here](https://github.com/astronomer/houston-api/blob/master/config/default.yaml#L257) and [here](https://github.com/astronomer/houston-api/blob/master/src/routes/v1/authorization/handler.js#L66-L76).
 
 ### Admins
 
