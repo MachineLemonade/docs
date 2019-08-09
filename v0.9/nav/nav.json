@@ -75,7 +75,8 @@
           "ee-kibana",
           "ee-kubectl",
           "ee-administration-postgres-creds",
-          "ee-upgrade-guide"
+          "ee-upgrade-guide",
+          "migrating-airflow-to-astronomer"
         ]
       }
     ]
