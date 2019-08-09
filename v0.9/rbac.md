@@ -2,7 +2,7 @@
 title: "User Roles and Permissions"
 description: "Using RBAC with Astronomer"
 date: 2019-05-28T00:00:00.000Z
-slug: "ee-rbac"
+slug: "rbac"
 ---
 
 Astronomer v0.9 and beyond supports role based access control (RBAC), allowing you to configure varying levels of access across all Users within your Workspace.
