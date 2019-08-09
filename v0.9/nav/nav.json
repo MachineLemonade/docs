@@ -39,7 +39,8 @@
       "kubepodoperator",
       "query-airflow-database",
       "rbac",
-      "deployment-level-logs"
+      "deployment-level-logs",
+      "build-from-private-repo"
     ]
   },
 
