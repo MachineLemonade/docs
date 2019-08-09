@@ -25,7 +25,8 @@
       "cli-quickstart",
       "customizing-your-image",
       "logs-and-source-control",
-      "cli-kubepodoperator"
+      "cli-kubepodoperator",
+      "build-from-private-repo"
     ]
   },
 
@@ -39,8 +40,7 @@
       "kubepodoperator",
       "query-airflow-database",
       "rbac",
-      "deployment-level-logs",
-      "build-from-private-repo"
+      "deployment-level-logs"
     ]
   },
 

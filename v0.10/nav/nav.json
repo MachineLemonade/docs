@@ -25,7 +25,8 @@
       "cli-quickstart",
       "customizing-your-image",
       "logs-and-source-control",
-      "cli-kubepodoperator"
+      "cli-kubepodoperator",
+      "build-from-private-repo"
     ]
   },
 
