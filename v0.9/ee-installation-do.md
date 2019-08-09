@@ -48,6 +48,7 @@ You can either add this file to your `.kube/config` or you can refer to it expli
 
 ## 4. Configure Helm with your Digital Ocean Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
+
 ### Create a Kubernetes Namespace
 Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a separate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
 
@@ -80,11 +81,13 @@ subjects:
 
 Run the following command to apply these configurations to your Kubernetes cluster:
 ```
-$ kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" -f rbac-config.yaml
+$ kubectl apply --kubeconfig="astro-do-test-kubeconfig.yaml" -f rbac-config.yaml
 ```
 
 ### Deploy a `tiller` Pod
+
 Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
+
 ```
 $ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm init --service-account tiller
 ```
@@ -93,6 +96,8 @@ Confirm your `tiller` pod was deployed successfully:
 ```
 $ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm version
 ```
+
+**Note:** This command pings the tiller pod to see if it's ready or not. If this command returns the client version but _not_ the server version, that's an indication that tiller was not successfully deployed.
 
 ## 5. Deploy a PostgreSQL Database
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
