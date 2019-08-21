@@ -9,13 +9,14 @@ This guide describes the process to install Astronomer on a Kubernetes Cluster
 
 ## Are you admin-y enough to do this alone?
 
-You will need to be able to:
+You will need to:
 
 * Obtain a wildcard SSL certificate
 * Edit your DNS records
 * Install/run Kubernetes command line tools to your machine
-* SMTP Credentials
+* Obtain SMTP Credentials for sending emails
 * Ability to create a static IP address
+* Have a Kubernetes cluster running and be able to create resources in the cluster
 
 ## 1. Select a base domain
 You need to choose a base domain for your Astronomer installation, something like astro.mydomain.com. Each Airflow cluster you install will be accessible at a URL like unique-name-airflow.astro.mydomain.com and the admin application will be installed to app.astro.mydomain.com, the Grafana dashboard will be installed to grafana.astro.mydomain.com etc.
