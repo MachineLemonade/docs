@@ -82,7 +82,7 @@ Replace the current contents of your Dockerfile with the following:
 FROM custom-ap-airflow
 ```
 
-#### 4. Push your Custom Image to Astronomer
+### 4. Push your Custom Image to Astronomer
 
 Now, let's push your new image to Astronomer.
 
