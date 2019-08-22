@@ -275,6 +275,22 @@ pipelines:
 
 ```
 
+#### Gitlab
+```
+astro_deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Building container.."
+    - docker build -t registry.astronomer.cloud/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID .
+    - docker login registry.astronomer.cloud -u _ -p $${SERVICE_ACCOUNT_SECRET}
+    - docker push registry.astronomer.cloud/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID
+  only:
+    - master
+```
+
 
 
 Check out this video for a full walkthrough of this process:
