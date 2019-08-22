@@ -1,5 +1,5 @@
 ---
-title: "Pricing"
+title: "Cloud Pricing"
 description: "Documentation of our pricing structure and philosophy."
 date: 2018-10-12T00:00:00.000Z
 slug: "pricing"
@@ -21,7 +21,7 @@ Resource configuration is directly managed on the `Configure` tab of the Astrono
 
 For us to maximize your control over your Airflow deployments, our monthly cost to run Astronomer Cloud fully depends on how much you scale each component of your Airflow instance(s) - and for how long - throughout the course of your billing cycle.
 
-Via the [Astronomer UI](https://app.astronomer.cloud/login), you can freely scale the following components of each of your instances:
+Via the [Astronomer UI](https://app.astronomer.cloud/login) as seen below, you can freely scale the following components of each of your instances:
 
 - Webserver
 - Scheduler
@@ -29,7 +29,11 @@ Via the [Astronomer UI](https://app.astronomer.cloud/login), you can freely scal
 - Celery worker size
 - Celery worker termination grace period
 
+![Resource Pricing](https://assets2.astronomer.io/main/docs/pricing/resources-pricing-ui.png)
+
 Resource configurations are "live" as soon as you adjust the toggles on your web browser and click `Update`.
+
+
 
 ### The Astronomer Unit (AU)
 

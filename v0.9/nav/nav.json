@@ -7,7 +7,8 @@
         "menu": "Cloud",
         "contents": [
           "getting-started",
-          "cloud-faq"
+          "cloud-faq",
+          "pricing"
         ]
       },
       {
@@ -95,7 +96,6 @@
     "contents": [
       "security-model",
       "release-notes",
-      "pricing",
       "support"
     ]
   }

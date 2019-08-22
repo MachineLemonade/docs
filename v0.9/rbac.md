@@ -16,9 +16,9 @@ For details on how those levels of permission are defined and how to leverage th
 
 Astronomer supports three levels of Workspace roles:
 
-- Admin
-- Editor
-- Viewer
+   - Admin
+   - Editor
+   - Viewer
 
 Each of these roles maps to a combination of permissions to both Astronomer and Airflow itself.
 
