@@ -39,7 +39,7 @@
       "setting-up-airflow-emails",
       "kubepodoperator",
       "query-airflow-database",
-      "ee-rbac"
+      "rbac"
     ]
   },
 
