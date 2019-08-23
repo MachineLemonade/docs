@@ -5,9 +5,7 @@ date: 2018-10-12T00:00:00.000Z
 slug: "pricing"
 ---
 
-To view a general overview of our pricing structure, check out the [pricing page](https://www.astronomer.io/pricing/) on our website.
-
-## Cloud Pricing
+To view a general overview of our pricing structure across our product offerings, check out the [pricing page](https://www.astronomer.io/pricing/) on our website.
 
 ### Overview
 
@@ -29,11 +27,9 @@ Via the [Astronomer UI](https://app.astronomer.cloud/login) as seen below, you c
 - Celery worker size
 - Celery worker termination grace period
 
-![Resource Pricing](https://assets2.astronomer.io/main/docs/pricing/resources-pricing-ui.png)
+![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Executor.png)
 
 Resource configurations are "live" as soon as you adjust the toggles on your web browser and click `Update`.
-
-
 
 ### The Astronomer Unit (AU)
 
