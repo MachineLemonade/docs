@@ -25,10 +25,8 @@ You will need to edit the DNS for this domain. If you work for a big company it 
 
 Note: For the purpose of our tutorial, our application domain is astro.mycompany.com.
 
-
-
-## 2. Get the right dev tools:
-You'll need some tools to interact with your Kubernetes cluster. This tutorial will assume [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
+## 2. Get the right dev tools
+You'll need some tools to interact with your Kubernetes cluster. This tutorial will assume [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1).
 
 
 ## 3. Configure Helm on your Cluster
@@ -80,7 +78,7 @@ Confirm your `tiller` pod was deployed successfully:
 $ helm version
 ```
 
-## 5. Deploy a PostgreSQL Database
+## 4. Deploy a PostgreSQL Database
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
 
 
@@ -90,7 +88,7 @@ If you are just looking to get up and running quickly, use the PostgreSQL helm c
 ```
 $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 ```
-## 6. SSL Configuration
+## 5. SSL Configuration
 
 You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
 * Purchase a wildcard SSL certificate from your preferred vendor.
@@ -110,7 +108,7 @@ $ docker run -it --rm --name letsencrypt -v /Users/<my-username>/<my-project>/le
 
 Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
 
-## 7. Create Kubernetes Secrets
+## 6. Create Kubernetes Secrets
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
 
 ### Create Database Connection Secret
@@ -136,7 +134,7 @@ $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astr
 ```
 **Note:** If you generated your certs using LetsEncrypt, you will need to run the command above as `sudo`
 
-## 8. Configure your Helm Chart
+## 7. Configure your Helm Chart
 Now that your Kubernetes cluster has been configured with all prerequisites, you can deploy Astronomer!
 
 Clone the Astronomer helm charts locally and checkout your desired branch:
@@ -202,7 +200,7 @@ smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 $ helm install -f config.yaml . --namespace <my-namespace>
 ```
 
-## 9. Verify all pods are up
+## 9. Verify all Pods are up
 To verify all pods are up and running, run:
 
 ```
@@ -244,5 +242,5 @@ newbie-norse-prometheus-0                              1/1     Running     0    
 newbie-norse-registry-0                                1/1     Running     0          30m
 ```
 
-## 11. Access Astronomer's Orbit UI
+## 10. Access Astronomer's Orbit UI
 Go to app.BASEDOMAIN to see the Astronomer UI!
