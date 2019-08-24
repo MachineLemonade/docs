@@ -150,7 +150,7 @@ $ docker run -it --rm --name letsencrypt -v /etc/letsencrypt:/etc/letsencrypt -v
 
 Follow the on-screen prompts and create a TXT record through your DNS provider. Wait a few minutes before continuing in your terminal.
 
-## 7. Create Kubernetes Secrets
+## 8. Create Kubernetes Secrets
 
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
 
