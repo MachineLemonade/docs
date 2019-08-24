@@ -116,7 +116,7 @@ From here, we'll need to upgrade each of your Airflow Deployments in your Worksp
 
 ![Deployment List](https://assets2.astronomer.io/main/docs/upgrade-guide/upgrade-guide-deployment-list.png)
 
-For each Deployment,
+For each Deployment, 
 
 - Navigate to the `Configure` page
 - Hit `Upgrade`
