@@ -2,7 +2,17 @@
 
 This repo contains Markdown files and scripts used to build [Astronomer docs](https://astronomer.io/docs/). We are currently on v0.8 of our docs and all changes should be made in the v`0.8` folder.
 
-## Building docs
+## Writing Docs
+
+Each of the docs on our site are built from the markdown files in this repository. Our website uses the npm package [processmd](https://www.npmjs.com/package/processmd) to convert all of the markdown to JSON blobs on build. It then has some custom React components that take care of applying some custom styles to the JSON blobs and rendering them in the browser.
+
+**There are a few structural guidelines that must be followed when contributing to this repository**:
+1. Do not use H1s (applied in markdown as a single `#`) in the body your files. The frontmatter `Title` field is what is translated into the page H1 by our website code, so having extra H1s results in bad styling and informational redundancy.
+2. Delineate between major sections of docs with *clear and concise* H2s (applied in markdown as a double `##`). The Content Navigator, which allows you to easily navigate and link to specific sections of a given doc, is generated from only H2s. Since this navigator allows you to link to these H2s, they must not be overly verbose, as this will result in a poor UX.
+
+
+
+## Building Docs
 
 1. Run `pip install -r requirements.txt` to install Python dependencies in `requirements.txt`.
 1. Clone the [website](https://github.com/astronomer/website) to your machine to a directory next to this one.
