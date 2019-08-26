@@ -184,7 +184,7 @@ You'll need the full connection string for a user that has the ability to create
 kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
 ```
 
-> Note: We recommend using a [t2 meduium](https://aws.amazon.com/rds/instance-types/) as the minimum RDS instance size.
+> Note: We recommend using a [t2 medium](https://aws.amazon.com/rds/instance-types/) as the minimum RDS instance size.
 
 ### Create TLS Secret
 
