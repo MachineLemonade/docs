@@ -223,7 +223,7 @@ Here is an example of what your `config.yaml` might look like:
 
 ```yaml
 #################################
-## Astronomer global configuration
+### Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -233,14 +233,14 @@ global:
   tlsSecret: astronomer-tls
 
 #################################
-## Nginx configuration
+### Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP: ~
 
 #################################
-## SMTP configuration
+### SMTP configuration
 #################################  
 
 astronomer:
