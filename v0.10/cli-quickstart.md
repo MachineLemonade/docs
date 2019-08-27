@@ -5,34 +5,38 @@ date: 2018-07-17T00:00:00.000Z
 slug: "cli-quickstart"
 ---
 
-[Astro CLI](https://github.com/astronomer/astro-cli) is an easy way to run Apache Airflow on your machine with Docker. You can also use it to deploy to an Astronomer server.
+Astronomer's [open-source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. 
 
-## Prerequisites
+From the CLI, you can establish a local testing environment and deploy to Astronomer, whether Cloud or Enterprise, whenever you're ready.
 
-1. Install [Docker](www.docker.com) on your computer. 
-1. Install the Astro CLI.
+## Pre-Requisites
 
-If you are an Astronomer Cloud customer, run:
+To start using the CLI, make sure you've already installed:
 
-```bash
-curl -sSL https://install.astronomer.io | sudo bash -s -- 0.7.5
+- [Docker](https://www.docker.com/)
+
+## Install
+
+If you're a Cloud customer, run:
+
+```
+$ curl -sSL https://install.astronomer.io | sudo bash -s -- v0.7.5-2
 ```
 
 If you are an Enterprise customer, run:
 
-```bash
-curl -sSL https://install.astronomer.io | sudo bash
-
+```
+$ curl -sSL https://install.astronomer.io | sudo bash
 ```
 
 **Note:** The `curl` command will work for Unix (Linux+Mac) based systems. If you want to run on Windows 10, you'll need to run through [this guide](https://www.astronomer.io/docs/cli-installation-windows-10) on getting Docker for WSL working.
 
-## Confirm the Install
+### Confirm the Install
 
 Let's make sure you have Astro CLI installed on your machine, and that you have a project to work from.
 
 ```bash
-astro
+$ astro
 ```
 
 If you're set up properly, you should see the following:
@@ -44,18 +48,16 @@ Usage:
   astro [command]
 
 Available Commands:
-  auth            Manage astronomer identity
-  cluster         Manage Astronomer EE clusters
-  config          Manage astro project configurations
-  deploy          Deploy an airflow project
-  deployment      Manage airflow deployments
-  dev             Manage airflow projects
-  help            Help about any command
-  service-account Manage astronomer service accounts
-  upgrade         Check for newer version of Astronomer CLI
-  user            Manage astronomer user
-  version         Astronomer CLI version
-  workspace       Manage Astronomer workspaces
+  airflow     Manage airflow projects and deployments
+  auth        Mangage astronomer identity
+  cluster     Manage Astronomer EE clusters
+  config      Manage astro project configurations
+  deployment  Manage airflow deployments
+  help        Help about any command
+  upgrade     Check for newer version of Astronomer CLI
+  user        Manage astronomer user
+  version     Astronomer CLI version
+  workspace   Manage Astronomer workspaces
 
 Flags:
   -h, --help   help for astro
@@ -63,14 +65,14 @@ Flags:
 
 For a breakdown of subcommands and corresponding descriptions, you can run: `astro help`
 
-## Create a project
+## Create a Project
 
 Your first step is to create a project to work from that lives in a folder on your local machine. The command you'll need is listed below, with an example `hello-astro` project.
 
-```bash
+ ```
 mkdir hello-astro && cd hello-astro
 astro airflow init
-```
+ ```
 
 `astro airflow init` will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
 
