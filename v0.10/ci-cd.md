@@ -53,7 +53,7 @@ At its core, your CI/CD pipeline will be authenticating to the private registry 
 
 Below are a few example pipelines.
 
-## DroneCI
+## Example: DroneCI
 
 ```yaml
 pipeline:
@@ -81,7 +81,7 @@ pipeline:
       branch: [ master, release-* ]
 ```
 
-## CircleCI
+## Example: CircleCI
 
 ```
 # Python CircleCI 2.0 configuration file
@@ -137,7 +137,7 @@ workflows:
                 - master
 ```
 
-## Jenkins Script
+## Example: Jenkins
 
 ```
 pipeline {
@@ -163,7 +163,7 @@ pipeline {
 
 ```
 
-## Bitbucket
+## Example: Bitbucket
 
 If you are using [Bitbucket](https://bitbucket.org/), this script should work (courtesy of our friends at [Das42](https://www.das42.com/))
 
