@@ -25,7 +25,7 @@ For help upgrading between different versions, please contact us at support@astr
 
 Astronomer images are publicly hosted on Dockerhub. If you are running your cluster in a setting that cannot access the public internet, you may need to move the Astronomer images into a registry that your Kubernetes cluster can talk to.
 
-A list of all images needed can be found ![here](https://github.com/astronomer/astronomer/blob/v0.10.0/Makefile#L11) (`vendor_components` and `platform_components`) and can be accessed from the `astronomerinc` ![Dockerhub](https://hub.docker.com/search?q=astronomerinc&type=image).
+A list of all images needed can be found [here](https://github.com/astronomer/astronomer/blob/v0.10.0/Makefile#L11) (`vendor_components` and `platform_components`) and can be accessed from the `astronomerinc` [Dockerhub](https://hub.docker.com/search?q=astronomerinc&type=image).
 
 ### Checkout the latest Astronomer Version
 
@@ -116,7 +116,7 @@ From here, we'll need to upgrade each of your Airflow Deployments in your Worksp
 
 ![Deployment List](https://assets2.astronomer.io/main/docs/upgrade-guide/upgrade-guide-deployment-list.png)
 
-For each Deployment, 
+For each Deployment,
 
 - Navigate to the `Configure` page
 - Hit `Upgrade`
