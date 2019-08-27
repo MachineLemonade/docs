@@ -1,25 +1,23 @@
 ---
 title: "AWS EKS"
-description: "Installing Astronomer on AWS EKS."
+description: "Installing Astronomer on AWS EKS"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-installation-eks"
 ---
-This guide describes the prerequisite steps to install Astronomer on Amazon Web Services (AWS).
 
-# Installing Astronomer on AWS EKS
-_Deploy a Kubernetes native (Apache Airflow)[https://airflow.apache.org/] platform onto (AWS Elastic Kubernetes Service)[https://aws.amazon.com/eks/] (EKS)_
+This guide describes the steps to install Astronomer on Amazon Web Services (AWS), which allows you to deploy and scale any number of [Apache Airflow](https://airflow.apache.org/) deployments within an [AWS Elastic Kubernetes Service](https://aws.amazon.com/eks/) cluster.
 
 ## 1. Install Necessary Tools
 
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm v2.14.1](https://github.com/helm/helm/releases/tag/v2.14.1)
+* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
 * SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create/modify resources on AWS
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)
 
-*NOTE - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
+> NOTE: If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).
 
 ## 2. Choose a Suitable Domain
 
@@ -73,6 +71,7 @@ $ kubectl create ns astronomer
 ```
 
 ### Create a `tiller` Service Account
+
 Save the following in a file named `rbac-config.yaml`:
 
 ```yaml
@@ -103,6 +102,7 @@ $ kubectl create -f rbac-config.yaml
 ```
 
 ### Deploy a `tiller` Pod
+
 Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
 
 ```bash
@@ -124,7 +124,7 @@ If you are using RDS, you'll need the full connection string for a user that has
 If you just want to get something up and running, you can also use the PostgreSQL helm chart:
 
 ```bash
-$ helm install --name astro-db stable/postgresql --namespace <namespace>
+$ helm install --name astro-db stable/postgresql --namespace astronomer
 ```
 
 ## 7. SSL Configuration
@@ -172,8 +172,8 @@ Create a Kubernetes secret named `astronomer-bootstrap` to hold your database co
 
 ```bash
 kubectl create secret generic astronomer-bootstrap \
-  --from-literal connection="postgres://postgres:${PGPASSWORD}@astro-db-postgresql.<namespace>.svc.cluster.local:5432" \
-  --namespace <namespace>
+  --from-literal connection="postgres://postgres:${PGPASSWORD}@astro-db-postgresql.astronomer.svc.cluster.local:5432" \
+  --namespace astronomer
 ```
 
 ### If you are using RDS:
@@ -181,10 +181,10 @@ kubectl create secret generic astronomer-bootstrap \
 You'll need the full connection string for a user that has the ability to create, delete, and updated databases **and** users.
 
 ```bash
-kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@HOST:5432" --namespace <my-namespace>
+kubectl create secret generic astronomer-bootstrap --from-literal connection="postgres://postgres:$PGPASSWORD@<my-astro-db>-postgresql.<my-namespace>.svc.cluster.local:5432" --namespace <my-namespace>
 ```
 
-**Note**: We recommend using a [t2 meduium](https://aws.amazon.com/rds/instance-types/) as the minimum RDS instance size.
+> Note: We recommend using a [t2 medium](https://aws.amazon.com/rds/instance-types/) as the minimum RDS instance size.
 
 ### Create TLS Secret
 
@@ -213,7 +213,6 @@ Create your `config.yaml` by copying our `starter.yaml` template:
 $ cp ./configs/starter.yaml ./config.yaml
 ```
 
-
 Set the following values in `config.yaml`:
 
 * `baseDomain: astro.mydomain.com`
@@ -224,7 +223,7 @@ Here is an example of what your `config.yaml` might look like:
 
 ```yaml
 #################################
-## Astronomer global configuration
+### Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -233,16 +232,15 @@ global:
   # Name of secret containing TLS certificate
   tlsSecret: astronomer-tls
 
-
 #################################
-## Nginx configuration
+### Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP: ~
 
 #################################
-## SMTP configuration
+### SMTP configuration
 #################################  
 
 astronomer:
@@ -251,10 +249,9 @@ astronomer:
       email:
         enabled: true
         smtpUrl: YOUR_URI_HERE
-
 ```
 
-Note - the SMTP URI will take the form:
+The SMTP URI will take the form:
 
 ```
 smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
@@ -279,7 +276,8 @@ kubectl get pods --namespace <my-namespace>
 You should see something like this:
 
 ```command
-virajparekh@orbiter:~/Code/Astronomer/docs$ kubectl get pods --namespace astronomer
+kubectl get pods --namespace astronomer
+
 NAME                                                    READY   STATUS      RESTARTS   AGE
 newbie-norse-alertmanager-0                            1/1     Running     0          30m
 newbie-norse-cli-install-565658b84d-bqkm9              1/1     Running     0          30m
@@ -309,7 +307,6 @@ newbie-norse-orbit-d5585ccd8-h8zkr                     1/1     Running     0    
 newbie-norse-prisma-699bd664bb-vbvlf                   1/1     Running     0          30m
 newbie-norse-prometheus-0                              1/1     Running     0          30m
 newbie-norse-registry-0                                1/1     Running     0          30m
-
 ```
 
 ## 12. Configure DNS
@@ -320,6 +317,6 @@ Now that you've successfully installed Astronomer, a new load balancer will have
 
 Navigate to your newly created load balancer and copy the DNS name: route and use this to create a new wildcard CNAME record in you DNS. If your base domain is *organization.io* your wildcard record should be *.organization.io* and will route traffic to your ELB using that DNS name.
 
-### 13. Verify You Can Access the Orbit UI
+## 13. Verify You Can Access the Orbit UI
 
-Go to `app.BASEDOMAIN` to see the Astronomer UI!
+Go to `app.BASEDOMAIN` to see the Astronomer UI.

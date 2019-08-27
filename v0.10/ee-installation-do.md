@@ -173,7 +173,7 @@ Set the following values in `config.yaml`:
 Here is an example of what your `config.yaml` might look like:
 ```
 #################################
-## Astronomer global configuration
+### Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -184,14 +184,14 @@ global:
 
 
 #################################
-## Nginx configuration
+### Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP:
 
 #################################
-## SMTP configuration
+### SMTP configuration
 #################################  
 
 astronomer:
@@ -245,7 +245,7 @@ The loadBalancerIP above is `157.230.64.157` - update the helm chart accordingly
 
 ```
 #################################
-## Astronomer global configuration
+### Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -256,14 +256,14 @@ global:
 
 
 #################################
-## Nginx configuration
+### Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP: 157.230.64.157
 
 #################################
-## SMTP configuration
+### SMTP configuration
 #################################  
 
 astronomer:
