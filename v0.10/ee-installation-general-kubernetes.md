@@ -160,7 +160,7 @@ Set the following values in `config.yaml`:
 Here is an example of what your `config.yaml` might look like:
 ```
 #################################
-### Astronomer global configuration
+## Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -171,7 +171,7 @@ global:
 
 
 #################################
-### Nginx configuration
+## Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
@@ -179,7 +179,7 @@ nginx:
   preserveSourceIP: true
 
 #################################
-### SMTP configuration
+## SMTP configuration
 #################################  
 
 astronomer:

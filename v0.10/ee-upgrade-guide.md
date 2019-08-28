@@ -1,13 +1,13 @@
 ---
 title: "Upgrade Astronomer"
-description: "A guide to upgrading Astronomer on Enterprise"
-date: 2018-07-17T00:00:00.000Z
+description: "A guide to upgrading your installation of the Astronomer Enterprise platform"
+date: 2019-06-19T00:00:00.000Z
 slug: "ee-upgrade-guide"
 ---
 
 To upgrade your installation of the Astronomer Enterprise platform, follow the guidelines below.
 
-**Note:** This guide is **only** for upgrading from Astronomer v0.9.X to v0.10.X.
+**Note:** This guide is **only** for upgrading from Astronomer v0.8.2 to v0.9.X.
 
 For help upgrading between different versions, please contact us at support@astronomer.io.
 
@@ -15,17 +15,8 @@ For help upgrading between different versions, please contact us at support@astr
 
 - Access to an Astronomer Enterprise Installation
 - Access to the Kubernetes cluster hosting the Astronomer Platform
-- Access to DNS (if you are on AWS)
 - The Astronomer version you want to upgrade to
     - Platform Changelog [here](https://github.com/astronomer/astronomer/blob/master/CHANGELOG.md)
-- All Astronomer images in a registry that can be accessed from your Kubernetes cluster (if your cluster can access the public internet, you don't need to take any action here)
-
-
-### Ensure your cluster can access the Astronomer images
-
-Astronomer images are publicly hosted on Dockerhub. If you are running your cluster in a setting that cannot access the public internet, you may need to move the Astronomer images into a registry that your Kubernetes cluster can talk to.
-
-A list of all images needed can be found [here](https://github.com/astronomer/astronomer/blob/v0.10.0/Makefile#L11) (`vendor_components` and `platform_components`) and can be accessed from the `astronomerinc` [Dockerhub](https://hub.docker.com/search?q=astronomerinc&type=image).
 
 ### Checkout the latest Astronomer Version
 
@@ -33,21 +24,62 @@ Go into your `helm.astronomer.io` directory or wherever the config for your depl
 Checkout the version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io) you'd like to upgrade TO
 
 ```
-$ git checkout v0.10.0
+$ git checkout v0.9.X
 ```
+You can find the latest stable Astronomer release here:
+https://github.com/astronomer/astronomer/releases
+
+
 ### Find the Platform Release Name
 
 ```
-$ helm ls
-NAME                       	REVISION	UPDATED                 	STATUS  	CHART                            	APP VERSION  	NAMESPACE
-excited-armadillo          	1       	Mon Jun 17 18:05:48 2019	DEPLOYED	astronomer-0.9.7                 	0.9.7        	astronomer
+$helm ls
+
+NAME             REVISION  UPDATED                  STATUS  	CHART                         excited-armadillo   1      Mon Jun 17 18:05:48 2019 DEPLOYED    astronomer-0.8.2           
+
+APP VERSION      NAMESPACE
+0.8.2            astronomer                                                                      
 ```
+
+In this output,
 
 - Base Platform Release Name: `excited-armadillo`
 - Namespace: `astronomer`
 
 Use the same `config.yaml` as before. If you do not have the `config.yaml`, you can regenerate it with `helm get values excited-armadillo >>config.yaml`.
 This contains all the overrides and settings needed for your platform (basedomain, SMTP creds, etc.)
+
+### Upgrade Helm/Tiller
+
+Astronomer v0.9.X requires helm 2.14 or later.
+
+```
+$ helm version
+
+Client: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.14.1", GitCommit:"5270352a09c7e8b6e8c9593002a73535276507c0", GitTreeState:"clean"}
+```
+
+To upgrade helm locally:
+
+Brew (OS X):
+```
+$ brew upgrade kubernetes-helm
+```
+
+Ubuntu:
+```
+$ sudo snap refresh helm
+```
+
+Once the right version of Helm is running locally, it can be upgraded on the cluster:
+
+```
+$ helm init --upgrade
+```
+
+Run `helm version` again to verify the Helm and Tiller versions.  
+
 
 ### Delete your current Platform Release
 
@@ -67,48 +99,38 @@ $ watch kubectl get pods -n <NAMESPACE>
 
 ### Install the New Platform
 
-```
-$ helm install -f config.yaml . -n <platform_release> --namespace <namespace>
-```
-By specifying the old release name, the new platform release will pick up all necessary metadata from the release that was just purged.
+Now, let's re-install the platform onto the old release to have it pick up the old platform's metadata.
 
-You can watch the status of these with.
+**Note:** If you are running your platform in a fully private networking setup, first add the following into your `config.yaml`:
 
 ```
-$ watch kubectl get pods --namespace <namespace>
+nginx:
+    privateLoadBalancer: True
 ```
 
-If you are Amazon, you may need to update DNS with a new load balancer (the old one was deleted with the previous `helm delete`) to point to your domain.
-
-You can find the load balancer name with:
+To install the new platform, run:
 
 ```
-[ec2-user@ip-10-0-0-240 ~]$ kubectl get svc -n <namespace>
-NAME                                      TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                                      AGE
-excited-armadillo-alertmanager              ClusterIP      172.20.36.181    <none>                                                                    9093/TCP                                     30h
-excited-armadillo-cli-install               ClusterIP      172.20.172.155   <none>                                                                    80/TCP                                       30h
-excited-armadillo-commander                 ClusterIP      172.20.68.183    <none>                                                                    8880/TCP,50051/TCP                           30h
-excited-armadillo-elasticsearch             ClusterIP      172.20.189.196   <none>                                                                    9200/TCP,9300/TCP                            30h
-excited-armadillo-elasticsearch-discovery   ClusterIP      172.20.15.116    <none>                                                                    9300/TCP                                     30h
-excited-armadillo-elasticsearch-exporter    ClusterIP      172.20.230.62    <none>                                                                    9108/TCP                                     30h
-excited-armadillo-elasticsearch-nginx       ClusterIP      172.20.109.192   <none>                                                                    9200/TCP                                     30h
-excited-armadillo-grafana                   ClusterIP      172.20.0.112     <none>                                                                    3000/TCP                                     30h
-excited-armadillo-houston                   ClusterIP      172.20.74.180    <none>                                                                    8871/TCP                                     30h
-excited-armadillo-kibana                    ClusterIP      172.20.76.73     <none>                                                                    5601/TCP                                     30h
-excited-armadillo-kube-state                ClusterIP      172.20.32.101    <none>                                                                    8080/TCP,8081/TCP                            30h
-excited-armadillo-nginx                     LoadBalancer   172.20.119.182   LOAD_BALANCER_NAME_HERE-1639464812.us-west-2.elb.amazonaws.com            80:32503/TCP,443:31187/TCP,10254:30151/TCP   30h
-excited-armadillo-nginx-default-backend     ClusterIP      172.20.77.34     <none>                                                                    8080/TCP                                     30h
-excited-armadillo-orbit                     ClusterIP      172.20.183.47    <none>                                                                    8080/TCP                                     30h
-excited-armadillo-prisma                    ClusterIP      172.20.209.202   <none>                                                                    4466/TCP                                     30h
-excited-armadillo-prometheus                ClusterIP      172.20.219.16    <none>                                                                    9090/TCP                                     30h
-excited-armadillo-registry                  ClusterIP      172.20.190.58    <none>                                                                    5000/TCP                                     30h
+$ helm install -f config.yaml . -n <PLATFORM-RELEASE> --namespace <NAMESPACE>
+```
+
+#### Wait for Pods to Spin Up
+
+Once you do this, wait for all the Pods to come up.
+
+You can watch them once again by running:
 
 ```
+$ watch kubectl get pods --namespace <NAMESPACE>
+```
+
+Once all pods have reached `Running` state, you can consider the base platform upgraded.
 
 ### Log into the Astronomer UI
 
-Now that the platform has been upgraded, go to `app.BASEDOMAIN` in your browser and log into Astronomer. You may need to hard refresh the page (Cntrl+Refresh Button, clear cache, or open in incognito mode) for it to load.
+Now that the platform has been upgraded, go to `app.BASEDOMAIN` in your browser and log into Astronomer.
 
+**Note:** You may need to hard refresh the page (Cntrl+Refresh Button) for it to load.
 
 #### Upgrade Each Airflow Deployment
 
@@ -121,22 +143,55 @@ For each Deployment,
 - Navigate to the `Configure` page
 - Hit `Upgrade`
 
+![Deployment Configure](https://assets2.astronomer.io/main/docs/upgrade-guide/upgrade-guide-deployment-configure.png)
+
+
+**Note:** You can expect to hit a `404 Error` if you try to acces the Airflow UI for any Airflow deployment that you have not upgraded.
+
 ### Update your Dockerfile
 
-8) Change the `FROM` line in your `Dockerfile` to
+The image in the Dockerfile should match with the new version of Astronomer
+In your `Dockerfile`, change the `FROM` statement to:
 
 ```
-FROM astronomerinc/ap-airflow:0.10.0-1.10.4-onbuild
+FROM astronomerinc/ap-airflow:0.9.X-1.10.3-onbuild
 ```
-
+The `X` should match with the release you are upgrading to.
 
 Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github. If you are seeing errors in previously working plugins, be sure to check if their import path changed with the new Airflow version.
 
-9) Upgrade your CLI:
+### Upgrade the CLI
+
+As a final step, upgrade the Astronomer CLI to a matching version.
+
+To upgrade to the latest Astronomer version, run:
 
 ```
-$ curl -sL https://install.astronomer.io | sudo bash -s -- v0.10.0
+$ astro upgrade
+```
+
+Running that command should output your current version and confirm your upgrade version, as seen below:
+
+```
+$ astro upgrade
+Astro CLI Version: v0.8.2  (2019.03.15)
+Astro CLI Latest: v0.9.6  (2019.07.23)
+There is a more recent version of the Astronomer CLI available.
+You can install the latest tagged release with the following command
+	$ curl -sL https://install.astronomer.io | sudo bash
 
 ```
 
-10) Start pushing new DAGs!
+### Change BaseSensor Import Path:
+If you are importing the `BaseSensor` in any of your plugins, it should be imported from:
+```
+from airflow.sensors.base_sensor_operator import BaseSensorOperator
+```
+
+### Start Deploying DAGs
+
+With that, you're all set to run on Astronomer's latest. You're free to push DAGs to your upgraded Deployments.
+
+**Questions?**
+
+If you have any issues or questions, don't hesitate to reach out to your dedicated support member or to our wider team at support@astronomer.io.

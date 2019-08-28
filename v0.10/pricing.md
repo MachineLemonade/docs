@@ -1,13 +1,11 @@
 ---
-title: "Pricing"
+title: "Cloud Pricing"
 description: "Documentation of our pricing structure and philosophy."
 date: 2018-10-12T00:00:00.000Z
 slug: "pricing"
 ---
 
-To view a general overview of our pricing structure, check out the [pricing page](https://www.astronomer.io/pricing/) on our website.
-
-## Cloud Pricing
+To view a general overview of our pricing structure across our product offerings, check out the [pricing page](https://www.astronomer.io/pricing/) on our website.
 
 ### Overview
 
@@ -21,7 +19,7 @@ Resource configuration is directly managed on the `Configure` tab of the Astrono
 
 For us to maximize your control over your Airflow deployments, our monthly cost to run Astronomer Cloud fully depends on how much you scale each component of your Airflow instance(s) - and for how long - throughout the course of your billing cycle.
 
-Via the [Astronomer UI](https://app.astronomer.cloud/login), you can freely scale the following components of each of your instances:
+Via the [Astronomer UI](https://app.astronomer.cloud/login) as seen below, you can freely scale the following components of each of your instances:
 
 - Webserver
 - Scheduler
@@ -29,11 +27,13 @@ Via the [Astronomer UI](https://app.astronomer.cloud/login), you can freely scal
 - Celery worker size
 - Celery worker termination grace period
 
+![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Executor.png)
+
 Resource configurations are "live" as soon as you adjust the toggles on your web browser and click `Update`.
 
 ### The Astronomer Unit (AU)
 
-To track and measure allocation to each of these components, we introduce the concept of an Astronomer Unit (AU).
+To track and measure allocation to each of these components, we introduce the concept of [an Astronomer Unit (AU)](https://github.com/astronomer/houston-api/blob/193183be40df7e00261c3bf4941caf80e5d874a4/config/default.yaml#L317).
 
 | AU Count | CPU | GB of Memory | Monthly Price |
 |----------|-----|--------|-------|

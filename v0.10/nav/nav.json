@@ -7,7 +7,8 @@
         "menu": "Cloud",
         "contents": [
           "getting-started",
-          "cloud-faq"
+          "cloud-faq",
+          "pricing"
         ]
       },
       {
@@ -39,7 +40,8 @@
       "setting-up-airflow-emails",
       "kubepodoperator",
       "query-airflow-database",
-      "rbac"
+      "rbac",
+      "deployment-level-logs"
     ]
   },
 
@@ -75,6 +77,7 @@
           "ee-kibana",
           "ee-kubectl",
           "ee-administration-postgres-creds",
+          "ee-upgrade-guide",
           "migrating-airflow-to-astronomer"
         ]
       }
@@ -84,7 +87,8 @@
   {
     "menu": "Integrating Services",
     "contents": [
-      "ci-cd"
+      "ci-cd",
+      "vpc-access"
     ]
   },
   {
@@ -92,7 +96,6 @@
     "contents": [
       "security-model",
       "release-notes",
-      "pricing",
       "support"
     ]
   }

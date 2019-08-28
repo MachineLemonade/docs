@@ -33,7 +33,7 @@ To read more about navigating our app, go [here](https://www.astronomer.io/docs/
 
 ### Join another Workspace
 
-If you're new to Astronomer but someone else on your team has an existing Workspace you want to join, your team member can add you as a user to that shared Workspace directly from their account.
+If you're new to Astronomer but someone else on your team has an existing Workspace you want to join, your  team member will be able to add you as a user to that shared Workspace directly from their account.
 
 Role-based Access Control (RBAC) is roped into Astronomer v0.9 and beyond. For more info on that functionality, check out [this doc](https://www.astronomer.io/docs/rbac/).
 
@@ -106,7 +106,7 @@ With those files in place, you're ready to push to your local Airflow environmen
 $ astro airflow start
 ```
 
-This command will spin up a Docker container on your machine with 3 Airflow components:
+This command will spin up 3 Docker containers on your machine, each for a different Airflow component:
 - **Postgres:** [Airflow's Metadata Database](https://www.astronomer.io/docs/query-airflow-database/)
 - **Webserver:** The Airflow component responsible for rendering the Airflow UI
 - **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
@@ -139,17 +139,29 @@ Airflow Webserver: http://localhost:8080/admin/
 Postgres Database: localhost:5432/postgres
 ```
 
-To verify, you can also run:
+**Note**: If you're running version v0.7.5 of the CLI and get a `manifest not found` error, make sure to have the following image in your Dockerfile:
+
+```
+FROM astronomerinc/ap-airflow:0.7.5-1.10.1-onbuild
+```
+
+More info [here](https://forum.astronomer.io/t/astro-airflow-start-manifest-for-astronomerinc-ap-airflow-0-7-5-2-1-9-0-onbuild-not-found/261).
+
+#### Verify Docker Containers
+
+To verify that all 3 docker containers were created, you can also run:
 
 ```
 $ docker ps
 ```
 
+**Note**: Running `astro airflow start` will by default start your project with the Airflow Webserver exposed at port 8080 and postgres exposed at port 5432.
+
+If you already have either of those ports allocated, you can either [stop existing docker containers](https://forum.astronomer.io/t/docker-error-in-cli-bind-for-0-0-0-0-5432-failed-port-is-already-allocated/151) or [change the port](https://forum.astronomer.io/t/i-already-have-the-ports-that-the-cli-is-trying-to-use-8080-5432-occupied-can-i-change-the-ports-when-starting-a-project/48).
+
 ### Access the Airflow UI
 
 To check out the Airflow UI on your local Airflow project, navigate here - http://localhost:8080/admin/
-
-If you already have the 8080 port allocated, [you can change it](https://forum.astronomer.io/t/i-already-have-the-ports-that-the-cli-is-trying-to-use-8080-5432-occupied-can-i-change-the-ports-when-starting-a-project/48).
 
 ### See your Sample DAG
 
@@ -249,7 +261,7 @@ After you deploy your example DAG, you'll be able to see it running in your Clou
 
 Now that you're set up on Astronomer and familiar with our deployment flow, consider a few next steps:
 
-- [Whitelist our IP](https://forum.astronomer.io/t/how-do-i-grant-astronomer-access-to-my-vpc-does-my-deployment-get-its-own-unique-ip/28/2) for access to your external databases
+- [Whitelist our IP](https://www.astronomer.io/docs/vpc-access/) for access to your external databases
 - Think about setting up a [CI/CD Pipeline](https://www.astronomer.io/docs/ci-cd/)
 - Set up [Airflow Alerts](https://www.astronomer.io/docs/setting-up-airflow-emails/)
 - Migrate your DAGs (you'll have to manually port over Variables + Connections)
@@ -258,4 +270,4 @@ Now that you're set up on Astronomer and familiar with our deployment flow, cons
 
 - [**Community Forum**](https://forum.astronomer.io): General Airflow + Astronomer FAQs
 - [**Astronomer's GitHub**](https://github.com/astronomer/astronomer): Feature Requests + Bug Reports
-- [**Technical Support**](support@astronomer.io): Individual platform or Airflow issues
+- [**Technical Support**](mailto:support@astronomer.io): Individual platform or Airflow issues

@@ -12,7 +12,7 @@ _Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platfo
 ## 1. Install Necessary Tools
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
+* [Helm v2.14.1](https://github.com/helm/helm/releases/tag/v2.14.1)
 * SMTP Creds (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create / modify resources on Digital Ocean
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)!
@@ -48,6 +48,7 @@ You can either add this file to your `.kube/config` or you can refer to it expli
 
 ## 4. Configure Helm with your Digital Ocean Cluster
 Helm is a package manager for Kubernetes. It allows you to easily deploy complex Kubernetes applications. You'll use helm to install and manage the Astronomer platform. Learn more about helm [here](https://helm.sh/).
+
 ### Create a Kubernetes Namespace
 Create a namespace to host the core Astronomer Platform. If you are running through a standard installation, each Airflow deployment you provision will be created in a separate namespace that our platform will provision for you, this initial namespace will just contain the core Astronomer platform.
 
@@ -80,11 +81,13 @@ subjects:
 
 Run the following command to apply these configurations to your Kubernetes cluster:
 ```
-$ kubectl --kubeconfig="astro-do-test-kubeconfig.yaml" -f rbac-config.yaml
+$ kubectl apply --kubeconfig="astro-do-test-kubeconfig.yaml" -f rbac-config.yaml
 ```
 
 ### Deploy a `tiller` Pod
+
 Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
+
 ```
 $ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm init --service-account tiller
 ```
@@ -93,6 +96,8 @@ Confirm your `tiller` pod was deployed successfully:
 ```
 $ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm version
 ```
+
+**Note:** This command pings the tiller pod to see if it's ready or not. If this command returns the client version but _not_ the server version, that's an indication that tiller was not successfully deployed.
 
 ## 5. Deploy a PostgreSQL Database
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
@@ -173,7 +178,7 @@ Set the following values in `config.yaml`:
 Here is an example of what your `config.yaml` might look like:
 ```
 #################################
-### Astronomer global configuration
+## Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -184,14 +189,14 @@ global:
 
 
 #################################
-### Nginx configuration
+## Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP:
 
 #################################
-### SMTP configuration
+## SMTP configuration
 #################################  
 
 astronomer:
@@ -245,7 +250,7 @@ The loadBalancerIP above is `157.230.64.157` - update the helm chart accordingly
 
 ```
 #################################
-### Astronomer global configuration
+## Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -256,14 +261,14 @@ global:
 
 
 #################################
-### Nginx configuration
+## Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP: 157.230.64.157
 
 #################################
-### SMTP configuration
+## SMTP configuration
 #################################  
 
 astronomer:

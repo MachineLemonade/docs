@@ -1,196 +1,187 @@
 ---
-title: "The Houston API"
-description: "Official documentation for the API that powers Astronomer."
+title: "The Houston API Playground"
+description: "Using The Graphql Playground."
 date: 2018-10-12T00:00:00.000Z
 slug: "houston-api"
 ---
 
-The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write graphql queries directly against the API. This guide will walk you through authenticating and writing queries against the Houston API playground.
+## The Graphql Playground
 
-Once authenticated, you can access the API @ https://houston.astronomer.cloud/playground or at whatever URL your Enterprise installation of Astronomer is installed to.
+The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write Graphql queries directly against the API.You can interact submit these queries through the playground, or directly to the Houston endpoint.
 
-### Getting Acquainted with Playground
+If you are an **enterprise** customer, your playground will be located at https://houston.BASEDOMAIN/v1/
 
-Before we get started there are some core components of the Playground that you will want to be familiar with.
+The [Graphql-playground Github](https://github.com/prisma/Graphql-playground) contains more information on playground features.
 
-#### Query Editor
+## Querying Houston
+To start off, head to https://houston.BASEDOMAIN/v1/
 
-The main screen of Playground is divided into two halves. The left half is where you can write queries against the Houston API. There is some basic intellisense and code formatting to make your query writing easier. Once you have written a query, and corrected any mistakes picked up by Playground's intellisense, you can run the query by pressing the play/execution button which is located near the top of your screen aligned center horizontally.
+### Authenticating
 
-#### Results Viewer
+Each query requires proper authentication in the request headers. To authenticate, you can
 
-The right half of the screen is for displaying the results of a query. After pressing the play/execution your results will appear in this right half of the screen.
+- Get a temporary token from `app.BASEDOMAIN/token`
+- Generate a Service Account key from the Astronomer UI.
 
-#### Query Variables and Headers
+Expand the `HTTP Headers` on the bottom left and include the token formatted as: `{"authorization": $TOKEN}`
 
-The bottom of the Query Editor (left half) panel has another smaller panel with two tabs. "Query Variables" and "HTTP Headers". This is where you can provided variables and headers such as authorization tokens to your queries.
+![Headers](https://assets2.astronomer.io/main/docs/ee/headers.png)
 
-#### Schema Explorer
 
-On the far right, you will find a small tab with the label "SCHEMA". Clicking this tab will bring up the schema explorer which can allow you to discover various queries and mutations available to the user. This is a great place to start when first becoming acquainted with the Houston API as it allows you to explore what is possible.
+#### Query Types
 
-## Authenticating Against The API
+On Astronomer, you can ask for Graphql:
 
-This guide assumes you have already created a user (via the CLI or UI) and have basic familiarity with [querying a graphql API](https://graphql.org/learn/queries/). Once you have done that, the first step is to generate an authentication token. You can use the following query as a template to get started.
+- [Queries](https://Graphql.org/learn/queries/#fields) - Queries to return information
+- [Mutations](https://Graphql.org/learn/queries/#mutations) - Queries to modify data
+- [Subscriptions](https://Graphql.org/blog/subscriptions-in-Graphql-and-relay/) - Describes all of the events that can be subscribed to
 
-```graphql
-mutation CreateToken {
-  createToken(identity: "USERNAME", password:"PASSWORD") {
-    token {
-      value
-    }
+This guide will stay away from Subscriptions.
+
+### Schemas and Sample Query
+
+With a valid token in the HTTP headers, you should be able to query all endpoints your user has access to. The [`Schema`](https://graphql.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
+
+![Schema](https://assets2.astronomer.io/main/docs/ee/graphql_schema.png)
+
+The query for `deployment` needs either an `workspaceUuid`, `deploymentUuid`, or a `releaseName` as an input, and can return all of the fields under `Type Details`.
+
+The below query, named `deploymentinfo`, can be used to return the `config` of a deployment:
+
+```
+query deploymentinfo {
+  deployments(releaseName:"astral-perturbation-4616")
+  {
+    id
+    config
+
+  }
+}
+```
+Results are shown on the `Resuls Viewer` on the right side of the page after hitting the Play Button.
+
+![Query](https://assets2.astronomer.io/main/docs/ee/deployment_query.gif)
+
+
+#### Custom Types
+
+Any datatype listed with `[]` in the `Schema` requires additional fields to the query.
+For example, adding the `urls` field to the query above:
+
+```
+query deploymentinfo {
+  deployments(releaseName:"astral-perturbation-4616")
+  {
+    id
+    config
+    urls
+
   }
 }
 ```
 
-If your user and account have been setup properly, you can expect to receive an authorization token in the results panel which looks something like the example below.
+This returns:
 
-```json
+```
+{
+  "error": {
+    "errors": [
+      {
+        "message": "Field \"urls\" of type \"[DeploymentUrl]\" must have a selection of subfields. Did you mean \"urls { ... }\"?",
+        "locations": [
+          {
+            "line": 5,
+            "column": 5
+          }
+        ],
+        "extensions": {
+          "code": "GRAPHQL_VALIDATION_FAILED"
+        },
+        "level": "ERROR",
+        "timestamp": "2019-07-24T16:52:33"
+      }
+    ]
+  }
+}
+```
+
+The `urls` field requires additional subfields that can be found in the `Schema` tab.
+
+![Custom Type](https://assets2.astronomer.io/main/docs/ee/deployments_custom_typeschema.png)
+
+
+```
+query deployment {
+  deployments(releaseName:"astral-perturbation-4616")
+  {
+    id
+    config
+    urls
+    {
+      type
+      url
+    }
+
+  }
+}
+```
+By specifying a subfield of the `urls` type, the query executes successfully.
+
+```
 {
   "data": {
-    "createToken": {
-      "token": {
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNjZmN2Y4NjUtMzE0NS00YmNlLTg0NmUtOWJlZjhlZDAxMTQwIiwiaWF0IjoxNTM3NTU4MzY3LCJleHAiOjE1Mzc2NDQ3Njd9.FM8PrnlWxMQSOfFuXDrfbysY8ckZNUpYk7E3bYfH3PQ"
+    "deployments": [
+      {
+        "id": "cjyem0p4m001a0b692dxk529v",
+        "config": {
+          "executor": "CeleryExecutor",
+          "images": {
+            "airflow": {
+              "repository": "registry.demo.datarouter.ai/astral-perturbation-4616/airflow",
+              "tag": "cli-5"
+            }
+          }
+        },
+        "urls": [
+          {
+            "type": "airflow",
+            "url": "https://undefined-airflow.demo.datarouter.ai/"
+          },
+          {
+            "type": "flower",
+            "url": "https://undefined-flower.demo.datarouter.ai"
+          }
+        ]
       }
-    }
+    ]
   }
 }
 ```
+**Note:** Custom types are often composed of other custom types.
 
-We now need to pass this authentication token through Playground to the houston-api in order to prove to houston that we have the proper authorization to perform various actions. You can pass this token into the Query Headers panel on the bottom left. Click "HEADERS" and copy and paste your token into the header so that it looks like the example below.
+### Adding System Admins with a mutation
+Mutations can be used to generate auth tokens, add system admins, and other things that `modify` the underlying database.
 
-```json
-{"authorization": "PASTE_TOKEN_HERE"}
+To add a system admin, the `id` of the user is needed. This can be obtained by an Admin with a `users` query.
+
 ```
-
-You are now able to perform actions against the API which require authentication.
-
-## Example Queries
-
-Now that you have authenticated to the API, you can begin to perform queries. Below we have provided a few example queries to get you started. Remember, if you are unsure of how you might accomplish a task, you can always explore the possibilities with the schema explorer.
-
-### Listing Your Available Workspaces
-
-```graphql
-query GetWorkspaces {
-  workspaces {
-    uuid
-    label
-  }
-}
-```
-
-You could further extend the information returned by adding fields to the result attributes like so,
-
-```graphql
-query GetWorkspaces2 {
-  workspaces {
-    uuid
-    label
-    active
-    createdAt
-  }
-}
-```
-
-### Listing A Workspace's Deployments
-
-```graphql
-query GetDeployments {
-  deployments(workspaceUuid:"WORKSPACE-UUID") {
-    uuid
-    type
-    label
-    description
-  }
-}
-```
-
-In some cases, the query may return a nested object, you can access the nested object attributes using a query similar to the example below
-
-```graphql
-query GetDeployments {
-  deployments(workspaceUuid:"WORKSPACE-UUID") {
-    uuid
-    type
-    label
-    description
-    workspace {
-      label
-      uuid
-    }
-  }
-}
-```
-
-### Modifying Objects with A Mutation
-
-In this example we create a new Airflow deployment.
-
-```graphql
-mutation CreateDeployment {
-  createDeployment(
-    type: "airflow", label: "EXAMPLE LABEL", workspaceUuid:"WORKSPACE UUID", version: "1.9.0")
+query users {
+  users(email:"pete@astronomer.io")
   {
-    uuid
-    type
-    label
-    workspace {
-      uuid
-    }
+    id    
   }
 }
 ```
+Grab the returned `id` and feed it into the next mutation.
 
-When updating an existing object you may need to pass in a JSON payload of attributes. Notice how the `payload` parameter is unquotes raw json.
-
-```graphql
-mutation UpdateDeployment {
-  updateDeployment(deploymentUuid:"DEPLOYMENT UUID", payload: {label: "MY NEW LABEL"}) {
-    uuid
-    label
+Call `createSystemRoleBinding` with the proper inputs as shown.
+```
+mutation AddAdmin {
+  createSystemRoleBinding(
+    userId: $id
+    role: SYSTEM_ADMIN
+  ) {
+    id
   }
 }
 ```
-
-## Queries
-
-* `authConfig` — Fetch configuration information about available authentication methods ('state' is deprecated)
-* `deployments` — Fetches one or more deployments based on input. If a deploymentUuid is return, it will return at most one deployment Fetches all deployments by users UUID if no parameters are specified.
-* `deploymentConfig` — Fetches config needed to create a module deployment
-* `groups` — Fetch groups by groupUuid or workspaceUuid
-* `invites` — Fetch a list of invites
-* `self` — Fetches info about the authenticated requesting user
-* `workspaces` — Fetch workspace by userUuid or workspaceUuid
-* `users` — Fetches a user by username or email
-* `serviceAccounts` — Fetch Service Accounts by apiKey, serviceAccountUuid, or entityType and entityUuid
-
-## Mutations
-
-* `confirmEmail` — Confirm email added on signup or from the user profile page
-* `createToken` — Verify a User's credentials and issues a token if valid. Adding an orgId validates a User's credentials and access to that Organization, failing if a User does not have access to that Organization
-* `createUser` — Creates a new user
-* `forgotPassword` — Trigger forgot password processs
-* `resendConfirmation` — Confirm email added on signup or from the user profile page
-* `resetPassword` — Takes a password reset token and new password, updates password credentials, and authenticates user
-* `updateUser` — Update an existing user
-* `createDeployment` — Creates a new Airflow deployment
-* `updateDeployment` — Updates an existing deployment
-* `deleteDeployment` — Deletes an existing deployment
-* `migrateDeployment` — Creates a new deployment
-* `createWorkspace` — Create a workspace and add authenticated user as owner
-* `deleteWorkspace` — Deletes an existing workspace
-* `updateWorkspace` — Update an existing workspace
-* `workspaceAddUser` — Add user to a workspace
-* `workspaceRemoveUser` — Remove user from a workspace
-* `createServiceAccount` — Create a Service Account
-* `updateServiceAccount` — Update the Label or Category of a Service Account
-* `deleteServiceAccount` — Delete a Service Account by it's uuid, will return uuid if successful
-* `groupAddUser` — Add user to a group
-* `groupRemoveUser` — Remove user from a group
-* `createInviteToken` — Invite a user into the platform
-* `deleteInviteToken` — Deletes an invitation
-
-## Subscriptions
-
-* `deploymentLogStream` — Streams deployment logs from a start time, at specified interval, optionally scoped to a component

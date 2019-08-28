@@ -13,7 +13,7 @@ _Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platfo
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
+* [Helm v2.14.1](https://github.com/helm/helm/releases/tag/v2.14.1)
 * SMTP Creds (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create / modify resources on Microsoft Azure
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)!
@@ -219,7 +219,7 @@ Set the following values in `config.yaml`:
 Here is an example of what your `config.yaml` might look like:
 ```
 #################################
-### Astronomer global configuration
+## Astronomer global configuration
 #################################
 global:
   # Base domain for all subdomains exposed through ingress
@@ -230,14 +230,14 @@ global:
 
 
 #################################
-### Nginx configuration
+## Nginx configuration
 #################################
 nginx:
   # IP address the nginx ingress should bind to
   loadBalancerIP: 0.0.0.0
 
 #################################
-### SMTP configuration
+## SMTP configuration
 #################################  
 
 astronomer:

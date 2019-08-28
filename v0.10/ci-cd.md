@@ -5,55 +5,143 @@ date: 2018-10-12T00:00:00.000Z
 slug: "ci-cd"
 ---
 
-With Service accounts, you can deploy your DAGs with the continuous integration/continuous deployment (CI/CD) tool of your choice. This guide will walk you through configuring your CI/CD tool to use a Astronomer EE service accounts in order to build and push your Airflow project Docker images to the private Docker registry that is installed with Astronomer EE.
+With Astronomer's support for Service accounts, you're able to deploy to an Apache Airflow deployment via a Continuous Integration/Continuous Delivery (CI/CD) tool of your choice.
 
-For background information and best practices on CI/CD, we recommend reading the article [An Introduction to CI/CD Best Practices](https://www.digitalocean.com/community/tutorials/an-introduction-to-ci-cd-best-practices) from DigitalOcean.
+This guide will walk you through configuring your CI/CD pipeline with either Astronomer Cloud or Astronomer Enterprise.
 
-## How to Set Up CI/CD with Your Astronomer Airflow Project
+For background and best practices on CI/CD, we recommend reading ["An Introduction to CI/CD Best Practices"](https://www.digitalocean.com/community/tutorials/an-introduction-to-ci-cd-best-practices) from DigitalOcean.
 
-Before we get started, this guide assumed you have installed Astronomer Enterprise Edition or are using Astronomer Cloud Edition, have the [astro-cli](https://github.com/astronomer/astro-cli) installed locally and are familiar with your CI/CD tool of choice. You can check your astro-cli version with the `astro version` command.
+## Pre-Requisites
+
+Before we get started, make sure you:
+
+- Have access to a running Airflow Deployment on either Astronomer Cloud or Enterprise
+- Installed the [Astronomer CLI](https://github.com/astronomer/astro-cli)
+- Are familiar with your CI/CD tool of choice
 
 ## Create a Service Account
 
-In order to authenticate your CI/CD pipeline to the private Docker registry, you'll need to create a service account. This service account access can be revoked at any time by deleting the service account through the astro-cli or orbit-ui.
+In order to authenticate your CI/CD pipeline to the private Docker registry, you'll need to create a service account. Once created, you'll be able to delete this service account at any time either via the CLI or via the Astronomer UI. In both cases, this will spit out an API key that will be used for the CI/CD process.
 
- Note that you're able to create Service Accounts at both the Workspace and Deployment level. Creating them at the Workspace level allows you to customize how your deployment pipeline works and allows you to deploy to multiple Airflow instances with one push, while creating them at the Deployment level ensures that your CI/CD pipeline will only deploy to that specific cluster.
+Note that you're able to create Service Accounts at the:
 
- Here are a few examples of creating service accounts with various permission levels via the Astronomer CLI.
+- Workspace Level
+- Airflow Deployment Level
 
-__Deployment Level Service Account__
+Creating a Service Account at the Workspace level allows you to deploy to *multiple* Airflow deployments with one push, while creating them at the Deployment level ensures that your CI/CD pipeline only deploys to one particular deployment on Astronomer.
 
-```sa
-astro service-account create -d [DEPLOYMENTUUID] --label [SERVICEACCOUNTLABEL]
+Read below for guidelines on how to create a service account via the CLI and via the Astronomer UI.
+
+### Create a Service Account via the CLI
+
+#### Deployment Level Service Account
+
+To create a Deployment Level Service account via the CLI, first run:
+
+```
+$ astro deployment list
 ```
 
-__Workspace Level Service Account__
+This will output the list of running Airflow deployments you have access to, and their corresponding UUID.
+
+With that UUID, run:
 
 ```sa
-astro service-account create -w [WORKSPACEUUID] -l [SERVICEACCOUNTLABEL]
+$ astro service-account create -d [DEPLOYMENTUUID] --label [SERVICEACCOUNTLABEL]
 ```
 
-__System Level Service Account__
+#### Workspace Level Service Account
+
+To create a Workspace Level Service account via the CLI, first run:
+
+```
+$ astro workspace list
+```
+
+This will output the list of running Astronomer Workspaces you have access to, and their corresponding UUID.
+
+With that UUID, run:
 
 ```sa
-astro service-account create -s --label [SERVICEACCOUNTLABEL]
+$ astro service-account create -w [WORKSPACEUUID] -l [SERVICEACCOUNTLABEL]
 ```
 
-If you prefer to provision a service account through the orbit-ui you can create a service account on the project configuration page at the following link (replacing [BaseDomain] for your configured base domain).
+### Create a Service Account via the Astronomer UI
 
-In both cases, this will spit out an API key that will be used for the CI/CD process.
+If you prefer to provision a Service Account through the Astronomer UI, start by logging into Astronomer.
 
-https://app.[BaseDomain]/login
+#### Navigate to your Deployment's "Configure" Page
 
-## Configure Your CI/CD Pipeline
+From the Astronomer UI, navigate to: `Deployment` > `Service Accounts`
+
+![New Service Account](https://assets2.astronomer.io/main/docs/ci-cd/ci-cd-new-service-account.png)
+
+#### Give your Service Account a Name and Category
+
+Upon creating a Service Account, give it a Name and Category.
+
+![Name Service Account](https://assets2.astronomer.io/main/docs/ci-cd/ci-cd-name-service-account.png)
+
+#### Copy the API Key
+
+Lastly, grab the API Key generated by creating the Service Account.
+
+**Note:** This will only be visible during the session.
+
+![Service Account](https://assets2.astronomer.io/main/docs/ci-cd/ci-cd-api-key.png)
+
+
+### Authenticate to Docker
+
+Once you've created a service account, you will want to store the generated API key in an environment variable, or your secret management tool of choice.
+
+The first step of this pipeline is to authenticate against the registry:
+
+```
+docker login registry.$${BASE_DOMAIN} -u _ -p $${API_KEY_SECRET}
+```
+
+In this example:
+
+- `BASEDOMAIN` = `astronomer.cloud` (for Cloud users) or your very own Basedomain for Enterprise
+- `API_KEY_SECRET` = The API Key that you got from the CLI or the UI and stored in your secret manager
+
+### Building and Pushing an Image
+
+Once you are authenticated you can build, tag and push your Airflow image to the private registry, where a webhook will trigger an update to your Airflow deployment on the platform.
+
+__Registry Address__
+The registry address tells Docker where to push images to. In this case it will be the private registry installed with Astronomer EE, which will be located at registry.${BASE_DOMAIN}.
+
+If you're on Astronomer Cloud, you will use:
+`registry.astronomer.cloud`
+
+__Release Name__
+Release name refers to the release name of your Airflow Deployment. It will follow the pattern of [SPACE THEMED ADJ.]-[SPACE THEMED NOUN]-[4-DIGITS] (in this example, `infrared-photon-7780`).
+
+__Tag Name__
+Tag name allows you to track all Airflow deployments made for that cluster over time. While the tag name can be whatever you want, we recommend denoting the source and the build number in the name.
+
+In the below example we use the prefix `ci-` and the ENV `${DRONE_BUILD_NUMBER}`. This guarentees that we always know which CI/CD build triggered the build and push.
+
+Example:
+
+```bash
+docker build -t registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD_NUMBER} .
+```
+
+If you would like to see a more complete working example please visit our [full example using Drone-CI](https://github.com/astronomerio/example-dags/blob/master/.drone.yml).
+
+### Configure Your CI/CD Pipeline
 
 Depending on your CI/CD tool, configuration will be slightly different. This section will focus on outlining what needs to be accomplished, not the specifics of how.
 
 At its core, your CI/CD pipeline will be authenticating to the private registry installed with the platform, then building, tagging and pushing an image to that registry.
 
-Below are a few example pipelines.
+Here are a few example pipelines:
+**Note:** The base image is based on the version of Astronomer you are currently running.
 
-## Example: DroneCI
+#### DroneCI
 
 ```yaml
 pipeline:
@@ -81,7 +169,7 @@ pipeline:
       branch: [ master, release-* ]
 ```
 
-## Example: CircleCI
+#### CircleCI
 
 ```
 # Python CircleCI 2.0 configuration file
@@ -137,7 +225,7 @@ workflows:
                 - master
 ```
 
-## Example: Jenkins
+#### Jenkins Script
 
 ```
 pipeline {
@@ -163,7 +251,7 @@ pipeline {
 
 ```
 
-## Example: Bitbucket
+#### Bitbucket
 
 If you are using [Bitbucket](https://bitbucket.org/), this script should work (courtesy of our friends at [Das42](https://www.das42.com/))
 
@@ -187,43 +275,23 @@ pipelines:
 
 ```
 
-## Authenticating to Docker
-
-After you have created a service account, you will want to store the generated API key in an environment variable, or your secret management tool of choice.'
-
-The first step of this pipeline is to authenticate against the registry:
-
-```bash
-docker login registry.$${BASE_DOMAIN} -u _ -p $${API_KEY_SECRET}
+#### Gitlab
+```
+astro_deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - echo "Building container.."
+    - docker build -t registry.astronomer.cloud/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID .
+    - docker login registry.astronomer.cloud -u _ -p $${SERVICE_ACCOUNT_SECRET}
+    - docker push registry.astronomer.cloud/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID
+  only:
+    - master
 ```
 
-In this example, the BASE_DOMAIN is `astronomer.cloud` (for Astronomer Cloud). The `API_KEY_SECRET` is the API Key that you got from the CLI or the UI stored in your secret manager
 
-## Building and Pushing an Image
-
-Once you are authenticated you can build, tag and push your Airflow image to the private registry, where a webhook will trigger an update of your Airflow deployment on the platform.
-
-__Registry Address__
-The registry address tells Docker where to push images to. In this case it will be the private registry installed with Astronomer EE, which will be located at registry.${BASE_DOMAIN}.
-
-For example, if you are using Astronomer's cloud platform, you will use:
-`registry.astronomer.cloud`
-
-__Release Name__
-Release name refers to the release name of your Airflow Deployment. It will follow the pattern of [SPACE THEMED ADJ.]-[SPACE THEMED NOUN]-[4-DIGITS] (in this example, `infrared-photon-7780`).
-
-__Tag Name__
-Tag name allows you to track all Airflow deployments made for that cluster over time. While the tag name can be whatever you want, we recommend denoting the source and the build number in the name.
-
-In the below example we use the prefix `ci-` and the ENV `${DRONE_BUILD_NUMBER}`. This guarentees that we always know which CI/CD build triggered the build and push.
-
-Example:
-
-```bash
-docker build -t registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD_NUMBER} .
-```
-
-If you would like to see a more complete working example please visit our [full example using Drone-CI](https://github.com/astronomerio/example-dags/blob/master/.drone.yml).
 
 Check out this video for a full walkthrough of this process:
 
