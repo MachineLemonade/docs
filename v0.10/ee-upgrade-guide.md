@@ -124,7 +124,7 @@ FROM astronomerinc/ap-airflow:0.10.0-1.10.4-onbuild
 
 Run `astro airflow start` with the new image to verify the new image builds. For a list of changes, see the [CHANGELOG](https://github.com/apache/airflow/blob/master/CHANGELOG.txt) on the Airflow Github. If you are seeing errors in previously working plugins, be sure to check if their import path changed with the new Airflow version.
 
-## Upgrade your CLI:
+## Upgrade your CLI
 
 ```
 $ curl -sL https://install.astronomer.io | sudo bash -s -- v0.10.0
