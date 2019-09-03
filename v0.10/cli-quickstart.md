@@ -13,7 +13,7 @@ From the CLI, you can establish a local testing environment and deploy to Astron
 
 To start using the CLI, make sure you've already installed:
 
-- [Docker](https://www.docker.com/)
+- [Docker], version 18.09 or higher (https://www.docker.com/)
 
 ## Install
 
