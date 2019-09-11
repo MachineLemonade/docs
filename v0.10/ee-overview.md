@@ -30,6 +30,8 @@ Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license]
 
 ## Components
 
+Astronomer Enterprise brings together best-of-class components into a complete "Managed Airflow on Kubernetes" system:
+
 * [Astro CLI](https://github.com/astronomer/astro-cli) - Command line tool for pushing deployments from your local machine to your workspaces running on Kubernetes. The CLI also provides the ability to launch a local stack via docker for local development and testing of DAGs, hooks and operators.
 * [Orbit (React UI)](https://github.com/astronomer/orbit-ui) - A modern web based interface to create manage workspaces and deployments. Through the UI you can scale up or down your resources per deployment, invite new users and monitor Airflow logs
 * [Houston (GraphQL API)](https://github.com/astronomer/houston-api) - The core GraphQL API layer to interact with your astronomer workspaces and deployments. Use GraphQL queries directly, or integrate with your CI/CD platform to automate Airflow deployments.
@@ -49,6 +51,8 @@ Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license]
 
 ## Airflow Deployment Components
 
+When you create an Airflow deployment in Astronomer, the following components are installed:
+
 * [Scheduler](https://airflow.apache.org/scheduler.html) - Used to schedule Airflow DAGs and tasks. This process parses DAGs, determines dependencies and decides when DAGs should run and when tasks are ready to be scheduled. Tasks are sent to the celery task queue to be processed by Airflow workers
 * [Webserver](https://airflow.apache.org/ui.html) - Airflow’s web UI used to view DAGs, Connections, variables, logs etc.
 * [pgBouncer](https://pgbouncer.github.io/) - Provides connection pooling for Postgres. This helps prevent the Airflow database from being overwhelmed by too many connections.
@@ -60,7 +64,7 @@ Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license]
 
 ## Customer-Supplied Resources
 
-To run Astronomer in your environment, you just need to bring a Kubernetes cluster and a Postgres database.
+To run Astronomer in your environment, you just need to bring a Kubernetes cluster and a Postgres database:
 
 * [Kubernetes](https://kubernetes.io/) - You bring your own Kubernetes environment (EKS, GKE, AKS, other). This is the core infrastructure that allows all the above services to run. This coordinates communication between the services as well as fault tolerance if a pod crashes.
 * [PostgreSQL](https://www.postgresql.org/) - database used as the backend for the Houston service as well as each Airflow deployment.
