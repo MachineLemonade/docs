@@ -53,12 +53,12 @@ Astronomer Enterprise brings together best-of-class components into a complete "
 
 When you create an Airflow deployment in Astronomer, the following components are installed:
 
-* [Scheduler](https://airflow.apache.org/scheduler.html) - Used to schedule Airflow DAGs and tasks. This process parses DAGs, determines dependencies and decides when DAGs should run and when tasks are ready to be scheduled. Tasks are sent to the celery task queue to be processed by Airflow workers
+* [Scheduler](https://airflow.apache.org/scheduler.html) - Determines dependencies and decides when DAGs should run and when tasks are ready to be scheduled.
 * [Webserver](https://airflow.apache.org/ui.html) - Airflow’s web UI used to view DAGs, Connections, variables, logs etc.
 * [pgBouncer](https://pgbouncer.github.io/) - Provides connection pooling for Postgres. This helps prevent the Airflow database from being overwhelmed by too many connections.
 * [StatsD](https://github.com/statsd/statsd) - Provides DAG and task level metrics from Airflow. Astronomer collects these metrics and pushes to a centralized view in Grafana
 * Celery components:
-  * [Worker](https://docs.celeryproject.org/en/latest/userguide/workers.html) - A service running to process Airflow tasks. You can scale up the number of workers you have to increase the throughput of tasks in your environment. Uses celery distributed task queue
+  * [Worker](https://docs.celeryproject.org/en/latest/userguide/workers.html) - A service running to process Airflow tasks, which can be scaled up to increase the throughput.
   * [Flower](https://flower.readthedocs.io/en/latest/) - Web UI for Celery distributed task queue. Used to monitor your Airflow worker services
   * [Redis](https://redis.io/) - In memory data store used as the backend by the Celery task queue
 
@@ -66,5 +66,5 @@ When you create an Airflow deployment in Astronomer, the following components ar
 
 To run Astronomer in your environment, you just need to bring a Kubernetes cluster and a Postgres database:
 
-* [Kubernetes](https://kubernetes.io/) - You bring your own Kubernetes environment (EKS, GKE, AKS, other). This is the core infrastructure that allows all the above services to run. This coordinates communication between the services as well as fault tolerance if a pod crashes.
+* [Kubernetes](https://kubernetes.io/) - You bring your own Kubernetes environment (EKS, GKE, AKS, other). Coordinates communication between the services, and provides fault tolerance on failures.
 * [PostgreSQL](https://www.postgresql.org/) - database used as the backend for the Houston service as well as each Airflow deployment.
