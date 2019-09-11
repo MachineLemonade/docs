@@ -1,5 +1,5 @@
 ---
-title: "Astronomer Enterprise Overview"
+title: "Overview of Astronomer Enterprise"
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-overview"
 note: "Consider updating https://github.com/astronomer/astronomer when you update this doc"
@@ -55,7 +55,9 @@ Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license]
   * [Flower](https://flower.readthedocs.io/en/latest/) - Web UI for Celery distributed task queue. Used to monitor your Airflow worker services
   * [Redis](https://redis.io/) - In memory data store used as the backend by the Celery task queue
 
-## Customer Supplied
+## Customer-Supplied Resources
 
-* [PostgreSQL](https://www.postgresql.org/) - database used as the backend for the Houston service as well as each Airflow deployment.
+To run Astronomer in your environment, you just need to bring a Kubernetes cluster and a Postgres database.
+
 * [Kubernetes](https://kubernetes.io/) - You bring your own Kubernetes environment (EKS, GKE, AKS, other). This is the core infrastructure that allows all the above services to run. This coordinates communication between the services as well as fault tolerance if a pod crashes.
+* [PostgreSQL](https://www.postgresql.org/) - database used as the backend for the Houston service as well as each Airflow deployment.
