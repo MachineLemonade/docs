@@ -38,5 +38,5 @@ Astronomer Enterprise allows you to run the Astronomer platform within your own 
 
 ## Customer Supplied
 
-* [PostgreSQL](https://www.postgresql.org/ - database used as the backend for the Houston service as well as each Airflow deployment.
+* [PostgreSQL](https://www.postgresql.org/) - database used as the backend for the Houston service as well as each Airflow deployment.
 * [Kubernetes](https://kubernetes.io/) - You bring your own Kubernetes environment (EKS, GKE, AKS, other). This is the core infrastructure that allows all the above services to run. This coordinates communication between the services as well as fault tolerance if a pod crashes.
