@@ -1,28 +1,18 @@
 ---
-title: "Overview"
-description: "An overview of the platform"
+title: "Astronomer Overview"
+description: "An overview of the Astronomer platform"
 date: 2018-10-12T00:00:00.000Z
 slug: "overview"
 ---
 
+The Astronomer platform is available as a SaaS service (Astronomer Cloud) or as a software subscription (Astronomer Enterprise).
+
 ## Astronomer Cloud
 
-Astronomer Cloud is a managed [Apache Airflow](https://airflow.apache.org/) offering. It includes:
+[Astronomer Cloud](https://astronomer.io/cloud) is a managed [Apache Airflow](https://airflow.apache.org/) service.
 
-- Secure and easy-to-spin-up Airflow environments, with fully isolated resources
-- A [CLI](https://www.astronomer.io/docs/cli-getting-started/) for local development, deployment, monitoring, and connection management
-- A UI with secure authentication for workspace, deployment management and configuration, and user management
-- Multiple [support options](https://www.astronomer.io/docs/support/) depending on your needs
-
-To get started, follow [this guide](https://www.astronomer.io/docs/getting-started/).
+You interact with Astronomer Cloud via the UI and the [Astro CLI](https://www.astronomer.io/docs/cli-getting-started/) tospin-up and scale Airflow environments, with fully isolated resources. To get started, [follow this guide](https://www.astronomer.io/docs/getting-started/).
 
 ## Astronomer Enterprise
 
-Astronomer Enterprise allows you to run the Astronomer platform on your own [Kubernetes](https://kubernetes.io/) cluster. It includes:
-
-- Astronomer Command Center that includes the Astronomer UI, CLI, and a GraphQL API for easy cluster and deployment management on Kubernetes
-- Access to a Prometheus and Grafana monitoring stack for metrics on your Airflow activity
-- Enterprise Authentication that supports Google Suite, SAML, Office 365, Active Directory, and more through auth0.
-- Enterprise-grade business day or business critical support
-
-To get started, follow [this guide](https://www.astronomer.io/docs/ee-getting-started/).
+[Astronomer Enterprise](https://astronomer.io/enterprise) allows you to run the Astronomer platform on your own [Kubernetes](https://kubernetes.io/) cluster. It includes a GraphQL API, a monitoring stack (Prometheus/Grafana), a logging stack (FluentD, Elasticsearch, Kibana), and enterprise authentication that supports Google Suite, SAML, Office 365, Active Directory, and more through auth0, okta, and oath2. All with enterprise-grade support options. To get started, [follow this guide](https://www.astronomer.io/docs/ee-getting-started/).
