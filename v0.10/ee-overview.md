@@ -28,7 +28,7 @@ We have build guides for installing Astronomer on a number of Kubernetes environ
 
 Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license](https://github.com/astronomer/astronomer/blob/master/LICENSE).
 
-## Components
+## Platform Components
 
 Astronomer Enterprise brings together best-of-class components into a complete "Managed Airflow on Kubernetes" system:
 
@@ -49,7 +49,7 @@ Astronomer Enterprise brings together best-of-class components into a complete "
 * [db-bootstrapper](https://github.com/astronomer/db-bootstrapper) - Init container for bootstrapping system databases
 * [Docker images](https://hub.docker.com/u/astronomerinc/) - Docker images for deploying and running Astronomer on DockerHub.
 
-## Airflow Deployment Components
+## Airflow Components
 
 When you create an Airflow deployment in Astronomer, the following components are installed:
 
