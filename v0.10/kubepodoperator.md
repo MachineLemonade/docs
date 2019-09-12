@@ -24,13 +24,13 @@ If you're running Airflow 1.9, check out [this forum post](https://forum.astrono
 You can import the Operator as you would any other plugin in [its GitHub Contrib Folder](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py)
 
 ```python
-from airflow.contrib.operators.kubernetes_pod_operator import kubernetes_pod_operator
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 ```
 
 Instantiate the operator based on your image and setup:
 
 ```python
-k = kubernetes_pod_operator.KubernetesPodOperator(
+k = KubernetesPodOperator(
     namespace='astronomer-cloud-frigid-vacuum-0996',
     image="ubuntu:16.04",
     cmds=["bash", "-cx"],
