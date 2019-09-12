@@ -15,7 +15,7 @@ If you'd like to see the platform in action, [start a free trial on our SaaS ser
 
 ## Installation Guides
 
-We have build guides for installing Astronomer on a number of Kubernetes environments:
+We have created guides for installing Astronomer on a number of Kubernetes environments:
 
 * [Amazon Web Services EKS](https://www.astronomer.io/docs/ee-installation-eks/)
 * [Google Cloud Platform GKE](https://www.astronomer.io/docs/ee-installation-gke/)
