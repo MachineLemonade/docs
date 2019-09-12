@@ -12,11 +12,11 @@ _What do we need more information on?_
 
 
 **Cloud, EE, or Both?:**
-_Which users would this affect_?
+_Which users would this affect?_
 
 
 **Menu:**
-_Which menu does this go in? Does it need a new submenu?"
+_Which menu does this go in? Does it need a new submenu?"_
 
 
 **Forum Post:**
