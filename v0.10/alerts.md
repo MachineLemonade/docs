@@ -53,7 +53,7 @@ You can view [full source code](https://github.com/astronomer/helm.astronomer.io
 
 ### Configuring platform alert receivers
 
-Admins can subscribe to these configured alerts bt editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
+Admins can subscribe to these configured alerts by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
 
 Example:
 
