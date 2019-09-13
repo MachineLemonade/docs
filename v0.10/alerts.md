@@ -5,17 +5,27 @@ date: 2018-10-12T00:00:00.000Z
 slug: "alerts"
 ---
 
+## Overview
+
 Route common Airflow deployment and platform alerts to your preferred channel, via [Prometheus Alertmanager](https://prometheus.io/docs/alerting/alertmanager).
 
 Alerts are defined using the [PromQL query language](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+
+## Accessing Prometheus UI
+
+You can access the Prometheus UI that is deployed in the Astronomer platform using Kubectl to port forward. Example:
+
+`kubectl port-forward svc/cantankerous-gecko-prometheus -n astronomer 9090:9090`
+
+Then visit `localhost:9090` on your computer.
+
+## Configuring Alertmanager
 
 Alertmanager then manages those alerts, including silencing, inhibition, aggregation and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
 
 You can [configure Alertmanager](https://prometheus.io/docs/alerting/configuration/) to send alerts to email, HipChat, PagerDuty, Pushover, Slack, OpsGenie, and more by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
 
-> Note: We are considering a feature to be able to define and customize alerts within the Astronomer UI, but this won't happen until after v1.0.
-
-## Airflow Alerts
+## Built-in Airflow Alerts
 
 You can view [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/values.yaml) for these built-in alerts.
 
@@ -30,7 +40,7 @@ You can view [full source code](https://github.com/astronomer/helm.astronomer.io
 
 End users can subscribe to these configured alerts in the Astronomer UI.
 
-## Platform Alerts
+## Built-in Platform Alerts
 
 You can view [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/templates/prometheus-alerts-configmap.yaml) for these built-in alerts.
 
@@ -40,6 +50,8 @@ You can view [full source code](https://github.com/astronomer/helm.astronomer.io
 | `RegistryDiskUsage` | Docker Registry high disk usage, has less than 10% disk space available. |
 | `ElasticsearchDiskUsage` | Elasticsearch high disk usage, has less than 10% disk space available. |
 | `IngessCertificateExpiration` | TLS Certificate expiring soon, expiring in less than a week. |
+
+### Configuring platform alert receivers
 
 Admins can subscribe to these configured alerts bt editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
 
