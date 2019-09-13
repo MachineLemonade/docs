@@ -24,6 +24,24 @@ We have created guides for installing Astronomer on a number of Kubernetes envir
 * [Digital Ocean Kubernetes](https://preview.astronomer.io/docs/ee-installation-do/)
 * ["General" Kubernetes](https://preview.astronomer.io/docs/ee-installation-general-kubernetes/)
 
+## Customizing Your Installation
+
+* [Integrating Auth Systems](https://www.astronomer.io/docs/ee-integrating-auth-systems)
+* [Configuring Resources with Helm](https://www.astronomer.io/docs/ee-configuring-resources)
+* [Single Namespace Mode](https://www.astronomer.io/docs/ee-single-namespace-mode/)
+* [Configuring a Registry Back End](https://www.astronomer.io/docs/ee-registry-backend)
+* [Built-in Alerts](https://www.astronomer.io/docs/alerts)
+
+## Administration
+
+* [The Houston API Playground](https://www.astronomer.io/docs/houston-api)
+* [Metrics](https://www.astronomer.io/docs/ee-metrics)
+* [Using Kibana](https://www.astronomer.io/docs/ee-kibana)
+* [Using kubectl](https://www.astronomer.io/docs/ee-kubectl)
+* [Pulling Postgres Credentials](https://www.astronomer.io/docs/ee-administration-postgres-creds)
+* [Upgrading](https://www.astronomer.io/docs/ee-upgrade-guide)
+* [Migrating An Airflow Deployment to Astronomer](https://www.astronomer.io/docs/migrating-airflow-to-astronomer)
+
 ## License
 
 Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license](https://github.com/astronomer/astronomer/blob/master/LICENSE).

@@ -1,5 +1,5 @@
 ---
-title: "Upgrade Astronomer"
+title: "Upgrading Astronomer"
 description: "A guide to upgrading Astronomer on Enterprise"
 date: 2018-08-23T00:00:00.000Z
 slug: "ee-upgrade-guide"
