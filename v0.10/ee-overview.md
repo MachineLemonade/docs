@@ -26,6 +26,8 @@ We have created guides for installing Astronomer on a number of Kubernetes envir
 
 ## Customizing Your Installation
 
+Because the platform uses Helm throughout, it's very easy to customize your Astronomer installation. Below are some guides for most common customizations:
+
 * [Integrating Auth Systems](https://www.astronomer.io/docs/ee-integrating-auth-systems)
 * [Configuring Resources with Helm](https://www.astronomer.io/docs/ee-configuring-resources)
 * [Single Namespace Mode](https://www.astronomer.io/docs/ee-single-namespace-mode/)
@@ -33,6 +35,8 @@ We have created guides for installing Astronomer on a number of Kubernetes envir
 * [Built-in Alerts](https://www.astronomer.io/docs/alerts)
 
 ## Administration
+
+There are many tools at your disposal for administrating Astronomer:
 
 * [The Houston API Playground](https://www.astronomer.io/docs/houston-api)
 * [Metrics](https://www.astronomer.io/docs/ee-metrics)
