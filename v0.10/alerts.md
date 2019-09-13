@@ -5,10 +5,13 @@ date: 2018-10-12T00:00:00.000Z
 slug: "alerts"
 ---
 
-Get emails for common Airflow deployment issues, before you experience a failure.
-Available in Astronomer v0.7 and higher.
+Get emails for common Airflow deployment and platform issues.
+
+Alerts are defined in Helm, and use the [PromQL query language](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
 ## Airflow Alerts
+
+> Note: view [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/values.yaml) for these alerts.
 
 | Alert | Description |
 | ------------- | ------------- |
@@ -21,11 +24,11 @@ Available in Astronomer v0.7 and higher.
 
 ## Platform Alerts
 
+> Note: view [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/templates/prometheus-alerts-configmap.yaml) for these alerts.
+
 | Alert | Description |
 | ------------- | ------------- |
 | `PrometheusDiskUsage` | Prometheus high disk usage, has less than 10% disk space available. |
 | `RegistryDiskUsage` | Docker Registry high disk usage, has less than 10% disk space available. |
 | `ElasticsearchDiskUsage` | Elasticsearch high disk usage, has less than 10% disk space available. |
 | `IngessCertificateExpiration` | TLS Certificate expiring soon, expiring in less than a week. |
-
-View [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/values.yaml#L41-L148https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/values.yaml#L41-L148) for alerts.
