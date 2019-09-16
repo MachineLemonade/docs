@@ -13,7 +13,9 @@ Alerts are defined using the [PromQL query language](https://prometheus.io/docs/
 
 ## Accessing Prometheus & Alertmanager UI
 
-You can access the Prometheus & Alertmanager UIs that are deployed in the Astronomer platform using Kubectl to port forward. Example:
+You can access the Prometheus & Alertmanager UIs that are deployed in the Astronomer platform using Kubectl to port forward. 
+
+Example:
 
 ```
 kubectl port-forward svc/cantankerous-gecko-prometheus -n astronomer 9090:9090
@@ -22,15 +24,37 @@ kubectl port-forward svc/cantankerous-gecko-prometheus -n astronomer 9090:9090
 kubectl port-forward svc/cantankerous-gecko-alertmanager -n astronomer 9093:9093
 ```
 
-Then visit `localhost:9090` or `localhost:9093` on your computer.
+You can then access these dashboards at `localhost:9090` or `localhost:9093` from your web browser.
 
 ## Configuring Alertmanager
 
 Alertmanager's capabilities include silencing, inhibition, aggregation and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
 
-You can [configure Alertmanager](https://prometheus.io/docs/alerting/configuration/) to send alerts to email, HipChat, PagerDuty, Pushover, Slack, OpsGenie, and more by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). 
 
-You can also configure Alertmanager's `route` block by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). The `route` block defines values such as `repeat_interval` (the interval at which alert notifications are sent). You can find more information on the `route` block [here](https://prometheus.io/docs/alerting/configuration/#route)
+### Configuring Platform Alert Receivers
+
+You can configure Alertmanager to send alerts to email, HipChat, PagerDuty, Pushover, Slack, OpsGenie, and more by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). 
+
+Example `receiver` definition:
+
+```
+alertmanager:
+  receivers:
+    platform:
+      slack_configs:
+      - api_url: https://hooks.slack.com/services/T02J89GPR/BDBSG6L1W/4Vm7zo542XYgvv3
+        channel: '#astronomer_platform_alerts'
+        text: |-
+          {{ range .Alerts }}{{ .Annotations.description }}
+          {{ end }}
+        title: '{{ .CommonAnnotations.summary }}'
+```
+
+You can read more about configuration options [here](https://prometheus.io/docs/alerting/configuration/).
+
+### Configuring Alert Routes
+
+You can also configure Alertmanager's `route` block by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). The `route` block defines values such as `repeat_interval` (the interval at which alert notifications are sent).
 
 Example `route` definition:
 ```
@@ -59,6 +83,8 @@ route:
     match:
       team: frontend
 ```
+
+You can find more information on the `route` block [here](https://prometheus.io/docs/alerting/configuration/#route).
 
 ## Built-in Airflow Alerts
 
@@ -115,24 +141,3 @@ Example platform alert definition:
 ```
 
 You can find more information on alert rule definitions [here](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/).
-
-### Configuring platform alert receivers
-
-Admins can subscribe to these configured alerts by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
-
-Example:
-
-```
-alertmanager:
-  receivers:
-    platform:
-      slack_configs:
-      - api_url: https://hooks.slack.com/services/T02J89GPR/BDBSG6L1W/4Vm7zo542XYgvv3
-        channel: '#astronomer_platform_alerts'
-        text: |-
-          {{ range .Alerts }}{{ .Annotations.description }}
-          {{ end }}
-        title: '{{ .CommonAnnotations.summary }}'
-```
-
-You can read more about configuration options [here](https://prometheus.io/docs/alerting/configuration/).
