@@ -26,7 +26,7 @@ Then visit `localhost:9090` or `localhost:9093` on your computer.
 
 ## Configuring Alertmanager
 
-Alertmanager then manages those alerts, including silencing, inhibition, aggregation and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
+Alertmanager's capabilities include silencing, inhibition, aggregation and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
 
 You can [configure Alertmanager](https://prometheus.io/docs/alerting/configuration/) to send alerts to email, HipChat, PagerDuty, Pushover, Slack, OpsGenie, and more by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). 
 
