@@ -73,7 +73,21 @@ You can view [full source code](https://github.com/astronomer/helm.astronomer.io
 | `AirflowCPUQuota` | Deployment is near its CPU quota, has been using over 95% of it's CPU quota for over 10 minutes. |
 | `AirflowMemoryQuota` | Deployment is near its memory quota, has been using over 95% of it's memory quota for over 10 minutes. |
 
-End users can subscribe to these configured alerts in the Astronomer UI.
+Example airflow alert definition:
+```
+- alert: AirflowDeploymentUnhealthy
+  expr: sum by (release) (kube_pod_container_status_running{namespace=~".*-.*-.*-[0-9]{4}"}) - count by (release) (kube_pod_container_status_running{namespace=~".*-.*-.*-[0-9]{4}"}) < 0
+  for: 15m 
+  labels:
+    tier: airflow
+    component: deployment
+    deployment: "{{ $labels.release }}"
+  annotations:
+    summary: "{{ $labels.release }} deployment is unhealthy"
+    description: "The {{ $labels.release }} deployment is not completely available."
+```
+
+You can find more information on alert rule definitions [here](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/). End users can subscribe to these configured alerts in the Astronomer UI. 
 
 ## Built-in Platform Alerts
 
@@ -85,6 +99,22 @@ You can view [full source code](https://github.com/astronomer/helm.astronomer.io
 | `RegistryDiskUsage` | Docker Registry high disk usage, has less than 10% disk space available. |
 | `ElasticsearchDiskUsage` | Elasticsearch high disk usage, has less than 10% disk space available. |
 | `IngessCertificateExpiration` | TLS Certificate expiring soon, expiring in less than a week. |
+
+Example platform alert definition:
+```
+- alert: PrometheusDiskUsage
+  expr: (kubelet_volume_stats_available_bytes{persistentvolumeclaim=~"data-{{ template "prometheus.fullname" . }}-.*"} / kubelet_volume_stats_capacity_bytes{persistentvolumeclaim=~"data-{{ template "prometheus.fullname" . }}-.*"} * 100) < 10
+  for: 5m
+  labels:
+    tier: platform
+    component: prometheus
+  annotations:
+    summary: "Prometheus High Disk Usage"
+    description: "Prometheus has less than 10% disk space available."
+
+```
+
+You can find more information on alert rule definitions [here](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/).
 
 ### Configuring platform alert receivers
 
