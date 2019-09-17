@@ -36,7 +36,7 @@ By default, Astronomer needs around 10 CPUs and 44Gi of memory:
 
 You can change the request and limit of any of the components above in your `config.yaml` or in `values.yaml` (`config.yaml` will overwrite `values.yaml`).
 
-To change something like the resources allocated to `Orbit`, add
+To change something like the resources allocated to `Orbit`, add the following fields to your `config.yaml`:
 ```
 #####
 #Changing Orbit CPU
@@ -52,7 +52,6 @@ astronomer:
         cpu: "700m"
         memory: "1024Mi"
 ```
-to `config.yaml`
 
 Once all the changes are made, run `helm upgrade` to switch your platform to the new config:
 

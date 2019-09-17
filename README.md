@@ -11,7 +11,6 @@ Each of the docs on our site are built from the markdown files in this repositor
 2. Delineate between major sections of docs with *clear and concise* H2s (applied in markdown as a double `##`). The Content Navigator, which allows you to easily navigate and link to specific sections of a given doc, is generated from only H2s. Since this navigator allows you to link to these H2s, they must not be overly verbose, as this will result in a poor UX.
 
 
-
 ## Building Docs
 
 1. Run `pip install -r requirements.txt` to install Python dependencies in `requirements.txt`.
