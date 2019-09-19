@@ -137,7 +137,7 @@ This will create a local instance of Airflow (running at localhost:8080 on your 
 
 ### Navigating Deployments
 
-If you haven't created a deployment via the UI (recommended), you _can_ do so via Astro CLI.
+If you haven't created a deployment via the UI (recommended), you can do so via Astro CLI.
 
 #### Creating a deployment via Astro CLI
 
