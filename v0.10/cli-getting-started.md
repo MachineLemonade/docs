@@ -341,6 +341,8 @@ Beyond pure Environment Variables, you can add additional custom scripts or conf
 
 For example, Any bash scripts you want to run as `sudo` when the image builds can be added as such:
 
-`RUN echo 'This is a cool feature!'`
+```
+RUN echo 'This is a cool feature!'
+```
 
 These commands should go after the `FROM` line that pulls down the Airflow image.
