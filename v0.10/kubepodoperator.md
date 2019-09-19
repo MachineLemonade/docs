@@ -24,13 +24,13 @@ If you're running Airflow 1.9, check out [this forum post](https://forum.astrono
 You can import the Operator as you would any other plugin in [its GitHub Contrib Folder](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py)
 
 ```python
-from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
+from airflow.contrib.operators.kubernetes_pod_operator import kubernetes_pod_operator
 ```
 
 Instantiate the operator based on your image and setup:
 
 ```python
-k = KubernetesPodOperator(
+k = kubernetes_pod_operator.KubernetesPodOperator(
     namespace='astronomer-cloud-frigid-vacuum-0996',
     image="ubuntu:16.04",
     cmds=["bash", "-cx"],
@@ -51,7 +51,9 @@ Set the `in_cluster` parameter to `True` in your code. This will tell your task 
 
 Set the `is_delete_pod_operator` parameter to `True` in your code. This will delete completed pod in the namespace as they finish, keeping Airflow below its resource quotas.
 
-### Add Resources to your Deployment on Astronomer
+### Configure Resources
+
+#### Add Resources to your Deployment on Astronomer
 
 The KubernetesPodOperator will launch pods on resources allocated to it in the `Extra Capacity` section of your deployment's `Configure` page of the [Astronomer UI](https://www.astronomer.io/docs/astronomer-ui/). Pods will **only** run on the resources configured here. Adding `Extra Capacity` will increase your namespace's [resource quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/) so that Airflow has permissions to launch pods in the namespace.
 
@@ -63,11 +65,28 @@ Reason: Forbidden
 "Failure","message":"pods is forbidden: User \"system:serviceaccount:astronomer-cloud-solar-orbit-4143:solar-orbit-4143-worker-serviceaccount\" cannot create pods in the namespace \"datarouter\"","reason":"Forbidden","details":{"kind":"pods"},"code":403}
 ```
 
-On Astronomer Cloud, the largest node a single pod can occupy is `13.01GB` and `3.92 CPU`. We'll be introducing larger options in Astronomer v0.9, so stay tuned.
+On Astronomer Cloud, the largest node a single pod can occupy is `13.01GB` and `3.92 CPU`. We'll be introducing larger options in future releases, so stay tuned. On Enterprise, it will depend on the size of your underlying node pool.
 
-On Enterprise, it will depend on the size of your underlying node pool.
+> Note: If you need your [limit range](https://kubernetes.io/docs/concepts/policy/limit-range/) increased, please contact your system admin if you are an Enterprise customer (or Astronomer if you are a Cloud customer).
 
-> Note: If you need your [limit range](https://kubernetes.io/docs/concepts/policy/limit-range/) increased, please contact your system admin if you are an Enterprise customer (or Astronomer if you are a cloud customer).
+#### Define Resources per Task
+
+A notable advantage of leveraging Airflow's KubernetesPodOperator is that you can specify _exactly_ how many resources you want to allocate to an individual Kubernetes Pod charged with completing a single task, according to what that particular task needs.
+
+To do so, define `compute resources` (CPU and Memory, collectively) in your code.
+
+Here's an example:
+
+```
+compute_resource = {'request_cpu': '800m', 'request_memory': '3Gi', 'limit_cpu': '800m', 'limit_memory': '3Gi'}
+....
+
+            k8s_pod = KubernetesPodOperator(
+                task_id="task_id",
+                rest_of_params,
+                resources=compute_resource,
+
+```
 
 ## Using a Private Registry
 
