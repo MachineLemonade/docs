@@ -36,11 +36,9 @@ To enter one of these containers:
 ```
 docker exec -it c572fe53093e /bin/bash
 
-
 bash-4.4$ ls
-Dockerfile             airflow.cfg            airflow_settings.yaml  dags                   include                logs                   packages.txt           plugins                requirements.txt       unittests.cfg
+Dockerfile  airflow.cfg  airflow_settings.yaml  dags  include  logs  packages.txt  plugins  requirements.txt  unittests.cfg
 bash-4.4$
-
 ```
 
 ### Running Commands on Build
@@ -109,11 +107,12 @@ virajparekh@orbiter:~/cli_tutorial$ tree
 ```
 
 Now going into my scheduler image:
+
 ```
 docker exec -it c2c7d3bb5bc1 /bin/bash
 bash-4.4$ ls
-Dockerfile             airflow_settings.yaml  helper_functions       logs                   plugins                unittests.cfg
-airflow.cfg            dags                   include                packages.txt           requirements.txt
+Dockerfile  airflow_settings.yaml  helper_functions  logs  plugins  unittests.cfg
+airflow.cfg  dags  include  packages.txt  requirements.txt
 ```
 
 
