@@ -1,17 +1,17 @@
 ---
 title: "The Houston API Playground"
-description: "Using The Graphql Playground."
+description: "Using The GraphQL Playground."
 date: 2018-10-12T00:00:00.000Z
 slug: "houston-api"
 ---
 
-## The Graphql Playground
+## The GraphQL Playground
 
-The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write Graphql queries directly against the API.You can interact submit these queries through the playground, or directly to the Houston endpoint.
+The [houston-api](https://github.com/astronomer/houston-api) is the source of truth across the entire Astronomer Enterprise platform. Playground is a web portal which allows you to write GraphQL queries directly against the API.You can interact submit these queries through the playground, or directly to the Houston endpoint.
 
 If you are an **enterprise** customer, your playground will be located at https://houston.BASEDOMAIN/v1/
 
-The [Graphql-playground Github](https://github.com/prisma/Graphql-playground) contains more information on playground features.
+The [GraphQL-playground Github](https://github.com/prisma/GraphQL-playground) contains more information on playground features.
 
 ## Querying Houston
 To start off, head to https://houston.BASEDOMAIN/v1/
@@ -30,19 +30,19 @@ Expand the `HTTP Headers` on the bottom left and include the token formatted as:
 
 #### Query Types
 
-On Astronomer, you can ask for Graphql:
+On Astronomer, you can ask for GraphQL:
 
-- [Queries](https://Graphql.org/learn/queries/#fields) - Queries to return information
-- [Mutations](https://Graphql.org/learn/queries/#mutations) - Queries to modify data
-- [Subscriptions](https://Graphql.org/blog/subscriptions-in-Graphql-and-relay/) - Describes all of the events that can be subscribed to
+- [Queries](https://GraphQL.org/learn/queries/#fields) - Queries to return information
+- [Mutations](https://GraphQL.org/learn/queries/#mutations) - Queries to modify data
+- [Subscriptions](https://GraphQL.org/blog/subscriptions-in-GraphQL-and-relay/) - Describes all of the events that can be subscribed to
 
 This guide will stay away from Subscriptions.
 
 ### Schemas and Sample Query
 
-With a valid token in the HTTP headers, you should be able to query all endpoints your user has access to. The [`Schema`](https://graphql.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
+With a valid token in the HTTP headers, you should be able to query all endpoints your user has access to. The [`Schema`](https://GraphQL.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
 
-![Schema](https://assets2.astronomer.io/main/docs/ee/graphql_schema.png)
+![Schema](https://assets2.astronomer.io/main/docs/ee/GraphQL_schema.png)
 
 The query for `deployment` needs either an `workspaceUuid`, `deploymentUuid`, or a `releaseName` as an input, and can return all of the fields under `Type Details`.
 
@@ -95,7 +95,7 @@ This returns:
           }
         ],
         "extensions": {
-          "code": "GRAPHQL_VALIDATION_FAILED"
+          "code": "GraphQL_VALIDATION_FAILED"
         },
         "level": "ERROR",
         "timestamp": "2019-07-24T16:52:33"
