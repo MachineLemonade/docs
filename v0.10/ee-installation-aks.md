@@ -95,7 +95,7 @@ Create a namespace to host the core Astronomer Platform. If you are running thro
 $ kubectl create namespace <my-namespace>
 ```
 
-### Create a `tiller` Service Account
+### Create a tiller Service Account
 Save the following in a file named `rbac-config.yaml`:
 ```
 apiVersion: v1
@@ -123,7 +123,8 @@ Run the following command to apply these configurations to your Kubernetes clust
 $ kubectl create -f rbac-config.yaml
 ```
 
-### Deploy a `tiller` Pod
+### Deploy a tiller Pod
+
 Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
 ```
 $ helm init --service-account tiller
@@ -135,6 +136,7 @@ $ helm version
 ```
 
 ## 5. Deploy a PostgreSQL Database
+
 To serve as the backend-db for Airflow and our API, you'll need a running Postgres instance that will be able to talk to your Kubernetes cluster. We recommend using a dedicated Postgres since Airflow will create a new database inside of that Postgres for each Airflow deployment.
 
 We recommend you deploy a PostgreSQL database through a cloud provider database service like Azure Database for PostgreSQL.  This will require the full connection string for a user that has the ability to create, delete, and updated databases and users.
@@ -166,13 +168,16 @@ Follow the on-screen prompts and create a TXT record through your DNS provider. 
 
 
 ### Create a DNS A Record
+
 Create an A record through your DNS provider for `*.astro.mydomain.com` using your previously created static IP address.
 
 
 ## 7. Create Kubernetes Secrets
+
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
 
 ### Create Database Connection Secret
+
 Set an environment variable `$PGPASSWORD` containing your PostgreSQL database password:
 ```
 $ export PGPASSWORD=$(kubectl get secret --namespace <my-namespace> <my-astro-db>-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
@@ -189,6 +194,7 @@ $ kubectl create secret generic astronomer-bootstrap --from-literal connection="
 ```
 
 ### Create TLS Secret
+
 Create a TLS secret named `astronomer-tls` using the previously generated SSL certificate files:
 ```
 $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astro.mydomain.com/privkey.pem --cert /etc/letsencrypt/live/astro.mydomain.com/fullchain.pem --namespace <my-namespace>
@@ -196,6 +202,7 @@ $ sudo kubectl create secret tls astronomer-tls --key /etc/letsencrypt/live/astr
 **Note:** If you generated your certs using LetsEncrypt, you will need to run the command above as `sudo`
 
 ## 8. Configure your Helm Chart
+
 Now that your Kubernetes cluster has been configured with all prerequisites, you can deploy Astronomer!
 
 Clone the Astronomer helm charts locally and checkout your desired branch:
@@ -254,6 +261,7 @@ smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 
 ## 9. Install Astronomer
+
 ```
 $ helm install -f config.yaml . --namespace <my-namespace>
 ```
@@ -261,6 +269,7 @@ $ helm install -f config.yaml . --namespace <my-namespace>
 Check out our `Customizing Your Install` section for guidance on setting an [auth system](https://www.astronomer.io/docs/ee-integrating-auth-system/) and [resource requests(https://www.astronomer.io/docs/ee-configuring-resources/) in this `config.yaml`.
 
 ## 10. Verify all pods are up
+
 To verify all pods are up and running, run:
 
 ```
@@ -303,4 +312,5 @@ newbie-norse-registry-0                                1/1     Running     0    
 ```
 
 ## 11. Access Astronomer's Orbit UI
+
 Go to app.BASEDOMAIN to see the Astronomer UI!

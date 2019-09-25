@@ -70,7 +70,7 @@ Create a namespace to host the core Astronomer Platform. If you are running thro
 $ kubectl create ns astronomer
 ```
 
-### Create a `tiller` Service Account
+### Create a tiller Service Account
 
 Save the following in a file named `rbac-config.yaml`:
 
@@ -101,7 +101,7 @@ Run the following command to apply these configurations to your Kubernetes clust
 $ kubectl create -f rbac-config.yaml
 ```
 
-### Deploy a `tiller` Pod
+### Deploy a tiller Pod
 
 Your Helm client communicates with your kubernetes cluster through a `tiller` pod.  To deploy your tiller, run:
 
