@@ -28,7 +28,7 @@ astro airflow start
 Similar to Composer, all DAGs in Astronomer should be kept in a `dags` directory, which is created by default when you start a new project with `astro airflow init`.
 
 ### Plugins
-Similar to Composer, all DAGs in Astronomer should be kept in a `plugins` directory, which is created by default when you start a new project with `astro airflow init`.
+Similar to Composer, all Plugins in Astronomer should be kept in a `plugins` directory, which is created by default when you start a new project with `astro airflow init`.
 
 ### Include Directory
 For anything else that may be required for your DAGs, a `include/` directory is created on `astro airflow init` and can be accessed from your DAGs with the path convention `/include/my_custom_directory/my_driver.jar`.
