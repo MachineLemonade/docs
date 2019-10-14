@@ -9,7 +9,7 @@ slug: "cloud-migration"
 
 After a long awaited release, our newly built Astronomer Cloud is finally ready for you. We've spent the past few months re-building our Cloud's infrastructure to optimize for scale, reliability, usability, and security.
 
-Given the change in infrastructure, upgrading to Astronomer's latest involves a "migration" from one Astronomer-hosted Kubernetes cluster to another. To get set up, you have 2 paths:
+Given the change in infrastructure, upgrading to Astronomer's latest (v0.10.2) involves a "migration" from one Astronomer-hosted Kubernetes cluster to another. To get set up, you have 2 paths:
 
 **(1) Self-Migration**
 
@@ -19,16 +19,16 @@ In short, a self-migration requires that you:
  - Start pushing up DAGs as soon as you're ready
  - Spin down your Deployments on "Old" Cloud
 
-This option assumes that you do NOT want to migrate Airflow's metadata database for each of your deployments to the new Cloud cluster. This means you will not have a history of DAG/Task runs and will need to recreate any Airflow variables, connections, and pools your DAGs might be using. With this process, you can slowly migrate DAGs one by one if you wish.
+> **Note:** This option assumes that you do NOT want to migrate Airflow's metadata database for each of your deployments to the new Cloud cluster. This means you will not have a history of DAG/Task runs and will need to recreate any Airflow Variables, Connections, and Pools your DAGs might be using. With this process, you can slowly migrate DAGs one by one if you wish.
 
 **(2) Astronomer Assisted Migration (Airflow DB Preserved)**
 
 An Astronomer Assisted Migration requires that you:
 - Turn your DAGs off
-- We backup and restore your Airflow DB in a deployment on "New" Astronomer Cloud that we generate for you
-- You turn your DAGs back on
+- Allow us to backup and restore your Airflow DB in a fresh deployment on "New" Astronomer Cloud that we generate for you
+- Turn your DAGs back on
 
-Depending on the size of your database, this process can be completed relatively quickly, though it requires that you migrate *all* DAGs within a deployment at once.
+> **Note:** Depending on the size of your database, this process can be completed relatively quickly, though it requires that you migrate *all* DAGs within a deployment at once.
 
 ## Self-Migration
 
@@ -48,32 +48,26 @@ Depending on the time of your migration, our team will either send you an invite
 
 1. Verify that you can login to the new Cloud cluster
     - URL: https://app.gcp0001.us-east4.astronomer.io/login
-
-2.  Re-create your Airflow Deployment(s) via the “New” Astronomer UI with appropriate      resources
-3. Manually create your Airflow Connections, Variables and Pools in the Airflow UI
-4. Re-create Environment Variables + Service Accounts in the Astronomer UI if needed (optional)
-5. Whitelist “New” Astronomer Cloud’s IP address on any of your external systems your DAGs communicate with (e.g. AWS Redshift).
+2.  Re-create your Airflow Deployment(s) via the “New” Astronomer UI with appropriate resources
+3. Manually generate your Airflow Connections, Variables and Pools in the Airflow UI
+4. Re-create Environment Variables + Service Accounts in the Astronomer UI if needed
+5. Whitelist “New” Astronomer Cloud’s IP address on any external systems your DAGs communicate with (e.g. AWS Redshift).
     - Static IP: `35.245.140.149`
 
 ### Part III: Upgrade the Astronomer CLI + Deploy
 
 1. Upgrade your Astro CLI to our latest version. This is a MUST to authenticate.
     - `curl -sSL https://install.astronomer.io | sudo bash -s -- v0.10.2`
-
 2. Authenticate to the new cluster via the CLI (once upgraded)
     - Auth Command:  `astro auth login gcp0001.us-east4.astronomer.io`
-
 3. Deploy your project
     - `astro deploy`
-
 4. Pause DAGs on the old cluster
-
 5. Enable DAGs on the new cluster
     - Ensure your `start_date` and `catch_up` settings are appropriate so you don’t have duplicate DAG runs
-
 6. If using CI/CD, create a new Service Account, update your CI/CD config file with your new API key and deployment name
 
-**Note:** If you’re deploying code across the 2 Clouds, you WILL need to upgrade/downgrade your CLI version + authenticate to each accordingly.
+> **Note:** If you’re deploying code across the 2 Clouds, you WILL need to upgrade/downgrade your CLI version + authenticate to each accordingly.
 
 ## Astronomer Assisted Migration
 
@@ -96,12 +90,9 @@ When you reach out, please provide the following:
 1. Confirmation that you're running Airflow v1.10.5 on *all* deployments you want to migrate
 2. The "release name" of all Airflow deployments you want to migrate (e.g. `geodetic-planet-1234`)
 
-From here, we will:
+From here, we'll take a look at your deployment's database and give you an estimate of how long the backup will take and schedule time with you to coordinate the migration.
 
-- Take a look at your deployment's database and give you an idea of how long the backup will take
-   - Depending on the age of your deployment and the frequency at which your tasks run, this can take anywhere from 5 minutes to a handful of hours
-
-- Schedule time with you to coordinate the migration
+> **Note:** Depending on the age of your deployment and the frequency at which your tasks run, this can take anywhere from 5 minutes to a handful of hours.
 
 ## Frequently Asked Questions (FAQs)
 
@@ -133,12 +124,11 @@ If you’re not ready to upgrade, you may stay on current Cloud until December 3
 
 **5. Will my Service Accounts and CI/CD process be affected?**
 
+If you have a running CI/CD process that leverages an Astronomer Cloud API token, you will have to create a new service account with a newly generated API token on "New" Astronomer Cloud and update your script accordingly.
 
 **6. Will I have to re-add users?**
 
-For those that Astronomer does not add for you, yes.
-
-Once you create a new Workspace on "New" Cloud, you will need to invite your users again to your Workspace manually.
+For those that Astronomer does not add for you, yes. Once you create a new Workspace on "New" Cloud, you will need to invite users again to your Workspace manually.
 
 At this point, you will also be able to set their roles as either an Admin, Editor or Viewer.
 
@@ -161,6 +151,8 @@ If you pursue the "Astronomer Assisted Migration" path, we'll make sure everythi
 **10. Can I use the Kubernetes Executor now?**
 
 Yes. You’re free to transition to using the Kubernetes Executor in place of the Local or Celery Executors.
+
+
 
 
 
