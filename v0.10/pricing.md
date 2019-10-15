@@ -47,8 +47,8 @@ See below for out-of-the-box configurations and corresponding AU count:
 
 | Executor | PgBouncer & StatsD | Scheduler | Webserver | Celery Worker | Redis & Flower | Total AU | Total Monthly Cost |
 |----------|-----|--------|-------|
-| Local | 4 | 5 | 2 | N/A | N/A | 11 | $110 |
-| Celery | 4 | 5 | 2 | 10 | 4 | 25 | $250 |
+| Local | 4 | 10 | 5 | N/A | N/A | 19 | $190 |
+| Celery | 4 | 10 | 5 | 10 | 4 | 33 | $330 |
 
 **Note**: The PgBouncer, StatsD, Redis, and Flower AU configs are static infrastructure minimums that cannot be changed.
 
