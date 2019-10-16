@@ -12,7 +12,7 @@ This guide describes the steps to install Astronomer on Amazon Web Services (AWS
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 * [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [Helm v2.13.1](https://github.com/helm/helm/releases/tag/v2.13.1)
+* [Helm v2.14.3](https://github.com/helm/helm/releases/tag/v2.14.3)
 * SMTP Credentials (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create/modify resources on AWS
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)
