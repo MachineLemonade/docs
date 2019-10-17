@@ -53,6 +53,7 @@ Depending on the time of your migration, our team will either send you an invite
 4. Re-create Environment Variables + Service Accounts in the Astronomer UI if needed
 5. Whitelist “New” Astronomer Cloud’s IP address on any external systems your DAGs communicate with (e.g. AWS Redshift).
     - Static IP: `35.245.140.149`
+6. Add your email address in the "Alerts" tab. These are platform-level alerts you can get more info on [here](https://www.astronomer.io/docs/alerts/)
 
 ### Part III: Upgrade the Astronomer CLI + Deploy
 
