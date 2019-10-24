@@ -48,12 +48,14 @@ Depending on the time of your migration, our team will either send you an invite
 
 1. Verify that you can login to the new Cloud cluster
     - URL: https://app.gcp0001.us-east4.astronomer.io/login
-2.  Re-create your Airflow Deployment(s) via the “New” Astronomer UI with appropriate resources
+2. Re-create your Airflow Deployment(s) via the “New” Astronomer UI with appropriate resources
 3. Manually generate your Airflow Connections, Variables and Pools in the Airflow UI
 4. Re-create Environment Variables + Service Accounts in the Astronomer UI if needed
 5. Whitelist “New” Astronomer Cloud’s IP address on any external systems your DAGs communicate with (e.g. AWS Redshift).
     - Static IP: `35.245.140.149`
 6. Add your email address in the "Alerts" tab. These are platform-level alerts you can get more info on [here](https://www.astronomer.io/docs/alerts/)
+
+> Note: If you leverage CI/CD, you'll have to replace our current Docker registry (`registry.astronomer.cloud`) with the registry on "New" Cloud (`registry.astronomer.cloud`) in your script, in addition to your newly generated API Key.
 
 ### Part III: Upgrade the Astronomer CLI + Deploy
 
@@ -109,7 +111,7 @@ We encourage customers to:
 
 **2. Do I HAVE to upgrade to Airflow v1.10.5?**
 
-Yes. The only image compatible with Cloud 2 is Airflow v1.10.5, though we don't exepct upgrading from prior Airflow versions to require significant changes.
+Yes. The only image compatible with Cloud 2 is Airflow v1.10.5, though we don't expect upgrading from prior Airflow versions to require significant changes.
 
 Refer to [Airflow's v1.10.5](https://github.com/apache/airflow/blob/master/UPDATING.md) release notes for more detail on differences across versios.
 
@@ -125,7 +127,15 @@ If you’re not ready to upgrade, you may stay on current Cloud until December 3
 
 **5. Will my Service Accounts and CI/CD process be affected?**
 
-If you have a running CI/CD process that leverages an Astronomer Cloud API token, you will have to create a new service account with a newly generated API token on "New" Astronomer Cloud and update your script accordingly.
+If you have a running CI/CD process that leverages an Astronomer Cloud API token, you will have to create a new service account with a newly generated API token on "New" Astronomer Cloud.
+
+In your script, you'll have to replace our current Docker registry (`registry.astronomer.cloud`) to the new one, e.g.:
+
+```
+docker build . -t registry.gcp0001.us-east4.astronomer.io/{deployment-release-name}/airflow:$TAG
+docker login registry.gcp0001.us-east4.astronomer.io -u _ -p ${NEW_API_SECRET_KEY}
+docker push registry.gcp0001.us-east4.astronomer.io/{deployment-release-name}/airflow:$TAG```
+```
 
 **6. Will I have to re-add users?**
 

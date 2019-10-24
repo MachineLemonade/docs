@@ -9,6 +9,7 @@ We publish release notes on [our blog](/blog). You can also view the [changelog]
 
 Recent product release blog posts:
 
+* [v0.10 Release](/blog/astronomer-0-10-0-release)
 * [v0.9 Release](/blog/astronomer-v0-9-0-release)
 * [v0.8 Release](/blog/astronomer-v0-8-0-release)
 * [v0.7 Release](/blog/astronomer-v0-7-0-release)
