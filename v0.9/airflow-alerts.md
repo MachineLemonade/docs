@@ -2,7 +2,7 @@
 title: "Airflow Alerts"
 description: "Deployment and Task-Level Alerting via Airflow on Astronomer"
 date: 2019-01-14T00:00:00.000Z
-slug: "setting-up-airflow-emails"
+slug: "airflow-alerts"
 ---
 
 # Airflow Email Alerting
