@@ -5,7 +5,7 @@ date: 2019-04-21T00:00:00.000Z
 slug: "ee-integrating-auth-systems"
 ---
 
-By default, the Astronomer platform allows you to authenticate using your Google or GitHub account. We provide the option to authenticate using any alternative providers that follow the [Open Id Connect protocol](https://openid.net/connect/),  including (but not limited to) [Auth0](https://auth0.com/), [Okta](https://okta.com), and [Microsoft Azure's Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc). 
+By default, the Astronomer platform allows you to authenticate using your Google or GitHub account. We provide the option to authenticate using any alternative providers that follow the [Open Id Connect protocol](https://openid.net/connect/) via [Implicit Flow](https://auth0.com/docs/flows/concepts/implicit),  including (but not limited to) [Auth0](https://auth0.com/), [Okta](https://okta.com), and [Microsoft Azure's Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc). 
 
 ## Configuration
 
@@ -34,6 +34,8 @@ astronomer:
 2. Create a new web app in your Okta account for Astronomer.
 
 3. Set your `login redirect URI` to be `https://houston.BASEDOMAIN/v1/oauth/redirect`, where the `BASEDOMAIN` is the domain at which you're hosting your Astronomer installation.
+
+4. Enable `Implicit (Hybrid)` Flow on the Okta application.
 
 4. Save the `Client ID` generated for this Okta app for use in the next steps.
 
