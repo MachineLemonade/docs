@@ -11,10 +11,13 @@ You can read more about it here https://www.terraform.io/intro/index.html
 
 ## Terraform Astronomer
 
-https://github.com/astronomer/terraform-aws-astronomer-enterprise
+https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80
+
 
 Astronomer’s terraform scripts can be used to automate the provisioning of a production grade Airflow environment.
 
+More information can also be found here:
+https://github.com/astronomer/terraform-aws-astronomer-enterprise
 
 ### Prerequisites
 
@@ -50,7 +53,7 @@ Create a config file to use to store the state of the terraform.
 ```
 terraform {
   backend "s3" {
-	bucket = "astronomer-deployment"
+	bucket = "bucket-name"
 	key	= "astro_terraform"
 	region = "us-east-1"
   }
@@ -58,7 +61,7 @@ terraform {
 
 module "astronomer-enterprise" {
   source                = "astronomer/astronomer-enterprise/aws"
-  version               = "0.0.56"
+  version               = "0.0.80"
   email                 = ""
   deployment_id         = "company_name"
   management_api        = "public"
@@ -74,6 +77,9 @@ module "astronomer-enterprise" {
 ```
 
 A full list of parameters can be found on the ![Terraform Registry](https://registry.terraform.io/modules/astronomer/astronomer-aws/aws/1.1.29)
+
+
+**Note:** The S3 backend is optional for state files. If not provided, state files will be stored locally.
 
 #### Run Terraform
 * `terraform init`
@@ -114,6 +120,7 @@ Unless specified, a new VPC and subnets will be created. Specific subnets and VP
 - Can this be used to deploy to all private subnets?
 
 - What if I don't use route53 as my DNS provider?
+Right now, route53 is the only provider this module supports. We are working on dropping this requirement.
 
 - What if I don't want to use a certificate from LetsEncrypt?
-
+We are working on dropping this requirement.
