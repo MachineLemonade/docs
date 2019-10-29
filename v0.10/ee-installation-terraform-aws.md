@@ -50,7 +50,7 @@ Create a config file to use to store the state of the terraform.
 ```
 terraform {
   backend "s3" {
-	bucket = "astronomer-managed-trials"
+	bucket = "astronomer-deployment"
 	key	= "astro_terraform"
 	region = "us-east-1"
   }
@@ -82,6 +82,27 @@ A full list of parameters can be found on the ![Terraform Registry](https://regi
 This will generate an EKS cluster of the given worker_instance_size (that will scale between the minimum and maximum size).
 
 This will use `<*.deployment_id>.<route53_domain>` as the base domain for the platform. Once the platform runs, navigate to `app.<deployment_id>.<route53_domain>` to verify the platform
+
+
+#### Generate your config file
+
+Once the terraform has successfully run, get the name of your release:
+
+```
+$ helm ls
+NAME                       	REVISION	UPDATED                 	STATUS  	CHART                             	APP VERSION   	NAMESPACE                             
+zealous-coral              	10      	Tue Oct  1 05:00:53 2019	DEPLOYED	astronomer-platform-0.10.1        	0.10.1        	astro     
+
+helm get values zealous-coral >> config.yaml
+```
+
+This `config.yaml` file will contain the settings applied to your Astronomer deployment. Future changes to the helm charts can be run with:
+
+```
+helm upgrade <platform-name> -f config.yaml <path-to-charts> --namespace <namespace>
+```
+
+Note: `<path-to-charts>` should point to the version of the [Astronomer helm charts](https://github.com/astronomer/helm.astronomer.io), which were cloned locally when the terraform ran
 
 
 ### FAQs:
