@@ -43,7 +43,7 @@ Due to the temporary nature of Redis's function, Astronomer does not currently f
 
 ## Restoring the Registry
 
-The registry holds all previous docker images for deployments and is not recoverable if corrupted. For this reason, it is advisable to rely on git or another code versioning mechanism to retain prior states of your DAG and Plugin directories. To begin populating the registry again, simply `astro airflow deploy` again from your local directory and a new image will appear with the latest code.
+The registry holds all previous docker images for deployments and is not recoverable if corrupted. For this reason, it is advisable to rely on git or another code versioning mechanism to retain prior states of your DAG and Plugin directories. To begin populating the registry again, simply `astro dev deploy` again from your local directory and a new image will appear with the latest code.
 
 If it is necessary to ensure all previous images are available, outside storage backends can be configured.
 

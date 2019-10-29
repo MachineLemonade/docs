@@ -31,7 +31,7 @@ microk8s.config > config
 
 ## Run your Container
 
-The `config_file` is pointing to the `.kube/config` file you just edited. Run `astro airflow start` to build this config into your image.
+The `config_file` is pointing to the `.kube/config` file you just edited. Run `astro dev start` to build this config into your image.
 
 ```python
 from airflow import DAG

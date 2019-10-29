@@ -15,7 +15,7 @@ We've designed this view to give you access to deployment level logs that will h
 
 A few use cases:
 
-- See your Scheduler, Webserver, and Workers all restart after you push `astro airflow deploy`
+- See your Scheduler, Webserver, and Workers all restart after you push `astro dev deploy`
 - If your Airflow UI is not loading as expected - is your Webserver in a CrashLoop?
 - How quickly is your Scheduler queuing up tasks?
 - Is your Celery worker behaving unexpectedly?

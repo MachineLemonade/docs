@@ -74,7 +74,7 @@ $ mkdir <directory-name> && cd <directory-name>
 Once you're in that project directory, run:
 
 ```
-$ astro airflow init
+$ astro dev init
 ```
 
 This will generate some skeleton files:
@@ -103,7 +103,7 @@ With those files in place, you're ready to push to your local Airflow environmen
 ### Start Airflow
 
 ```
-$ astro airflow start
+$ astro dev start
 ```
 
 This command will spin up 3 Docker containers on your machine, each for a different Airflow component:
@@ -114,7 +114,7 @@ This command will spin up 3 Docker containers on your machine, each for a differ
 You should see the following output:
 
 ```
-$ astro airflow start
+$ astro dev start
 Sending build context to Docker daemon  11.78kB
 Step 1/1 : FROM astronomerinc/ap-airflow:0.7.5-1.10.1-onbuild
 # Executing 5 build triggers
@@ -155,7 +155,7 @@ To verify that all 3 docker containers were created, you can also run:
 $ docker ps
 ```
 
-**Note**: Running `astro airflow start` will by default start your project with the Airflow Webserver exposed at port 8080 and postgres exposed at port 5432.
+**Note**: Running `astro dev start` will by default start your project with the Airflow Webserver exposed at port 8080 and postgres exposed at port 5432.
 
 If you already have either of those ports allocated, you can either [stop existing docker containers](https://forum.astronomer.io/t/docker-error-in-cli-bind-for-0-0-0-0-5432-failed-port-is-already-allocated/151) or [change the port](https://forum.astronomer.io/t/i-already-have-the-ports-that-the-cli-is-trying-to-use-8080-5432-occupied-can-i-change-the-ports-when-starting-a-project/48).
 
@@ -177,7 +177,7 @@ A few tips for when you're developing locally:
 
 - If you make changes to your Dockerfile, `packages.txt` or `requirements.txt`, you'll have to rebuild your image by running:
     ```
-    $ astro airflow stop && astro airflow start
+    $ astro dev stop && astro dev start
     ```
 
 ### Check out your Logs
@@ -248,7 +248,7 @@ Follow our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-gettin
 When you're ready to deploy your DAGs, run:
 
 ```
-$ astro airflow deploy
+$ astro dev deploy
 ```
 
 This command will return a list of deployments available in your Workspace and prompt you to pick one.

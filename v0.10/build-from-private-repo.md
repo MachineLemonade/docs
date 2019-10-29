@@ -15,7 +15,7 @@ This doc will guide you through adding corresponding secrets to a custom Docker 
 - An intialized Astronomer Airflow project and corresponding directory
 - An [SSH Key](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to your Private GitHub Repo
 
-If you haven't initialized an Airflow Project on Astronomer (by running `astro airflow init`), reference our [CLI Quickstart Guide](https://www.astronomer.io/docs/cli-quickstart/).
+If you haven't initialized an Airflow Project on Astronomer (by running `astro dev init`), reference our [CLI Quickstart Guide](https://www.astronomer.io/docs/cli-quickstart/).
 
 ## Building your Image
 
@@ -86,9 +86,9 @@ FROM custom-ap-airflow
 
 Now, let's push your new image to Astronomer.
 
-- If you're developing locally, run `astro airflow stop` > `astro airflow start`
+- If you're developing locally, run `astro dev stop` > `astro dev start`
 
-- If you're pushing up to Astronomer Cloud or an Astronomer Enterprise installation, you're free to deploy by running `astro airflow deploy` or by triggering a CI/CD pipeline
+- If you're pushing up to Astronomer Cloud or an Astronomer Enterprise installation, you're free to deploy by running `astro dev deploy` or by triggering a CI/CD pipeline
 
 
 

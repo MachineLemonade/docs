@@ -56,7 +56,7 @@ RUN ls
 
 Any additional python packages or OS level packages can be added in `requirements.txt` or `packages.txt`. For example, suppose I wanted to add `pymongo` into my Airflow instance.
 
-This can be added to `requirements.txt`, run `astro airflow stop` and `astro airflow start` to rebuild my image with this new python package. Every package in the `requirements.txt` file will be installed by `pip` when the image builds (`astro airflow start`).
+This can be added to `requirements.txt`, run `astro dev stop` and `astro dev start` to rebuild my image with this new python package. Every package in the `requirements.txt` file will be installed by `pip` when the image builds (`astro dev start`).
 
 ```
 docker exec -it dff1aaef15cf pip freeze | grep pymongo
@@ -128,10 +128,10 @@ docker exec -it SCHEDULER_CONTAINER bash -c "airflow connections -a --conn_id te
 
 ## Environment Variables (--env)
 
-Astronomer's v0.7.5-2 CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro airflow start` with an `--env` flag as seen below:
+Astronomer's v0.7.5-2 CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro dev start` with an `--env` flag as seen below:
 
 ```
-astro airflow start --env .env
+astro dev start --env .env
 ```
 
 **Note**: This feature is currently only functional for local development. Whatever `.env` you use locally will _not_ be bundled up when you deploy to Astronomer. To add Environment Variables when you deploy to Astronomer, you'll have to add them via the Astronomer UI (`Deployment` > `Configure` > `Environment Vars`).
@@ -167,18 +167,18 @@ my_project
   └── prod.env
 ```
 
- 5. On `astro airflow start`, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
+ 5. On `astro dev start`, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
 
  ```
- astro airflow start --env dev.envs
- astro airflow start -e prod.env
+ astro dev start --env dev.envs
+ astro dev start -e prod.env
  ```
 
 ## CLI Debugging
 
 ### Error on Building Image
 
-If your image  is failing to build after running `astro airflow start`?
+If your image  is failing to build after running `astro dev start`?
 
  - You might be getting an error message in your console, or finding that Airflow is not accessible on `localhost:8080/admin`
  - If so, you're likely missing OS-level packages in `packages.txt` that are needed for any python packages specified in `requirements.text`

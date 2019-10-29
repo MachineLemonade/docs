@@ -29,19 +29,23 @@ Usage:
   astro [command]
 
 Available Commands:
-  airflow     Manage airflow projects and deployments
-  auth        Mangage astronomer identity
-  cluster     Manage Astronomer EE clusters
-  config      Manage astro project configurations
-  deployment  Manage airflow deployments
-  help        Help about any command
-  upgrade     Check for newer version of Astronomer CLI
-  user        Manage astronomer user
-  version     Astronomer CLI version
-  workspace   Manage Astronomer workspaces
+  auth            Manage astronomer identity
+  cluster         Manage Astronomer EE clusters
+  completion      Generate autocompletions script for the specified shell (bash or zsh)
+  config          Manage astro project configurations
+  deploy          Deploy an airflow project
+  deployment      Manage airflow deployments
+  dev             Manage airflow projects
+  help            Help about any command
+  upgrade         Check for newer version of Astronomer CLI
+  user            Manage astronomer user
+  version         Astronomer CLI version
+  workspace       Manage Astronomer workspaces
 
 Flags:
   -h, --help   help for astro
+
+Use "astro [command] --help" for more information about a command.
 ```
 
 For a breakdown of subcommands and corresponding descriptions, you can run: `astro help`
@@ -52,10 +56,10 @@ Your first step is to create a project to work from that lives in a folder on yo
 
  ```
 mkdir hello-astro && cd hello-astro
-astro airflow init
+astro dev init
  ```
 
-`astro airflow init` will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
+`astro dev init` will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
 
 Once that command is run, you'll see the following skeleton project generated:
 
@@ -129,7 +133,7 @@ Once you have a project to run on, you might want to spin up a local instance of
 To do so, run the following command:
 
 ```
-astro airflow start
+astro dev start
 ```
 
 This will create a local instance of Airflow (running at localhost:8080 on your computer) to which you can push up code.
@@ -167,7 +171,7 @@ astro deployment list
 To “pick” a deployment to push up a DAG to (a bit different than picking a workspace), just run:
 
 ```
-astro airflow deploy
+astro dev deploy
 ```
 
 This command will return a list of deployments available in that workspace, and prompt you to pick one.
@@ -181,7 +185,7 @@ This command will return a list of deployments available in that workspace, and 
 
 ### Error on Building Image
 
-If your image  is failing to build after running `astro airflow start`?
+If your image  is failing to build after running `astro dev start`?
 
  - You might be getting an error message in your console, or finding that Airflow is not accessible on `localhost:8080/admin`
  - If so, you're likely missing OS-level packages in `packages.txt` that are needed for any python packages specified in `requirements.text`
@@ -252,11 +256,11 @@ astro help
 Or for subcommands:
 
 ```
-astro airflow --help
+astro dev --help
 ```
 
 ```
-astro airflow deploy --help
+astro dev deploy --help
 ```
 
 ## V. Access to the Airflow CLI
@@ -289,10 +293,10 @@ ENV ADMIN_USER="mark"
 
 ### On Astronomer v0.8 (Current for Enterprise)
 
-Astronomer v0.8's CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro airflow start` with an `--env` flag as seen below:
+Astronomer v0.8's CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro dev start` with an `--env` flag as seen below:
 
 ```
-astro airflow start --env .env
+astro dev start --env .env
 ```
 
 **Note**: Whatever `.env` you use locally will not be bundled up when you deploy to Astronomer. To add Environment Variables when you deploy to Astronomer, you'll have to add them via the Astronomer UI (`Deployment` > `Configure` > `Environment Vars`).
@@ -328,11 +332,11 @@ my_project
   └── prod.env
 ```
 
- 5. On `astro airflow start`, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
+ 5. On `astro dev start`, just specify which file to use (if not `.env`) with the `--env` or `-e` flag.
 
  ```
- astro airflow start --env dev.env
- astro airflow start -e prod.env
+ astro dev start --env dev.env
+ astro dev start -e prod.env
  ```
 
 ## VII. Advanced Dockerfile Configuration

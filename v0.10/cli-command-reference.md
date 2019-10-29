@@ -10,27 +10,28 @@ slug: "cli-command-reference"
 At the highest level running `astro` will give you the following options:
 
 ```
-
-  airflow     Manage airflow projects and deployments
-  auth        Mangage astronomer identity
-  cluster     Manage Astronomer EE clusters
-  config      Manage astro project configurations
-  deployment  Manage airflow deployments
-  help        Help about any command
-  upgrade     Check for newer version of Astronomer CLI
-  user        Manage astronomer user
-  version     Astronomer CLI version
-  workspace   Manage Astronomer workspaces
+  auth            Manage astronomer identity
+  cluster         Manage Astronomer EE clusters
+  completion      Generate autocompletions script for the specified shell (bash or zsh)
+  config          Manage astro project configurations
+  deploy          Deploy an airflow project
+  deployment      Manage airflow deployments
+  dev             Manage airflow projects
+  help            Help about any command
+  upgrade         Check for newer version of Astronomer CLI
+  user            Manage astronomer user
+  version         Astronomer CLI version
+  workspace       Manage Astronomer workspaces
 ```
 
-Running `astro airflow`:
+Running `astro dev`:
 
 ```
-  deploy      Deploy an airflow project
   init        Scaffold a new airflow project
   kill        Kill a development airflow cluster
   logs        Output logs for a development airflow cluster
   ps          List airflow containers
+  run         Run any command inside airflow webserver
   start       Start a development airflow cluster
   stop        Stop a development airflow cluster
 ```
@@ -40,13 +41,13 @@ Running `astro auth`:
 ```
   login       Login to Astronomer services
   logout      Logout of Astronomer services
-  ```
+```
 
 Running `astro cluster`:
 
 ```
-    list        List known Astronomer Enterprise clusters
-    switch      Switch to a different cluster context
+  list        List known Astronomer Enterprise clusters
+  switch      Switch to a different cluster context
 ```
 
 Running `astro config`:
@@ -59,10 +60,12 @@ Running `astro config`:
 Running `astro deployment`:
 
 ```
-  create      Create a new Astronomer Deployment
-  delete      Delete an airflow deployment
-  list        List airflow deployments
-  update      Update airflow deployments
+  create          Create a new Astronomer Deployment
+  delete          Delete an airflow deployment
+  list            List airflow deployments
+  logs            Stream logs from an Airflow deployment
+  service-account Manage astronomer service accounts
+  update          Update airflow deployments
 ```
 
 Running `astro user`:
@@ -74,10 +77,10 @@ Running `astro user`:
 Running `astro workspace`:
 
 ```
-  create      Create an astronomer workspaces
-  delete      Delete an astronomer workspace
-  list        List astronomer workspaces
-  switch      Switch to a different astronomer workspace
-  update      Update an Astronomer workspace
-  user        Manage workspace user resources
+  create          Create a new Astronomer Deployment
+  delete          Delete an airflow deployment
+  list            List airflow deployments
+  logs            Stream logs from an Airflow deployment
+  service-account Manage astronomer service accounts
+  update          Update airflow deployments
 ```

@@ -20,21 +20,21 @@ The main method of interaction with the Astronomer Cloud when developing is thro
 ```
 mkdir new_project
 cd new_project
-astro airflow init
-astro airflow start
+astro dev init
+astro dev start
 ```
 
 ### Dags
-Similar to Composer, all DAGs in Astronomer should be kept in a `dags` directory, which is created by default when you start a new project with `astro airflow init`.
+Similar to Composer, all DAGs in Astronomer should be kept in a `dags` directory, which is created by default when you start a new project with `astro dev init`.
 
 ### Plugins
-Similar to Composer, all Plugins in Astronomer should be kept in a `plugins` directory, which is created by default when you start a new project with `astro airflow init`.
+Similar to Composer, all Plugins in Astronomer should be kept in a `plugins` directory, which is created by default when you start a new project with `astro dev init`.
 
 ### Include Directory
-For anything else that may be required for your DAGs, a `include/` directory is created on `astro airflow init` and can be accessed from your DAGs with the path convention `/include/my_custom_directory/my_driver.jar`.
+For anything else that may be required for your DAGs, a `include/` directory is created on `astro dev init` and can be accessed from your DAGs with the path convention `/include/my_custom_directory/my_driver.jar`.
 
 ### Pushing New Code
-Whereas Composer reads DAGs and Plugins from a GCS bucket while keeping dependencies separate, everything in an Astronomer project is kept together in the various files and directories created with `astro airflow init`. When pushing new code to your Astro deployment, whether it is a new dependency or new DAG, the process is the same. Simply `astro airflow deploy` from the CLI, authenticate if you need to, and select the appropriate workspace and deployment name. A new image will be built containing all code and dependencies that is then pushed up to the Astronomer Cloud.
+Whereas Composer reads DAGs and Plugins from a GCS bucket while keeping dependencies separate, everything in an Astronomer project is kept together in the various files and directories created with `astro dev init`. When pushing new code to your Astro deployment, whether it is a new dependency or new DAG, the process is the same. Simply `astro dev deploy` from the CLI, authenticate if you need to, and select the appropriate workspace and deployment name. A new image will be built containing all code and dependencies that is then pushed up to the Astronomer Cloud.
 
 ### Choosing an Airflow Version
 Astronomer offers at least one major version of each Airflow release from 1.9 onwards. But where you would otherwise choose your Airflow version in the Composer UI, you specify it in your Dockerfile when starting a new Astronomer project. For example, a Dockerfile with the following contents will run Airflow 1.9.0.
@@ -50,9 +50,9 @@ The version preceeding the Airflow version indicates the version of Astronomer y
 ### Environment Variables
 Environment variables are entered similarly in Astronomer to Composer with a simple key:value option in the "Config" section of your UI. When developing locally, as of Astronomer v0.8, you also have the option of maintaining multiple `.env` files in your project. For example, if you have production settings you want to test in a `prod.env` file but development settings you want to test in a `dev.env` file, you would specify which variables to be brought in via the `-e` flag.
 ```
-astro airflow start -e dev.env
-astro airflow stop
-astro airflow start -e prod.env
+astro dev start -e dev.env
+astro dev stop
+astro dev start -e prod.env
 ```
 
 ### Airflow Config Variables

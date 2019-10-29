@@ -120,7 +120,7 @@ If you get a response like the above, you're all set! Happy Airflow-ing.
 
 ## Potential Postgres Error
 
-As a Windows user, you might see the following error when trying to call `astro airflow start` on your newly created workspace:
+As a Windows user, you might see the following error when trying to call `astro dev start` on your newly created workspace:
 
 ```
 Sending build context to Docker daemon  8.192kB

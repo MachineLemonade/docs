@@ -17,7 +17,7 @@ We'll walk through deploying a sample DAG to make sure your installation works a
 
 Run:
 ```bash
-astro airflow init
+astro dev init
 ```
 
 This will generate a project structure, as well as a sample DAG and plugin. You can read more about how our CLI works [here](https://www.astronomer.io/docs/cli-getting-started/).
@@ -25,7 +25,7 @@ This will generate a project structure, as well as a sample DAG and plugin. You 
 You can run
 
 ```bash
-astro airflow start
+astro dev start
 ```
 to spin up a local Airflow environment.
 
@@ -60,7 +60,7 @@ To switch between workspaces, run: `astro workspace switch [UUID]`
 ### 4. Run our deploy command
 
 ```bash
-astro airflow deploy [release-name]
+astro dev deploy [release-name]
 ```
 
 If you do NOT include a release name, you will be prompted to choose from a deployment in the workspace you are pointing to.

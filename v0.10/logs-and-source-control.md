@@ -10,11 +10,11 @@ slug: "logs-and-source-control"
 You can view the logs from the various Airflow components through the astro CLI.
 
 ```
-virajparekh@orbiter:~/cli_tutorial$ astro airflow logs -h
+virajparekh@orbiter:~/cli_tutorial$ astro dev logs -h
 Output logs for a development airflow cluster
 
 Usage:
-  astro airflow logs [flags]
+  astro dev logs [flags]
 
 Flags:
   -f, --follow      Follow log output
@@ -23,7 +23,7 @@ Flags:
   -w, --webserver   Output webserver logs
 
 
-virajparekh@orbiter:~/cli_tutorial$ astro airflow logs -s -f
+virajparekh@orbiter:~/cli_tutorial$ astro dev logs -s -f
 Waiting for host: postgres 5432
 Initializing airflow database...
 [2019-04-11 21:54:13,150] {settings.py:174} INFO - settings.configure_orm(): Using pool settings. pool_size=5, pool_recycle=1800, pid=16

@@ -39,7 +39,7 @@ Below are the steps required for a self migration to our “New” Astronomer Cl
 1. Upgrade all of your Airflow deployments on Astronomer Cloud to Airflow [v1.10.5](https://github.com/apache/airflow/blob/master/UPDATING.md)
      - To do so, you can update your Dockerfile to use the following image: `astronomerinc/ap-airflow:0.10.2-1.10.5-onbuild`
 
-2. Ensure that your DAGs run smoothly on Airflow v1.10.5 either by testing locally with `astro airflow start` or pushing them to your current Cloud deployments. 
+2. Ensure that your DAGs run smoothly on Airflow v1.10.5 either by testing locally with `astro dev start` or pushing them to your current Cloud deployments. 
      - The v1.10.5 image listed above is compatible with the current Cloud 
 
 ### Part II: Set up on “New” Astronomer Cloud
@@ -81,7 +81,7 @@ If you'd like to preserve the Airflow database, we're more than happy to help. F
 1. Upgrade all of your Airflow deployments on Astronomer Cloud to Airflow v1.10.5
      - To do so, you can update your Dockerfile to use the following image: `astronomerinc/ap-airflow:0.10.2-1.10.5-onbuild`
 
-2. Ensure that your DAGs run smoothly on Airflow v1.10.5 either by testing locally with `astro airflow start` or pushing them to your current Cloud deployments. 
+2. Ensure that your DAGs run smoothly on Airflow v1.10.5 either by testing locally with `astro dev start` or pushing them to your current Cloud deployments. 
      - The v1.10.5 image listed above is compatible with the current Cloud
 
 ### Part II: Reach out to us

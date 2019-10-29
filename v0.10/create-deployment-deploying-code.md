@@ -113,7 +113,7 @@ astro deployment list
 To deploy on Astronomer, run:
 
 ```
-astro airflow deploy
+astro dev deploy
 ```
 
 A few notes:
@@ -122,7 +122,7 @@ A few notes:
 
 #### What gets Deployed?
 
-Everything in your top level directory (and all children directory) in which you ran `astro airflow init` will get bundled into a Docker image and deployed out.
+Everything in your top level directory (and all children directory) in which you ran `astro dev init` will get bundled into a Docker image and deployed out.
 
 We do **not** deploy any of the metadata associated with your local Airflow deployment - only the code.
 

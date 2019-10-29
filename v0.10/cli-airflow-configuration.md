@@ -6,12 +6,12 @@ date: 2019-01-31T00:00:00.000Z
 slug: "cli-airflow-configuration"
 ---
 
-One of the most useful features of the Astro CLI during development is the ability to have connections, variables, and pools automatically generated on `astro airflow start`. Using this feature, you can kill your environment and automatically start back up with all of your necessary configuration to start again.
+One of the most useful features of the Astro CLI during development is the ability to have connections, variables, and pools automatically generated on `astro dev start`. Using this feature, you can kill your environment and automatically start back up with all of your necessary configuration to start again.
 
 **NOTE**: Connections, variables, and pools defined through this process will only be available locally. To ensure they are available in your remote deployments, please add them via the Airflow UI.
 
 ## airflow_settings.yaml
-When you first `astro airflow init` to create a new project, a file titled `airflow_settings.yaml` will be created to add connections, pools, and variables. By default, the structure within this file will look like the following:
+When you first `astro dev init` to create a new project, a file titled `airflow_settings.yaml` will be created to add connections, pools, and variables. By default, the structure within this file will look like the following:
 
 ```
 airflow:
@@ -43,12 +43,12 @@ variables:
 ```
 
 ## Usage
-Once you have filled out your settings, they will be added to your Airflow instance on `astro airflow start`. If you have any connections, pools, or variables with the same name as those defined in `settings.yaml`, those will be overwritten.
+Once you have filled out your settings, they will be added to your Airflow instance on `astro dev start`. If you have any connections, pools, or variables with the same name as those defined in `settings.yaml`, those will be overwritten.
 
 ```
-$ astro-local airflow start
+$ astro dev start
 Sending build context to Docker daemon  24.58kB
-Step 1/1 : FROM astronomerinc/ap-airflow:0.7.5-1.9.0-onbuild
+Step 1/1 : FROM astronomerinc/ap-airflow:0.10.3-1.10.5-onbuild
 # Executing 5 build triggers
  ---> Using cache
  ---> Using cache

@@ -76,7 +76,7 @@ Your first step is to create a project to work from that lives in a folder on yo
 
  ```
 mkdir hello-astro && cd hello-astro
-astro airflow init
+astro dev init
  ```
 
 ### 3. Find your basedomain and login
@@ -96,7 +96,7 @@ and run through the authentication flow that was set up (most likely be the OAut
 
 ### 5. Start Airflow locally
 
-Now if you run `astro airflow start` from that directory, you'll see an image built and running on `localhost:8080/admin`.You can write dags in the `dags` directory and plugins in the `plugins` directory and these changes will be picked up automatically. For additional configurations, check out our CLI doc on [customizing your image](https://www.astronomer.io/docs/customizing-your-image/).
+Now if you run `astro dev start` from that directory, you'll see an image built and running on `localhost:8080/admin`.You can write dags in the `dags` directory and plugins in the `plugins` directory and these changes will be picked up automatically. For additional configurations, check out our CLI doc on [customizing your image](https://www.astronomer.io/docs/customizing-your-image/).
 
 
 ### 6. Spin up an environment and deploy your code
