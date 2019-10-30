@@ -13,6 +13,13 @@ You can read more about it here https://www.terraform.io/intro/index.html
 
 Astronomer’s terraform scripts can be used to automate the provisioning of a production grade Airflow environment.
 
+The Astronomer Enterprise module for AWS will provision the following resources in your AWS account:
+* EKS cluster with an auto-scaling node group
+* Aurora RDS
+* VPC
+* Subnets
+* Full installation of Astronomer Enterprise 
+
 You can find our module in the Terraform Registry here:
 https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80
 
