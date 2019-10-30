@@ -9,7 +9,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 You can read more about it here https://www.terraform.io/intro/index.html
 
-## Terraform Astronomer
+## Install Astronomer with Terraform
 
 https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80
 
@@ -76,7 +76,7 @@ module "astronomer-enterprise" {
 }
 ```
 
-A full list of parameters can be found on the ![Terraform Registry](https://registry.terraform.io/modules/astronomer/astronomer-aws/aws/1.1.29)
+A full list of parameters can be found on the [Terraform Registry](https://registry.terraform.io/modules/astronomer/astronomer-aws/aws/1.1.29)
 
 
 **Note:** The S3 backend is optional for state files. If not provided, state files will be stored locally.
