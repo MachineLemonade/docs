@@ -11,12 +11,12 @@ You can read more about it here https://www.terraform.io/intro/index.html
 
 ## Install Astronomer with Terraform
 
-https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80
-
-
 Astronomer’s terraform scripts can be used to automate the provisioning of a production grade Airflow environment.
 
-More information can also be found here:
+You can find our module in the Terraform Registry here:
+https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80
+
+More detailed information can also be found here:
 https://github.com/astronomer/terraform-aws-astronomer-enterprise
 
 ### Prerequisites
