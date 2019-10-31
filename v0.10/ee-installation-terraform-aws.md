@@ -113,13 +113,48 @@ zealous-coral              	10      	Tue Oct  1 05:00:53 2019	DEPLOYED	astronome
 $ KUBECONFIG=./kubeconfig helm get values zealous-coral >> config.yaml
 ```
 
-This `config.yaml` file will contain the settings applied to your Astronomer deployment. Future changes to the helm charts can be run with:
+This `config.yaml` file will contain the settings applied to your Astronomer deployment. 
+
+#### Modifying your configuration
+
+Once the `config.yaml` file has been generated, custom settings can be deployed.
+
+For example, to add SMTP credentials:
+
+```
+$ vi config.yaml
+
+global:
+  baseDomain: <base-domain>
+  istioEnabled: false
+  tlsSecret: astronomer-tls
+nginx:
+  loadBalancerIP: null
+  perserveSourceIP: true
+  privateLoadBalancer: false
+
+#################################
+### SMTP configuration
+#################################  
+
+astronomer:
+  houston:
+    config:
+      email:
+        enabled: true
+        smtpUrl: <smtp-uri>
+
+```
+
+Once the credentials have been added appropriately, the new setting can be shipped out to the deployed platform.
 
 ```
 $ KUBECONFIG=./kubeconfig helm upgrade <platform-name> -f config.yaml <path-to-charts> --namespace <namespace>
 ```
 
-Note: `<path-to-charts>` should point to the version of the [Astronomer helm charts](https://github.com/astronomer/helm.astronomer.io), which were cloned locally when the terraform ran
+Note: `<path-to-charts>` should point to the version of the [Astronomer helm charts](https://github.com/astronomer/helm.astronomer.io), which were cloned locally when the terraform ran.
+
+[Upgrades](https://www.astronomer.io/docs/ee-upgrade-guide/), [integrating auth systems](https://www.astronomer.io/docs/ee-integrating-auth-systems/), and other such changes can be applied in a similar manner.
 
 
 ### FAQs:
