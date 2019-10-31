@@ -7,7 +7,7 @@ slug: "ee-data-management"
 
 ## Design Philosophy
 
-Astronomer Enterprise ships with a collection of various microservices that run in groups of Kubernetes pods. The only thing _not_ included with our platform by default is a the Postgres instance that sits underneath our platform API and various Airflow deployments that you will end up spinning up.
+Astronomer Enterprise ships with a collection of various microservices that run in groups of Kubernetes pods. The only thing _not_ included with our platform by default is the Postgres instance that sits behind our platform API and various Airflow deployments that you will end up spinning up.
 
 There are a few reasons for this.
 
