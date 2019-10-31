@@ -20,8 +20,6 @@ The [Astronomer Enterprise module for AWS](https://registry.terraform.io/modules
 * Subnets
 * Full installation of Astronomer Enterprise 
 
-![architecture-diagram](https://assets2.astronomer.io/main/docs/terraform/terraform-architecture-aws.svg)
-
 More detailed information can also be found here:
 https://github.com/astronomer/terraform-aws-astronomer-enterprise
 
