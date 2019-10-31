@@ -34,7 +34,7 @@ Install the necessary tools:
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) *Use version 1.12.3*
 
 
-### Install necessary tools
+### Installation
 
 #### Configure AWS CLI
 Run the following command and enter the appropriate values when prompted. If you don't know the `AWS Access Key ID` or `AWS Secret Access Key` for your account, contact your AWS admin.
@@ -150,7 +150,7 @@ Once the credentials have been added appropriately, the new setting can be shipp
 $ KUBECONFIG=./kubeconfig helm upgrade <platform-name> -f config.yaml <path-to-charts> --namespace <namespace>
 ```
 
-Note: `<path-to-charts>` should point to the version of the [Astronomer helm charts](https://github.com/astronomer/helm.astronomer.io), which were cloned locally when the terraform ran.
+**Note:** `<path-to-charts>` should point to the version of the [Astronomer helm charts](https://github.com/astronomer/helm.astronomer.io), which were cloned locally when the terraform ran.
 
 [Upgrades](https://www.astronomer.io/docs/ee-upgrade-guide/), [integrating auth systems](https://www.astronomer.io/docs/ee-integrating-auth-systems/), and other such changes can be applied in a similar manner.
 
