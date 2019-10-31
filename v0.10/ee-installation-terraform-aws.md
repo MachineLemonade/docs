@@ -13,15 +13,14 @@ You can read more about it here https://www.terraform.io/intro/index.html
 
 Astronomer’s terraform scripts can be used to automate the provisioning of a production grade Airflow environment.
 
-The Astronomer Enterprise module for AWS will provision the following resources in your AWS account:
+The [Astronomer Enterprise module for AWS](https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80) will provision the following resources in your AWS account:
 * EKS cluster with an auto-scaling node group
 * Aurora RDS
 * VPC
 * Subnets
 * Full installation of Astronomer Enterprise 
 
-You can find our module in the Terraform Registry here:
-https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80
+![architecture-diagram](https://assets2.astronomer.io/main/docs/terraform/terraform-architecture-aws.svg)
 
 More detailed information can also be found here:
 https://github.com/astronomer/terraform-aws-astronomer-enterprise
@@ -136,4 +135,3 @@ Right now, route53 is the only provider this module supports. We are working on 
 
 - What if I don't want to use a certificate from LetsEncrypt?
 We are working on dropping this requirement.
-
