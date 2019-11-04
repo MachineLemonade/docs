@@ -81,3 +81,5 @@ Run the same commands as above prefixed with microk8s:
 ```
 microk8s.kubectl get pods -n $namespace`
 ```
+
+When you are ready to deploy this up into Astronomer, follow the [KubePodOperator doc](https://github.com/astronomer/docs/blob/master/v0.10/kubepodoperator.md) to find a list of the necessary changes that will need to be made.
