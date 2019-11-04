@@ -20,18 +20,18 @@ Install [microk8s](https://microk8s.io/) and run `microk8s.start` to spin up Kub
 ## Get your Kube Config
 
 ### Windows and Mac
-Navigate to the `$HOME/.kube` that was created when you enabled Kubernetes in Docker and copy the `config` into a `.kube` folder of in your Astro project. This file contains all the information the KubePodOperator uses to connect to your cluster. Under cluster, you should see `server: https://localhost:6445`. Change this to `server: https://host.docker.internal:6445` to tell the docker container running Airflow knows to look at your machine’s localhost to run Kubernetes Pods.
+Navigate to the `$HOME/.kube` that was created when you enabled Kubernetes in Docker and copy the `config` into `/include/.kube/` folder of in your Astro project. This file contains all the information the KubePodOperator uses to connect to your cluster. Under cluster, you should see `server: https://localhost:6445`. Change this to `server: https://kubernetes.docker.internal:6443` (If this does not work, try `server: https://host.docker.internal:6445`) to tell the docker container running Airflow knows to look at your machine’s localhost to run Kubernetes Pods.
 
 ### Linux
 In a `.kube` folder in your Astronomer project, create a config file with:
 
 ```bash
-microk8s.config > config
+microk8s.config > /include/.kube/config
 ```
 
 ## Run your Container
 
-The `config_file` is pointing to the `.kube/config` file you just edited. Run `astro dev start` to build this config into your image.
+The `config_file` is pointing to the `/include/.kube/config` file you just edited. Run `astro dev start` to build this config into your image.
 
 ```python
 from airflow import DAG
@@ -61,7 +61,7 @@ with dag:
         name="airflow-test-pod",
         task_id="task-one",
         cluster_context='docker-for-desktop',
-        config_file='/usr/local/airflow/.kube/config',
+        config_file='/usr/local/airflow/include/.kube/config',
         get_logs=True)
 
 ```
