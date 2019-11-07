@@ -9,7 +9,7 @@ slug: "cloud-migration"
 
 After a long awaited release, our newly built Astronomer Cloud is finally ready for you. We've spent the past few months re-building our Cloud's infrastructure to optimize for scale, reliability, usability, and security.
 
-Given the change in infrastructure, upgrading to Astronomer's latest (v0.10.2) involves a "migration" from one Astronomer-hosted Kubernetes cluster to another. To get set up, you have 2 paths:
+Given the change in infrastructure, upgrading to Astronomer's latest (v0.10.3) involves a "migration" from one Astronomer-hosted Kubernetes cluster to another. To get set up, you have 2 paths:
 
 **(1) Self-Migration**
 
@@ -25,7 +25,7 @@ In short, a self-migration requires that you:
 
 An Astronomer Assisted Migration requires that you:
 - Turn your DAGs off
-- Allow us to backup and restore your Airflow DB in a fresh deployment on "New" Astronomer Cloud that we generate for you
+- Allow us to backup and restore your Airflow DB in a fresh deployment on "New" Astronomer Cloud
 - Turn your DAGs back on
 
 > **Note:** Depending on the size of your database, this process can be completed relatively quickly, though it requires that you migrate *all* DAGs within a deployment at once.
@@ -40,7 +40,7 @@ Below are the steps required for a self migration to our “New” Astronomer Cl
      - To do so, you can update your Dockerfile to use the following image: `astronomerinc/ap-airflow:0.10.2-1.10.5-onbuild`
 
 2. Ensure that your DAGs run smoothly on Airflow v1.10.5 either by testing locally with `astro dev start` or pushing them to your current Cloud deployments. 
-     - The v1.10.5 image listed above is compatible with the current Cloud 
+     - The v1.10.5 image listed above is compatible with current Cloud 
 
 ### Part II: Set up on “New” Astronomer Cloud
 
@@ -55,7 +55,7 @@ Depending on the time of your migration, our team will either send you an invite
     - Static IP: `35.245.140.149`
 6. Add your email address in the "Alerts" tab. These are platform-level alerts you can get more info on [here](https://www.astronomer.io/docs/alerts/)
 
-> Note: If you leverage CI/CD, you'll have to replace our current Docker registry (`registry.astronomer.cloud`) with the registry on "New" Cloud (`registry.astronomer.cloud`) in your script, in addition to your newly generated API Key.
+> Note: If you leverage CI/CD, you'll have to replace our current Docker registry (`registry.astronomer.cloud`) with the registry on "New" Cloud (`registry.gcp0001.us-east4.astronomer.io`) in your script, in addition to your newly generated API Key.
 
 ### Part III: Upgrade the Astronomer CLI + Deploy
 
@@ -63,23 +63,24 @@ Depending on the time of your migration, our team will either send you an invite
     - `curl -sSL https://install.astronomer.io | sudo bash -s -- v0.10.2`
 2. Authenticate to the new cluster via the CLI (once upgraded)
     - Auth Command:  `astro auth login gcp0001.us-east4.astronomer.io`
-3. Deploy your project
+3. Pause DAGs on the old cluster
+4. Deploy your project
     - `astro deploy`
-4. Pause DAGs on the old cluster
 5. Enable DAGs on the new cluster
     - Ensure your `start_date` and `catch_up` settings are appropriate so you don’t have duplicate DAG runs
-6. If using CI/CD, create a new Service Account, update your CI/CD config file with your new API key and deployment name
+6. If using CI/CD, update your CI/CD config file with your Service Account's new API key and deployment name
 
 > **Note:** If you’re deploying code across the 2 Clouds, you WILL need to upgrade/downgrade your CLI version + authenticate to each accordingly.
 
 ## Astronomer Assisted Migration
 
-If you'd like to preserve the Airflow database, we're more than happy to help. Follow the guidelines below.
+If you'd like to preserve your deployment's Airflow database, we're more than happy to help. Follow the guidelines below.
 
 ### Part I: Upgrade to Airflow v1.10.5
 
 1. Upgrade all of your Airflow deployments on Astronomer Cloud to Airflow v1.10.5
-     - To do so, you can update your Dockerfile to use the following image: `astronomerinc/ap-airflow:0.10.2-1.10.5-onbuild`
+     - Update your Dockerfile to use the following image: 
+     `astronomerinc/ap-airflow:0.10.2-1.10.5-onbuild`
 
 2. Ensure that your DAGs run smoothly on Airflow v1.10.5 either by testing locally with `astro dev start` or pushing them to your current Cloud deployments. 
      - The v1.10.5 image listed above is compatible with the current Cloud
@@ -95,13 +96,13 @@ When you reach out, please provide the following:
 
 From here, we'll take a look at your deployment's database and give you an estimate of how long the backup will take and schedule time with you to coordinate the migration.
 
-> **Note:** Depending on the age of your deployment and the frequency at which your tasks run, this can take anywhere from 5 minutes to a handful of hours.
+> **Note:** Depending on the age of your deployment and the frequency at which your tasks run, this can take anywhere from 2 minutes to 1 hour.
 
 ## Frequently Asked Questions (FAQs)
 
 **1. Will I experience any downtime?**
 
-The process described above involves “pausing” your currently running DAGs and quickly turning those same DAGs on in our new environment quickly thereafter.
+The process described above involves “pausing” your currently running DAGs and turning those same DAGs on in our new environment quickly thereafter.
 
 If your DAGs run on short schedules, there may be some downtime during the migration. 
 
