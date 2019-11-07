@@ -43,6 +43,135 @@ Create a namespace to host the core Astronomer Platform. If you are running thro
 $ kubectl create namespace <my-namespace>
 ```
 
+### Create a Tiller ClusterRole
+Save the following ClusterRole definition as `tiller-cluster-role.yaml`:
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: tiller-cluster-role
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["list", "watch"]
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "patch", "update", "watch"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "update", "watch"]
+- apiGroups: [""]
+  resources: ["serviceaccounts"]
+  verbs: ["create", "delete", "get", "patch"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["clusterroles"]
+  verbs: ["create", "delete", "get", "patch"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles"]
+  verbs: ["*"]
+- apiGroups: [""]
+  resources: ["persistentvolumeclaims"]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "update", "watch"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["endpoints"]
+  verbs: ["create", "get", "list", "update", "watch"]
+- apiGroups: [""]
+  resources: ["limitranges"]
+  verbs: ["create", "delete", "get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["nodes/proxy"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["persistentvolumes"]
+  verbs: ["list", "watch"]
+- apiGroups: [""]
+  resources: ["replicationcontrollers"]
+  verbs: ["list", "watch"]
+- apiGroups: [""]
+  resources: ["resourcequotas"]
+  verbs: ["create", "delete", "get", "list", "patch", "watch"]
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+- apiGroups: ["apps"]
+  resources: ["statefulsets"]
+  verbs: ["create", "delete", "get", "list", "patch", "watch"]
+- apiGroups: ["apps"]
+  resources: ["daemonsets"]
+  verbs: ["create", "delete", "get", "patch"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["create", "delete", "get", "patch","update"]
+- apiGroups: ["autoscaling"]
+  resources: ["horizontalpodautoscalers"]
+  verbs: ["list", "watch"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["list", "watch"]
+- apiGroups: ["batch"]
+  resources: ["cronjobs"]
+  verbs: ["create", "delete", "get", "list", "patch", "watch"]
+- apiGroups: ["extensions"]
+  resources: ["daemonsets", "replicasets"]
+  verbs: ["list", "watch"]
+- apiGroups: ["extensions"]
+  resources: ["deployments"]
+  verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["create", "patch"]
+- apiGroups: ["extensions"]
+  resources: ["ingresses"]
+  verbs: ["create", "delete", "get", "patch"]
+- apiGroups: ["extensions"]
+  resources: ["ingresses/status"]
+  verbs: ["update"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses/status"]
+  verbs: ["update"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["networkpolicies"]
+  verbs: ["create", "delete", "get", "patch"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["clusterrolebindings"]
+  verbs: ["create", "delete", "get", "patch"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["rolebindings"]
+  verbs: ["create", "delete", "get", "patch"]
+- apiGroups: ["authentication.k8s.io"]
+  resources: ["tokenreviews"]
+  verbs: ["create"]
+- apiGroups: ["authorization.k8s.io"]
+  resources: ["subjectaccessreviews"]
+  verbs: ["create"]
+- apiGroups: ["kubed.appscode.com"]
+  resources: ["searchresults"]
+  verbs: ["get"]
+- apiGroups: ["policy"]
+  resources: ["poddisruptionbudgets"]
+  verbs: ["create", "delete", "get"]
+```
+
+Run the following command to apply these configurations to your Kubernetes cluster:
+```
+$ kubectl create -f tiller-cluster-role.yaml
+```
+
 ### Create a Tiller Service Account
 
 Save the following in a file named `rbac-config.yaml`:
@@ -56,7 +185,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: tiller
+  name: tiller-cluster-role
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
