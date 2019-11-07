@@ -113,7 +113,7 @@ astro deployment list
 To deploy on Astronomer, run:
 
 ```
-astro dev deploy
+astro deploy
 ```
 
 A few notes:
