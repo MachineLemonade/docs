@@ -120,11 +120,6 @@ Follow the on-screen prompts and create a TXT record through your DNS provider. 
 
 You'll need to create two Kubernetes secrets - one for the databases to be created and one for TLS.
 
-To start off, create a namespace for the base Astronomer platform:
-
-```
-$ kubectl create namespace <my-namespace>
-```
 
 ### Create Database Connection Secret
 
