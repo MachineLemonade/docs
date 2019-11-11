@@ -206,8 +206,6 @@ gfortran
 freetype-dev
 libpng-dev
 openblas-dev
-gfortran
-build-base
 g++
 make
 musl-dev
