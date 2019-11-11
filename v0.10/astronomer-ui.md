@@ -19,7 +19,7 @@ From this dashboard, you can:
 2. View the workspaces you currently have access to
 3. Adjust your account name under the `Personal Settings` tab
 
-### Workspaces
+## Workspaces
 
 **The Astronomer Workspace:** A personal or shared space that is home to a collection of Airflow deployments. User access to deployments is managed at the workspace level on Astronomer.
 
@@ -72,7 +72,7 @@ For a breakdown the Airflow UI itself, check out [this guide](https://www.astron
 
 **Each deployment will run in a separate Kubernetes namespace, so they'll all get resources and maintain metadata independently. You should assume that each deployment is unaware of the others.**
 
-### User Management
+## User Management
 
 If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace.
 
