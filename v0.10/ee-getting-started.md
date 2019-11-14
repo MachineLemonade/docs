@@ -7,20 +7,21 @@ slug: "ee-getting-started"
 
 
 # Getting Started with Astronomer Enterprise:
-_If your org just started running Astronomer Enterprise, this is the doc you will want to start with_
+
+_If your org just started running Astronomer Enterprise, this is the doc you will want to start with._
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/02au2O3vDTk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### 1. Start with Astronomer Cloud
 
-At its core, Astronomer Cloud is a large-scale deployment of Astronomer Enterprise that is fully managed by our team. Cloud provides parallel Airflwo functionality to Enterprise with just a few differences.
+At its core, Astronomer Cloud is a large-scale deployment of Astronomer Enterprise that is fully managed by our team. Cloud provides parallel Airflow functionality to Enterprise with just a few differences.
 
 Astronomer Cloud:
 
-- Runs in Astronomer's VPC and uses the public internet, whereas Astronomer Enterprise will run in *your* cloud according to your very own security settings
+- Runs in Astronomer's VPC and uses the public internet, whereas Astronomer Enterprise will run in *your* environment according to your own security settings
 - Is billed by usage, whereas Enterprise is billed through an annual license
-- Does not give users access to the back-end Prometheus/Grafana monitoring stack (though it's coming soon)
+- Does not give users access to the back-end Prometheus/Grafana/Kibana monitoring stack
 
 To get a sense of the Astronomer user experience, try out Cloud by [starting a 14-Day Trial](https://www.astronomer.io/trial/).
 
@@ -70,6 +71,7 @@ Available Commands:
 Flags:
   -h, --help   help for astro
 ```
+
 ### Create a project
 
 Your first step is to create a project to work from that lives in a folder on your local machine. The command you'll need is listed below, with an example `hello-astro` project.

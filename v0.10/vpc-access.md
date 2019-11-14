@@ -9,13 +9,13 @@ slug: "vpc-access"
 
 On Astronomer, all deployments that live in our Astronomer Cloud cluster route traffic through the same single NAT. In other words, we have 1 NAT gateway out of our VPC through which all internet-bound traffic goes through.
 
-**Note**: If you need or would like Private IP access, consider [Astronomer Enterprise](https://www.astronomer.io/enterprise/) or [reach out to us](humans@astronomer.io).
+**Note**: If you need or would like Private IP access, consider [Astronomer Enterprise](https://www.astronomer.io/enterprise/) or [reach out to us](https://support.astronomer.io).
 
 ## Allowing Astronomer Cloud Access to your VPC
 
 To give Astronomer Cloud access to any database, warehouse or service within your VPC, you'll just have to whitelist the following Static IP:
 
-`35.188.248.243`
+`35.245.140.149`
 
 Read below for an example of how to do so within Amazon Redshift.
 
@@ -50,7 +50,7 @@ From there,
 
 Even though you’ve setup your Redshift to be publicly accessible, you’ll still want to limit where statements can be executed from.
 
-With Astronomer, all queries will come from the same IP address: `35.188.248.243`
+With Astronomer, all queries will come from the same IP address: `35.245.140.149`
 
 #### Navigate to "Security Groups"
 
@@ -63,7 +63,7 @@ First, go to “Security” on your Console and, depending on the specifics of y
 From there, click into the “Inbound” section of the relevant Security Group (which can be confirmed in the Cluster Profile page you were previously on in the “VPC security groups” section).
 
 - Open up the Inbound rules by clicking “Edit”
-- Add the Cloud IP address: `35.188.248.243`
+- Add the Cloud IP address: `35.245.140.149`
 - Click Save
 
 ![Edit Inbound Rules](https://assets2.astronomer.io/main/docs/vpc-access/whitelist-ip-inbound-rules-redshift.png)
