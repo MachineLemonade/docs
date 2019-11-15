@@ -1,19 +1,21 @@
 ---
 title: "Adding Airflow Configuration with Astro CLI"
-description: "Set up connections, variables, and pools automatically with the Astronomer CLI."
-link: "Adding Airflow Configuration"
-date: 2019-01-31T00:00:00.000Z
+description: "Set up Connections, Variables, and Pools programmatically with the Astro CLI."
+date: 2019-11-07 T00:00:00.000Z
 slug: "cli-airflow-configuration"
 ---
 
-One of the most useful features of the Astro CLI during development is the ability to have connections, variables, and pools automatically generated on `astro dev start`. Using this feature, you can kill your environment and automatically start back up with all of your necessary configuration to start again.
+The Astro CLI allows you to programmatically generate Airflow Connections, Variables and Pools when developing locally. When running `astro dev start`, you can now easily start and stop your environment with necessary configurations.
 
-**NOTE**: Connections, variables, and pools defined through this process will only be available locally. To ensure they are available in your remote deployments, please add them via the Airflow UI.
+> Note: Connections, Variables, and Pools defined through this process will only be available locally. To ensure they are available in your deployments on Astronomer Cloud or Enterprise, please add them via the Airflow UI.
 
-## airflow_settings.yaml
-When you first `astro dev init` to create a new project, a file titled `airflow_settings.yaml` will be created to add connections, pools, and variables. By default, the structure within this file will look like the following:
+## Configure "airflow_settings.yaml"
 
-```
+When you first initialize a new Airflow project (by running `astro dev init`), a file titled `airflow_settings.yaml` will be automatically generated. To this file, you can add Airflow Connections, Pools, and Variables.
+
+By default, the file will be structured as following:
+
+```yaml
 airflow:
   connections:
     - conn_id: my_new_connection
@@ -32,9 +34,11 @@ airflow:
       variable_value: my_value
 ```
 
-If you want to add a second connection/pool/variable, simply copy the existing fields and make a new entry like so:
+### Additional Entries
 
-```
+If you want to add a second Connection/Pool/Variable, copy the existing fields and make a new entry like so:
+
+```yaml
 variables:
   - variable_name: my_first_variable
     variable_value: value123
@@ -42,8 +46,13 @@ variables:
     variable_value: value987
 ```
 
-## Usage
-Once you have filled out your settings, they will be added to your Airflow instance on `astro dev start`. If you have any connections, pools, or variables with the same name as those defined in `settings.yaml`, those will be overwritten.
+## Build your Image
+
+Once you've configured `airflow_settings.yaml`, that file will be bundled with your local image upon running `astro dev start`.
+
+>Note: If you have any existing Connections, Pools, or Variables with the same name as those defined in `airflow_settings.yaml`, those will be overwritten.
+
+The output you can expect upon running `astro dev start`:
 
 ```
 $ astro dev start
@@ -70,19 +79,24 @@ Airflow Webserver: http://localhost:8080/admin/
 Postgres Database: localhost:5432/postgres
 ```
 
-For connections, if conn_type or conn_uri is not specified, that connection will be skipped.
+### Skipped Configurations
+
+For Connections, if `conn_type` or `conn_uri` is not specified, that connection will be skipped.
+
 ```
 Skipping my_new_connection: ConnType or ConnUri must be specified.
 ```
 
-For pools, if a pool_slot has not been set, that pool will be skipped.
+For Pools, if a `pool_slot` has not been set, that pool will be skipped.
+
 ```
 Skipping my_new_pool: Pool Slot must be set.
 ```
 
-For variables, you may set a variable with a name and no value but if there is a value with no variable name, it will be skipped.
+For Variables, you may set a variable with a name and no value but if there is a value with no variable name, it will be skipped.
+
 ```
 Skipping Variable Creation: No Variable Name Specified.
 ```
 
-**Note:** If putting in a dict for any value, this will need to be wrapped in single quotes for the yaml to be successfully parsed.
+**Note:** If putting in a dict for any value, this will need to be wrapped in *single quotes* for the yaml to be successfully parsed.

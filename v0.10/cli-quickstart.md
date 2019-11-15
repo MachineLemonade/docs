@@ -7,23 +7,17 @@ slug: "cli-quickstart"
 
 Astronomer's [open-source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. 
 
-From the CLI, you can establish a local testing environment and deploy to Astronomer, whether Cloud or Enterprise, whenever you're ready.
+From the CLI, you can establish a local testing environment and deploy to Astronomer whenever you're ready, whether Cloud or Enterprise.
 
 ## Pre-Requisites
 
-To start using the CLI, make sure you've already installed:
+To install the CLI, make sure you've installed:
 
-- [Docker](https://www.docker.com/), version 18.09 or higher 
+- [Docker](https://www.docker.com/) (v18.09 or higher)
 
 ## Install
 
-If you're a Cloud customer, run:
-
-```
-$ curl -sSL https://install.astronomer.io | sudo bash -s -- v0.10.3
-```
-
-If you are an Enterprise customer, run:
+To install the latest version of our CLI, run:
 
 ```
 $ curl -sSL https://install.astronomer.io | sudo bash
@@ -33,7 +27,7 @@ $ curl -sSL https://install.astronomer.io | sudo bash
 
 ### Confirm the Install
 
-Let's make sure you have Astro CLI installed on your machine, and that you have a project to work from.
+Let's make sure that you have Astro CLI installed on your machine and have a project to work from.
 
 ```bash
 $ astro
@@ -69,35 +63,107 @@ Use "astro [command] --help" for more information about a command.
 
 For a breakdown of subcommands and corresponding descriptions, you can run: `astro help`
 
-## Create a Project
+## Initialize an Airflow Project
 
-Your first step is to create a project to work from that lives in a folder on your local machine. The command you'll need is listed below, with an example `hello-astro` project.
+To create initialize an Airflow project, do the following:
 
- ```
-mkdir hello-astro && cd hello-astro
-astro dev init
- ```
+1. Create a new project directory on your machine and `cd` into it
 
-`astro dev init` will build a base image from Astronomer's fork of Apache-Airflow using Alpine Linux. The build process will include everything in your project directory, which makes it easy to include any shell scripts, static files, or anything else you want to include in your code.
+```
+$ mkdir <directory-name> && cd <directory-name>
+```
 
-Once that command is run, you'll see the following skeleton project generated:
+2. Then, run:
 
-```bash
+```
+$ astro dev init
+```
+
+This will generate some skeleton files:
+
+```py
 .
 ├── dags # Where your DAGs go
-│   ├── example-dag.py
-├── Dockerfile # For runtime overrides
+│   ├── example-dag.py # An example dag that comes with the initialized project
+├── Dockerfile # For Astronomer's Docker image and runtime overrides
 ├── include # For any other files you'd like to include
 ├── packages.txt # For OS-level packages
 ├── plugins # For any custom or community Airflow plugins
-└── requirements.txt # For any python packages
+└── requirements.txt # For any Python packages
 ```
-The sample dag that gets generated has a few tasks that run bash commands
 
-**Note:** The image will take some time to build the first time, after that it will build from cached layers.
+These automatically generated and customizable files make up the "image" you'll eventually push to either your local development or to an Astronomer Cloud or Enterprise installation.
 
-Now you can run `astro dev start` and see Airflow running on `localhost:8080/admin`
+## Start Airflow
 
-All changes made to the `dags` and `plugins` directory will be picked up automatically - any changes made to any of the other files will need the image to be rebuilt (`astro dev stop` and `astro dev start`).
+To spin up a local Airflow deployment on your machine, run:
 
-For more information on using the CLI, see the Developing Locally with the CLI section.
+```
+$ astro dev start
+```
+
+This command will spin up 3 Docker containers on your machine, each for a different Airflow component:
+
+- **Postgres:** [Airflow's Metadata Database](https://www.astronomer.io/docs/query-airflow-database/)
+- **Webserver:** The Airflow component responsible for rendering the Airflow UI
+- **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
+
+Once you've run `astro dev start`, you'll be able to access the following components locally:
+                   
+- Airflow Webserver: http://localhost:8080/admin/
+- Postgres Database: localhost:5432/postgres
+
+> Note: The image will take some time to build the first time. After that, it will build from cached layers.
+
+## Re-Build your Image
+
+As you develop locally, you'll have to "re-build" your image to render changes depending on what files you're configuring.
+
+### Code Changes
+
+All changes made to the following files will be picked up automatically and render in the Airflow UI as soon as they're saved in your code editor:
+
+- `dags`
+- `plugins`
+- `include`
+
+### Other Changes
+
+In order for changes made to the rest of your files to render, you'll have to:
+
+1. Stop your running Docker containers:
+
+```
+$ astro dev stop
+```
+
+2. Restart those Docker containers:
+
+```
+$ astro dev start
+```
+
+The files for which this is necessary include:
+
+- `packages.txt`
+- `Dockerfile`
+- `requirements.txt`
+- `airflow_settings.yaml`
+
+## Access to the Airflow CLI
+
+You're free to use native Airflow CLI commands with the Astro CLI when developing locally by wrapping them around docker commands.
+
+Run `docker ps` after your image has been built to see a list of containers running. You should see 3: one for the Scheduler, Webserver, and Airflow Postgres.
+
+### Adding a Connection
+
+For example, an Airflow Connection can be added with:
+
+```bash
+docker exec -it SCHEDULER_CONTAINER bash -c "airflow connections -a --conn_id test_three  --conn_type ' ' --conn_login etl --conn_password pw --conn_extra {"account":"blah"}"
+```
+
+Refer to the native [Airflow CLI](https://airflow.apache.org/cli.html) for a list of all commands.
+
+> Note: Direct access to the Airflow CLI is an Enterprise-only feature. If you're an Astronomer Cloud customer, you'll only be able to access it while developing locally for reasons related to the multi-tenant architecture of our Cloud. If you'd like to use a particular Airflow CLI command, reach out and we're happy to help you find a workaround.
