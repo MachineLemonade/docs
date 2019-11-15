@@ -18,6 +18,9 @@ There are a few reasons for this.
 ## Postgres Schema Structure
 
 The Postgres instance will contain one database for the Astronomer API. The datamodel for this database is defined [here](https://github.com/astronomer/houston-api/blob/master/database/datamodel.graphql) using GraphQL SDL; each `Type` in that file represents an individual table in our Houston API schema. that file will always be up-to-date with the latest table structure.
+
+![Houston ERD](https://assets2.astronomer.io/main/docs/ee-data-management/houston_erd.png)
+
 Additionally, each Airflow deployment that you create will be given a new and separate database in Postgres to use for its metadata. These databases will contain the stock Airflow schema. Any sensitive data entered through the Airflow UI will be encrypted using the standard Airflow fernet key mechanisms and stored in the appropriate databases.
 
 ## Data Persistence
