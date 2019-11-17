@@ -87,7 +87,7 @@ If you'd like to preserve your deployment's Airflow database, we're more than ha
 
 ### Part II: Request a DB Migration
 
-Once you've made sure that your DAGs can run successfully on Airflow v1.10.5, request an Astronomer Assisted DB Migration [here]().
+Once you've made sure that your DAGs can run successfully on Airflow v1.10.5, request an Astronomer Assisted DB Migration [here](https://astronomer.typeform.com/to/RWJcN5).
 
 When you reach out, please provide the following:
 
