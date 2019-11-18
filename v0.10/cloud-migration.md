@@ -89,12 +89,13 @@ If you'd like to preserve your deployment's Airflow database, we're more than ha
 
 Once you've made sure that your DAGs can run successfully on Airflow v1.10.5, request an Astronomer Assisted DB Migration [here](https://astronomer.typeform.com/to/RWJcN5).
 
-When you reach out, please provide the following:
+When you reach out, you'll be asked to provide the following:
 
 1. Confirmation that you're running Airflow v1.10.5 on *all* deployments you want to migrate
-2. The "release name" of all Airflow deployments you want to migrate (e.g. `geodetic-planet-1234`)
+2. The "release name" of all Airflow deployments you want to (or don't want to) migrate (e.g. `geodetic-planet-1234`)
+3. Timeframe preference and availability
 
-From here, we'll take a look at your deployment's database and give you an estimate of how long the backup will take and schedule time with you to coordinate the migration.
+Once we receive a request from you, we'll take a look at your deployment's database and give you an estimate of how long the backup will take and schedule time with you to coordinate the migration.
 
 > **Note:** Depending on the age of your deployment and the frequency at which your tasks run, this can take anywhere from 2 minutes to 1 hour.
 
