@@ -43,15 +43,15 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
     get_logs=True)
 ```
 
+The KubePodOperator needs to know which namespace to run in and where to look for the config file.
 For Astronomer Cloud, your namespace on Kubernetes will be `astronomer-cloud-deployment_name` (e.g. `astronomer-cloud-frigid-vacuum-0996`)
-
 For Astronomer Enterprise, this would be be your `base-namespace-deployment` name (e.g. `astronomer-frigid-vacuum-0996`)
 
 Set the `in_cluster` parameter to `True` in your code. This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
 
 Set the `is_delete_pod_operator` parameter to `True` in your code. This will delete completed pod in the namespace as they finish, keeping Airflow below its resource quotas.
 
-### Configure Resources
+These parameters can be automatically set with environment variabless (see below).
 
 #### Add Resources to your Deployment on Astronomer
 
@@ -71,22 +71,68 @@ On Astronomer Cloud, the largest node a single pod can occupy is `13.01GB` and `
 
 #### Define Resources per Task
 
-A notable advantage of leveraging Airflow's KubernetesPodOperator is that you can specify _exactly_ how many resources you want to allocate to an individual Kubernetes Pod charged with completing a single task, according to what that particular task needs.
-
-To do so, define `compute resources` (CPU and Memory, collectively) in your code.
-
-Here's an example:
+A notable advantage of leveraging Airflow's KubernetesPodOperator is that you can specify compute [resources](https://github.com/apache/airflow/blob/master/airflow/contrib/operators/kubernetes_pod_operator.py#L85) in the task definition.
 
 ```
+    :param resources: A dict containing resources requests and limits.
+        Possible keys are request_memory, request_cpu, limit_memory, limit_cpu,
+        and limit_gpu, which will be used to generate airflow.kubernetes.pod.Resources.
+        See also kubernetes.io/docs/concepts/configuration/manage-compute-resources-container
+    :type resources: dict
+```
+
+#### Example Task Definition:
+
+```
+from airflow import DAG
+from datetime import datetime, timedelta
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
+from airflow import configuration as conf
+
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2019, 1, 1),
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+}
+
+namespace = conf.get('kubernetes', 'NAMESPACE')
+
+# This will detect the default namespace locally and read the 
+# environment namespace when deployed to Astronomer.
+if namespace !='default':
+    config_file = '/usr/local/airflow/include/.kube/config'
+    in_cluster=False
+else:
+    in_cluster=True
+    config_file='None'
+
+dag = DAG('example_kubernetes_pod',
+          schedule_interval='@once',
+          default_args=default_args)
+
+
 compute_resource = {'request_cpu': '800m', 'request_memory': '3Gi', 'limit_cpu': '800m', 'limit_memory': '3Gi'}
-....
 
-            k8s_pod = KubernetesPodOperator(
-                task_id="task_id",
-                rest_of_params,
-                resources=compute_resource,
-
+with dag:
+    k = KubernetesPodOperator(
+        namespace=namespace,
+        image="hello-world",
+        labels={"foo": "bar"},
+        name="airflow-test-pod",
+        task_id="task-one",
+        in_cluster=in_cluster # if set to true, will look in the cluster, if false, looks for file
+        cluster_context='docker-for-desktop', # is ignored when in_cluster is set to True
+        config_file=config_file,
+        resources=compute_resource,
+        is_delete_pod_operator=True,
+        get_logs=True)
 ```
+
+This will launch a pod that runs the `hello-world` image pulled from Dockerhub in whatever namespace the pod is launched with the specified resource request and delete the pod once it finishes running.
 
 ## Using a Private Registry
 
