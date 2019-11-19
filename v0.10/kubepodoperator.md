@@ -145,4 +145,4 @@ For Enterprise customers, follow the [official Kubernetes](https://kubernetes.io
 
 ## Local Testing
 
-Follow our [CLI doc](https://github.com/astronomer/docs/blob/master/v0.8/cli-kubepodoperator.md) on using [Microk8s](https://microk8s.io/) or [Docker for Kubernetes](https://matthewpalmer.net/kubernetes-app-developer/articles/how-to-run-local-kubernetes-docker-for-mac.html).
+Follow our [CLI doc](https://www.astronomer.io/docs/cli-kubepodoperator/) on using [Microk8s](https://microk8s.io/) or [Docker for Kubernetes](https://matthewpalmer.net/kubernetes-app-developer/articles/how-to-run-local-kubernetes-docker-for-mac.html) to run tasks with the KubernetesPodOperator locally.
