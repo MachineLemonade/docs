@@ -287,7 +287,7 @@ astro_deploy:
   script:
     - echo "Building container.."
     - docker build -t registry.gcp0001.us-east4.astronomer.io/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID .
-    - docker login rregistry.gcp0001.us-east4.astronomer.io -u _ -p $${SERVICE_ACCOUNT_SECRET}
+    - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $${SERVICE_ACCOUNT_SECRET}
     - docker push registry.gcp0001.us-east4.astronomer.io/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID
   only:
     - master
