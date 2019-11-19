@@ -124,7 +124,7 @@ As you develop locally, you'll have to "re-build" your image to render changes d
 All changes made to the following files will be picked up automatically and render in the Airflow UI as soon as they're saved in your code editor:
 
 - `dags`
-- `plugins`
+- Custom hooks or operators in `plugins` (note: this does not include plugins built off of the stock `AirflowPlugin`)
 - `include`
 
 ### Other Changes

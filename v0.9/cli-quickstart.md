@@ -94,6 +94,6 @@ The sample dag that gets generated has a few tasks that run bash commands
 
 Now you can run `astro airflow start` and see Airflow running on `localhost:8080/admin`
 
-All changes made to the `dags` and `plugins` directory will be picked up automatically - any changes made to any of the other files will need the image to be rebuilt (`astro airflow stop` and `astro airflow start`).
+All changes made to the `dags` directory or to any custom hooks or operators in the `plugins` directory will be picked up automatically by the local Airflow environment. Any changes made to any of the other files, including plugins built off of the stock `AirflowPlugin`, will need the image to be rebuilt via `astro airflow stop` and `astro airflow start` in order to have changes propagated to the Airflow environment.
 
 For more information on using the CLI, see the Developing Locally with the CLI section.
