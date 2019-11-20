@@ -58,7 +58,7 @@ if namespace !='default':
     in_cluster=False
 else:
     in_cluster=True
-    config_file='None'
+    config_file=None
 
 dag = DAG('example_kubernetes_pod',
           schedule_interval='@once',
