@@ -110,7 +110,7 @@ This command will spin up 3 Docker containers on your machine, each for a differ
 
 Once you've run `astro dev start`, you'll be able to access the following components locally:
                    
-- Airflow Webserver: http://localhost:8080/admin/
+- Airflow Webserver: http://localhost:8080/admin/ (Credentials are `admin:admin` by default)
 - Postgres Database: localhost:5432/postgres
 
 > Note: The image will take some time to build the first time. After that, it will build from cached layers.
