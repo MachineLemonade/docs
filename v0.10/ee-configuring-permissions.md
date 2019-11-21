@@ -26,7 +26,7 @@ Because our API configuration is completely customizable for Enterprise installs
 
 1.  Examine our default roles and permissions and identify which ones you would like to change. This will involved either removing specific permissions that exist on roles or adding them to roles where they do not exist.
 
-2. Apply those configuration updates via the following changes to your `values.yaml` Helm file. Note that you can apply this concept to any role/permission, but for the purposes of this doc we'll use `DEPLOYMENT_EDITOR` and `deployment.images.push` as an example. In this case, the user is disallowing `DEPLOYMENT_EDITORS` (and therefore `WORKSPACE_EDITORS`) from deploying code directly to an Airflow instance. This might be done to enforce CI/CD over direct deploys from our CLI for all editors.
+2. Apply those configuration updates via the following changes to your `config.yaml` Helm file. Note that you can apply this concept to any role/permission, but for the purposes of this doc we'll use `DEPLOYMENT_EDITOR` and `deployment.images.push` as an example. In this case, the user is disallowing `DEPLOYMENT_EDITORS` (and therefore `WORKSPACE_EDITORS`) from deploying code directly to an Airflow instance. This might be done to enforce CI/CD over direct deploys from our CLI for all editors.
 
 ```yaml
 astronomer:
@@ -38,5 +38,8 @@ astronomer:
             deployment.images.push: false
 ```
 
+3. Once you have your `config.yaml` updated, you can propigate these changes to your cluster by running the following command:
+
+```helm upgrade <platform-name> -f config.yaml . --namespace <namespace>````
 
              
