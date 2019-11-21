@@ -40,6 +40,8 @@ astronomer:
 
 3. Once you have your `config.yaml` updated, you can propigate these changes to your cluster by running the following command:
 
-```helm upgrade <platform-name> -f config.yaml . --namespace <namespace>````
+```bash
+helm upgrade <platform-name> -f config.yaml . --namespace <namespace>
+```
 
              
