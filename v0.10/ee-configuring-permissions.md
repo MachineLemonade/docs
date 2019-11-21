@@ -18,22 +18,24 @@ Roles can be bound to individual users via the Houston API or UI. For a referenc
 
 Because our roles are constantly being expanded upon as we add more features to the platform, we will refrain from covering which permissions apply to which roles in this doc. Rather, you can [view our API configuration directly](https://github.com/astronomer/houston-api/blob/master/config/default.yaml#L200)or the latest on these roles and how they map to our individual permissions.
 
+> Note: In the current state of our platform, all `DEPLOYMENT` roles are synthetically mapped to `WORKSPACE` roles, meaning a `WORKSPACE_EDITOR` can _also_ do what a `DEPLOYMENT_EDITOR` can. This is to set the stage for deployment-level permissions, which we will expose via our API and UI in an upcoming platform release.
+
 ## Customizing Permissions
 
 Because our API configuration is completely customizable for Enterprise installs, you can control which permissions are applied to each role within your implementation of Astronomer. This can be accomplished via the following steps:
 
 1.  Examine our default roles and permissions and identify which ones you would like to change. This will involved either removing specific permissions that exist on roles or adding them to roles where they do not exist.
 
-2. Apply those configuration updates via the following changes to your `values.yaml` Helm file:
+2. Apply those configuration updates via the following changes to your `values.yaml` Helm file. Note that you can apply this concept to any role/permission, but for the purposes of this doc we'll use `DEPLOYMENT_EDITOR` and `deployment.images.push` as an example. In this case, the user is disallowing `DEPLOYMENT_EDITORS` (and therefore `WORKSPACE_EDITORS`) from deploying code directly to an Airflow instance. This might be done to enforce CI/CD over direct deploys from our CLI for all editors.
 
 ```yaml
 astronomer:
   houston:
     config:
       roles:
-        DEPLOYMENT_EDITOR: # Note that you can apply these changes to any role
+        DEPLOYMENT_EDITOR:
           permissions:
-            deployment.images.push: false # Note that any permissions can be added or removed from this role via this syntax
+            deployment.images.push: false
 ```
 
 
