@@ -18,7 +18,7 @@ Roles can be bound to individual users via the Houston API or Orbit UI.
 
 Because our roles are constantly being expanded upon as we add more features to the platform, we will refrain from covering which permissions apply to which roles in this doc. Rather, you can check out our [User Roles and Permissions doc](https://www.astronomer.io/docs/rbac/) for a high-level overview on the capabilities allowed for each role. If you'd like a deeper dive, you can [view our API configuration directly](https://github.com/astronomer/houston-api/blob/master/config/default.yaml#L200)or the latest on these roles and how they map to our individual permissions.
 
-> *Note:* In the current state of our platform, all `DEPLOYMENT` roles are synthetically mapped to `WORKSPACE` roles, meaning a `WORKSPACE_EDITOR` can *also* do what a `DEPLOYMENT_EDITOR` can. This is to set the stage for deployment-level permissions, which we will expose via our API and UI in an upcoming platform release.
+> **Note:** In the current state of our platform, all `DEPLOYMENT` roles are synthetically mapped to `WORKSPACE` roles, meaning a `WORKSPACE_EDITOR` can *also* do what a `DEPLOYMENT_EDITOR` can. This is to set the stage for deployment-level permissions, which we will expose via our API and UI in an upcoming platform release.
 
 ## Customizing Permissions
 
