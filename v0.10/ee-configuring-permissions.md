@@ -24,11 +24,15 @@ Because our roles are constantly being expanded upon as we add more features to 
 
 Because our API configuration is completely customizable for Enterprise installs, you can control which permissions are applied to each role within your implementation of Astronomer. This can be accomplished via the following steps:
 
-**1.**  Examine our default roles and permissions and identify which ones you would like to change. This will involved either removing specific permissions that exist on roles or adding them to roles where they do not exist.
+**1. Identify Default Roles**  
 
-**2.** Apply those configuration updates via the following changes to your `config.yaml` Helm file. Note that you can apply this concept to any role/permission, but for the purposes of this doc we'll use `DEPLOYMENT_EDITOR` and `deployment.images.push` as an example. In this case, the user is disallowing `DEPLOYMENT_EDITORS` (and therefore `WORKSPACE_EDITORS`) from deploying code directly to an Airflow instance. This might be done to enforce CI/CD over direct deploys from our CLI for all editors. Note that in v0.10.x of the platform, users will need to copy and paste the entire role blocks into their charts, but we have a more [elegant syntactical way](https://github.com/astronomer/houston-api/pull/170#issuecomment-554463343) of tweaking these permissions that will be introduced in v0.11+.
+Examine our [default roles and permissions](https://github.com/astronomer/houston-api/blob/v0.10.3/config/default.yaml#L200) and identify which ones you would like to change. This will involved either removing specific permissions that exist on roles or adding them to roles where they do not exist.
 
-It's not easy to see given that before our new feature is introduced we need to copy all roles into `config.yaml` for changes to propigate, but, in the snippet below, [we've removed the `deployment.images.push` permission from the `DEPLOYMENT_EDITOR` role](https://github.com/astronomer/houston-api/blob/v0.10.3/config/default.yaml#L302).
+**2. Apply Changes via Helm** 
+
+Apply those configuration updates via the following changes to your `config.yaml` Helm file. Note that you can apply this concept to any role/permission, but for the purposes of this doc we'll use `DEPLOYMENT_EDITOR` and `deployment.images.push` as an example. In this case, the user is disallowing `DEPLOYMENT_EDITORS` (and therefore `WORKSPACE_EDITORS`) from deploying code directly to an Airflow instance. This might be done to enforce CI/CD over direct deploys from our CLI for all editors. Note that in v0.10.x of the platform, users will need to copy and paste the entire role block into their `config.yaml`, but we have a more [elegant way](https://github.com/astronomer/houston-api/pull/170#issuecomment-554463343) of tweaking these permissions that will be introduced in v0.11 of the platform.
+
+It's not easy to see given that before our new feature is introduced we need to copy all roles into `config.yaml` for changes to propagate, but, in the snippet below, [we've removed the `deployment.images.push` permission from the `DEPLOYMENT_EDITOR` role](https://github.com/astronomer/houston-api/blob/v0.10.3/config/default.yaml#L302).
 
 ```yaml
 astronomer:
@@ -165,7 +169,9 @@ astronomer:
 ```
 
 
-**3.** Once you have your `config.yaml` updated, you can propigate these changes to your cluster by running the following command:
+**3. Upgrade the Cluster**
+
+Once you have your `config.yaml` updated, you can propigate these changes to your cluster by running the following command:
 
 ```bash
 helm upgrade <platform-name> -f config.yaml . --namespace <namespace>
