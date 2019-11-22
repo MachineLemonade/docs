@@ -159,7 +159,7 @@ By specifying a subfield of the `urls` type, the query executes successfully.
 ```
 **Note:** Custom types are often composed of other custom types.
 
-### Adding System Admins with a mutation
+## Adding System Admins
 Mutations can be used to generate auth tokens, add system admins, and other things that `modify` the underlying database.
 
 To add a system admin, the `id` of the user is needed. This can be obtained by an Admin with a `users` query.
