@@ -23,13 +23,16 @@ Via the [Astronomer UI](https://app.astronomer.cloud/login) as seen below, you c
 
 - Webserver
 - Scheduler
-- Celery worker count
-- Celery worker size
-- Celery worker termination grace period
+- Celery Worker Count
+- Celery Worker Size
+- Celery Worker Termination Grace Period
+- Extra Capacity*
 
 ![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Executor.png)
 
 Resource configurations are "live" as soon as you adjust the toggles on your web browser and click `Update`.
+
+> Note*: Read below for details on configuring "Extra Capacity," as AU's allocated to this slider are both calculated and billed differently.
 
 ### The Astronomer Unit (AU)
 
@@ -40,49 +43,44 @@ To track and measure allocation to each of these components, we introduce the co
 | 1 | 0.1 | .375 | $10 |
 | 10 | 1 | 3.75 | $100
 
-
-When you spin up an Airflow deployment, you'll find that it's pre-configured with default resource allocations. We've identified those levels to be effective baselines for the Local and Celery executors ,respectively. Of course, you're free to adjust them freely at any time.
+When you spin up an Airflow deployment, you'll find that it's pre-configured with default resource allocations. We've identified those levels to be effective baselines for the Local, Celery and Kubernetes Executors, respectively. Of course, you're free to adjust them at any time.
 
 See below for out-of-the-box configurations and corresponding AU count:
 
-| Executor | PgBouncer & StatsD | Scheduler | Webserver | Celery Worker | Redis & Flower | Total AU | Total Monthly Cost |
-|----------|-----|--------|-------|
-| Local | 4 | 10 | 5 | N/A | N/A | 19 | $190 |
-| Celery | 4 | 10 | 5 | 10 | 4 | 33 | $330 |
+| Executor   | PgBouncer & StatsD | Scheduler | Webserver | Celery Worker | Redis & Flower | Extra Capacity | Total AU | Monthly Cost |
+|------------|--------------------|-----------|-----------|---------------|----------------|----------------|----------|--------------|
+| Local | 4 | 10| 5 | N/A | N/A | N/A | 19 | $190 | 
+| Celery | 4 | 10 | 5 | 10 | 4 | N/A | 33 | $330 |
+| Kubernetes | 4 | 10 | 5 | N/A | N/A | 10 | 19 - 29 | $190 - $290  |
 
 **Note**: The PgBouncer, StatsD, Redis, and Flower AU configs are static infrastructure minimums that cannot be changed.
 
-One Celery worker, for example, is powered by 1 AU by default but can be modified at any time.
+### Extra Capacity
 
-### Kubernetes Executor
+#### Kubernetes Executor & KubernetesPodOperator
 
-#### Extra Capacity
-
-On Astronomer v0.7 - v0.9, resources needed for either the [KubernetesPodOperator](https://www.astronomer.io/docs/kubepodoperator/) or the KubernetesExecutor are mapped to the `Extra Capacity` slider on your deployment's "Configure" page.
+On Astronomer, resources needed for either the [KubernetesPodOperator](https://www.astronomer.io/docs/kubepodoperator/) or the KubernetesExecutor are mapped to the `Extra Capacity` slider on your deployment's "Configure" page.
 
 The number of AUs (as a combination of CPU and Memory) maps to [*resource quotas*](https://kubernetes.io/docs/concepts/policy/resource-quotas/) on the [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) in which your Airflow deployment lives.
 
-These resources, constrained by said quotas, power any Kubernetes Pod created by implementing either the KubernetesPodOperator or the Kubernetes Executor in your code.
+At their core, both the Kubernetes Executor and KubernetesPodOperator dynamically spin up an individual Pod for each task that needs to be executed - and spin it down once that task is completed.
 
-#### Node Limits on Astronomer Cloud
-
-On Astronomer Cloud v0.7.5, the node limits for any single task (based on Google's [standard-4 machine type](https://cloud.google.com/compute/docs/machine-types)) are:
-
-- 13.01 GB of Memory/RAM
-- 3.92 CPU
-
-On Astronomer Cloud v0.9, the node limits for any single task (based on Google's [standard-16 machine type](https://cloud.google.com/compute/docs/machine-types)) are:
-
-- 58 GB of Memory/RAM
-- 15 CPU
+The total AU's allocated to the "Extra Capacity" slider represent the *maximum* possible resources that *could* be provisioned to a single or set of pods at any given time. It does *not* represent actual usage and will not be charged as a fixed resource.
 
 #### Pricing
 
-Astronomer v0.9 introduces the KubernetesExecutor as an alpha feature that does not dynamically "scale to zero" (yet).
+On Astronomer Cloud, you will only be charged for the CPU and Memory *actually used* by either your Kubernetes Executor or KubernetesPodOperator within the span of your billing period. The AU value you set for the slider represents the *maximum* AU our cluster has permission to provision within your deployment's namespace, but you will not be charged for that maximum unless fully utilized.
 
-Any AU's allocated in the `Extra Capacity` slider will be aggregated *in addition to* resources otherwise allocated to your Scheduler, Webserver, and Workers. If you're an Astronomer Cloud customer, they'll be added to your monthly resource bill at our standard rate of $10/AU.
+If you set your "Extra Capacity" slider to 30AU but the Pods spun up within your billing period only required 20AU total to execute all tasks, you will only be charged for 20AU at the end of the month (at our regular rate of $10/AU per month).
 
-We'll be making a dynamically scaling KubernetesExecutor a reality on Astronomer in coming releases. Stay tuned.
+> Note: While "Extra Capacity" is dynamically priced, resources needed for the Scheduler, Webserver, PgBouncer & StatsD will remain fixed costs that are not affected by downtime/uptime.
+
+#### Node Limits on Astronomer Cloud
+
+On Astronomer Cloud, the node limits for any single task (based on Google's [standard-16 machine type](https://cloud.google.com/compute/docs/machine-types)) are:
+
+- 58 GB of Memory/RAM
+- 15 CPU
 
 ### Billing
 
@@ -92,7 +90,7 @@ At the end of the month, we aggregate the total AU hours for that billing cycle 
 
 For example, the cost of running 1 deployment on 25 AUs (a standard deployment with 1 worker using the Celery executor) for 1 day = (25) x (0.0137) x (24).
 
-**Note**: Scheduled downtime is not currently supported. Check out a [related forum question](https://forum.astronomer.io/t/can-i-have-scheduled-downtime/35) for more info.
+> Note: Resources allocated to "Extra Capacity" are calculated and charged by the *minute* (via [kubecost](https://kubecost.com/)), not by the hour.
 
 ## Non-Profit Discount
 
