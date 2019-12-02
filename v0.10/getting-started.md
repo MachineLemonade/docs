@@ -248,7 +248,7 @@ To get ready for a deployment, make sure:
 - You're in the right Workspace
 - Your target deployment lives under that Workspace
 
-Follow our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-getting-started/) for more specific guidelines and commands.
+Follow our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-quickstart/) for more specific guidelines and commands.
 
 #### Deploy
 

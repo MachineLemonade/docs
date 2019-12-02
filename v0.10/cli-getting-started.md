@@ -156,7 +156,7 @@ Once your webserver, scheduler, and celery flower are up, you should see the fol
 ```
 Successfully created deployment. Deployment can be accessed at the following URLs
 
- Airflow Dashboard: https://popular-orbit-2745-airflow.astronomer.cloud
+ Airflow Dashboard: https://popular-orbit-2745-airflow.
  Flower Dashboard: https://popular-orbit-2745-flower.astronomer.cloud
 ```
 

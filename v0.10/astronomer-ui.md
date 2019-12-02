@@ -42,7 +42,7 @@ From this screen, you can:
 3. Generate tokens for CI/CD systems via service accounts.
 4. Rename your Workspace
 
-Since all of our app activity is routed through a GraphQL API, you're free to create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-getting-started/) if you prefer staying in your terminal.
+Since all of our app activity is routed through a GraphQL API, you're free to create deployments, switch workspaces, and add users via our [CLI](https://www.astronomer.io/docs/cli-quickstart/) if you prefer staying in your terminal.
 
 **Note:** The concept of a "workspace" only exists at the API level to help with permissions. It does **not** have anything to do with how Airflow will run jobs.
 
@@ -50,7 +50,7 @@ Since all of our app activity is routed through a GraphQL API, you're free to cr
 
 A single instance of [Apache Airflow](https://airflow.apache.org/) made up of a scheduler, a webserver, and one or more workers. A deployment has the capacity to host a collection of DAGs.
 
-In the context of Astronomer, the term `Airflow Deployment` is used to describe an instance of Airflow that you've spun up either via our [UI](https://astronomer.io/docs/overview) or [CLI](https://astronomer.io/docs/cli-getting-started) as part of a workspace. Under the hood, each deployment gets its own Kubernetes namespace and has a set isolated resources reserved for itself.
+In the context of Astronomer, the term `Airflow Deployment` is used to describe an instance of Airflow that you've spun up either via our [UI](https://astronomer.io/docs/overview) or [CLI](https://astronomer.io/docs/cli-quickstart) as part of a workspace. Under the hood, each deployment gets its own Kubernetes namespace and has a set isolated resources reserved for itself.
 
 You're able to adjust the resources given to your Airflow deployment directly from the UI. This functionality allows you to choose executor (local or celery) and easily provision additional resources as you scale up.
 
