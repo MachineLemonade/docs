@@ -20,7 +20,7 @@ Run:
 astro dev init
 ```
 
-This will generate a project structure, as well as a sample DAG and plugin. You can read more about how our CLI works [here](https://www.astronomer.io/docs/cli-getting-started/).
+This will generate a project structure, as well as a sample DAG and plugin. You can read more about how our CLI works [here](https://www.astronomer.io/docs/cli-quickstart/).
 
 You can run
 
