@@ -159,29 +159,3 @@ By specifying a subfield of the `urls` type, the query executes successfully.
 ```
 **Note:** Custom types are often composed of other custom types.
 
-## Adding System Admins
-Mutations can be used to generate auth tokens, add system admins, and other things that `modify` the underlying database.
-
-To add a system admin, the `id` of the user is needed. This can be obtained by an Admin with a `users` query.
-
-```
-query users {
-  users(email:"pete@astronomer.io")
-  {
-    id    
-  }
-}
-```
-Grab the returned `id` and feed it into the next mutation.
-
-Call `createSystemRoleBinding` with the proper inputs as shown.
-```
-mutation AddAdmin {
-  createSystemRoleBinding(
-    userId: $id
-    role: SYSTEM_ADMIN
-  ) {
-    id
-  }
-}
-```
