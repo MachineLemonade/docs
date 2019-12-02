@@ -12,12 +12,12 @@ slug: "create-deployment-deploying-code"
 In order to push up code to a deployment on Astronomer, you must have:
 
 1. [The Astronomer CLI](https://www.astronomer.io/docs/cli-quickstart/) Installed
-2. An account on [Astronomer Cloud](https://app.astronomer.cloud/login) OR access to an [Astronomer Enterprise Installation](https://www.astronomer.io/docs/ee-overview/)
+2. An account on [Astronomer Cloud](https://app.gcp0001.us-east4.astronomer.io/) OR access to an [Astronomer Enterprise Installation](https://www.astronomer.io/docs/ee-overview/)
 
 ### Create a Deployment
 
 To create a deployment on Astronomer, log into the Astronomer UI on either: 
-- [Astronomer Cloud](https://app.astronomer.cloud/login) or
+- Astronomer Cloud
 - Your own domain on Astronomer Enterprise (`app.BASEDOMAIN`)
 
 From your Workspace on Astronomer, click `New Deployment`.
@@ -60,7 +60,7 @@ To start, authenticate to the CLI.
 **Astronomer Cloud**
 
 ```
-astro auth login astronomer.cloud
+astro auth login gcp0001.us-east4.astronomer.io
 ```
 
 **Astronomer Enterprise**
@@ -74,12 +74,7 @@ astro auth login BASEDOMAIN
 Follow the authentication flow from there.
 
 ```
-Paolas-MBP-2:hello-astro paola$ astro auth login astronomer.cloud
-CLUSTER                             WORKSPACE                           
-astronomer.cloud                    4a6cb370-c361-440d-b02b-c90b07ef15f6
-
-Switched cluster
-Username (leave blank for oAuth):
+$ astro auth login gcp0001.us-east4.astronomer.io
 ```
 
 ### Select your Workspace & Deployment
