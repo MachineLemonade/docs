@@ -37,7 +37,7 @@ The `config_file` is pointing to the `/include/.kube/config` file you just edite
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
-
+from airflow import configuration as conf
 
 default_args = {
     'owner': 'airflow',
@@ -49,24 +49,39 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
+namespace = conf.get('kubernetes', 'NAMESPACE')
+
+# This will detect the default namespace locally and read the 
+# environment namespace when deployed to Astronomer.
+if namespace !='default':
+    config_file = '/usr/local/airflow/include/.kube/config'
+    in_cluster=False
+else:
+    in_cluster=True
+    config_file=None
+
 dag = DAG('example_kubernetes_pod',
           schedule_interval='@once',
           default_args=default_args)
 
+
+
 with dag:
     k = KubernetesPodOperator(
-        namespace='default',
+        namespace=namespace,
         image="hello-world",
         labels={"foo": "bar"},
         name="airflow-test-pod",
         task_id="task-one",
-        cluster_context='docker-for-desktop',
-        config_file='/usr/local/airflow/include/.kube/config',
+        in_cluster=in_cluster # if set to true, will look in the cluster, if false, looks for file
+        cluster_context='docker-for-desktop', # is ignored when in_cluster is set to True
+        config_file=config_file,
+        is_delete_pod_operator=True,
         get_logs=True)
 
 ```
 
-This example simply runs the docker `hello-world` image.
+This example simply runs the docker `hello-world` image and reads environment variables to determine where it is run.
 
 If you are on Linux, the `cluster_context` will be `microk8s`
 
@@ -74,7 +89,7 @@ If you are on Linux, the `cluster_context` will be `microk8s`
 
 ### Windows and Mac
 
-You can use `kubectl get pods -n $namespace` and `kubectl logs {pod_name} -n $namespace` to examine the logs for the pod that just ran.git 
+You can use `kubectl get pods -n $namespace` and `kubectl logs {pod_name} -n $namespace` to examine the logs for the pod that just ran. By default, `docker-for-desktop` and `microk8s` will run pods in the `default` namespace. 
 
 ### Linux
 Run the same commands as above prefixed with microk8s:
