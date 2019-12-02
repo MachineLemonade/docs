@@ -84,7 +84,7 @@ mutation AddAdmin {
   }
 }
 ```
-Users can verify they are system admins by navigating to `grafana.BASEDOMAIN`. 
+Users can verify they are system admins by navigating to `grafana.BASEDOMAIN` or `kibana.BASEDOMAIN` - non admin users will be redirected to the `app.BASEDOMAIN` page, whereas admins will have access to these dashboards.
 
 Note that other system admins can add additional system admins.
 
