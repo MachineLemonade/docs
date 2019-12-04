@@ -22,7 +22,7 @@ The second half of the `Configure` tab allows you to adjust your resource compon
 
 ### Components
 
-In the `Components` section, you can adjust the AU's (Astronomer Units of CPU and memory) you want to allocate towards your Scheduler, Webserver, and Celery Workers (if applicable).
+In the `Components` section, you can adjust the AUs (Astronomer Units of CPU and memory) you want to allocate towards your Scheduler, Webserver, and Celery Workers (if applicable).
 
 If you're running Astronomer Enterprise, you can watch these in real time with your Grafana dashboards.
 
@@ -34,11 +34,11 @@ Check out this [guide](https://www.astronomer.io/guides/airflow-executors-explai
 
 Generally speaking, we recommend the local executor for any "dev" environments and the Celery and Kubernetes executors for any "production" environments.
 
-The local executor will execute your dags in the same pod as the scheduler. If you are only running a few light tasks a day that don't use much memory, you might be able to get away with just the local executor. As you scale up the number of tasks or the resources your workflows require, we recommend moving over to Celery and Kubernetes.
+The local executor will execute your DAGs in the same pod as the scheduler. If you are only running a few light tasks a day that don't use much memory, it may give you what you need to run your DAGs successfully. As you scale up the number of tasks or the resources your workflows require, we recommend moving over to Celery or Kubernetes.
 
 **Regardless of which executor you are using, each task will run in a temporary container. No tasks will have access to the any locally stored file created by a separate task.**
 
-## Scaling the Scheduler and Webserver.
+## Scaling the Scheduler and Webserver
 
 If you are seeing delays in tasks being scheduled (check the Gantt Chart), it's usually time to scale up your scheduler. You can also receive email alerts when your scheduler is underprovisioned (more on this in the Alerting section).
 
@@ -51,9 +51,9 @@ The `Extra Capacity` setting is tied to the KubernetesPodOperator and the Kubern
 
 ![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Resources.png)
 
-In general, `database connections` shows how many actual connections to Astronomer's database (not yours) are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer (a light-weight connection pool manager for Postgres) for a particular deployment. This will normally be a higher and more variable number.
+In general, `database connections` show how many actual connections to Astronomer's database (not yours) are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer (a light-weight connection pool manager for Postgres) for a particular deployment. This will normally be a higher and more variable number.
 
-Importantly, these connections do NOT have any impact on the way you write your DAGs or how many concurrent connections you hold to your own databases. It's really just about how the Webserver, Scheduler, and Workers connect to Astronomer's Postgres to update the state of variables, DAGs, tasks, etc. Unless you're implementing the Kubernetes Pod operator or the Kubernetes Executor, don't worry about it.
+Importantly, these connections do **not** have any impact on the way you write your DAGs or how many concurrent connections you hold to your own databases. Rather, they're really just about how the Webserver, Scheduler, and Workers connect to Astronomer's Postgres to update the state of variables, DAGs, and tasks. Unless you're implementing the Kubernetes Pod operator or the Kubernetes Executor, you will not need to worry about them. 
 
 
 #### Environment Variables
