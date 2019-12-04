@@ -60,7 +60,7 @@ To start, authenticate to the CLI.
 **Astronomer Cloud**
 
 ```
-astro auth login astronomer.cloud
+astro auth login gcp0001.us-east4.astronomer.io
 ```
 
 **Astronomer Enterprise**
@@ -74,7 +74,7 @@ astro auth login BASEDOMAIN
 Follow the authentication flow from there.
 
 ```
-Paolas-MBP-2:hello-astro paola$ astro auth login astronomer.cloud
+Paolas-MBP-2:hello-astro paola$ astro auth login gcp0001.us-east4.astronomer.io
 CLUSTER                             WORKSPACE                           
 astronomer.cloud                    4a6cb370-c361-440d-b02b-c90b07ef15f6
 
