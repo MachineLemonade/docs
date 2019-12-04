@@ -12,7 +12,7 @@ Once you've created your deployment, you can configure it for the use case at ha
 
 The second half of the `Configure` tab allows you to adjust your resource components - empowering you to freely scale your deployment up or down as you wish. To this end, you can:
 
-1. Choose your Executor (Local or Celery)
+1. Choose your Executor (Local, Celery, or Kubernetes)
 2. Adjust resources to your Scheduler and Webserver
 3. Adjust worker count (*Celery only*)
 4. Adjust your `Worker Termination Grace Period` (*Celery only*)
@@ -22,7 +22,7 @@ The second half of the `Configure` tab allows you to adjust your resource compon
 
 ### Components
 
-In the `Components` section, you can adjust the  AU's (Astronomer Units of CPU and memory) you want to allocate towards your Scheduler, Webserver, and Celery Workers, if applicable.
+In the `Components` section, you can adjust the AUs (Astronomer Units of CPU and memory) you want to allocate towards your Scheduler, Webserver, and Celery Workers (if applicable).
 
 If you're running Astronomer Enterprise, you can watch these in real time with your Grafana dashboards.
 
@@ -32,28 +32,28 @@ Check out this [guide](https://www.astronomer.io/guides/airflow-executors-explai
 
 #### Which executor should I be using?
 
-Generally speaking, we recommend the local executor for any "dev" environments and the Celery executor for any "production" environments.
+Generally speaking, we recommend the local executor for any "dev" environments and the Celery and Kubernetes executors for any "production" environments.
 
-The local executor will execute your dags in the same pod as the scheduler. If you are only running a few tasks light tasks a day that don't pull anything into memory, you might be able to get away with just the local executor. As you scale up the number of tasks or the resources your workflows require, we recommend moving over to Celery.
+The local executor will execute your DAGs in the same pod as the scheduler. If you are only running a few light tasks a day that don't use much memory, it may give you what you need to run your DAGs successfully. As you scale up the number of tasks or the resources your workflows require, we recommend moving over to Celery or Kubernetes.
 
 **Regardless of which executor you are using, each task will run in a temporary container. No tasks will have access to the any locally stored file created by a separate task.**
 
-## Scaling the Scheduler and Webserver.
+## Scaling the Scheduler and Webserver
 
-If you are seeing delays in tasks being scheduled (check the Gantt Chart), it's usually a time to scale up your scheduler. You can also receive email alerts when your scheduler is underprovisioned (more on this in the Alerting section).
+If you are seeing delays in tasks being scheduled (check the Gantt Chart), it's usually time to scale up your scheduler. You can also receive email alerts when your scheduler is underprovisioned (more on this in the Alerting section).
 
 If your Airflow UI is really slow or crashes when you try to load a large DAG, you'll want to scale up your webserver.
 
 
 ### Extra Capacity
 
-The `Extra Capacity` setting is tied to several dimensions related the KubernetesPodOperator and the Kubernetes Executor, as it maps to extra pods created in the cluster. Namely, the slider has an effect on (1) CPU and memory quotas and (2) database connection limits.
+The `Extra Capacity` setting is tied to the KubernetesPodOperator and the Kubernetes Executor, as it maps to extra pods created in the cluster. Namely, the slider effects (1) CPU and memory quotas and (2) database connection limits.
 
 ![Astro UI Executor Config](https://assets2.astronomer.io/main/docs/astronomer-ui/Astro-UI-Resources.png)
 
-In general, `database connections` shows how many actual connections to Astronomer's database (not yours) are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer (a light-weight connection pool manager for Postgres) for a particular deployment. This will normally be a higher and more variable number.
+In general, `database connections` show how many actual connections to Astronomer's database (not yours) are actively being used whereas `client connections` refers to *all* Airflow connections opened against the PgBouncer (a light-weight connection pool manager for Postgres) for a particular deployment. This will normally be a higher and more variable number.
 
-Importantly, these connections do NOT have any impact on the way you write your DAGs or how many concurrent connections you hold to your own databases. It's really just about how the Webserver, Scheduler, and Workers connect to Astronomer's Postgres to update the state of variables, DAGs, tasks, etc. Unless you're implementing the Kubernetes Pod operator or the soon-to-come Kubernetes Executor, don't worry about it.
+Importantly, these connections do **not** have any impact on the way you write your DAGs or how many concurrent connections you hold to your own databases. Rather, they're really just about how the Webserver, Scheduler, and Workers connect to Astronomer's Postgres to update the state of variables, DAGs, and tasks. Unless you're implementing the Kubernetes Pod operator or the Kubernetes Executor, you will not need to worry about them. 
 
 
 #### Environment Variables
