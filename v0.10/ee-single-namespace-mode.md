@@ -7,6 +7,10 @@ slug: "ee-single-namespace-mode"
 
 Astronomer can be deployed into a single namespace for clusters where obtaining an Admin role isn't possible. However, this does disable access to webserver, scheduler, and task logs via the Astronomer UI and CLI. Airflow tasks logs will be available in the Airflow UI.
 
+If you are running your own EFK stack, you could implement your a fluentd config to possibly regain this functionality.
+
+### Configuration
+
 This change can be made directly in the `config.yaml`
 
 ```yaml
@@ -68,5 +72,4 @@ astronomer:
       email:
         enabled: true
         smtpUrl: YOUR_URI_HERE
-
 ```
