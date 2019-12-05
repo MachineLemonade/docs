@@ -45,8 +45,8 @@ data:
 receivers:
 - name: platform-receiver
   slack_configs:
-  - channel: '<channel_name>'
-    api_url: <api_url>
+  - channel: '<channel>'
+    api_url: <url>
     title:  "{{ .CommonAnnotations.Name }}"
     text: |-
       {{ range .Alerts }}
@@ -58,8 +58,8 @@ receivers:
       {{ end }}
 - name: airflow-receiver
   slack_configs:
-  - channel: '<channel_name>'
-    api_url: <api_url>
+  - channel: '<channel>'
+    api_url: <url>
     title:  "{{ .CommonAnnotations.Name }}"
     text: |-
       {{ range .Alerts }}
@@ -69,6 +69,12 @@ receivers:
         {{ range .Labels.SortedPairs }} • *{{ .Name }}:* {{ .Value }}
         {{ end }}
       {{ end }}
+- name: blackhole-receiver
+# Deliberately left empty to not deliver anywhere.
+- name: default-receiver
+  webhook_configs:
+  - url: http://astronomer-houston:8871/v1/alerts
+    send_resolved: true
 ```
 
 Substitute the appropriate values for the channel and api_url and save the file.
@@ -85,4 +91,3 @@ astronomer 	1       	Tue Dec  3 21:11:49 2019	DEPLOYED	astronomer-platform-0.10.
 
 $ helm upgrade astronomer -f config.yaml . --namespace astronomer
 ```
-
