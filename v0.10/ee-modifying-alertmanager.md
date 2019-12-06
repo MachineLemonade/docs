@@ -7,11 +7,11 @@ slug: "ee-modifying-alertmanager"
 
 ## Alertmanager
 
-Astronomer users [Alertmanager](https://prometheus.io/docs/alerting/alertmanager/) to push platform level alerts from Prometheus. Currently, these alerts can be subscribed to by email in the UI. The alertmanager `alert-manager-configmap.yaml` file can be modified to push alerts to external sources.
+Astronomer users [Alertmanager](https://prometheus.io/docs/alerting/alertmanager/) to push platform level alerts from Prometheus. Currently, these alerts can be subscribed to by email in the UI. The alertmanager `alertmanager-configmap.yaml` file can be modified to push alerts to external sources.
 
 
 ### Sending Alerts to Slack
-To add Slack as a destination for platform alerts, navigate to `helm.astronomer.io/charts/alertmanager/templates/alertmanager-configmap.yaml` and add the necessary configurations to for a Slack channel:
+To add Slack as a destination for platform alerts, navigate to `helm.astronomer.io/charts/alertmanager/templates/alertmanager-configmap.yaml` and add the necessary configurations for a Slack channel:
 
 ```
 ################################
@@ -77,7 +77,7 @@ receivers:
     send_resolved: true
 ```
 
-Substitute the appropriate values for the channel and api_url and save the file.
+Substitute the appropriate values for the `<channel>` and `<api_url>` and save the file.
 
 
 ## Deploying the change
