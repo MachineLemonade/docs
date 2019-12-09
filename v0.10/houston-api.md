@@ -42,7 +42,7 @@ This guide will stay away from Subscriptions.
 
 With a valid token in the HTTP headers, you should be able to query all endpoints your user has access to. The [`Schema`](https://GraphQL.org/learn/schema/) tab on the right side shows how queries can be structured to get the information you need.
 
-![Schema](https://assets2.astronomer.io/main/docs/ee/GraphQL_schema.png)
+![Schema](https://assets2.astronomer.io/main/docs/ee/graphql_schema.png)
 
 The query for `deployment` needs either an `workspaceUuid`, `deploymentUuid`, or a `releaseName` as an input, and can return all of the fields under `Type Details`.
 
