@@ -13,11 +13,13 @@ Whether you're exploring our [Enterprise](https://astronomer.io/enterprise) or [
 
 ## Start Trial
 
-If you haven't already, [start a 14-day Astronomer Cloud Trial](https://www.astronomer.io/trial/).
+If you haven't already, [start an Astronomer Trial](https://www.astronomer.io/trial/).
 
 ### Authorization
 
-You can auth in via Google, Github, or standard username/password authentication. This is how you'll log into both the Astronomer UI and the CLI.
+You can auth in via Google, Github, or standard username/password authentication.
+
+This is how you'll log into both the Astronomer App and the CLI.
 
 **Note:** Once your account is created, you won't be able to change your method of authorization.
 
@@ -33,7 +35,7 @@ To read more about navigating our app, go [here](https://www.astronomer.io/docs/
 
 If you're new to Astronomer but someone else on your team has an existing Workspace you want to join, your  team member will be able to add you as a user to that shared Workspace directly from their account.
 
-[Role-based Access Control (RBAC)](https://www.astronomer.io/docs/rbac/) is a recently added feature to our platform that allows you to assign your teammates varying levels of permissions.
+[Role-based Access Control (RBAC)](https://www.astronomer.io/docs/rbac/) is a recent addition to our platform and allows you to give your teammates varying levels of permissions.
 
 **Note**: If you have any trouble with your invitation or confirmation email, check your spam filter. If that doesn't do the trick, [reach out to us](https://www.support.astronomer.io).
 
@@ -126,28 +128,27 @@ You should see the following output:
 
 ```
 $ astro dev start
-Sending build context to Docker daemon  11.78kB
-Step 1/1 : FROM astronomerinc/ap-airflow:0.7.5-1.10.1-onbuild
+Env file ".env" found. Loading...
+Sending build context to Docker daemon  10.75kB
+Step 1/1 : FROM astronomerinc/ap-airflow:0.10.2-1.10.5-onbuild
 # Executing 5 build triggers
  ---> Using cache
  ---> Using cache
  ---> Using cache
  ---> Using cache
  ---> Using cache
- ---> fac83ad0b2d8
-Successfully built fac83ad0b2d8
-Successfully tagged astro-trial/airflow:latest
+ ---> 5160cfd00623
+Successfully built 5160cfd00623
+Successfully tagged astro-trial_705330/airflow:latest
 INFO[0000] [0/3] [postgres]: Starting                   
-INFO[0000] Recreating postgres                          
-INFO[0001] [1/3] [postgres]: Started                    
-INFO[0001] [1/3] [scheduler]: Starting                  
-INFO[0001] Recreating scheduler                         
+INFO[0002] [1/3] [postgres]: Started                    
+INFO[0002] [1/3] [scheduler]: Starting                  
 INFO[0003] [2/3] [scheduler]: Started                   
 INFO[0003] [2/3] [webserver]: Starting                  
-INFO[0003] Recreating webserver                         
-INFO[0005] [3/3] [webserver]: Started                   
-Airflow Webserver: http://localhost:8080/admin/
+INFO[0004] [3/3] [webserver]: Started                   
+Airflow Webserver: http://localhost:8080
 Postgres Database: localhost:5432/postgres
+The default credentials are admin:admin
 ```
 
 #### Verify Docker Containers
@@ -164,7 +165,10 @@ If you already have either of those ports allocated, you can either [stop existi
 
 ### Access the Airflow UI
 
-To check out the Airflow UI on your local Airflow project, take your browser to: http://localhost:8080/admin/
+To check out the Airflow UI on your local Airflow project, you can:
+
+- Navigate to http://localhost:8080/
+- Login with `admin` as both your Username and Password
 
 ### See your Sample DAG
 
@@ -179,12 +183,16 @@ A few tips for when you're developing locally:
 - Any DAG Code changes will immediately render in the Airflow UI as soon as they're saved in your source-code editor
 
 - If you make changes to your Dockerfile, `packages.txt` or `requirements.txt`, you'll have to rebuild your image by running the following in sequence:
+
+   ```
+   $ astro dev stop
     ```
-    $ astro dev stop
+
+   ```
+   $ astro dev start
     ```
-    ```
-    $ astro dev start
-    ```
+    
+
 ### Check out your Logs
 
 As you're developing locally, you'll want to pull logs for easy troubleshooting. Check out our [Logs and Source Control](https://www.astronomer.io/docs/logs-and-source-control/) doc for guidelines.
@@ -239,6 +247,8 @@ To log into your existing account and pass our authorization flow, run:
 $ astro auth login gcp0001.us-east4.astronomer.io
 ```
 
+If you created your account with a username and password, you'll be prompted to enter them directly in your terminal. If you did so via GitHub or Google OAuth, you'll be prompted to grab a temporary token from the Astronomer UI.
+
 **Note:** Once you run this command once, it should stay cached and allow you to just run `astro auth login` to authenticate more easily in the future.
 
 #### Make sure you're in the right place
@@ -248,7 +258,7 @@ To get ready for a deployment, make sure:
 - You're in the right Workspace
 - Your target deployment lives under that Workspace
 
-Follow our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-quickstart/) for more specific guidelines and commands.
+Follow our [CLI Getting Started Guide](https://www.astronomer.io/docs/cli-getting-started/) for more specific guidelines and commands.
 
 #### Deploy
 
@@ -276,4 +286,4 @@ Now that you're set up on Astronomer and familiar with our deployment flow, cons
 ### Additional Resources
 
 - [**Community Forum**](https://forum.astronomer.io): General Airflow + Astronomer FAQs
-- [**Technical Support**](https://support.astronomer.io): Individual platform or Airflow issues
+- [**Technical Support**](https://support.astronomer.io): Platform or Airflow issues

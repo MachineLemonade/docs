@@ -160,10 +160,10 @@ pipeline:
   push:
     image: astronomerio/ap-build:0.0.7
     commands:
-      - echo $${DOCKER_PASSWORD_TEST}
-      - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $${DOCKER_PASSWORD_TEST}
+      - echo $${SERVICE_ACCOUNT_KEY}
+      - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $${SERVICE_ACCOUNT_KEY}
       - docker push registry.gcp0001.us-east4.astronomer.io/infrared-photon-7780/airflow:ci-${DRONE_BUILD_NUMBER}
-    secrets: [ docker_password_test ]
+    secrets: [ SERVICE_ACCOUNT_KEY ]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
@@ -173,7 +173,7 @@ pipeline:
 
 #### CircleCI
 
-```
+```yaml
 # Python CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
@@ -210,7 +210,7 @@ jobs:
           command: |
             TAG=0.1.$CIRCLE_BUILD_NUM
             docker build -t registry.gcp0001.us-east4.astronomer.io/empty-isotope-6604/airflow:ci-$TAG .
-            docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $DOCKER_KEY
+            docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $SERVICE_ACCOUNT_KEY
             docker push registry.gcp0001.us-east4.astronomer.io/empty-isotope-6604/airflow:ci-$TAG
 
 workflows:
@@ -229,7 +229,7 @@ workflows:
 
 #### Jenkins Script
 
-```
+```yaml
 pipeline {
  agent any
    stages {
@@ -238,7 +238,7 @@ pipeline {
        steps {
          script {
            sh 'docker build -t registry.gcp0001.us-east4.astronomer.io/foo-bar-8077/airflow:ci-${BUILD_NUMBER} .'
-           sh 'docker login registry.gcp0001.us-east4.astronomer.io -u _ -p ${ASTRO_KEY}'
+           sh 'docker login registry.gcp0001.us-east4.astronomer.io -u _ -p ${SERVICE_ACCOUNT_KEY}'
            sh 'docker push registry.gcp0001.us-east4.astronomer.io/foo-bar-8077/airflow:ci-${BUILD_NUMBER}'
          }
        }
@@ -257,7 +257,7 @@ pipeline {
 
 If you are using [Bitbucket](https://bitbucket.org/), this script should work (courtesy of our friends at [Das42](https://www.das42.com/))
 
-```
+```yaml
 image: astronomerio/ap-build:0.0.7
 
 pipelines:
@@ -267,8 +267,8 @@ pipelines:
           name: Deploy to production
           deployment: production
           script:
-            - echo ${ASTRONOMER_PASSWORD}
-            - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p ${ASTRONOMER_PASSWORD}
+            - echo ${SERVICE_ACCOUNT_KEY}
+            - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p ${SERVICE_ACCOUNT_KEY}
             - docker push registry.gcp0001.us-east4.astronomer.io/infrared-photon-7780/airflow:ci-${BITBUCKET_BUILD_NUMBER}
           services:
             - docker
@@ -278,7 +278,7 @@ pipelines:
 ```
 
 #### Gitlab
-```
+```yaml
 astro_deploy:
   stage: deploy
   image: docker:latest
@@ -287,7 +287,7 @@ astro_deploy:
   script:
     - echo "Building container.."
     - docker build -t registry.gcp0001.us-east4.astronomer.io/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID .
-    - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $${SERVICE_ACCOUNT_SECRET}
+    - docker login registry.gcp0001.us-east4.astronomer.io -u _ -p $${SERVICE_ACCOUNT_KEY}
     - docker push registry.gcp0001.us-east4.astronomer.io/cometary-crater-7965/airflow:CI-$CI_PIPELINE_IID
   only:
     - master

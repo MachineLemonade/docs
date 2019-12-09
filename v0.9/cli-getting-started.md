@@ -84,7 +84,7 @@ Now that you have a project up, we'll need to make sure you're properly authenti
 To make sure you're authenticated, run the following:
 
 ```
-astro auth login astronomer.cloud
+astro auth login gcp0001.us-east4.astronomer.io
 ```
 
 **Note:** If you don't already have an account on our platform, running this command will automatically create one for you (and a default workspace as well) based on the name associated with your Google email address).
@@ -92,9 +92,9 @@ astro auth login astronomer.cloud
 If do already have an account on our app (app.astronomer.cloud), then press enter when you see something like:
 
 ```
- "Paolas-MBP-2:hello-astro paola$ astro auth login astronomer.cloud
+ "Paolas-MBP-2:hello-astro paola$ astro auth login gcp0001.us-east4.astronomer.io
  CLUSTER                             WORKSPACE                           
- astronomer.cloud                    4a6cb370-c361-440d-b02b-c90b07ef15f6
+gcp0001.us-east4.astronomer.io                    4a6cb370-c361-440d-b02b-c90b07ef15f6
 
  Switched cluster
 Username (leave blank for oAuth):
