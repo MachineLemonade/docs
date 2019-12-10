@@ -5,7 +5,7 @@ date: 2019-11-07 T00:00:00.000Z
 slug: "ci-cd"
 ---
 
-With Astronomer's support for Service accounts, you're able to deploy to an Apache Airflow deployment via a Continuous Integration/Continuous Delivery (CI/CD) tool of your choice.
+With Astronomer's support for Service accounts, you're able to push up code to an Apache Airflow deployment via a Continuous Integration/Continuous Delivery (CI/CD) tool of your choice.
 
 This guide will walk you through configuring your CI/CD pipeline with either Astronomer Cloud or Astronomer Enterprise.
 
