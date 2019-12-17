@@ -126,7 +126,7 @@ For example, a connection can be added with:
 docker exec -it SCHEDULER_CONTAINER bash -c "airflow connections -a --conn_id test_three  --conn_type ' ' --conn_login etl --conn_password pw --conn_extra {"account":"blah"}"
 ```
 
-## Environment Variables (--env)
+## Environment Variables
 
 Astronomer's v0.7.5-2 CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro dev start` with an `--env` flag as seen below:
 
