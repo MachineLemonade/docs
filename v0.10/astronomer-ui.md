@@ -77,3 +77,10 @@ For a breakdown the Airflow UI itself, check out [this guide](https://www.astron
 If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be able to see who has access to the Workspace. If you'd like to share access to other members of your organization, invite them to a workspace you're a part of. Once members, they'll have access to _all_ Airflow deployments under that workspace.
 
 ![Users](https://s3.amazonaws.com/astronomer-cdn/website/img/guides/user_dashboard.png)
+
+
+## Workspace Permissions
+
+Users in a Workspace can be given the role of a `Viewer`, `Editor`, or `Admin`. An exact breakdown of these roles can be found in the [User Roles and Permissions](https://www.astronomer.io/docs/rbac/) section.
+
+The permissions that each of these roles can be [customized for Astronomer Enterprise users](https://www.astronomer.io/docs/ee-configuring-permissions/). 
