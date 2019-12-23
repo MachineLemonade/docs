@@ -297,6 +297,9 @@ Now that you've successfully installed Astronomer, a new load balancer will have
 
 Navigate to your newly created load balancer and copy the DNS name: route and use this to create a new wildcard CNAME record in you DNS. If your base domain is *organization.io* your wildcard record should be *.organization.io* and will route traffic to your ELB using that DNS name.
 
+![aws-elb](https://assets.astronomer.io/website/img/guides/elb_storage.png)
+
+
 ## 12. Verify You Can Access the Orbit UI
 
 Go to `app.BASEDOMAIN` to see the Astronomer UI.
