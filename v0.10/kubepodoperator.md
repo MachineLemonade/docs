@@ -30,8 +30,13 @@ from airflow.contrib.operators.kubernetes_pod_operator import kubernetes_pod_ope
 Instantiate the operator based on your image and setup:
 
 ```python
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
+from airflow import configuration as conf
+...
+
+namespace = conf.get('kubernetes', 'NAMESPACE')
 k = kubernetes_pod_operator.KubernetesPodOperator(
-    namespace='astronomer-cloud-frigid-vacuum-0996',
+    namespace=namespace,
     image="ubuntu:16.04",
     cmds=["bash", "-cx"],
     arguments=["echo", "10", "echo pwd"],
@@ -43,9 +48,9 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
     get_logs=True)
 ```
 
-The KubePodOperator needs to know which namespace to run in and where to look for the config file.
-For Astronomer Cloud, your namespace on Kubernetes will be `astronomer-cloud-deployment_name` (e.g. `astronomer-cloud-frigid-vacuum-0996`)
-For Astronomer Enterprise, this would be be your `base-namespace-deployment` name (e.g. `astronomer-frigid-vacuum-0996`)
+The KubePodOperator needs to know which namespace to run in and where to look for the config file. For Astronomer Cloud, your namespace on Kubernetes will be astronomer-deployment_name (e.g. astronomer-frigid-vacuum-0996) For Astronomer Enterprise, this would be be your base-namespace-deployment name (e.g. astro-frigid-vacuum-0996). In both cases, the namespace is available in an environment variable as shown above.
+
+
 
 Set the `in_cluster` parameter to `True` in your code. This will tell your task to look inside the cluster for the Kubernetes config. In this setup, the workers are tied to a role with the right privileges in the cluster.
 
