@@ -83,4 +83,4 @@ If you navigate over to the `Users` tab of your Workspace Dashboard, you'll be a
 
 Users in a Workspace can be given the role of a `Viewer`, `Editor`, or `Admin`. An exact breakdown of these roles can be found in the [User Roles and Permissions](https://www.astronomer.io/docs/rbac/) section.
 
-The permissions that each of these roles can be [customized for Astronomer Enterprise users](https://www.astronomer.io/docs/ee-configuring-permissions/). 
+Astronomer Enterprise admins can [configure the exact permissions](https://www.astronomer.io/docs/ee-configuring-permissions/) for each Astronomer role.
