@@ -7,30 +7,28 @@ slug: "ee-managing-users"
 
 ## Overview
 
+In addition to the [Role-Based Access Control (RBAC) functionality](https://www.astronomer.io/docs/rbac/) core to our platform, Astronomer Enterprise allows teams to customize *how* they want users to create accounts on Astronomer and what they're able to do on the platform - both on Astronomer and Airflow.
+
+Read below for a high-level overview of user management and guidelines around Public Signups, role customization and adding System Admins.
+
 ### Adding Users to Astronomer
 
-When Astronomer Enterprise is first deployed, the first user to login is a "System Admin" by default. From there, a user on Astronomer Enterprise can be created by:
+When Astronomer Enterprise is first deployed, the first user to log in is granted "System Admin" permissions by default. From there, a user is created on Astronomer Enterprise by:
 
 - Invitation to a Workspace by a Workspace Admin
 - Invitation to Astronomer by a System Admin
 - Signing up via the Astronomer UI without an invitation (requires "Public Signups")
 
-On Astronomer, administrators have the option to either open the platform to public signups or limit signups to users invited by others via email.
+On Astronomer, administrators have the option to either open the platform to public signups or limit signups to users invited by others.
 
-Once a user exists on the platform, administrators can leverage Astronomer's Role Based Acess Control (RBAC) to manage users.
+### Managing Users
 
-### Role-Based Access Control
+Once on the platform, administrators can customize permissions across teams. On Astronomer, users can be assigned roles at 2 levels:
 
-On Astronomer, users can be assigned 2 levels of roles:
+1. Workspace Level (Viewer, Editor, Admin)
+2. System Level (System Admin)
 
-1. Workspace Role (Viewer, Editor, Admin)
-2. System Role (System Admin)
-
-Workspace roles apply to all Airflow Deployments within a single Workspace, whereas System Roles apply to *all* Workspaces across a single cluster.
-
-For a detailed breakdown of the 3 Workspace Level Roles on Astronomer (Viewer, Editor and Admin), refer to our [Role Based Access Control](https://www.astronomer.io/docs/rbac/) doc.
-
-For more information on Public Signups, role customization and assigning users System Admin permissions, read below.
+Workspace roles apply to all Airflow Deployments within a single Workspace, whereas System Roles apply to *all* Workspaces across a single cluster. For a detailed breakdown of the 3 Workspace Level Roles on Astronomer (Viewer, Editor and Admin), refer to our [Role Based Access Control](https://www.astronomer.io/docs/rbac/) doc.
 
 ## Public Signups
 
@@ -119,7 +117,7 @@ Keep in mind that:
 - Only existing System Admins can grant the SysAdmin role to another user
 - The user must have a verified email address and already exist in the system
 
-#### Query for a User's `uuid`
+#### Query for a User's ID
 
 The API call to add a System Admin on Astronomer requires the `uuid` of the user in question.
 
