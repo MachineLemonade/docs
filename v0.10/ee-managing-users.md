@@ -151,7 +151,7 @@ The mutation should look like:
 ```
 mutation AddAdmin {
   createSystemRoleBinding(
-    userId: $id
+    userId: $uuid
     role: SYSTEM_ADMIN
   ) {
     id
