@@ -5,17 +5,46 @@ date: 2019-10-28T00:00:00.000Z
 slug: "ee-managing-users"
 ---
 
-# Adding Users to Astronomer
+## Overview
 
-Once Astronomer Enterprise has been deployed, the first user to login is the System Admin by default. System Admins have access to the backend Grafana and Kibana dashboards and the platform-wide Admin view in our UI. 
+### Adding Users to Astronomer
 
-Additional users can be added to Astronomer through email invites or by enabling public sign-ups. Users that try to access Astronomer without being invited while public sign-ups are disabled will be met with an error.
+When Astronomer Enterprise is first deployed, the first user to login is a "System Admin" by default. From there, a user on Astronomer Enterprise can be created by:
 
-## Enabling Public Sign-Ups
+- Invitation to a Workspace by a Workspace Admin
+- Invitation to Astronomer by a System Admin
+- Signing up via the Astronomer UI without an invitation (requires "Public Signups")
 
-Public sign-ups allow any user with access to the platform URL to create an account on the platform. Enabling this flag may be ideal in cases where SMTP credentials are tough to acquire, as disabling public sign-ups requires that a user accept an email invite.
+On Astronomer, administrators have the option to either open the platform to public signups or limit signups to users invited by others via email.
 
-Public sign-ups are a configuration available in Astronomer's Houston API and can be enabled in the `config.yaml` file of your Helm chart by including the below yaml snippet:
+Once a user exists on the platform, administrators can leverage Astronomer's Role Based Acess Control (RBAC) to manage users.
+
+### Role-Based Access Control
+
+On Astronomer, users can be assigned 2 levels of roles:
+
+1. Workspace Role (Viewer, Editor, Admin)
+2. System Role (System Admin)
+
+Workspace roles apply to all Airflow Deployments within a single Workspace, whereas System Roles apply to *all* Workspaces across a single cluster.
+
+For a detailed breakdown of the 3 Workspace Level Roles on Astronomer (Viewer, Editor and Admin), refer to our [Role Based Access Control](https://www.astronomer.io/docs/rbac/) doc.
+
+For more information on Public Signups, role customization and assigning users System Admin permissions, read below.
+
+## Public Signups
+
+As noted above, Public Signups allow any user with access to the platform URL (the Astronomer UI) to create an account. If Public Signups are *disabled*, users that try to access Astronomer without an invitation from another user will be met with an error.
+
+In cases where SMTP credentials are difficult to acquire, enabling this flag might facilitate initial setup, as disabling public signups requires that a user accept an email invitation.
+
+### Enabling Public Signups
+
+Public Signups are a configuration available in Astronomer's Houston API and can be enabled in the `config.yaml` file of your Helm chart.
+
+#### Modify your config.yaml
+
+To *enable* Public Signups, add the following yaml snippet to your `config.yaml` file:
 
 ```
 astronomer:
@@ -43,6 +72,8 @@ astronomer:
 
 ```
 
+#### Run a Platform Upgrade
+
 To push the new configuration, run a platform upgrade from the `helm.astronomer.io` repo:
 
 ```
@@ -54,17 +85,11 @@ $ helm upgrade calico-crab -f config.yaml . --namespace astro
 
 ```
 
-## Platform Roles and Permissions 
+## Workspace Role Customization 
 
-A user on Astronomer Enterprise can be created by:
+On Astronomer Enterprise, platform administrators can customize the definitions of Workspace Level roles from the same `config.yaml` file.
 
-- Invitation to a Workspace via a Workspace Admin
-- Invitation via a SystemAdmin
-- Signing up via the Astronomer UI without an invitation (requires "Public Signups" be enabled)
-
-Once a user exists on the platform, they can be invited to additional Workspaces and assigned a role within that particular Workspace, which applies to all Airflow Deployments within that Workspace. For a breakdown of Workspace Level Roles, refer to our [Role Based Access Control](https://www.astronomer.io/docs/rbac/) doc.
-
-On Astronomer Enterprise, administrators of the platform can additionally customize the definitions of Workspace Level roles from the platform's config.yaml file. For guidelines, refer to our [Configuring Permissions](https://www.astronomer.io/docs/ee-configuring-permissions/) doc.
+For guidelines, refer to our [Configuring Permissions](https://www.astronomer.io/docs/ee-configuring-permissions/) doc.
 
 ## System Admin Configuration
 
@@ -141,4 +166,3 @@ To verify a user was successfully granted the SysAdmin role, ensure they can do 
 - Navigate to `grafana.BASEDOMAIN`
 - Navigate to `kibana.BASEDOMAIN`
 - Access the "Admin Settings" tab from the top right menu of the Astronomer UI
-
