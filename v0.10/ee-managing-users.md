@@ -127,7 +127,7 @@ To pull the user's `uuid`, run the following query with their email address as t
 
 ```
 query GetUser {
-  users(email:"name@mycompany.com")
+  users(email:"<name@mycompany.com>")
   {
     uuid
     roleBindings {role}   
@@ -151,7 +151,7 @@ The mutation should look like:
 ```
 mutation AddAdmin {
   createSystemRoleBinding(
-    userId: $uuid
+    userId: "<uuid>"
     role: SYSTEM_ADMIN
   ) {
     id
