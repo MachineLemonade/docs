@@ -9,7 +9,7 @@ slug: "kubepodoperator"
 
 A widely-used and performant alternative to Airflow's older Docker Operator, the [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) is able to natively launch a Kubernetes Pod to run an individual task - and terminate that pod when the task is completed. Similarly to the Kubernetes Executor, the operator uses the [Kube Python Client](https://github.com/kubernetes-client/python) to generate a Kubernetes API request that dynamically launches those individual pods.
 
-The KubePodOperator enables task-level resource configuration and is optimal for those who have custom Python dependencies. Ultimately, it allows Airflow to act as an orchestrator of your jobs - no matter the language they're written in.
+At its core, the KubernetesPodOperator is built to run any docker image with Airflow regardless of the language it's written in. It's the next generation of the DockerOperator and is optimized to leverage Kubernetes functionality, allowing users to specify resource requests and pass Kubernetes specific parameters into the task.
 
 ## Pre-Requisites
 
@@ -63,7 +63,7 @@ To successfully instantiate the operator, you'll need to make note of a few para
     - If you're running the KubePodOperator, it needs to know *which* namespace to run in and where to look for the config file
     - On Astronomer Cloud, your namespace is `astronomer-cloud-prod-deployment-release-name` (e.g. `astronomer-cloud-prod-frigid-vacuum-0996`)
     - On Astronomer Enterprise, this would be a combination of your platform namespace and your deployment's release name in the following format: `base-namespace-deployment-release-name` (e.g. `astronomer-frigid-vacuum-0996`)
-    - The namespace variable is injected into your deployment's [airflow.cfg](https://airflow.apache.org/howto/set-config.html) via a Kubernetes `ConfigMap` as seen [here](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/airflow/templates/configmap.yaml#L46-L47), which means you can programmatically import the namespace as an Environment Variable (shown above)
+    - The namespace variable is injected into your deployment's [airflow.cfg](https://airflow.apache.org/howto/set-config.html), which means you can programmatically import the namespace as an Environment Variable (shown above)
 2. `in_cluster`
     - Set the `in_cluster` parameter to `True` in your code
     - This will tell your task to look inside the cluster for the Kubernetes config. In this setup, your workers are tied to a role with the right privileges in the cluster
