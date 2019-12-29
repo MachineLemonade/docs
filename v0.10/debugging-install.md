@@ -149,5 +149,6 @@ $ kubectl create secret generic astronomer-bootstrap --from-literal connection="
 secret/astronomer-bootstrap created
 $ kubectl delete --all pods --namespace <namespace>
 ```
+
 Restarting the pods will force them to pick up the new value.
 
