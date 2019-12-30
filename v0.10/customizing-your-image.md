@@ -41,6 +41,41 @@ Dockerfile  airflow.cfg  airflow_settings.yaml  dags  include  logs  packages.tx
 bash-4.4$
 ```
 
+All default configurations can be found in the [Astronomer CLI repository](https://github.com/astronomer/astro-cli/blob/master/airflow/include/composeyml.go). Any of these settings can be overriden by adding a `docker-compose.override.yml` file in the Astronomer project directory.
+
+For example, adding another volume mount for a directory named `custom_depedencies` can be done with:
+
+```
+version: "2"
+services:
+  scheduler:
+    volumes:
+      - /home/astronomer_project/custom_depedencies:/usr/local/airflow/custom_depedencies:ro
+```
+
+Now when this image is built, changes made to files within the `custom_dependencies` directory will be picked up automatically the same way they are with files in the `dags` directory:
+
+```
+$ docker exec -it astronomer_project239673_scheduler_1 ls -al
+total 76
+drwxr-xr-x    1 astro    astro         4096 Dec 30 17:21 .
+drwxr-xr-x    1 root     root          4096 Dec 14  2018 ..
+-rw-rw-r--    1 root     root            38 Oct  8 00:07 .dockerignore
+-rw-rw-r--    1 root     root            31 Oct  8 00:07 .gitignore
+-rw-rw-r--    1 root     root            50 Oct  8 00:10 Dockerfile
+-rw-r--r--    1 astro    astro        20770 Dec 30 17:21 airflow.cfg
+drwxrwxr-x    2 1000     1000          4096 Oct  8 00:07 dags
+-rw-r--r--    1 root     root           153 Dec 30 17:21 docker-compose.override.yml
+drwxrwxr-x    2 1000     1000          4096 Oct  8 00:07 include
+drwxr-xr-x    4 astro    astro         4096 Oct  8 00:11 logs
+drwxr-xr-x    2 1000     1000          4096 Dec 30 17:15 custom_dependencies
+-rw-rw-r--    1 root     root             0 Oct  8 00:07 packages.txt
+drwxrwxr-x    2 1000     1000          4096 Oct  8 00:07 plugins
+-rw-rw-r--    1 root     root             0 Oct  8 00:07 requirements.txt
+-rw-r--r--    1 astro    astro         2338 Dec 30 17:21 unittests.cfg
+```
+
+
 ### Running Commands on Build
 
 Any extra commands you want to run when the image builds can be added in the `Dockerfile` as a `RUN` command - these will run as the last step in the image build.
