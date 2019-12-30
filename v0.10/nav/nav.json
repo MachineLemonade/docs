@@ -59,7 +59,8 @@
           "ee-installation-aks",
           "ee-installation-do",
           "ee-installation-openshift",
-          "ee-installation-general-kubernetes"
+          "ee-installation-general-kubernetes",
+          "debugging-install"
         ]
       },
       {
