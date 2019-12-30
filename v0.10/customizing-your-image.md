@@ -75,15 +75,16 @@ drwxrwxr-x    2 1000     1000          4096 Oct  8 00:07 plugins
 -rw-r--r--    1 astro    astro         2338 Dec 30 17:21 unittests.cfg
 ```
 
+**Note:** This will only affect how the image runs locally and will not have any impact on what gets built and deployed. 
 
 ### Running Commands on Build
 
 Any extra commands you want to run when the image builds can be added in the `Dockerfile` as a `RUN` command - these will run as the last step in the image build.
 
-For example, suppose I wanted to run `ls` when my image builds. My `Dockerfile` could look like:
+For example, suppose I wanted to run `ls` when my image builds. The `Dockerfile` would look like:
 
 ```
-FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild
+FROM astronomerinc/ap-airflow:0.8.2-1.10.3-onbuild
 RUN ls
 ```
 
