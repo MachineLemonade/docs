@@ -294,6 +294,8 @@ newbie-norse-prometheus-0                              1/1     Running     0    
 newbie-norse-registry-0                                1/1     Running     0          30m
 ```
 
+If you are seeing issues here, check out our [guide on debugging your installation](https://astronomer.io/docs/ee-debugging-install/)
+
 ## 11. Configure DNS
 
 Now that you've successfully installed Astronomer, a new load balancer will have spun up for your Kubernetes cluster. You will need to create a new CNAME record in your DNS to route traffic to the ELB.

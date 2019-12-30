@@ -345,6 +345,8 @@ newbie-norse-prometheus-0                              1/1     Running     0    
 newbie-norse-registry-0                                1/1     Running     0          30m
 ```
 
+If you are seeing issues here, check out our [guide on debugging your installation](https://astronomer.io/docs/ee-debugging-install/)
+
 ## 11. Access Astronomer's Orbit UI
 
 Go to app.BASEDOMAIN to see the Astronomer UI.
