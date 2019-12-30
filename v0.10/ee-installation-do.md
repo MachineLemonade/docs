@@ -15,9 +15,9 @@ _Deploy a Kubernetes native [Apache Airflow](https://airflow.apache.org/) platfo
 * [Helm v2.14.1](https://github.com/helm/helm/releases/tag/v2.14.1)
 * SMTP Creds (Mailgun, Sendgrid) or any service will  work!
 * Permissions to create / modify resources on Digital Ocean
-* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)!
+* A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide).
 
-*NOTE - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
+**Note:** You cannot use a self-signed certificate.
 
 ## 2. Choose a Suitable Domain
 All Astronomer services will be tied to a base domain of your choice. You will need the ability to add / edit DNS records under this domain. Here are some examples of accessible services when we use the base domain `astro.mydomain.com`:
@@ -35,6 +35,8 @@ Login to your DO account and navigate to Kubernetes -> Create Cluster:
 
 
 You'll probably want to use 3 6CPU 16GB of memory nodes. You can read more about our resource requirements [here](https://www.astronomer.io/docs/ee-configuring-resources/)!
+**Note:** - If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).*
+
 
 ### Connecting
 
@@ -114,6 +116,8 @@ $ KUBECONFIG="astro-do-test-kubeconfig.yaml" helm install --name <my-astro-db> s
 You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
 * Purchase a wildcard SSL certificate from your preferred vendor.
 * Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
+
+**Note:** You cannot use a self-signed certificate.
 
 ### Obtain a Free SSL Certificate from Let's Encrypt
 

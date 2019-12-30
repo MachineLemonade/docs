@@ -17,7 +17,8 @@ This guide describes the steps to install Astronomer on Amazon Web Services (AWS
 * Permissions to create/modify resources on AWS
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)
 
-> NOTE: If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).
+**Note:** You cannot use a self-signed certificate.
+
 
 ## 2. Choose a Suitable Domain
 
@@ -41,6 +42,7 @@ You'll need to spin up the [EKS Control Plane](https://aws.amazon.com/eks/) as w
 * If you are creating the EKS cluster from the UI **only the user who created the cluster will have kubectl access to the cluster**. To give more users `kubectl` access, you'll have to configure that manually. [This post](http://marcinkaszynski.com/2018/07/12/eks-auth.html) goes through how IAM plays with EKS.
 * You'll be able to see each of your underlying nodes in the EC2 console. We recommend using 3 [t2.2xlarge](https://aws.amazon.com/ec2/instance-types/) nodes as a starting cluster size. You are free to use whatever node types you'd like, but Astronomer takes ~11 CPUs and ~40GB of memory as the default overhead. You can customize the default resource requests (see step 9).
 
+**Note:** If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).
 
 ## 4. Create a Namespace and Configure Helm+Tiller
 
@@ -113,6 +115,9 @@ You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.
 
 * Purchase a wildcard SSL certificate from your preferred vendor.
 * Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
+
+**Note:** You cannot use a self-signed certificate.
+
 
 ### Obtain a Free SSL Certificate from Let's Encrypt
 

@@ -18,6 +18,8 @@ You will need to:
 * Ability to create a static IP address
 * Have a Kubernetes cluster running and be able to create resources in the cluster
 
+**Note:** You cannot use a self-signed certificate.
+
 ## 1. Select a Base Domain
 
 You need to choose a base domain for your Astronomer installation, something like astro.mydomain.com. Each Airflow cluster you install will be accessible at a URL like unique-name-airflow.astro.mydomain.com and the admin application will be installed to app.astro.mydomain.com, the Grafana dashboard will be installed to grafana.astro.mydomain.com etc.
@@ -101,6 +103,8 @@ $ helm install --name <my-astro-db> stable/postgresql --namespace <my-namespace>
 You'll need to obtain a wildcard SSL certificate for your domain (e.g. `*.astro.mydomain.com`). This allows for web endpoint protection and encrypted communication between pods. Your options are:
 * Purchase a wildcard SSL certificate from your preferred vendor.
 * Obtain a free 90-day wildcard certificate from [Let's Encrypt](https://letsencrypt.org/).
+
+**Note:** You cannot use a self-signed certificate.
 
 ### Obtain a Free SSL Certificate from Let's Encrypt
 

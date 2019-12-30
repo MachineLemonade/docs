@@ -17,7 +17,6 @@ This guide describes the steps to install Astronomer on Google Cloud Platform (G
 * Permissions to create / modify resources on Google Cloud Platform
 * A wildcard SSL cert (we'll show you how to create a free 90 day cert in this guide)!
 
-> Note: If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).
 
 ## 2. Choose a Suitable Domain
 
@@ -80,6 +79,9 @@ Create your Kubernetes cluster:
 ```
 $ gcloud container clusters create [CLUSTER_NAME] --zone [COMPUTE_ZONE] --machine-type n1-standard-8 --enable-autoscaling --max-nodes 10 --min-nodes 3
 ```
+
+**Note:** If you work with multiple Kubernetes environments, `kubectx` is an incredibly useful tool for quickly switching between Kubernetes clusters. Learn more [here](https://github.com/ahmetb/kubectx).
+
 
 ### Create a Static IP Address
 
