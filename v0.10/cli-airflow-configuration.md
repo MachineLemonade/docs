@@ -79,7 +79,7 @@ Airflow Webserver: http://localhost:8080/admin/
 Postgres Database: localhost:5432/postgres
 ```
 
-### Skipped Configurations
+## Skipped Configurations
 
 For Connections, if `conn_type` or `conn_uri` is not specified, that connection will be skipped.
 

@@ -26,6 +26,7 @@
     "contents": [
       "cli-quickstart",
       "customizing-your-image",
+      "cli-airflow-configuration",
       "logs-and-source-control",
       "cli-kubepodoperator",
       "build-from-private-repo",
