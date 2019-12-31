@@ -5,7 +5,7 @@ date: 2018-07-17T00:00:00.000Z
 slug: "customizing-your-image"
 ---
 
-### Customizing your Docker Image
+## Containers and Volumes
 
 Now that you've started running Airflow with the Astro CLI, there will be some Docker images running on your machine with their own mounted volumes.
 
@@ -41,7 +41,7 @@ Dockerfile  airflow.cfg  airflow_settings.yaml  dags  include  logs  packages.tx
 bash-4.4$
 ```
 
-### Running Commands on Build
+## Running Commands on Build
 
 Any extra commands you want to run when the image builds can be added in the `Dockerfile` as a `RUN` command - these will run as the last step in the image build.
 
@@ -52,7 +52,7 @@ FROM astronomerinc/ap-airflow:0.8.2-1.10.2-onbuild
 RUN ls
 ```
 
-### Adding Dependencies
+## Adding Dependencies
 
 Any additional python packages or OS level packages can be added in `requirements.txt` or `packages.txt`. For example, suppose I wanted to add `pymongo` into my Airflow instance.
 

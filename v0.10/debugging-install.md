@@ -8,7 +8,7 @@ slug: "debugging-install"
 
 If the Astronomer platform is not functioning after following the instructions in the installation guide for any specific environment, here are a few things to try:
 
-### Houston, Grafana, and Prisma stuck in CrashLoopBackOff
+## Houston, Grafana, and Prisma stuck in CrashLoopBackOff
 
 When deploying the base Astronomer platform, the only three pods that will connect directly to the database are Houston (API), Grafana, and Prisma. All other database connections will be created from Airflow deployments created on Astronomer.
 
