@@ -111,6 +111,22 @@ AIRFLOW__SMTP__SMTP_PASSWORD={ENTER_PASSWORD_FROM_STEP2A}
 AIRFLOW__SMTP__SMTP_MAIL_FROM={ENTER_FROM_EMAIL_HERE}
 ```
 
+### Usage
+The default encoding `us_ascii` is not supported by AWS SES. As such, set the optional EmailOperator charset parameter to `mime_charset='utf-8'`
+
+Example:
+```
+e1 = EmailOperator(
+ task_id='test-mail',
+ to='john.doe@yourdomain.com',
+ subject='test',
+ html_content=""" <h3>Email Test</h3> """,
+ mime_charset='utf-8',
+ dag=dag
+)
+```
+
+
 ## Triggering Alerts on DAG Run
 
 Email alerting set up via `email_on_failure` is handled at the task level. If a handful of your tasks fail for related reasons, you'll receive an individual email for each of those failures.
