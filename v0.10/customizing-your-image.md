@@ -164,7 +164,7 @@ docker exec -it SCHEDULER_CONTAINER bash -c "airflow connections -a --conn_id te
 
 ## Environment Variables
 
-Astronomer's v0.7.5-2 CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro dev start` with an `--env` flag as seen below:
+Astronomer's CLI comes with the ability to  bring in Environment Variables from a specified file by running `astro dev start` with an `--env` flag as seen below:
 
 ```
 astro dev start --env .env
