@@ -40,7 +40,7 @@
       "astronomer-ui",
       "create-deployment-deploying-code",
       "running-jobs-and-scaling",
-      "setting-up-airflow-emails",
+      "airflow-alerts",
       "kubepodoperator",
       "query-airflow-database",
       "rbac",

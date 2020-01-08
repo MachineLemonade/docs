@@ -1,3 +1,10 @@
+---
+title: "Configuring Permissions"
+description: "Applying custom permission mappings to roles in Astronomer Enterprise."
+date: 2019-11-16T00:00:00.000Z
+slug: "ee-kubernetes-executor"
+---
+
 Kubernetes Executor:
 
 - Solves static allocation issue with Celery
