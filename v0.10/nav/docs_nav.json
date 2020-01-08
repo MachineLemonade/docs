@@ -1,0 +1,332 @@
+[
+  {
+    "title": "Astronomer Overview",
+    "description": "An overview of the Astronomer platform",
+    "date": "2018-10-12T00:00:00",
+    "slug": "overview"
+  },
+  {
+    "menu": "Getting Started",
+    "contents": [
+      {
+        "menu": "Cloud",
+        "contents": [
+          {
+            "title": "Quickstart",
+            "description": "How to get up and running with Astronomer Cloud",
+            "date": "2018-10-12T00:00:00",
+            "slug": "getting-started"
+          },
+          {
+            "title": "Cloud FAQs",
+            "description": "Questions that we see often when customers are getting started on Astronomer Cloud.",
+            "date": "2019-11-07 T00:00:00.000Z",
+            "slug": "cloud-faq"
+          },
+          {
+            "title": "Cloud Pricing",
+            "description": "Documentation of our pricing structure and philosophy.",
+            "date": "2018-10-12T00:00:00",
+            "slug": "pricing"
+          },
+          {
+            "title": "Cloud Migration Kit",
+            "description": "Everything you need to know to migrate to Astronomer's newest Cloud.",
+            "date": "2018-10-12T00:00:00",
+            "slug": "cloud-migration"
+          }
+        ]
+      },
+      {
+        "menu": "Enterprise",
+        "contents": [
+          {
+            "title": "Enterprise Quickstart",
+            "description": "Quickstart with Astronomer Enterprise",
+            "date": "2018-07-17T00:00:00",
+            "slug": "ee-getting-started"
+          },
+          {
+            "title": "Enterprise FAQs",
+            "description": "Questions we see often during installation and preliminary use of our Enterprise product.",
+            "date": "2019-12-06T00:00:00",
+            "slug": "ee-faq"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "menu": "The Astro CLI",
+    "contents": [
+      {
+        "title": "CLI Quickstart",
+        "description": "Quickstart with the Astro CLI",
+        "date": "2019-10-29T00:00:00",
+        "slug": "cli-quickstart"
+      },
+      {
+        "title": "Customizing your Image",
+        "description": "Adding the right dependencies and packages to your image",
+        "date": "2018-07-17T00:00:00",
+        "slug": "customizing-your-image"
+      },
+      {
+        "title": "Adding Airflow Configuration with Astro CLI",
+        "description": "Set up Connections, Variables, and Pools programmatically with the Astro CLI.",
+        "date": "2019-11-07 T00:00:00.000Z",
+        "slug": "cli-airflow-configuration"
+      },
+      {
+        "title": "Logs and Source Control",
+        "description": "Getting Logs and checking into source control",
+        "date": "2018-10-12T00:00:00",
+        "slug": "logs-and-source-control"
+      },
+      {
+        "title": "Running KubePodOperator Locally",
+        "description": "How to set up a local instance of Kubernetes for testing your KubePodOperators",
+        "date": "2019-05-08T00:00:00",
+        "slug": "cli-kubepodoperator"
+      },
+      {
+        "title": "Build an Astronomer Image from a Private Repo",
+        "description": "This guide will walk you through installing keys and dependencies from a private Github Repo without exposing credentials",
+        "date": "2019-08-09T00:00:00",
+        "slug": "build-from-private-repo"
+      },
+      {
+        "title": "Customizing Built-in Alerts",
+        "description": "A guide to Astronomer's built-in alerting systems.",
+        "date": "2019-11-01 T00:00:00.000Z",
+        "slug": "alerts"
+      }
+    ]
+  },
+  {
+    "menu": "Using Astronomer",
+    "contents": [
+      {
+        "title": "The Astronomer UI",
+        "description": "A walkthrough of the Astronomer App",
+        "date": "2018-10-12T00:00:00",
+        "slug": "astronomer-ui"
+      },
+      {
+        "title": "Deploying Your Code",
+        "description": "Create your Airflow environment and push up your DAGs",
+        "date": "2018-07-17T00:00:00",
+        "slug": "create-deployment-deploying-code"
+      },
+      {
+        "title": "Running DAGs and Scaling",
+        "description": "A thorough breakdown of Apache Airflow's Executors: Celery, Local and Kubernetes.",
+        "date": "2019-03-04T00:00:00",
+        "slug": "running-jobs-and-scaling"
+      },
+      {
+        "title": "Airflow Alerts",
+        "description": "Deployment and Task-Level Alerting via Airflow on Astronomer",
+        "date": "2019-01-14T00:00:00",
+        "slug": "airflow-alerts"
+      },
+      {
+        "title": "KubernetesPodOperator on Astronomer",
+        "description": "How to run the KubernetesPodOperator on Astronomer",
+        "date": "2019-12-27T00:00:00",
+        "slug": "kubepodoperator"
+      },
+      {
+        "title": "Query the Airflow Database",
+        "description": "Guide on how to query Postgres, Airflow's underlying Database, on Astronomer",
+        "date": "2019-06-03T00:00:00",
+        "slug": "query-airflow-database"
+      },
+      {
+        "title": "User Roles and Permissions",
+        "description": "Using RBAC with Astronomer",
+        "date": "2019-05-28T00:00:00",
+        "slug": "rbac"
+      },
+      {
+        "title": "Deployment-Level Logs",
+        "description": "How to access Worker, Scheduler, and Webserver Logs in the Astronomer UI",
+        "date": "2019-06-17T00:00:00",
+        "slug": "deployment-level-logs"
+      }
+    ]
+  },
+  {
+    "menu": "Enterprise Edition",
+    "contents": [
+      {
+        "title": "Overview of Astronomer Enterprise",
+        "date": "2018-10-12T00:00:00",
+        "slug": "ee-overview",
+        "note": "Consider updating https://github.com/astronomer/astronomer when you update this doc"
+      },
+      {
+        "menu": "Installation",
+        "contents": [
+          {
+            "title": "GCP GKE",
+            "description": "Installing Astronomer on GCP GKE",
+            "date": "2019-03-15T00:00:00",
+            "slug": "ee-installation-gke"
+          },
+          {
+            "title": "AWS EKS",
+            "description": "Installing Astronomer on AWS EKS",
+            "date": "2018-10-12T00:00:00",
+            "slug": "ee-installation-eks"
+          },
+          {
+            "title": "Azure AKS",
+            "description": "Installing Astronomer on Azure's AKS.",
+            "date": "2018-10-12T00:00:00",
+            "slug": "ee-installation-aks"
+          },
+          {
+            "title": "Digital Ocean Kubernetes",
+            "description": "Installing Astronomer on Digital Ocean's Kubernetes",
+            "date": "2018-10-12T00:00:00",
+            "slug": "ee-installation-do"
+          },
+          {
+            "title": "Openshift Kubernetes",
+            "description": "Installing Astronomer on OpenShift",
+            "date": "2019-10-11T00:00:00",
+            "slug": "ee-installation-openshift"
+          },
+          {
+            "title": "General Kubernetes",
+            "description": "Installing Astronomer Enterprise to your Kubernetes cluster.",
+            "date": "2018-10-12T00:00:00",
+            "slug": "ee-installation-general-kubernetes"
+          },
+          {
+            "title": "Debugging Your Installation",
+            "description": "Common issues deploying Astronomer",
+            "date": "2018-07-17T00:00:00",
+            "slug": "debugging-install"
+          }
+        ]
+      },
+      {
+        "menu": "Customizing Your Install",
+        "contents": [
+          {
+            "title": "Integrating Auth Systems",
+            "description": "Integrating Astronomer with OIDC Providers",
+            "date": "2019-04-21T00:00:00",
+            "slug": "ee-integrating-auth-systems"
+          },
+          {
+            "title": "Configuring Resources with Helm",
+            "description": "Change your platform's default resources",
+            "date": "2018-07-17T00:00:00",
+            "slug": "ee-configuring-resources"
+          },
+          {
+            "title": "Single Namespace Mode",
+            "description": "Deploying Astronomer in one namespace",
+            "date": "2018-07-17T00:00:00",
+            "slug": "ee-single-namespace-mode"
+          },
+          {
+            "title": "Configuring a Registry Back End",
+            "description": "Configuring a Registry Back End",
+            "date": "2019-06-26T00:00:00",
+            "slug": "ee-registry-backend"
+          }
+        ]
+      },
+      {
+        "menu": "Administration",
+        "contents": [
+          {
+            "title": "The Houston API Playground",
+            "description": "Using The GraphQL Playground.",
+            "date": "2018-10-12T00:00:00",
+            "slug": "houston-api"
+          },
+          {
+            "title": "Metrics",
+            "description": "Metrics in Astronomer Enterprise.",
+            "date": "2018-10-12T00:00:00",
+            "slug": "ee-metrics"
+          },
+          {
+            "title": "Using Kibana",
+            "description": "Using Kibana for your Airflow Logs",
+            "date": "2018-07-17T00:00:00",
+            "slug": "ee-kibana"
+          },
+          {
+            "title": "Using kubectl",
+            "description": "Using kubectl",
+            "date": "2018-10-12T00:00:00",
+            "slug": "ee-kubectl"
+          },
+          {
+            "title": "Pulling Postgres Credentials",
+            "description": "How to get Credentials to access Metadata for an Airflow Deployment on Astronomer",
+            "date": "2018-08-24T00:00:00",
+            "slug": "ee-administration-postgres-creds"
+          },
+          {
+            "title": "Upgrading Astronomer",
+            "description": "A guide to upgrading Astronomer on Enterprise",
+            "date": "2018-08-23T00:00:00",
+            "slug": "ee-upgrade-guide"
+          },
+          {
+            "title": "Migrating An Airflow Deployment to Astronomer",
+            "date": "2018-10-12T00:00:00",
+            "slug": "migrating-airflow-to-astronomer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "menu": "Integrating Services",
+    "contents": [
+      {
+        "title": "CI/CD",
+        "description": "Using CI/CD with Astronomer.",
+        "date": "2019-11-07 T00:00:00.000Z",
+        "slug": "ci-cd"
+      },
+      {
+        "title": "Grant Astronomer Access to your VPC",
+        "description": "How to grant Astronomer Cloud access to sources in your VPC",
+        "date": "2019-05-18T00:00:00",
+        "slug": "vpc-access"
+      }
+    ]
+  },
+  {
+    "menu": "Resources",
+    "contents": [
+      {
+        "title": "Security Model",
+        "description": "The Astronomer Security Model",
+        "date": "2018-10-12T00:00:00",
+        "slug": "security-model"
+      },
+      {
+        "title": "Release Notes",
+        "description": "Documentation of product updates.",
+        "date": "2018-10-12T00:00:00",
+        "slug": "release-notes"
+      },
+      {
+        "title": "Support",
+        "description": "Documentation of our Support system.",
+        "date": "2018-10-12T00:00:00",
+        "slug": "support"
+      }
+    ]
+  }
+]
