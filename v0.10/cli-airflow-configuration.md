@@ -1,5 +1,5 @@
 ---
-title: "Adding Airflow Configuration with Astro CLI"
+title: "Adding Airflow Configurations with Astro CLI"
 description: "Set up Connections, Variables, and Pools programmatically with the Astro CLI."
 date: 2019-11-07 T00:00:00.000Z
 slug: "cli-airflow-configuration"
