@@ -9,7 +9,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 You can read more about it here https://www.terraform.io/intro/index.html
 
-## Install Astronomer with Terraform
+### Install Astronomer with Terraform
 
 Astronomer’s terraform scripts can be used to automate the provisioning of a production grade Airflow environment.
 
@@ -23,7 +23,7 @@ The [Astronomer Enterprise module for AWS](https://registry.terraform.io/modules
 More detailed information can also be found here:
 https://github.com/astronomer/terraform-aws-astronomer-enterprise
 
-### Prerequisites
+## Prerequisites
 
 Install the necessary tools:
 
@@ -34,9 +34,9 @@ Install the necessary tools:
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) *Use version 1.12.3*
 
 
-### Installation
+## Installation
 
-#### Configure AWS CLI
+### Configure AWS CLI
 Run the following command and enter the appropriate values when prompted. If you don't know the `AWS Access Key ID` or `AWS Secret Access Key` for your account, contact your AWS admin.
 
 ```
@@ -47,7 +47,7 @@ Default region name [None]: <region>
 Default output format [None]: json
 ```
 
-#### Create Config file
+### Create Config file
 
 Create a config file to use to store the state of the terraform.
 
@@ -85,7 +85,7 @@ A full list of parameters can be found on the [Terraform Registry](https://regis
 
 **Note:** The S3 backend is optional for state files. If not provided, state files will be stored locally.
 
-#### Run Terraform
+## Run Terraform
 * `terraform init`
 * `terraform apply`
 
@@ -99,7 +99,7 @@ $ KUBECONFIG=./kubeconfig kubectl get pods -n astronomer
 $ KUBECONFIG=./kubeconfig helm ls
 ```
 
-#### Generate your config file
+## Generate your config file
 
 Once the terraform has successfully run, get the name of your release:
 
@@ -113,7 +113,7 @@ $ KUBECONFIG=./kubeconfig helm get values zealous-coral >> config.yaml
 
 This `config.yaml` file will contain the settings applied to your Astronomer deployment. 
 
-#### Modifying your configuration
+### Modifying your configuration
 
 Once the `config.yaml` file has been generated, custom settings can be deployed.
 
@@ -155,7 +155,7 @@ $ KUBECONFIG=./kubeconfig helm upgrade <platform-name> -f config.yaml <path-to-c
 [Upgrades](https://www.astronomer.io/docs/ee-upgrade-guide/), [integrating auth systems](https://www.astronomer.io/docs/ee-integrating-auth-systems/), and other such changes can be applied in a similar manner.
 
 
-### FAQs:
+## FAQs:
 
 - Which subnets and VPCs will this deploy to?
 

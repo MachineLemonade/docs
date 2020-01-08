@@ -43,8 +43,8 @@ astronomer:
         # System
         #
         - id: SYSTEM_ADMIN
-            name: System Admin
-            permissions:
+          name: System Admin
+          permissions:
             - system.deployments.get
             - system.deployments.update
             - system.deployments.delete
@@ -67,8 +67,8 @@ astronomer:
             - system.airflow.admin
 
         - id: SYSTEM_EDITOR
-            name: System Editor
-            permissions:
+          name: System Editor
+          permissions:
             - system.iam.update
             - system.monitoring.get
             - system.serviceAccounts.get
@@ -76,8 +76,8 @@ astronomer:
             - system.airflow.user
 
         - id: SYSTEM_VIEWER
-            name: System Viewer
-            permissions:
+          name: System Viewer
+          permissions:
             - system.monitoring.get
             - system.serviceAccounts.get
             - system.airflow.get
@@ -86,8 +86,8 @@ astronomer:
         # Workspace
         #
         - id: WORKSPACE_ADMIN
-            name: Workspace Admin
-            permissions:
+          name: Workspace Admin
+          permissions:
             - workspace.billing.update
             - workspace.config.update
             - workspace.config.delete
@@ -102,8 +102,8 @@ astronomer:
             - workspace.users.get
 
         - id: WORKSPACE_EDITOR
-            name: Workspace Editor
-            permissions:
+          name: Workspace Editor
+          permissions:
             - workspace.config.update
             - workspace.invites.get
             - workspace.deployments.get
@@ -115,8 +115,8 @@ astronomer:
             - workspace.users.get
 
         - id: WORKSPACE_VIEWER
-            name: Workspace Viewer
-            permissions:
+          name: Workspace Viewer
+          permissions:
             - workspace.deployments.get
             - workspace.invites.get
             - workspace.serviceAccounts.get
@@ -126,8 +126,8 @@ astronomer:
         # Deployment
         #
         - id: DEPLOYMENT_ADMIN
-            name: Deployment Admin
-            permissions:
+          name: Deployment Admin
+          permissions:
             - deployment.airflow.user
             - deployment.airflow.get
             - deployment.config.get
@@ -143,8 +143,8 @@ astronomer:
             - deployment.serviceAccounts.delete
 
         - id: DEPLOYMENT_EDITOR
-            name: Deployment Editor
-            permissions:
+          name: Deployment Editor
+          permissions:
             - deployment.airflow.user
             - deployment.airflow.get
             - deployment.config.get
@@ -157,8 +157,8 @@ astronomer:
             - deployment.serviceAccounts.delete
 
         - id: DEPLOYMENT_VIEWER
-            name: Deployment Viewer
-            permissions:
+          name: Deployment Viewer
+          permissions:
             - deployment.airflow.get
             - deployment.config.get
             - deployment.logs.get

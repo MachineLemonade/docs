@@ -26,6 +26,7 @@
     "contents": [
       "cli-quickstart",
       "customizing-your-image",
+      "cli-airflow-configuration",
       "logs-and-source-control",
       "cli-kubepodoperator",
       "build-from-private-repo",
@@ -39,7 +40,7 @@
       "astronomer-ui",
       "create-deployment-deploying-code",
       "running-jobs-and-scaling",
-      "setting-up-airflow-emails",
+      "airflow-alerts",
       "kubepodoperator",
       "query-airflow-database",
       "rbac",

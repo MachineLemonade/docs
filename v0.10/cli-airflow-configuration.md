@@ -1,5 +1,5 @@
 ---
-title: "Adding Airflow Configuration with Astro CLI"
+title: "Adding Airflow Configurations with Astro CLI"
 description: "Set up Connections, Variables, and Pools programmatically with the Astro CLI."
 date: 2019-11-07 T00:00:00.000Z
 slug: "cli-airflow-configuration"
@@ -79,7 +79,7 @@ Airflow Webserver: http://localhost:8080/admin/
 Postgres Database: localhost:5432/postgres
 ```
 
-### Skipped Configurations
+## Skipped Configurations
 
 For Connections, if `conn_type` or `conn_uri` is not specified, that connection will be skipped.
 
