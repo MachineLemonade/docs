@@ -1,7 +1,7 @@
 [
   {
-    "title": "Overview",
-    "description": "An overview of the platform",
+    "title": "Astronomer Overview",
+    "description": "An overview of the Astronomer platform",
     "date": "2018-10-12T00:00:00",
     "slug": "overview"
   },
@@ -20,7 +20,7 @@
           {
             "title": "Cloud FAQs",
             "description": "Questions that we see often when customers are getting started on Astronomer Cloud.",
-            "date": "2018-10-12T00:00:00",
+            "date": "2019-11-07 T00:00:00.000Z",
             "slug": "cloud-faq"
           },
           {
@@ -30,9 +30,9 @@
             "slug": "pricing"
           },
           {
-            "title": "Cloud Migration",
+            "title": "Cloud Migration Kit",
             "description": "Everything you need to know to migrate to Astronomer's newest Cloud.",
-            "date": "2019-11-12T00:00:00",
+            "date": "2018-10-12T00:00:00",
             "slug": "cloud-migration"
           }
         ]
@@ -121,7 +121,7 @@
       {
         "title": "KubernetesPodOperator on Astronomer",
         "description": "How to run the KubernetesPodOperator on Astronomer",
-        "date": "2019-04-29T00:00:00",
+        "date": "2019-12-27T00:00:00",
         "slug": "kubepodoperator"
       },
       {
@@ -153,30 +153,19 @@
         "slug": "ee-overview"
       },
       {
-        "title": "Data Management",
-        "date": "2018-10-12T00:00:00",
-        "slug": "ee-data-management"
-      },
-      {
         "menu": "Installation",
         "contents": [
           {
             "title": "GCP GKE",
-            "description": "Installing Astronomer on GCP GKE.",
+            "description": "Installing Astronomer on GCP GKE",
             "date": "2019-03-15T00:00:00",
             "slug": "ee-installation-gke"
           },
           {
             "title": "AWS EKS",
-            "description": "Installing Astronomer on AWS EKS.",
+            "description": "Installing Astronomer on AWS EKS",
             "date": "2018-10-12T00:00:00",
             "slug": "ee-installation-eks"
-          },
-          {
-            "title": "AWS EKS with Terraform",
-            "description": "Installing Astronomer on AWS EKS with our Terraform modules.",
-            "date": "2018-10-12T00:00:00",
-            "slug": "ee-installation-terraform-aws"
           },
           {
             "title": "Azure AKS",
@@ -193,7 +182,7 @@
           {
             "title": "Openshift Kubernetes",
             "description": "Installing Astronomer on OpenShift",
-            "date": "2018-10-12T00:00:00",
+            "date": "2019-10-11T00:00:00",
             "slug": "ee-installation-openshift"
           },
           {
@@ -232,22 +221,16 @@
             "slug": "ee-registry-backend"
           },
           {
-            "title": "Configuring Permissions",
-            "description": "Applying custom permission mappings to roles in Astronomer Enterprise.",
-            "date": "2019-11-16T00:00:00",
-            "slug": "ee-configuring-permissions"
+            "title": "Customizing Built-in Alerts",
+            "description": "A guide to Astronomer's built-in alerting systems.",
+            "date": "2019-11-01 T00:00:00.000Z",
+            "slug": "alerts"
           }
         ]
       },
       {
         "menu": "Administration",
         "contents": [
-          {
-            "title": "Managing Users on Astronomer Enterprise",
-            "description": "Managing Users",
-            "date": "2019-10-28T00:00:00.000Z",
-            "slug": "ee-managing-users"
-          },
           {
             "title": "The Houston API Playground",
             "description": "Using The Graphql Playground.",
@@ -299,7 +282,7 @@
       {
         "title": "CI/CD",
         "description": "Using CI/CD with Astronomer.",
-        "date": "2018-10-12T00:00:00",
+        "date": "2019-11-07 T00:00:00.000Z",
         "slug": "ci-cd"
       },
       {

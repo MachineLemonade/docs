@@ -10,7 +10,7 @@ for filename in os.listdir("."):
 
 
 for version in versions:
-    with open(version + '/nav/nav.json', 'r') as f:
+    with open(version + '/nav/nav_structure.json', 'r') as f:
         nav = json.load(f)
 
     files = {}
@@ -40,7 +40,7 @@ for version in versions:
         if isinstance(o, (datetime.date, datetime.datetime)):
             return o.isoformat()
 
-    path = "../website/src/layouts/" + version + "/docs_nav.json"
+    path = "./" + version + "/nav/docs_nav.json"
     print("Creating... " + path)
     f = open(path, "w")
     f.write(json.dumps(nav_meta, indent=2, default=encoder))

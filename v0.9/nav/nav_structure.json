@@ -1,0 +1,104 @@
+[
+  "overview",
+  {
+    "menu": "Getting Started",
+    "contents": [
+      {
+        "menu": "Cloud",
+        "contents": [
+          "getting-started",
+          "cloud-faq",
+          "pricing",
+          "cloud-migration"
+        ]
+      },
+      {
+        "menu": "Enterprise",
+        "contents": [
+          "ee-getting-started",
+          "ee-faq"
+        ]
+      }
+    ]
+  },
+  {
+    "menu": "The Astro CLI",
+    "contents": [
+      "cli-quickstart",
+      "customizing-your-image",
+      "logs-and-source-control",
+      "cli-kubepodoperator",
+      "build-from-private-repo"
+    ]
+  },
+
+  {
+    "menu": "Using Astronomer",
+    "contents": [
+      "astronomer-ui",
+      "create-deployment-deploying-code",
+      "running-jobs-and-scaling",
+      "airflow-alerts",
+      "kubepodoperator",
+      "query-airflow-database",
+      "rbac",
+      "deployment-level-logs"
+    ]
+  },
+
+  {
+    "menu": "Enterprise Edition",
+    "contents": [
+      "ee-overview",
+      {
+        "menu": "Installation",
+        "contents": [
+          "ee-installation-gke",
+          "ee-installation-eks",
+          "ee-installation-aks",
+          "ee-installation-do",
+          "ee-installation-openshift",
+          "ee-installation-general-kubernetes"
+        ]
+      },
+      {
+        "menu": "Customizing Your Install",
+        "contents": [
+          "ee-integrating-auth-systems",
+          "ee-configuring-resources",
+          "ee-single-namespace-mode",
+          "ee-registry-backend",
+          "alerts"
+        ]
+      },
+      {
+        "menu": "Administration",
+        "contents": [
+          "houston-api",
+          "ee-metrics",
+          "ee-kibana",
+          "ee-kubectl",
+          "ee-administration-postgres-creds",
+          "ee-upgrade-guide",
+          "migrating-airflow-to-astronomer"
+        ]
+      }
+    ]
+  },
+
+  {
+    "menu": "Integrating Services",
+    "contents": [
+      "ci-cd",
+      "vpc-access"
+    ]
+  },
+  {
+    "menu": "Resources",
+    "contents": [
+      "security-model",
+      "release-notes",
+      "support"
+    ]
+  }
+]

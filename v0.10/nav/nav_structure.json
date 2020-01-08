@@ -26,9 +26,11 @@
     "contents": [
       "cli-quickstart",
       "customizing-your-image",
+      "cli-airflow-configuration",
       "logs-and-source-control",
       "cli-kubepodoperator",
-      "build-from-private-repo"
+      "build-from-private-repo",
+      "alerts"
     ]
   },
 
@@ -38,7 +40,7 @@
       "astronomer-ui",
       "create-deployment-deploying-code",
       "running-jobs-and-scaling",
-      "setting-up-airflow-emails",
+      "airflow-alerts",
       "kubepodoperator",
       "query-airflow-database",
       "rbac",
@@ -58,7 +60,8 @@
           "ee-installation-aks",
           "ee-installation-do",
           "ee-installation-openshift",
-          "ee-installation-general-kubernetes"
+          "ee-installation-general-kubernetes",
+          "debugging-install"
         ]
       },
       {
@@ -67,8 +70,7 @@
           "ee-integrating-auth-systems",
           "ee-configuring-resources",
           "ee-single-namespace-mode",
-          "ee-registry-backend",
-          "alerts"
+          "ee-registry-backend"
         ]
       },
       {
