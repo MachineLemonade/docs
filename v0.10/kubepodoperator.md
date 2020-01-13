@@ -7,7 +7,9 @@ slug: "kubepodoperator"
 
 ## Overview
 
-A widely-used and performant alternative to Airflow's older Docker Operator, the [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) is able to natively launch a Kubernetes Pod to run an individual task - and terminate that pod when the task is completed. Similarly to the Kubernetes Executor, the operator uses the [Kube Python Client](https://github.com/kubernetes-client/python) to generate a Kubernetes API request that dynamically launches those individual pods.
+A widely-used and performant alternative to Airflow's older DockerOperator, the [KubernetesPodOperator](https://github.com/apache/airflow/blob/v1-10-stable/airflow/contrib/operators/kubernetes_pod_operator.py) is able to natively launch a Kubernetes Pod to run an individual task - and terminate that pod when the task is completed. Similarly to the Kubernetes Executor, the operator uses the [Kube Python Client](https://github.com/kubernetes-client/python) to generate a Kubernetes API request that dynamically launches those individual pods.
+
+The KubePodOperator enables task-level resource configuration and is optimal for those who have custom Python dependencies. Ultimately, it allows Airflow to act a job orchestrator - no matter the language those jobs are written in.
 
 At its core, the KubernetesPodOperator is built to run any docker image with Airflow regardless of the language it's written in. It's the next generation of the DockerOperator and is optimized to leverage Kubernetes functionality, allowing users to specify resource requests and pass Kubernetes specific parameters into the task.
 
@@ -61,7 +63,7 @@ To successfully instantiate the operator, you'll need to make note of a few para
 1. `namespace`
    - On Astronomer, each Airflow deployment sits on top of a corresponding [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
     - If you're running the KubePodOperator, it needs to know *which* namespace to run in and where to look for the config file
-    - On Astronomer Cloud, your namespace is `astronomer-cloud-prod-deployment-release-name` (e.g. `astronomer-cloud-prod-frigid-vacuum-0996`)
+    - On Astronomer Cloud, your namespace is `astronomer-cloud-deployment-release-name` (e.g. `astronomer-cloud-frigid-vacuum-0996`)
     - On Astronomer Enterprise, this would be a combination of your platform namespace and your deployment's release name in the following format: `base-namespace-deployment-release-name` (e.g. `astronomer-frigid-vacuum-0996`)
     - The namespace variable is injected into your deployment's [airflow.cfg](https://airflow.apache.org/howto/set-config.html), which means you can programmatically import the namespace as an Environment Variable (shown above)
 2. `in_cluster`
@@ -166,7 +168,7 @@ If you want to pull images from a private registry, you may so on both Astronome
 
 To pull images from a Private Registry on Astronomer Cloud, follow the guidelines below.
 
-1. Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). 
+**1.** Pull a `dockerconfigjson` file with your existing Docker credentials by following [this Kubernetes guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). 
 
 The command will look something like:
 
@@ -186,21 +188,21 @@ The output should be something like:
 }
 ```
 
-2. Once you have that JSON output, reach out to us via our [Support Portal](support.astronomer.io).
+**2.** Once you have that JSON output, reach out to us via our [Support Portal](support.astronomer.io).
 
 With the output you send over, we'll create a secret in your namespace in the following format: `deployment-release-name-private-registry​`
 
-3. You'll be able to call that secret in your KubePodOperator by specifying `imagePullSecrets`
+**3.** You'll be able to call that secret in your KubePodOperator by specifying `imagePullSecrets`
 
 ### Astronomer Enterprise
 
 To pull images from a Private Registry on Astronomer Enterprise, follow the guidelines below.
 
-1. Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide] (step 1 above)
+**1.** Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) (step 1 above)
 
-2. Follow [this Kubernetes doc]((https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) to add that secret to your namespace
+**2.** Follow [this Kubernetes doc](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) to add that secret to your namespace
 
-3. Call that secret in your KubePodOperator by specifying `imagePullSecrets`
+**3.** Call that secret in your KubePodOperator by specifying `imagePullSecrets`
 
 ## Local Testing
 

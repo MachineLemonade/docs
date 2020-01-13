@@ -168,7 +168,7 @@ If you want to pull images from a private registry, you may so on both Astronome
 
 To pull images from a Private Registry on Astronomer Cloud, follow the guidelines below.
 
-1. Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). 
+**1.** Pull a `dockerconfigjson` file with your existing Docker credentials by following [this Kubernetes guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials). 
 
 The command will look something like:
 
@@ -188,21 +188,21 @@ The output should be something like:
 }
 ```
 
-2. Once you have that JSON output, reach out to us via our [Support Portal](support.astronomer.io).
+**2.** Once you have that JSON output, reach out to us via our [Support Portal](support.astronomer.io).
 
 With the output you send over, we'll create a secret in your namespace in the following format: `deployment-release-name-private-registry​`
 
-3. You'll be able to call that secret in your KubePodOperator by specifying `imagePullSecrets`
+**3.** You'll be able to call that secret in your KubePodOperator by specifying `imagePullSecrets`
 
 ### Astronomer Enterprise
 
 To pull images from a Private Registry on Astronomer Enterprise, follow the guidelines below.
 
-1. Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide] (step 1 above)
+**1.** Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) (step 1 above)
 
-2. Follow [this Kubernetes doc]((https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) to add that secret to your namespace
+**2.** Follow [this Kubernetes doc](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) to add that secret to your namespace
 
-3. Call that secret in your KubePodOperator by specifying `imagePullSecrets`
+**3.** Call that secret in your KubePodOperator by specifying `imagePullSecrets`
 
 ## Local Testing
 
