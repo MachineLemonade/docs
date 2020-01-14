@@ -9,7 +9,7 @@ slug: "airflow-alerts"
 
 Airflow emails are a useful way to get notified of DAG retries, failures, and anything else you want to custom set through the [email util](https://github.com/apache/airflow/blob/master/airflow/utils/email.py). By default, Astronomer does not bundle in a SMTP service to send emails through Airflow, but there are a number of easy (and free) options you can incorporate.
 
-This guide will walk through setup with 2 services, equivalent in functionality:
+This guide will walk through setup with two services, equivalent in functionality:
 
 1. Sendgrid
 2. Amazon's Simple Email Service (SES)
