@@ -51,7 +51,7 @@ astronomer:
 ```
 
 
-**3.** Once you have your `config.yaml` updated, you can propigate these changes to your cluster by running the following command:
+**3.** Once you have your `config.yaml` updated, you can propagate these changes to your cluster by running the following command:
 
 ```bash
 helm upgrade <platform-name> -f config.yaml . --namespace <namespace>
