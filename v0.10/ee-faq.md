@@ -43,10 +43,6 @@ We provide [a terraform module](https://registry.terraform.io/modules/astronomer
 
 You may have special requirements of your infrastructure such that you want to set up Kubernetes on your own, then install Astronomer with Helm. In that case, you can use the Helm chart. The [latest stable version](https://github.com/astronomer/helm.astronomer.io) is v0.10.3.
 
-### Helm-less roadmap
-
-Astronomer is working to develop a first-class, helm-less Astronomer/Airflow solution that will function within a shared Openshift environment, within a single namespace. We expect this to be available sometime in 2020. Contact us if you'd like to be an alpha tester.
-
 ### How can we integrate this setup with LDAP?
 
 See https://www.astronomer.io/docs/ee-integrating-auth-systems/
