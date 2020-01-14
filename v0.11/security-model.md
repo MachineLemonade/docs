@@ -1,6 +1,6 @@
 ---
 title: "Security Model"
-description: "The Astronomer Security Model"
+description: "Security on Astronomer Cloud and Astronomer Enterprise."
 date: 2018-10-12T00:00:00.000Z
 slug: "security-model"
 ---
