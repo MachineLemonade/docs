@@ -1,6 +1,6 @@
 ---
-title: "Switching from Google Cloud Composer"
-description: "How to easily transition your Airflow project from Google Cloud Composer"
+title: "Google Composer Switch Guide"
+description: "How to switch from Google Cloud Composer to Astronomer."
 date: 2019-04-29T00:00:00.000Z
 slug: "switching-from-google-composer"
 ---
