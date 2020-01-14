@@ -57,4 +57,3 @@ astronomer:
 helm upgrade <platform-name> -f config.yaml . --namespace <namespace>
 ```
 
-             
