@@ -1,6 +1,6 @@
 ---
-title: "Grant Astronomer Access to your VPC"
-description: "How to grant Astronomer Cloud access to sources in your VPC"
+title: "VPC Access"
+description: "How to grant Astronomer Cloud access to your VPC."
 date: 2019-05-18T00:00:00.000Z
 slug: "vpc-access"
 ---
