@@ -1,6 +1,6 @@
 ---
 title: "Support"
-description: "Documentation of our Support system."
+description: "An overview of Astronomer support options."
 date: 2018-10-12T00:00:00.000Z
 slug: "support"
 ---

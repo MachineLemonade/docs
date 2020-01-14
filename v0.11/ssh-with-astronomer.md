@@ -1,6 +1,6 @@
 ---
-title: "Using a bastion host with SSH Operator"
-description: "Using a bastion host to access private host with the SSH Operator"
+title: "SSH Guide"
+description: "How to use a bastion host with SSH Operator."
 date: 2019-05-24T00:00:00.000Z
 slug: "ssh-with-astronomer"
 ---
