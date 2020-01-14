@@ -57,6 +57,7 @@
         "contents": [
           "ee-installation-gke",
           "ee-installation-eks",
+          "ee-installation-terraform-aws",
           "ee-installation-aks",
           "ee-installation-do",
           "ee-installation-openshift",
@@ -70,13 +71,15 @@
           "ee-integrating-auth-systems",
           "ee-configuring-resources",
           "ee-single-namespace-mode",
-          "ee-registry-backend"
+          "ee-registry-backend",
+          "ee-configuring-permissions"
         ]
       },
       {
         "menu": "Administration",
         "contents": [
           "houston-api",
+          "ee-managing-users",
           "ee-metrics",
           "ee-kibana",
           "ee-kubectl",

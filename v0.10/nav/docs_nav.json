@@ -72,7 +72,7 @@
         "slug": "customizing-your-image"
       },
       {
-        "title": "Adding Airflow Configuration with Astro CLI",
+        "title": "Adding Airflow Configurations with Astro CLI",
         "description": "Set up Connections, Variables, and Pools programmatically with the Astro CLI.",
         "date": "2019-11-07 T00:00:00.000Z",
         "slug": "cli-airflow-configuration"
@@ -181,6 +181,12 @@
             "slug": "ee-installation-eks"
           },
           {
+            "title": "AWS EKS with Terraform",
+            "description": "Installing Astronomer on AWS with Terraform",
+            "date": "2019-10-28T00:00:00",
+            "slug": "ee-installation-terraform-aws"
+          },
+          {
             "title": "Azure AKS",
             "description": "Installing Astronomer on Azure's AKS.",
             "date": "2018-10-12T00:00:00",
@@ -238,6 +244,12 @@
             "description": "Configuring a Registry Back End",
             "date": "2019-06-26T00:00:00",
             "slug": "ee-registry-backend"
+          },
+          {
+            "title": "Configuring Permissions",
+            "description": "Applying custom permission mappings to roles in Astronomer Enterprise.",
+            "date": "2019-11-16T00:00:00",
+            "slug": "ee-configuring-permissions"
           }
         ]
       },
@@ -249,6 +261,12 @@
             "description": "Using The GraphQL Playground.",
             "date": "2018-10-12T00:00:00",
             "slug": "houston-api"
+          },
+          {
+            "title": "Managing Users on Astronomer Enterprise",
+            "description": "Managing Users",
+            "date": "2019-10-28T00:00:00",
+            "slug": "ee-managing-users"
           },
           {
             "title": "Metrics",
