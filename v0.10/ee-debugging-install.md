@@ -89,7 +89,7 @@ Password for user <username>:
 ```
 If the connection times out here, there may be a networking issue.
 
-#### Verify the Secert
+#### Verify the Secret
 Check to make sure the `astronomer-bootstrap` secret created earlier, which contains the connection string to the database, does not contain any typos:
 
 ```
