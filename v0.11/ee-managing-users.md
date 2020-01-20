@@ -168,25 +168,24 @@ To verify a user was successfully granted the SysAdmin role, ensure they can do 
 - Navigate to `kibana.BASEDOMAIN`
 - Access the "Admin Settings" tab from the top right menu of the Astronomer UI
 
+## Customizing Roles and Permissions 
 
-## Limiting Workspace Creation
+On Astronomer Enterprise, platform administrators can customize the definitions of both Workspace and System Level roles from the same `config.yaml` file.
+
+For guidelines on how a user might limit the permission to create a Workspace, read below. For step-by-step instructions on how to customize and apply changes to permission sets across the platform, refer to our [Configuring Permissions](https://www.astronomer.io/docs/ee-configuring-permissions/) doc.
+
+### Limiting Workspace Creation
 
 For larger teams on Astronomer Enterprise, our platform supports limiting the ability for any user on the platform to create a Workspace and provision Airflow resources.
 
-As mentioned above, all users on Astronomer have the ability to create a new Workspace by default. Unless otherwise configured, any user who creates a Workspace is automatically granted the "Workspace Admin" role and is thus able to create an unlimited number of Airflow Deployments within that Workspace.
+By default, all users have the ability to create a new Workspace. Unless otherwise configured, a user who creates a Workspace is automatically granted the "Workspace Admin" role and is thus able to create an unlimited number of Airflow Deployments within that Workspace.
 
-For those who want to limit user access to the Workspace creation function, administrators can customize our platform's `USER` role.
+For those who want to limit user access to the Workspace creation function, administrators can leverage and customize our platform's `USER` role.
 
-### Astronomer's `USER` Role
+#### Astronomer's `USER` Role
 
-The Astronomer Platform ships with a `USER` role that is synthetically bound to _all_ users within a single cluster. By default, this [role includes the `system.workspace.create` permission](https://github.com/astronomer/houston-api/blob/master/config/default.yaml#L324).
+Astronomer ships with a `USER` role that is synthetically bound to _all_ users within a single cluster. By default, this [role includes the `system.workspace.create` permission](https://github.com/astronomer/houston-api/blob/master/config/default.yaml#L324).
 
-If you're an administrator on Astronomer who wants to limit the scope of that user role, you can remove the `system.workspace.create` permission from all users and instead attach it to a separate role of your choice. If you'd like to reserve the ability to create a Workspace _only_ to System Admins who otherwise manage cluster-level resources, you might limit that permission to the `SYSTEM_ADMIN` role on the platform.
+If you're an administrator on Astronomer who wants to limit its scope, you can remove the `system.workspace.create` permission from all users and instead attach it to a separate role of your choice. If you'd like to reserve the ability to create a Workspace _only_ to System Admins who otherwise manage cluster-level resources and costs, you might limit that permission to the `SYSTEM_ADMIN` role on the platform.
 
 To configure and apply this change, follow the steps in our [Configuring Permissions](https://www.astronomer.io/docs/ee-configuring-permissions/) doc.
-
-## Customizing Roles and Permissions 
-
-On Astronomer Enterprise, platform administrators can customize the definitions of Workspace Level roles from the same `config.yaml` file.
-
-For guidelines, refer to our [Configuring Permissions](https://www.astronomer.io/docs/ee-configuring-permissions/) doc.
