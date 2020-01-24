@@ -21,17 +21,15 @@ To upgrade or otherwise change the Airflow version you want to run, all it takes
 
 Astronomer v0.11 is compatible with the following Airflow versions:
 
-- v1.10.5
-- v1.10.6
-- v1.10.7
+- [v1.10.5](https://github.com/apache/airflow/releases/tag/1.10.5)
+- [v1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1)
+- [v1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7)
 
 To change or upgrade Airflow versions on Astronomer, read the guidelines below.
 
-**Note:** 
-
 ### 1. Locate your Dockerfile in your Project Directory
 
-When you initialiazed an Airflow project on Astronomer via our CLI, the following files should have been automatially generated:
+First, open the `Dockerfile` within your Astronomer directory. When you initialiazed an Airflow project on Astronomer via our CLI, the following files should have been automatially generated:
 
 ```
 .
@@ -44,23 +42,21 @@ When you initialiazed an Airflow project on Astronomer via our CLI, the followin
 └── requirements.txt # For any Python packages
 ```
 
-As a first step, open your directory's `Dockerfile` in a Code Editor.
-
 ### 2. Change the FROM Statement in your Dockerfile
 
-Depending on the version of Airflow you want to run, you'll want to reference the corresponding Astronomer-built Docker image in the default FROM statement in your Dockerfile.
+Depending on the version of Airflow and Linux distribution you want to run, you'll want to reference the corresponding Astronomer Docker image in the FROM statement that was populated by default in your Dockerfile.
 
 #### Alpine and Debian-based Images
 
 Astronomer v0.11 supports both Alpine and Debian-based images. Alpine is a widely-used lightweight distribution of Linux that keeps our default images slim and performant. For users leveraging Machine Learning Python Libraries or more complex dependencies, Debian is often more appropriate.
+
+> **Note:** For our platform's full collection of Docker Images, reference [Astronomer on Docker Hub](https://hub.docker.com/r/astronomerinc/ap-airflow/tags).
 
 | Airflow Version | Alpine-based Image                          | Debian-based Image
 |-----------------|-----------------------------------------------------|-----------------------------------------------------|
 | [v1.10.5]()         | FROM astronomerinc/ap-airflow:1.10.5-alpine3.10-onbuild | FROM astronomerinc/ap-airflow:1.10.5-buster-onbuild |
 | [v1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1)         | FROM astronomerinc/ap-airflow:1.10.6-alpine3.10-onbuild | FROM astronomerinc/ap-airflow:1.10.6-buster-onbuild |
 | [v1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7)         | FROM astronomerinc/ap-airflow:1.10.7-alpine3.10-onbuild | FROM astronomerinc/ap-airflow:1.10.7-buster-onbuild |
-
-> **Note:** For our platform's full collection of Docker Images, reference [Astronomer on Docker Hub](https://hub.docker.com/r/astronomerinc/ap-airflow/tags).
 
 ### 3. Re-Build your Image
 
@@ -76,7 +72,7 @@ This will stop all 3 running Docker containers for each of the necessary Airflow
 
 This will start those 3 Docker containers needed to run Airflow. 
 
-#### On Astronomer Cloud or Enterprise
+#### On Astronomer
 
 If you don't need to test this locally and just want to push to either Astronomer Cloud or your Astronomer Enterprise installation, you can issue:
 
