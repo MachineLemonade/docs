@@ -1,6 +1,6 @@
 ---
-title: "Openshift Kubernetes"
-description: "Installing Astronomer on OpenShift"
+title: "Openshift Kubernetes Installation Guide"
+description: "How to deploy a Kubernetes native Apache Airflow platform onto Red Hat OpenShift."
 date: 2019-10-11T00:00:00.000Z
 slug: "ee-installation-openshift"
 ---

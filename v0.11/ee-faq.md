@@ -1,6 +1,6 @@
 ---
-title: "Enterprise FAQs"
-description: "Questions we see often during installation and preliminary use of our Enterprise product."
+title: "Enterprise FAQ"
+description: "Commonly asked questions and answers for Astronomer Enterprise."
 date: 2019-12-06T00:00:00.000Z
 slug: "ee-faq"
 ---

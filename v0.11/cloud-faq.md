@@ -1,6 +1,6 @@
 ---
 title: "Cloud FAQs"
-description: "Questions that we see often when customers are getting started on Astronomer Cloud."
+description: "Commonly asked questions and answers for Astronomer Cloud."
 date: 2019-11-07 T00:00:00.000Z
 slug: "cloud-faq"
 ---

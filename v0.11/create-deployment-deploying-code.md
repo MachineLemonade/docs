@@ -1,6 +1,6 @@
 ---
-title: "Deploying Your Code"
-description: "Create your Airflow environment and push up your DAGs"
+title: "Code Deployment"
+description: "Create, configure, and pus up code to deployments from the Astronomer UI and CLI."
 date: 2018-07-17T00:00:00.000Z
 slug: "create-deployment-deploying-code"
 ---

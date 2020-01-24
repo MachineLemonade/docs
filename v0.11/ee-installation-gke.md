@@ -1,6 +1,6 @@
 ---
-title: "GCP GKE"
-description: "Installing Astronomer on GCP GKE"
+title: "GCP GKE Installation Guide"
+description: "How to install Astronomer on Google Cloud Platform (GCP)."
 date: 2019-03-15T00:00:00.000Z
 slug: "ee-installation-gke"
 ---

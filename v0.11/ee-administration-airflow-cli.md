@@ -1,6 +1,6 @@
 ---
-title: "Using the Airflow CLI in Astronomer Enterprise"
-description: "Access Airflow CLI commands via the kubectl CLI"
+title: "The Airflow CLI with Astronomer Enterprise"
+description: "Leverage commands native to the Airflow CLI."
 date: 2018-10-09T12:00:00.000Z
 slug: "ee-administration-airflow-cli"
 ---

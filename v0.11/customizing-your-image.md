@@ -1,6 +1,6 @@
 ---
-title: "Customizing your Image"
-description: "Adding the right dependencies and packages to your image"
+title: "Image Customization"
+description: "Customize your Docker image by running commands on build, adding dependencies, or bringing in Environment Variables."
 date: 2018-07-17T00:00:00.000Z
 slug: "customizing-your-image"
 ---

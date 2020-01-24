@@ -1,6 +1,6 @@
 ---
-title: "AWS EKS"
-description: "Installing Astronomer on AWS EKS"
+title: "AWS EKS Installation Guide"
+description: "How to install Astronomer on Amazon Web Services (AWS)."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-installation-eks"
 ---

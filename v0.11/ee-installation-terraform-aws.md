@@ -1,6 +1,6 @@
 ---
-title: "AWS EKS with Terraform"
-description: "Installing Astronomer on AWS with Terraform"
+title: "AWS EKS Terraform Guide"
+description: "Install Astronomer with Terraform to build, change, and version your infrastructure safely and efficiently."
 date: 2019-10-28T00:00:00.000Z
 slug: "ee-installation-terraform-aws"
 ---

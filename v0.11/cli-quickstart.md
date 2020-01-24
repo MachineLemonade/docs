@@ -1,6 +1,6 @@
 ---
 title: "CLI Quickstart"
-description: "Quickstart with the Astro CLI"
+description: "Establish a local testing environment and deploy to Astronomer from your CLI."
 date: 2019-10-29T00:00:00.000Z
 slug: "cli-quickstart"
 ---

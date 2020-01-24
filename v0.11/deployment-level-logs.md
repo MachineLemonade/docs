@@ -1,6 +1,6 @@
 ---
-title: "Deployment-Level Logs"
-description: "How to access Worker, Scheduler, and Webserver Logs in the Astronomer UI"
+title: "Deployment Logs"
+description: "View and search Webserver, Scheduler, and Worker logs for each deployment via the Astronomer UI."
 date: 2019-06-17T00:00:00.000Z
 slug: "deployment-level-logs"
 ---

@@ -1,6 +1,6 @@
 ---
-title: "Data Management"
-description: "Information on how data is stored with Astronomer Enterprise."
+title: "Astronomer Enterprise Permissions"
+description: "Customize user roles and permissions via Helm."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-data-management"
 ---

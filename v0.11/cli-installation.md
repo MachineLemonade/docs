@@ -1,6 +1,6 @@
 ---
-title: "Installing the CLI"
-description: "How to get started using the Astro CLI on Mac, Linux, and Windows."
+title: "CLI Installation"
+description: "How to install the Astronomer CLI."
 date: 2018-10-12T00:00:00.000Z
 slug: "cli-installation"
 ---

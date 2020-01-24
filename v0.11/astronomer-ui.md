@@ -1,6 +1,6 @@
 ---
 title: "The Astronomer UI"
-description: "A walkthrough of the Astronomer App"
+description: "Manage users, deployments, and resources through the Astronomer UI."
 date: 2018-10-12T00:00:00.000Z
 slug: "astronomer-ui"
 ---

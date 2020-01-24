@@ -1,6 +1,6 @@
 ---
-title: "Accessing the Underlying Database within Astronomer Enterprise"
-description: "A guide to accessing the database that backs Astronomer"
+title: "Astronomer Enterprise Database Access"
+description: "How to use Postgres to access the database included in your Astronomer Enterprise install. "
 date: 2018-10-09T00:00:00.000Z
 slug: "ee-administration-the-database"
 ---

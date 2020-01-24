@@ -1,6 +1,6 @@
 ---
-title: "Pulling Postgres Credentials"
-description: "How to get Credentials to access Metadata for an Airflow Deployment on Astronomer"
+title: "Postgres Credentials on Astronomer Enterprise"
+description: "How to pull the credentials for your deployment's metadata database."
 date: 2018-08-24T00:00:00.000Z
 slug: "ee-administration-postgres-creds"
 ---

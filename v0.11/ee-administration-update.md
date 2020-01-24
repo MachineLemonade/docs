@@ -1,6 +1,6 @@
 ---
-title: "Upgrade the Astronomer Platform"
-description: "Upgrade your Astronomer Enterprise instance"
+title: "Upgrade Astronomer"
+description: "How to upgrade to a newer Astronomer release by using Helm."
 date: 2018-07-17T00:00:00.000Z
 slug: "ee-administration-update"
 ---

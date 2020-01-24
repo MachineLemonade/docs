@@ -1,6 +1,6 @@
 ---
 title: "Enterprise Quickstart"
-description: "Quickstart with Astronomer Enterprise"
+description: "Getting started after an Astronomer Enterprise install."
 date: 2018-07-17T00:00:00.000Z
 slug: "ee-getting-started"
 ---

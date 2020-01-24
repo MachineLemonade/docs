@@ -1,6 +1,6 @@
 ---
-title: "Azure AKS"
-description: "Installing Astronomer on Azure's AKS."
+title: "Azure AKS Installation Guide"
+description: "Deploy a Kubernetes native Apache Airflow platform onto Azure Kubernetes Service (AKS)."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-installation-aks"
 ---

@@ -1,6 +1,6 @@
 ---
-title: "Digital Ocean Kubernetes"
-description: "Installing Astronomer on Digital Ocean's Kubernetes"
+title: "Digital Ocean Kubernetes Installation Guide"
+description: "How to deploy a Kubernetes native Apache Airflow platform onto Digital Ocean Kubernetes."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-installation-do"
 ---

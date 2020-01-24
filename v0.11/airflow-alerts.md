@@ -1,6 +1,6 @@
 ---
 title: "Airflow Alerts"
-description: "Deployment and Task-Level Alerting via Airflow on Astronomer"
+description: "Configure Airflow alerts to monitor the health of your deployments."
 date: 2019-01-14T00:00:00.000Z
 slug: "airflow-alerts"
 ---

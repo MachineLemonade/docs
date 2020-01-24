@@ -1,6 +1,6 @@
 ---
-title: "Astro CLI Commands"
-description: "Command reference for the Astronomer CLI"
+title: "CLI Command Reference"
+description: "Deploy, set project configurations, and more directly from the command line."
 date: 2018-10-12T00:00:00.000Z
 slug: "cli-command-reference"
 ---

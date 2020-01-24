@@ -1,6 +1,6 @@
 ---
-title: "Build an Astronomer Image from a Private Repo"
-description: "This guide will walk you through installing keys and dependencies from a private Github Repo without exposing credentials"
+title: "Using a Private Repository"
+description: "Build a custom Docker image using Python and OS-level packages from a private repository."
 date: 2019-08-09T00:00:00.000Z
 slug: "build-from-private-repo"
 ---

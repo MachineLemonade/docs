@@ -1,6 +1,6 @@
 ---
-title: "Recovery Guide"
-description: "How to recover a private installation of Astronomer"
+title: "Astronomer Enterprise Recovery Guide"
+description: "How to recover after your Astronomer Enterprise platform is taken down."
 date: 2018-08-24T00:00:00.000Z
 slug: "ee-administration-recovery-guide"
 ---

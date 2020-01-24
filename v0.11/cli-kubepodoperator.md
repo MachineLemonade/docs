@@ -1,6 +1,6 @@
 ---
-title: "Running KubePodOperator Locally"
-description: "How to set up a local instance of Kubernetes for testing your KubePodOperators"
+title: "Local Development with the Kubernetes Pod Operator"
+description: "Run a single node Kubernetes cluster on your local machine."
 date: 2019-05-08T00:00:00.000Z
 slug: "cli-kubepodoperator"
 ---

@@ -1,6 +1,6 @@
 ---
-title: "General Kubernetes"
-description: "Installing Astronomer Enterprise to your Kubernetes cluster."
+title: "General Kubernetes Installation Guide"
+description: "How to install Astronomer on a Kubernetes cluster."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-installation-general-kubernetes"
 ---

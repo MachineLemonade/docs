@@ -1,6 +1,6 @@
 ---
-title: "Cloud Migration Kit"
-description: "Everything you need to know to migrate to Astronomer's newest Cloud."
+title: "Cloud Migration Guide"
+description: "Everything you need to migrate to Next Generation Astronomer Cloud."
 date: 2018-10-12T00:00:00.000Z
 slug: "cloud-migration"
 ---

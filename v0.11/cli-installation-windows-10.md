@@ -1,6 +1,6 @@
 ---
-title: "Installing Astronomer CLI on Windows 10"
-description: "Running the Astronomer CLI on the Windows subsystem for Linux."
+title: "The Astronomer CLI on Windows 10"
+description: "How to install the Windows-based CLI or the Unix-based CLI a Windows Subsystem for Linux (WSL)."
 date: 2018-08-24T00:00:00.000Z
 slug: "cli-installation-windows-10"
 ---
