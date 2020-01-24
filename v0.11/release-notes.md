@@ -13,9 +13,9 @@ Release Date: January 24, 2020
 
 #### Support for Airflow 1.10.6 and 1.10.7
 
-Astronomer v0.11 ships with a new set of Docker images for Airflow versions [1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1) and [1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7)in addition to our already-supported Airflow 1.10.5 image.
+Astronomer v0.11 ships with a new set of Docker images for Airflow versions [1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1) and [1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7) in addition to our already-supported Airflow 1.10.5 image.
 
-We've additionally de-coupled Astronomer and Airflow releases, which means each individual version of the Astronomer Platform is able to support a variety of Airflow images. For both Cloud and Enterprise users, this adds significant flexibiliy and lowers common incompatibility issues and dependencies across the board.
+We've additionally de-coupled Astronomer and Airflow releases, allowing each individual version of the Astronomer Platform to support a variety of Airflow images. For both Cloud and Enterprise users, this adds significant flexibiliy and lowers common incompatibility issues and dependencies across the board.
 
 For a breakdown of supported Airflow Images on v0.11, refer to our [Airflow Versioning Doc](https://github.com/astronomer/docs/blob/v0.11/v0.11/airflow-versioning.md).
 
@@ -30,19 +30,21 @@ To leverage a Debian Image on Astronomer v0.11, check out our [Airflow Versionin
 #### Exposed Docker Image Tag in the Astronomer UI
 
 In an effort to expose more metadata on deploys to users, the tag of the latest Docker image pushed up to an Airflow Deployment is now listed in the "Deployment Configure" page of the Astronomer UI in addition to its existing place in CLI-generated output.
-Moving forward, every push to Astronomer will generate a `deploy-n` tag, "n" representing the "number" of deploys made to that deployment. For example, `deploy-1` would represent a first code push, `deploy-2` the second, `deploy-3` the third, etc.
+
+Moving forward, every push to Astronomer will generate a `deploy-n` tag (historically `cli-n), "n" representing the "number" of deploys made to that deployment. For example, `deploy-1` would represent a first code push, `deploy-2` the second, `deploy-3` the third, etc.
 Users leveraging CI/CD can now verify what version of their code is running on our platform.
 
 #### Allow Astronomer Service Accounts access to the Airflow API
-Previously available on Astronomer v0.7.5, we've re-enabled the ability for users to leverage Astronomer Service Accounts to call the Airflow API.
-Now, users can programmatically trigger DAGs via the Airflow API using a long-lasting Service Account instead of an authentication token that expires within 24Hours.
+
+Previously available on Astronomer v0.7.5, we've re-enabled the ability for users to leverage Astronomer Service Accounts to call the Airflow API and Webserver. Now, users can programmatically trigger DAGs via the Airflow API using a long-lasting Service Account instead of an authentication token that expires within 24Hours.
+
 For guidelines, check out [this forum post](https://forum.astronomer.io/t/can-i-use-the-airflow-rest-api-to-externally-trigger-a-dag/162).
 
 #### Bug Fixes & Stability Improvements
 
 A few bug fixes and improvements:
-- Improved Search in Astronomer's "Users Tab:
-- "Back to Earth" link fixed in error page when Airflow is "Spinning Up"
+- Improved Search in Astronomer's "Users" tab
+- "Back to Earth" link fixed in error page when Airflow is spinning up
 - Added a raw URL to the "Confirm your Email" message upon sign-up
 - Support for pre-pushing shared image layers to the platform for faster deploys
 
