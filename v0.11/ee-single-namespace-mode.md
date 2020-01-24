@@ -1,6 +1,6 @@
 ---
 title: "Single Namespace Mode"
-description: "Deploying Astronomer in one namespace"
+description: "Run Astronomer in a single namespace."
 date: 2018-07-17T00:00:00.000Z
 slug: "ee-single-namespace-mode"
 ---

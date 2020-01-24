@@ -1,6 +1,6 @@
 ---
-title: "Logging"
-description: "Logging in Astronomer Enterprise."
+title: "Logging in Astronomer Enterprise"
+description: "LogRecord attributes, configuring FluentD log filtering, and logging best practices."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-logging"
 ---

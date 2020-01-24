@@ -1,6 +1,6 @@
 ---
-title: "Query the Airflow Database"
-description: "Guide on how to query Postgres, Airflow's underlying Database, on Astronomer"
+title: "The Airflow Database"
+description: "How to query the Airflow PostgreSQL database."
 date: 2019-06-03T00:00:00.000Z
 slug: "query-airflow-database"
 ---

@@ -1,6 +1,6 @@
 ---
-title: "Managing Users on Astronomer Enterprise"
-description: "Managing Users"
+title: "Astronomer Enterprise User Management"
+description: "Adding users, enbaling public sign-ups, platform roles and permissions, and adding system adminstrators."
 date: 2019-10-28T00:00:00.000Z
 slug: "ee-managing-users"
 ---

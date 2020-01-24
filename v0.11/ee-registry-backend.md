@@ -1,6 +1,6 @@
 ---
-title: "Configuring a Registry Back End"
-description: "Configuring a Registry Back End"
+title: "Registry Back Ends in Astronomer Enterprise"
+description: "How to configure a registry back end."
 date: 2019-06-26T00:00:00.000Z
 slug: "ee-registry-backend"
 ---

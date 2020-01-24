@@ -1,6 +1,6 @@
 ---
-title: "User Roles and Permissions"
-description: "Using RBAC with Astronomer"
+title: "Roles and Permissions"
+description: "Role Based Access Control for your Astronomer workspace."
 date: 2019-05-28T00:00:00.000Z
 slug: "rbac"
 ---

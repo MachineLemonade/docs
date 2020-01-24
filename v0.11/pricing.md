@@ -1,6 +1,6 @@
 ---
 title: "Cloud Pricing"
-description: "Documentation of our pricing structure and philosophy."
+description: "An overview of pricing for Astronomer Cloud."
 date: 2018-10-12T00:00:00.000Z
 slug: "pricing"
 ---

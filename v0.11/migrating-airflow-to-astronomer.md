@@ -1,5 +1,6 @@
 ---
-title: "Migrating An Airflow Deployment to Astronomer"
+title: "Migrating to Astronomer"
+description: "How to migrate an Airflow deployment to Astronomer."
 date: 2018-10-12T00:00:00.000Z
 slug: "migrating-airflow-to-astronomer"
 ---

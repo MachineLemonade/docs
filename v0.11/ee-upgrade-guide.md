@@ -1,6 +1,6 @@
 ---
-title: "Upgrading Astronomer"
-description: "A guide to upgrading Astronomer on Enterprise"
+title: "Upgrade Guide"
+description: "How to upgrade the Astronomer Enterprise platform from v0.9.X to v0.10.X."
 date: 2018-08-23T00:00:00.000Z
 slug: "ee-upgrade-guide"
 ---

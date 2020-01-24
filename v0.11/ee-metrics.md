@@ -1,6 +1,6 @@
 ---
-title: "Metrics"
-description: "Metrics in Astronomer Enterprise."
+title: "Metrics in Astronomer Enterprise"
+description: "Get a single-pane view into the health of your deployments with Grafana dashboards."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-metrics"
 ---

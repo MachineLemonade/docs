@@ -1,5 +1,6 @@
 ---
-title: "Overview of Astronomer Enterprise"
+title: "Astronomer Enterprise Overview"
+description: "Architecture, installation guides, customization, platform components, and more."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-overview"
 note: "Consider updating https://github.com/astronomer/astronomer when you update this doc"

@@ -1,6 +1,6 @@
 ---
 title: "Astronomer Overview"
-description: "An overview of the Astronomer platform"
+description: "Astronomer Cloud vs. Astronomer Enterprise."
 date: 2018-10-12T00:00:00.000Z
 slug: "overview"
 ---

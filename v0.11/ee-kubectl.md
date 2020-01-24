@@ -1,6 +1,6 @@
 ---
-title: "Using kubectl"
-description: "Using kubectl"
+title: "Kubectl Guide"
+description: "How to deploy Astronomer Airflow instances with Kubectl and Helm."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-kubectl"
 ---

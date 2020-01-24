@@ -1,6 +1,6 @@
 ---
-title: "Using Kibana"
-description: "Using Kibana for your Airflow Logs"
+title: "Kibana in Astronomer Enterprise"
+description: "Using Kibana to visualize your Elasticsearch Airflow logs."
 date: 2018-07-17T00:00:00.000Z
 slug: "ee-kibana"
 ---

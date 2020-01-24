@@ -1,6 +1,6 @@
 ---
 title: "Release Notes"
-description: "Documentation of product updates."
+description: "An overview of pricing for Astronomer."
 date: 2018-10-12T00:00:00.000Z
 slug: "release-notes"
 ---

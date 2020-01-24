@@ -1,6 +1,6 @@
 ---
-title: "Platform Tour"
-description: "Walking through the Astronomer Platform."
+title: "Astronomer Enterprise Platform Tour"
+description: "A short walkthrough of Astronomer Enterprise platform components."
 date: 2018-10-12T00:00:00.000Z
 slug: "ee-platform-tour"
 ---
