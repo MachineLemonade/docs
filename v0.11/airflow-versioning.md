@@ -84,7 +84,7 @@ $ astro deploy
 
 This will bundle your updated directory, re-build your image and push it to your remote Airflow deployment on Astronomer.
 
-### 5. Confirm your version in the Airflow UI
+### 4. Confirm your version in the Airflow UI
 
 Once you've issued that command, navigate to your Airflow UI to confirm that you're now running the correct Airflow version.
 
