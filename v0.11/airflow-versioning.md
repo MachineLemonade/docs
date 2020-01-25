@@ -21,9 +21,9 @@ To upgrade or otherwise change the Airflow version you want to run, all it takes
 
 Astronomer v0.11 is compatible with the following Airflow versions:
 
-- [v1.10.5](https://github.com/apache/airflow/releases/tag/1.10.5)
-- [v1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1)
-- [v1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7)
+- [Airflow v1.10.5](https://github.com/apache/airflow/releases/tag/1.10.5)
+- [Airflow v1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1)
+- [Airflow v1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7)
 
 To change or upgrade Airflow versions on Astronomer, read the guidelines below.
 
