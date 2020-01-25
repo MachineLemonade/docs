@@ -58,6 +58,8 @@ Astronomer v0.11 supports both Alpine and Debian-based images. Alpine is a widel
 | [v1.10.6](https://github.com/apache/airflow/releases/tag/1.10.6rc1)         | FROM astronomerinc/ap-airflow:1.10.6-alpine3.10-onbuild | FROM astronomerinc/ap-airflow:1.10.6-buster-onbuild |
 | [v1.10.7](https://github.com/apache/airflow/releases/tag/1.10.7)         | FROM astronomerinc/ap-airflow:1.10.7-alpine3.10-onbuild | FROM astronomerinc/ap-airflow:1.10.7-buster-onbuild |
 
+> **Note:** Once you upgrade Airflow versions, you CANNOT downgrade to an earlier version. The Airflow metadata database structurally changes with each release, making for backwards incompatibility across versions.
+
 ### 3. Re-Build your Image
 
 #### Local Development
