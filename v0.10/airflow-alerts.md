@@ -111,7 +111,8 @@ AIRFLOW__SMTP__SMTP_PASSWORD={ENTER_PASSWORD_FROM_STEP2A}
 AIRFLOW__SMTP__SMTP_MAIL_FROM={ENTER_FROM_EMAIL_HERE}
 ```
 
-### Usage
+### Set EmailOperator Parameter
+
 The default encoding `us_ascii` is not supported by AWS SES. As such, set the optional EmailOperator charset parameter to `mime_charset='utf-8'`
 
 Example:
@@ -125,7 +126,6 @@ e1 = EmailOperator(
  dag=dag
 )
 ```
-
 
 ## Triggering Alerts on DAG Run
 

@@ -127,7 +127,6 @@ e1 = EmailOperator(
 )
 ```
 
-
 ## Triggering Alerts on DAG Run
 
 Email alerting set up via `email_on_failure` is handled at the task level. If a handful of your tasks fail for related reasons, you'll receive an individual email for each of those failures.
