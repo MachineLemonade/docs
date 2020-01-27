@@ -1,6 +1,6 @@
 ---
 title: "KubernetesPodOperator on Astronomer"
-description: "Launch Kubernetes Pods in which to run a Docker container with the KubernetesPodOperator."
+description: "Launch Kubernetes Pods for Docker containers with the KubernetesPodOperator."
 date: 2019-12-27T00:00:00.000Z
 slug: "kubepodoperator"
 ---
