@@ -1,6 +1,6 @@
 ---
 title: "CI/CD"
-description: "Using CI/CD with Astronomer."
+description: "Automate and scale by creating a Service Account and setting up CI/CD."
 date: 2019-11-07 T00:00:00.000Z
 slug: "ci-cd"
 ---
