@@ -1,6 +1,6 @@
 ---
 title: "Release Notes"
-description: "Astronomer Platform Release Motes"
+description: "Astronomer Platform Release Notes"
 date: 2020-01-24T00:00:00.000Z
 slug: "release-notes"
 ---

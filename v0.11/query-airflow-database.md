@@ -1,6 +1,6 @@
 ---
 title: "The Airflow Database"
-description: "How to query the Airflow PostgreSQL database."
+description: "How to query Airflow's Postgres metadata database."
 date: 2019-06-03T00:00:00.000Z
 slug: "query-airflow-database"
 ---

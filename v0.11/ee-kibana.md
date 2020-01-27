@@ -1,6 +1,6 @@
 ---
 title: "Kibana in Astronomer Enterprise"
-description: "Using Kibana to visualize your Elasticsearch Airflow logs."
+description: "How to use Kibana to monitor your Airflow logs."
 date: 2018-07-17T00:00:00.000Z
 slug: "ee-kibana"
 ---

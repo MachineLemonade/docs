@@ -1,6 +1,6 @@
 ---
-title: "Cloud Quickstart"
-description: "Getting started with Astronomer Cloud."
+title: "The Houston API"
+description: "How to use the GraphQL playground to interact with Astronomer's API."
 date: 2018-10-12T00:00:00.000Z
 slug: "houston-api"
 ---
