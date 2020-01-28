@@ -1,5 +1,5 @@
 ---
-title: "Auth Systems ion Astronomer Enterprise"
+title: "Auth Systems on Astronomer Enterprise"
 description: "Integrating Astronomer with OIDC Providers"
 date: 2019-04-21T00:00:00.000Z
 slug: "ee-integrating-auth-systems"
