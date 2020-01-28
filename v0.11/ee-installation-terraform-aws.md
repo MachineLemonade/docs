@@ -1,7 +1,7 @@
 ---
 title: "AWS EKS Terraform Guide"
 description: "Install Astronomer with Terraform to build, change, and version your infrastructure safely and efficiently."
-date: 2019-10-28T00:00:00.000Z
+date: 2020-01-28T00:00:00.000Z
 slug: "ee-installation-terraform-aws"
 ---
 
@@ -13,12 +13,14 @@ You can read more about it here https://www.terraform.io/intro/index.html
 
 Astronomer’s terraform scripts can be used to automate the provisioning of a production grade Airflow environment.
 
-The [Astronomer Enterprise module for AWS](https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/0.0.80) will provision the following resources in your AWS account:
-* EKS cluster with an auto-scaling node group
-* Aurora RDS
+The [Astronomer Enterprise module for AWS](https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws) can be used to provision the Astronomer platform in your AWS account. The automation deploys the following by default:
+
 * VPC
-* Subnets
-* Full installation of Astronomer Enterprise 
+* Network
+* Database
+* Kubernetes
+* TLS certificate
+* Astronomer
 
 More detailed information can also be found here:
 https://github.com/astronomer/terraform-aws-astronomer-enterprise
@@ -30,141 +32,92 @@ Install the necessary tools:
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
 * [Terraform](https://www.terraform.io/downloads.html) *Use version 0.12.3 or later*
-* [Helm client](https://github.com/helm/helm#install) *Use version 2.14.1 or later*
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) *Use version 1.12.3*
-
+* [Helm client](https://github.com/helm/helm#install) *Use version 2, 2.16.1 or later*
+* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) *Use the version appropriate for your Kubernetes cluster version*
 
 ## Installation
 
-### Configure AWS CLI
+### Configure the AWS CLI
+
 Run the following command and enter the appropriate values when prompted. If you don't know the `AWS Access Key ID` or `AWS Secret Access Key` for your account, contact your AWS admin.
 
 ```
-$ aws configure
-AWS Access Key ID [None]: <key_id>
-AWS Secret Access Key [None]: <access_key>
-Default region name [None]: <region>
-Default output format [None]: json
+aws configure
 ```
 
-### Create Config file
-
-Create a config file to use to store the state of the terraform.
-
-* `mkdir astro_terraform && cd astro_terraform`
-* `vi main.tf`
+### Write the Terraform
 
 ```
 terraform {
+  required_version = ">= 0.12"
   backend "s3" {
-	bucket = "bucket-name"
-	key	= "astro_terraform"
-	region = "us-east-1"
+	  bucket  = "astronomer-platform"
+	  key	    = "terraform-state"
+	  region  = "us-east-1"
+    encrypt = true
   }
 }
 
 module "astronomer-enterprise" {
   source                = "astronomer/astronomer-enterprise/aws"
-  version               = "0.0.80"
-  email                 = ""
-  deployment_id         = "company_name"
+  # Look up the most recent version in the Terraform Registry
+  version               = "TODO"
+  email                 = "your-name@your-domain.com"
+  deployment_id         = "astro"
+  route53_domain        = "a-domain-you-own-in-your-route-53.com"
   management_api        = "public"
-  cluster_type          = "public"
-  private_load_balancer = false
-  route53_domain        = "airflow.com"
-  min_cluster_size      = 6
-  max_cluster_size      = 12
-  db_instance_type      = db.r4.large
-  worker_instance_type  = m5.xlarge
-
 }
 ```
 
-A full list of parameters can be found on the [Terraform Registry](https://registry.terraform.io/modules/astronomer/astronomer-aws/aws/1.1.29)
+- email: used to create a Let's Encrypt user
+- deployment_id: a short, character-only prefix for AWS resources that enables deployment of multiple Astronomer platforms in the same account
+- management_api: a configuration for the Kubernetes API - public is recommended for deployment, see the Terraform registry documentation
+- route53_domain: the domain that will be used for your Astronomer platform
 
+The above options alone are sufficient to deploy a new VPC, network, database, Kubernetes cluster, Let's Encrypt certificate, and Astronomer. Before production, all options should be reviewed, especially the following options:
 
-**Note:** The S3 backend is optional for state files. If not provided, state files will be stored locally.
+- db_instance_type
+- worker_instance_type
+- max_cluster_size
+- tags
+
+Features are often added to this module. A full list of configuration options, and more detailed descriptions, can be found on the [Terraform Registry](https://registry.terraform.io/modules/astronomer/astronomer-aws/aws). There are configurations available to deploy into existing AWS networks.
+
+## Plan access
+
+After the Terraform apply is complete in the next step, the platform will be running on `app.<deployment_id>.<route53_domain>`. By default, the platform will be deployed on a private network, so this domain will only be accessible from inside the VPC in which it's deployed. There are a few options to consider for access to Astronomer.
+
+- Deploy into an existing VPC in your network (see options vpc_id, private_subnets, and db_subnets)
+- Deploy a Linux or Windows VM accessible from the public internet that can access the private Astronomer platform (see options enable_bastion and enable_windows_box). Windows will use RDP and Linux will use SSH. Both will be deployed with an IP whitelist only including the public IP address of where the Terraform is executed.
+- Deploy Astronomer in the public internet (see options private_load_balancer)
 
 ## Run Terraform
+
 * `terraform init`
 * `terraform apply`
 
-This will generate an EKS cluster of the given worker_instance_size (that will scale between the minimum and maximum size).
-
-This will use `<*.deployment_id>.<route53_domain>` as the base domain for the platform. Once the platform runs, navigate to `app.<deployment_id>.<route53_domain>` to verify the platform
+When your run the 'apply' command, be sure to review the output before typing 'yes'. This is critical in the case of using Terraform for upgrades. For an initial deployment, it usually takes 15-30 minutes. It may take a few minutes after the web UI is available for the platform to be ready. When there is an option to log in or sign up, then the platform is ready.
 
 A `kubeconfig` file will be generated in your working directory. Be sure to reference this file when running `kubectl` or `helm` commands. Example:
 ```
-$ KUBECONFIG=./kubeconfig kubectl get pods -n astronomer
-$ KUBECONFIG=./kubeconfig helm ls
+export KUBECONFIG=./kubeconfig
+
+kubectl get pods -n astronomer
+helm ls
 ```
 
-## Generate your config file
-
-Once the terraform has successfully run, get the name of your release:
-
-```
-$ KUBECONFIG=./kubeconfig helm ls
-NAME                       	REVISION	UPDATED                 	STATUS  	CHART                             	APP VERSION   	NAMESPACE                             
-zealous-coral              	10      	Tue Oct  1 05:00:53 2019	DEPLOYED	astronomer-platform-0.10.1        	0.10.1        	astro     
-
-$ KUBECONFIG=./kubeconfig helm get values zealous-coral >> config.yaml
-```
-
-This `config.yaml` file will contain the settings applied to your Astronomer deployment. 
-
-### Modifying your configuration
-
-Once the `config.yaml` file has been generated, custom settings can be deployed.
-
-For example, to add SMTP credentials:
-
-```
-$ vi config.yaml
-
-global:
-  baseDomain: <base-domain>
-  istioEnabled: false
-  tlsSecret: astronomer-tls
-nginx:
-  loadBalancerIP: null
-  perserveSourceIP: true
-  privateLoadBalancer: false
-
-#################################
-### SMTP configuration
-#################################  
-
-astronomer:
-  houston:
-    config:
-      email:
-        enabled: true
-        smtpUrl: <smtp-uri>
-
-```
-
-Once the credentials have been added appropriately, the new setting can be shipped out to the deployed platform.
-
-```
-$ KUBECONFIG=./kubeconfig helm upgrade <platform-name> -f config.yaml <path-to-charts> --namespace <namespace>
-```
-
-**Note:** `<path-to-charts>` should point to the version of the [Astronomer helm charts](https://github.com/astronomer/helm.astronomer.io), which were cloned locally when the terraform ran.
-
-[Upgrades](https://www.astronomer.io/docs/ee-upgrade-guide/), [integrating auth systems](https://www.astronomer.io/docs/ee-integrating-auth-systems/), and other such changes can be applied in a similar manner.
-
+The kubeconfig file along with other secrets such as the TLS certificate are backed up in the remote Terraform state S3 bucket.
 
 ## FAQs:
 
 - Which subnets and VPCs will this deploy to?
 
-Unless specified, a new VPC and subnets will be created. Specific subnets and VPC can be input into the `main.tf` file.]
+By default, a new VPC and subnets will be created.
 
-- Can this be used to deploy to all private subnets?
+- Can this be used to deploy to all private subnets? Can I deploy into my existing network(s)? Why is the management_api 'public'?
 
-- What if I don't use route53 as my DNS provider?
-Right now, route53 is the only provider this module supports. We are working on dropping this requirement.
+Uou can use the options vpc_id, private_subnets, and db_subnets to make use of your existing network infrastructure. By default, a public subnet is created only to allow egress internet traffic. The cluster, database, and load balancer are placed in the private networks by default. Options that can be changed from default to provision in the public subnet are enable_bastion, enable_windows_box, and private_load_balancer. The Kubernetes API will be deployed into the public internet by default. This is to enable a one-click solution. Otherwise you have to deploy the VPC, networks, and Kubernetes, then deploy the rest executing Terraform from inside the VPC. Astronomer recommends disabling the public Kubernetes API using AWS EKS in the AWS console, this can be safely toggled to private in a non-interrupting fashion when Terraform is not being used. If you want to use Terraform again, just re-enable it. To use Terraform completely privately from scratch, you will need to deploy from an existing VPC into the same VPC.
 
-- What if I don't want to use a certificate from LetsEncrypt?
-We are working on dropping this requirement.
+- What if I don't use Route 53 as my DNS provider? What if I don't want to use a certificate from Let's Encrypt?
+
+You can provide your own TLS certificates using the options tls_cert and tls_key. This leaves room for configuration error, so please check after you deploy by accessing the Astronomer UI and making an Airflow deployment using the Astronomer CLI. Astronomer has found that Docker clients are the most restrictive TLS clients (compared to browsers), so it is possible to misconfigure the tls_cert such that it is trusted by a browser and not by a Docker client. If you find that your browsers trust the Astronomer application but 'astro deploy' is not working with a TLS error, please make sure that your TLS cert is properly chained, including both the certificate and issuer pem in the same file, with the issuer second.
