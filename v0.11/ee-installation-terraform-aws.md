@@ -45,9 +45,23 @@ Run the following command and enter the appropriate values when prompted. If you
 aws configure
 ```
 
+Confirm you are authenticated
+
+```
+aws sts get-caller-identity
+```
+
 ### Write the Terraform
 
 ```
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "acme" {
+  server_url = "https://acme-v02.api.letsencrypt.org/directory"
+}
+
 terraform {
   required_version = ">= 0.12"
   backend "s3" {
