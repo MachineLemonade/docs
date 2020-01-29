@@ -97,15 +97,14 @@ The above options alone are sufficient to deploy a new VPC, network, database, K
 
 Features are often added to this module. A full list of configuration options, and more detailed descriptions, can be found on the [Terraform Registry](https://registry.terraform.io/modules/astronomer/astronomer-aws/aws). There are configurations available to deploy into existing AWS networks.
 
-## Plan access
+### Plan access
 
 After the Terraform apply is complete in the next step, the platform will be running on `app.<deployment_id>.<route53_domain>`. By default, the platform will be deployed on a private network, so this domain will only be accessible from inside the VPC in which it's deployed. There are a few options to consider for access to Astronomer.
 
 - Deploy into an existing VPC in your network (see options vpc_id, private_subnets, and db_subnets)
 - Deploy a Linux or Windows VM accessible from the public internet that can access the private Astronomer platform (see options enable_bastion and enable_windows_box). Windows will use RDP and Linux will use SSH. Both will be deployed with an IP whitelist only including the public IP address of where the Terraform is executed.
-- Deploy Astronomer in the public internet (see options private_load_balancer)
 
-## Run Terraform
+### Run Terraform
 
 * `terraform init`
 * `terraform apply`
@@ -122,16 +121,61 @@ helm ls
 
 The kubeconfig file along with other secrets such as the TLS certificate are backed up in the remote Terraform state S3 bucket.
 
-## FAQs:
+## Frequently requested infrastructure configurations
 
-- Which subnets and VPCs will this deploy to?
+Astronomer is installed on Kubernetes. We are making use of the Kubernetes package manager called 'Helm'. All reconfiguration options that are intended for the Astronomer platform rather than Terraform or infrastructure are passed in YAML and will be referred to as "Helm values". For all reconfigurations, you can make use of the Terraform option astronomer_helm_values, which should be a YAML block in a Terraform string. Creating an Astronomer Helm configuration is documented here: https://www.astronomer.io/docs/ee-configyaml/
 
-By default, a new VPC and subnets will be created.
+For any reconfiguration, make sure that your configuration includes at least the following options:
+```
+global:
+  # Replace to match your certificate, less the wildcard.
+  # If you are using Let's Encrypt + Route 53, then it should be <deployment_id>.<route53_domain>
+  # For example, astro.your-route53-domain.com
+  baseDomain: deployment-id.your-domain.com
+  tlsSecret: astronomer-tls
+nginx:
+  privateLoadBalancer: true
+```
 
-- Can this be used to deploy to all private subnets? Can I deploy into my existing network(s)? Why is the management_api 'public'?
+For example, your Terraform block that calls the Astronomer Enterprise module might look like this:
+```
+module "astronomer-enterprise" {
+  source                  = "astronomer/astronomer-enterprise/aws"
+  # Look up the most recent version in the Terraform Registry
+  version                 = "TODO"
+  email                   = "your-name@your-domain.com"
+  deployment_id           = "astro"
+  route53_domain          = "a-domain-you-own-in-your-route-53.com"
+  management_api          = "public"
+  astronomer_helm_values  = <<EOM
+  global:
+    # Replace to match your certificate, less the wildcard.
+    # If you are using Let's Encrypt + Route 53, then it should be <deployment_id>.<route53_domain>
+    # For example, astro.your-route53-domain.com
+    baseDomain: deployment-id.your-domain.com
+    tlsSecret: astronomer-tls
+  nginx:
+    privateLoadBalancer: true
+  EOM
+}
+```
 
-Uou can use the options vpc_id, private_subnets, and db_subnets to make use of your existing network infrastructure. By default, a public subnet is created only to allow egress internet traffic. The cluster, database, and load balancer are placed in the private networks by default. Options that can be changed from default to provision in the public subnet are enable_bastion, enable_windows_box, and private_load_balancer. The Kubernetes API will be deployed into the public internet by default. This is to enable a one-click solution. Otherwise you have to deploy the VPC, networks, and Kubernetes, then deploy the rest executing Terraform from inside the VPC. Astronomer recommends disabling the public Kubernetes API using AWS EKS in the AWS console, this can be safely toggled to private in a non-interrupting fashion when Terraform is not being used. If you want to use Terraform again, just re-enable it. To use Terraform completely privately from scratch, you will need to deploy from an existing VPC into the same VPC.
+All possible reconfigurations can be found by browsing the Astronomer Helm chart Github repository. Values are located in values.yaml and all subcharts' values.yaml. For more details, refer to the Helm documentation https://helm.sh/docs/chart_template_guide/values_files/
 
-- What if I don't use Route 53 as my DNS provider? What if I don't want to use a certificate from Let's Encrypt?
+#### If you do not wish to use Let's Encrypt or provide a Route 53 domain
 
-You can provide your own TLS certificates using the options tls_cert and tls_key. This leaves room for configuration error, so please check after you deploy by accessing the Astronomer UI and making an Airflow deployment using the Astronomer CLI. Astronomer has found that Docker clients are the most restrictive TLS clients (compared to browsers), so it is possible to misconfigure the tls_cert such that it is trusted by a browser and not by a Docker client. If you find that your browsers trust the Astronomer application but 'astro deploy' is not working with a TLS error, please make sure that your TLS cert is properly chained, including both the certificate and issuer pem in the same file, with the issuer second.
+If you are not going provide a Route 53 domain to get a Let's Encrypt cert, then additional configuration is required. Provide your own TLS certificates using the options tls_cert and tls_key. Astronomer has found this to be a common point of configuration error, so please check after you deploy by accessing the Astronomer UI and making an Airflow deployment using the Astronomer CLI. Docker clients are the most restrictive TLS clients (compared to browsers): it is possible to misconfigure the tls_cert such that it is trusted by a browser and not by a Docker client. If you find that your browsers trust the Astronomer application but 'astro deploy' is not working with a TLS error, please make sure that your TLS cert is properly chained, including both the certificate and issuer pem in the same file, with the issuer second and no newline in between. Your cert should match \*.deployment_id.domain_name, for example "\*.astro.mydomain.com"
+
+With regard to the Astronomer Helm values - global.baseDomain should be the same as your certificate, less the wildcard, for example "astro.mydomain.com".
+
+#### Different VPC or network configuration
+
+By default, a new VPC and subnets will be created. There are options to allow you to provide your own networks instead:
+
+- vpc_id
+- private_subnets
+- db_subnets
+
+Make sure that your subnets and VPC are tagged as required by EKS.
+
+By default, a public subnet is created only to allow egress internet traffic. The cluster, database, and load balancer (where the application is accessed) are placed in the private networks by default. Options that can be changed from default that provision resources in the public subnet are enable_bastion and enable_windows_box. The Kubernetes API will be deployed into the public internet by default. This is to enable a one-click solution (deploy network, deploy Kubernetes in that network, deploy application on Kubernetes all in one go). Otherwise you have to deploy the VPC, networks, and Kubernetes, then deploy the rest executing Terraform from inside the VPC. It is best security practice to disable the public Kubernetes API when you are not using it. This can be accomplished using AWS EKS in the AWS console, this can be safely toggled to private in a non-interrupting fashion when Terraform is not being used. If you want to use Terraform again, just re-enable it. To use Terraform completely privately from scratch, you will need to deploy from an existing VPC into the same VPC.
