@@ -179,3 +179,27 @@ By default, a new VPC and subnets will be created. There are options to allow yo
 Make sure that your subnets and VPC are tagged as required by EKS.
 
 By default, a public subnet is created only to allow egress internet traffic. The cluster, database, and load balancer (where the application is accessed) are placed in the private networks by default. Options that can be changed from default that provision resources in the public subnet are enable_bastion and enable_windows_box. The Kubernetes API will be deployed into the public internet by default. This is to enable a one-click solution (deploy network, deploy Kubernetes in that network, deploy application on Kubernetes all in one go). Otherwise you have to deploy the VPC, networks, and Kubernetes, then deploy the rest executing Terraform from inside the VPC. It is best security practice to disable the public Kubernetes API when you are not using it. This can be accomplished using AWS EKS in the AWS console, this can be safely toggled to private in a non-interrupting fashion when Terraform is not being used. If you want to use Terraform again, just re-enable it. To use Terraform completely privately from scratch, you will need to deploy from an existing VPC into the same VPC.
+
+If you want to serve the platform itself publicly, then you need to configure both the infrastructure to allow this (setting up tags on the public subnets to allow the creation of load balancers) and configure the platform to deploy its load balancer into a public subnet.
+
+Provide these options to the Astronomer enterprise module for public access to be enabled:
+```
+  # This configuration serves the platform publicly
+  allow_public_load_balancers = true
+  astronomer_helm_values = <<EOF
+  global:
+    baseDomain: ${var.deployment_id}.${var.route53_domain}
+    tlsSecret: astronomer-tls
+  nginx:
+    privateLoadBalancer: false
+  astronomer:
+    houston:
+      config:
+        # Only the first user will be allowed to sign up
+        # and will be granted top-level admin. Then all
+        # remaining users must be invited to the platform.
+        # SMTP must be configured for invitations to work.
+        publicSignups: false
+  EOF
+
+```
