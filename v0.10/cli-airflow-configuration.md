@@ -17,10 +17,11 @@ By default, the file will be structured as following:
 
 ```yaml
 airflow:
-  connections:
+ connections:
     - conn_id: my_new_connection
       conn_type: postgres
       conn_host: 123.0.0.4
+      conn_schema: airflow
       conn_login: user
       conn_password: pw
       conn_port: 5432
