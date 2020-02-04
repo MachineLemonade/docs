@@ -72,7 +72,7 @@ astronomer:
 
 #### Run a Platform Upgrade
 
-To push the new configuration, run a platform upgrade from the `helm.astronomer.io` repo:
+To push the new configuration, run a platform upgrade from the `astronomer` repo:
 
 ```
 $ helm ls

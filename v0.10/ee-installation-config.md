@@ -17,7 +17,7 @@ Note that we recommend using a few larger nodes than many smaller nodes for most
 
 ### What limits and quotas do you default to on our instance?
 
-You can configure the default settings on your installation [here](https://github.com/astronomer/helm.astronomer.io/tree/master/charts).
+You can configure the default settings on your installation [here](https://github.com/astronomer/astronomer/tree/master/charts).
 
 ## Auth
 
@@ -25,7 +25,6 @@ Astronomer ships with [auth0](https://auth0.com/), which can be used to integrat
 
 We leave it to you to integrate your auth system with auth0.
 
-For example, if you wanted to integrate with Okta, you would need to your own auth0 account and plug your values [here](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/values.yaml#L41-L14)
 
 ```
 enabled: true

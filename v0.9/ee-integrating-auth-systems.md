@@ -9,7 +9,7 @@ By default, the Astronomer platform allows you to authenticate using your Google
 
 ## Configuration
 
-In your `config.yaml` file in your `helm.astronomer.io` directory, you can enable an OIDC provider of your choice via the following config:
+In your `config.yaml` file in your `astronomer` directory, you can enable an OIDC provider of your choice via the following config:
 
 ```yaml
 astronomer:
@@ -39,7 +39,7 @@ astronomer:
 
 ### Astronomer Configuration
 
-Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory:
+Add the following to your `config.yaml` file in your `astronomer/` directory:
 
 ```yaml
 astronomer:
@@ -101,7 +101,7 @@ The steps required for establishing a connection will vary by identity provider 
 
 ### Astronomer Configuration
 
-Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
+Add the following to your `config.yaml` file in your `astronomer/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
 
 ```yaml
 astronomer:
@@ -131,7 +131,7 @@ The Identity provider integration of the Astronomer platform requires that Houst
 
 If your install is configured without a direct connection to the internet you will need to configure an HTTPS proxy server for Houston.
 
-To configure the proxy server used we need to set the `GLOBAL_AGENT_HTTPS_PROXY` environment variable for the Houston deployment, which we do by adding the following to your `config.yaml` file in your `helm.astronomer.io/` directory. The houston section of this file should now look something like this:
+To configure the proxy server used we need to set the `GLOBAL_AGENT_HTTPS_PROXY` environment variable for the Houston deployment, which we do by adding the following to your `config.yaml` file in your `astronomer/` directory. The houston section of this file should now look something like this:
 
 
 ```yaml

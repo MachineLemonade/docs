@@ -24,16 +24,16 @@ The platform does not need root access to the Kubernetes cluster.
 Astronomer makes use of Kubernetes cluster-level features (including K8s RBAC) by design. These features include creating / deleting namespaces, daemonsets, roles, cluster-roles, service-accounts, resource-quotas, limit-ranges, etc. Additionally, Astronomer dynamically creates new airflow instances in separate namespaces, which protects data engineer users from noisy neighbors.
 
 * Roles
-  * [Houston](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/astronomer/templates/houston/houston-bootstrap-role.yaml)
-  * [Prisma](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/astronomer/templates/prisma/prisma-bootstrap-role.yaml)
-  * [Kubed](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/kubed/templates/kubed-clusterrole.yaml)
-  * [NGINX](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/nginx/templates/nginx-role.yaml)
-  * [Commander](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/astronomer/templates/commander/commander-role.yaml)
-  * [Fluentd](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/fluentd/templates/fluentd-clusterrole.yaml)
-  * [Prometheus](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/prometheus/templates/prometheus-role.yaml)
-  * [Grafana](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/grafana/templates/grafana-bootstrap-role.yaml)
-  * [Kubestate](https://github.com/astronomer/helm.astronomer.io/blob/v0.10.3-fix.4/charts/kube-state/templates/kube-state-role.yaml)
-  * [Tiller](https://github.com/astronomer/helm.astronomer.io/blob/tiller-clusterrole/charts/astronomer/templates/commander/tiller-clusterrole.yaml)
+  * [Houston](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/astronomer/templates/houston/houston-bootstrap-role.yaml)
+  * [Prisma](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/astronomer/templates/prisma/prisma-bootstrap-role.yaml)
+  * [Kubed](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/kubed/templates/kubed-clusterrole.yaml)
+  * [NGINX](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/nginx/templates/nginx-role.yaml)
+  * [Commander](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/astronomer/templates/commander/commander-role.yaml)
+  * [Fluentd](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/fluentd/templates/fluentd-clusterrole.yaml)
+  * [Prometheus](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/prometheus/templates/prometheus-role.yaml)
+  * [Grafana](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/grafana/templates/grafana-bootstrap-role.yaml)
+  * [Kubestate](https://github.com/astronomer/astronomer/blob/v0.10.3-fix.4/charts/kube-state/templates/kube-state-role.yaml)
+  * [Tiller](https://github.com/astronomer/astronomer/blob/tiller-clusterrole/charts/astronomer/templates/commander/tiller-clusterrole.yaml)
 
 > NOTE: We also have  “Single Namespace mode” option (see https://www.astronomer.io/docs/ee-single-namespace-mode/) which reduces the standard permission/role requirements outlined below. The generated roles/permissions for single namespace [can be viewed here](https://gist.github.com/ianstanton/ee7b4785914c12ad47c18571504d614d).
 
@@ -41,7 +41,7 @@ Astronomer makes use of Kubernetes cluster-level features (including K8s RBAC) b
 
 We provide [a terraform module](https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws/) that deploys the infrastructure on AWS (optionally network, DB, EKS), then installs Astronomer on top of that. This also supports deploying a DB and EKS into existing subnets created by the customer. We have some Terraform available for GKE as well, which we can dig into if we go that path.
 
-You may have special requirements of your infrastructure such that you want to set up Kubernetes on your own, then install Astronomer with Helm. In that case, you can use the Helm chart. The [latest stable version](https://github.com/astronomer/helm.astronomer.io) is v0.10.3.
+You may have special requirements of your infrastructure such that you want to set up Kubernetes on your own, then install Astronomer with Helm. In that case, you can use the Helm chart. The [latest stable version](https://github.com/astronomer/astronomer) is v0.10.3.
 
 ### How can we integrate this setup with LDAP?
 

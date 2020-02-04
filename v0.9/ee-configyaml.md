@@ -6,9 +6,9 @@ slug: "ee-configyaml"
 ---
 Here, we'll set the configuration values for the Astronomer Helm chart.
 
-`cd` to where you cloned `helm.astronomer.io`
+`cd` to where you cloned `astronomer`
 
-Create a `config.yaml` for your domain setting overrides by copying [master.yaml](https://github.com/astronomer/helm.astronomer.io/blob/master/configs/master.yaml) if you don't already have one.
+Create a `config.yaml` for your domain setting overrides by copying [master.yaml](https://github.com/astronomer/astronomer/blob/master/configs/master.yaml) if you don't already have one.
 
 (If you are on GKE, you can use the GKE one).
 

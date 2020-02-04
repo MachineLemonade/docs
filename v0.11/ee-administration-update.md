@@ -28,7 +28,7 @@ Ensure you do not attempt to run the helm upgrade command on your airflow releas
 Switch to your astronomer EE helm chart cirectory:
 
 ```
-cd helm.astronomer.io
+cd astronomer
 ```
 
 Pull the latest version from the astronomer repository:

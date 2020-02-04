@@ -41,7 +41,7 @@ astronomer:
 
 ### Astronomer Configuration
 
-Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory:
+Add the following to your `config.yaml` file in your `astronomer/` directory:
 
 ```yaml
 astronomer:
@@ -103,7 +103,7 @@ The steps required for establishing a connection will vary by identity provider 
 
 ### Astronomer Configuration
 
-Add the following to your `config.yaml` file in your `helm.astronomer.io/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
+Add the following to your `config.yaml` file in your `astronomer/` directory. You can find your `clientID` value at `https://manage.auth0.com/dashboard/us/<tenant-name>/applications` listed next to `Default App`:
 
 ```yaml
 astronomer:

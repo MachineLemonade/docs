@@ -26,8 +26,8 @@ A list of all images needed can be found [here](https://github.com/astronomer/as
 
 ## Checkout the latest Astronomer Version
 
-Go into your `helm.astronomer.io` directory or wherever the config for your deployment lives.
-Checkout the version of the [Astronomer helm chart](https://github.com/astronomer/helm.astronomer.io) you'd like to upgrade TO
+Go into your `astronomer` directory or wherever the config for your deployment lives.
+Checkout the version of the [Astronomer helm chart](https://github.com/astronomer/astronomer) you'd like to upgrade TO
 
 ```
 $ git checkout v0.10.0

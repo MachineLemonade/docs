@@ -33,9 +33,9 @@ Then visit `localhost:9090` or `localhost:9093` on your computer.
 
 Alertmanager is the Astronomer platform component that manages alerts, including silencing, inhibiting, aggregating and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
 
-You can [configure Alertmanager](https://prometheus.io/docs/alerting/configuration/) to send alerts to email, HipChat, PagerDuty, Pushover, Slack, OpsGenie, and more by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). 
+You can [configure Alertmanager](https://prometheus.io/docs/alerting/configuration/) to send alerts to email, HipChat, PagerDuty, Pushover, Slack, OpsGenie, and more by editing the [Alertmanager ConfigMap](https://github.com/astronomer/astronomer/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). 
 
-You can also configure Alertmanager's `route` block by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). The `route` block defines values such as `repeat_interval` (the interval at which alert notifications are sent). You can find more information on the `route` block [here](https://prometheus.io/docs/alerting/configuration/#route)
+You can also configure Alertmanager's `route` block by editing the [Alertmanager ConfigMap](https://github.com/astronomer/astronomer/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml). The `route` block defines values such as `repeat_interval` (the interval at which alert notifications are sent). You can find more information on the `route` block [here](https://prometheus.io/docs/alerting/configuration/#route)
 
 Example `route` definition:
 
@@ -80,7 +80,7 @@ route:
 
 End users can subscribe to these configured alerts in the `Alerts` tab of the Astronomer UI.
 
-> Note: Feel free to reference our [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/values.yaml) for these built-in Airflow alerts.
+> Note: Feel free to reference our [full source code](https://github.com/astronomer/astronomer/blob/master/charts/prometheus/values.yaml) for these built-in Airflow alerts.
 
 
 ## Platform Alerts
@@ -93,11 +93,11 @@ End users can subscribe to these configured alerts in the `Alerts` tab of the As
 | `ElasticsearchDiskUsage` | Elasticsearch high disk usage, has less than 10% disk space available. |
 | `IngressCertificateExpiration` | TLS Certificate expiring soon, expiring in less than a week. |
 
-> Note: Feel free to reference our [full source code](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/prometheus/templates/prometheus-alerts-configmap.yaml) for these built-in platform alerts.
+> Note: Feel free to reference our [full source code](https://github.com/astronomer/astronomer/blob/master/charts/prometheus/templates/prometheus-alerts-configmap.yaml) for these built-in platform alerts.
 
 ### Configure Platform Alerts
 
-Admins can subscribe to these configured alerts by editing the [Alertmanager ConfigMap](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
+Admins can subscribe to these configured alerts by editing the [Alertmanager ConfigMap](https://github.com/astronomer/astronomer/blob/master/charts/alertmanager/templates/alertmanager-configmap.yaml).
 
 Example:
 

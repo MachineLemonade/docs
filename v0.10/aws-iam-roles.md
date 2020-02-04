@@ -21,7 +21,7 @@ default                                         1         14d
 true-hemisphere-2825-scheduler-serviceaccount   1         14d
 true-hemisphere-2825-worker-serviceaccount      1         14d
 ```
-The [worker service account](https://github.com/astronomer/helm.astronomer.io/blob/master/charts/airflow/templates/workers/worker-serviceaccount.yaml) will launch pods within a namespace. 
+The [worker service account](https://github.com/astronomer/airflow-chart/blob/master/templates/workers/worker-serviceaccount.yaml) will launch pods within a namespace. 
 
 Follow the official [EKS documentation](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html) to add an annotation to the `worker-serviceaccount`:
 

@@ -68,7 +68,7 @@ Astronomer Enterprise brings together best-of-class components into a complete "
 * [Elasticsearch](https://github.com/elastic/elasticsearch) - A powerful search engine used to centralize and index logs from Airflow deployments.
 * [Kibana](https://github.com/elastic/kibana) - A web dashboard to help visualize all of your Airflow logs powered by ElasticSearch. Create your own dashboards to centralize your logs across all of your deployments.
 * [Prisma ORM](https://www.prisma.io/) - An interface between the HoustonGraphQL API and your Postgres database. This handles read/writes to the database as well as migrations for upgrades.
-* [Astronomer Helm](https://github.com/astronomer/helm.astronomer.io) - Helm charts for the Astronomer Platform
+* [Astronomer Helm](https://github.com/astronomer/astronomer) - Helm charts for the Astronomer Platform
 * [db-bootstrapper](https://github.com/astronomer/db-bootstrapper) - Init container for bootstrapping system databases
 * [Docker images](https://hub.docker.com/u/astronomerinc/) - Docker images for deploying and running Astronomer on DockerHub.
 

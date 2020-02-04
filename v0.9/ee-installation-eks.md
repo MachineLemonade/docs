@@ -183,7 +183,7 @@ Now that your Kubernetes cluster has been configured with all prerequisites, you
 Clone the Astronomer helm charts locally and checkout your desired branch:
 
 ```
-$ git clone https://github.com/astronomer/helm.astronomer.io.git
+$ git clone https://github.com/astronomer/astronomer.git
 $ git checkout <branch-name>
 ```
 

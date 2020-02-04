@@ -15,7 +15,7 @@ slug: "ee-installation-dev-env"
 * Ensure you have `helm` installed and updated. On mac it's `brew install kubernetes-helm`.
   You may need to run `helm repo update` and/or `helm init --client-only`.
 * Get `kubernetes admin` permission on your Google Cloud account
-* Download Astronomer helm charts locally `git clone git@github.com:astronomer/helm.astronomer.io.git`
+* Download Astronomer helm charts locally `git clone git@github.com:astronomer/astronomer.git`
 
 > Note: if you work with multiple Kubernetes clusters, `kubectx` is a nice utility
 to switch context between clusters.
@@ -36,8 +36,8 @@ to switch context between clusters.
 * Download Astronomer helm charts locally
 
 	```shell
-	git clone git@github.com:astronomer/helm.astronomer.io.git
-	cd helm.astronomer.io
+	git clone git@github.com:astronomer/astronomer.git
+	cd astronomer
 	git checkout <latest tag>
 	```
 
