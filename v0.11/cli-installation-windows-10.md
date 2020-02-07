@@ -39,7 +39,7 @@ This will allow the docker daemon running on windows to act as a remote docker s
 
 In your WSL terminal, follow the Docker CE for Ubuntu install guide here: [Install Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
-Docker wil lnot run in the WSL instance, however this will give us access to the docker CLI through our Linux environment.
+Docker will not run in the WSL instance, however this will give us access to the docker CLI through our Linux environment.
 
 ### Step 4. Connect your WSL instance to Docker on Windows
 
@@ -63,7 +63,7 @@ Then bind this mount point:
 
 You're all set! You can now run `docker run hello-world` through your WSL instance to ensure everything works as expected. Keep in mind that you will need to bind your mount point each time you start up a new WSL instance.
 
-**Last thing**: Whenever you run Docker-compose up, you'll want to make sure you navigate to the `/c/Users/name/dev/myapplocation` first, otherwise your volume won't work. In other words, never access `/mnt/c` directly.
+**Last thing**: Whenever you run Docker-compose up, you'll want to make sure you navigate to the `/c/Users/name/dev/myapplication` first, otherwise your volume won't work. In other words, never access `/mnt/c` directly.
 
 ### Step 6. Final Install
 
@@ -88,9 +88,9 @@ If you have any issues with Docker, check out [Docker's Troubleshooting Guide fo
 
 ### Step 3. Download the Astro CLI
 
-Currently, Astronomer on Windows outside of WSL is only supported by Astronomer CLI versions v0.8.x.
+Currently, Astronomer on Windows outside of WSL is only supported by Astronomer CLI versions 0.8 and beyond.
 
-To install our latest version, go [here](https://github.com/astronomer/astro-cli/releases/download/v0.8.2/astro_0.8.2_windows_386.zip).
+You can download the latest version of the CLI [here](https://github.com/astronomer/astro-cli/releases/).
 
 ### Step 4. Extract the contents
 
