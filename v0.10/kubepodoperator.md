@@ -52,7 +52,7 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
     arguments=["echo", "10", "echo pwd"],
     labels={"foo": "bar"},
     name="airflow-test-pod",
-    is_delete_pod_operator=True,
+    is_delete_operator_pod=True,
     in_cluster=True,
     task_id="task-two",
     get_logs=True)
@@ -69,8 +69,8 @@ To successfully instantiate the operator, you'll need to make note of a few para
 2. `in_cluster`
     - Set the `in_cluster` parameter to `True` in your code
     - This will tell your task to look inside the cluster for the Kubernetes config. In this setup, your workers are tied to a role with the right privileges in the cluster
-3. `is_delete_pod_operator`
-    - Set the `is_delete_pod_operator` parameter to `True` in your code
+3. `is_delete_operator_pod`
+    - Set the `is_delete_operator_pod` parameter to `True` in your code
     - This will delete completed pods in the namespace as they finish, keeping Airflow below its resource quotas
 
 #### Add Resources to your Deployment on Astronomer
@@ -150,7 +150,7 @@ with dag:
         cluster_context='docker-for-desktop', # is ignored when in_cluster is set to True
         config_file=config_file,
         resources=compute_resource,
-        is_delete_pod_operator=True,
+        is_delete_operator_pod=True,
         get_logs=True)
 ```
 
