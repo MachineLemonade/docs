@@ -190,14 +190,23 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run:
-          name: run linter
+          name: Install test deps
           command: |
-            pycodestyle .
-
+            # Use a virtual env to encapsulate everything in one folder for
+            # caching. And make sure it lives outside the checkout, so that any
+            # style checkers don't run on all the installed modules
+            python -m venv ~/.venv
+            . ~/.venv/bin/activate
+            pip install -r requirements.txt
       - save_cache:
           paths:
-            - ./venv
+            - ~/.venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
+      - run:
+          name: run linter
+          command: |
+            . ~/.venv/bin/activate
+            pycodestyle .
   deploy:
     docker:
       - image:  astronomerio/ap-build:0.0.7
