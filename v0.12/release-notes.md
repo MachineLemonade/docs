@@ -6,7 +6,7 @@ slug: "release-notes"
 ---
 ## Astronomer v0.12 Releae Notes
 
-Release Date: February 25, 2020
+Release Date: March, 2020
 
 ### Platform-Wide Changes
 
