@@ -102,8 +102,4 @@ If you're interested and believe you might be eligible, reach out to us at human
 
 ## Enterprise Pricing
 
-Astronomer Enterprise is priced via an annual licensing fee. You'll get access to the entire source code that powers Astronomer and pay us a flat fee for unlimited workers and Airflow deployments on your Kubernetes cluster.
-
-For a breakdown of the components that come with that license, check out our [Platform Overview](https://www.astronomer.io/docs/overview/) page.
-
 If you're interested in Enterprise and haven't already talked to us, reach out to start a trial [here](https://www.astronomer.io/enterprise/#request).
