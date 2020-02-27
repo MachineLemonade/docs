@@ -14,7 +14,7 @@ Designed in close partnership with both Airflow committers and users, Astronomer
 There are two primary ways to install Astronomer CEA:
 
 1. Docker (`docker run`)
-2. Python Wheel (`pip install`)
+2. Python Package (`pip install`)
 
 CEA currently supports Airflow versions 1.10.5 - 1.10.7. This doc should cover everything you need to know to run Astronomer CEA via either method, including:
 
